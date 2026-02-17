@@ -1,0 +1,33 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model182515182515Model'
+description: CA1 pyramidal neuron (Ferguson et al. 2014)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:182515
+  source_db: opensourcebrain
+  source_id: '182515'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/182515
+  download_url: https://github.com/OpenSourceBrain/182515.git
+  license: ''
+bsim:
+  entrypoint: src.model_182515_182515_model:Model182515182515Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

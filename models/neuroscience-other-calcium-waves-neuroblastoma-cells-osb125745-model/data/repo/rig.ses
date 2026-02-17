@@ -1,0 +1,101 @@
+{load_file("nrngui.hoc")}
+objectvar save_window_, rvp_
+objectvar scene_vector_[8]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+{
+xpanel("RunControl", 0)
+v_init = -65
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 100
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 0
+xvalue("t","t", 2 )
+tstop = 16000
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 1
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 0.01
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+screen_update_invl = 0.05
+xvalue("Scrn update invl","screen_update_invl", 1,"", 0, 1 )
+realtime = 0
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(0,105)
+}
+{
+xpanel("bkr (Globals)", 0)
+del_bkr = 500
+xvalue("del_bkr","del_bkr", 1,"", 0, 0 )
+k_bkr = 0.001188
+xvalue("k_bkr","k_bkr", 1,"", 0, 0 )
+xpanel(44,481)
+}
+
+//Begin Movie Run
+{
+movie_frame_dur_ = 0.01
+
+movierunpanel(0)
+ocbox_ = movierunbox
+ocbox_.map("Movie Run", 0, 592, 280.32, 85.44)
+}
+objref ocbox_
+//End Movie Run
+
+{
+save_window_ = new Graph(0)
+save_window_.size(0,160,-6.98492e-10,0.03)
+scene_vector_[2] = save_window_
+{save_window_.view(0, -6.98492e-10, 160, 0.03, 488, 105, 300.48, 200.32)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("ip3i")
+soma[0] rvp_.begin(0)
+cone rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,160,0,0.0012)
+scene_vector_[3] = save_window_
+{save_window_.view(0, 0, 160, 0.0012, 488, 369, 300.48, 200.32)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("cai")
+soma[0] rvp_.begin(0)
+cone rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,16000,0,0.001)
+scene_vector_[4] = save_window_
+{save_window_.view(0, 0, 16000, 0.001, 815, 369, 300.48, 200.32)}
+graphList[2].append(save_window_)
+save_window_.save_name("graphList[2].")
+save_window_.addexpr("soma[0].cai(0.833)", 2, 2, 0.288818, 0.526198, 2)
+save_window_.addexpr("neurite.cai(0.1)", 1, 1, 0.339936, 1.04856, 2)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,16000,-1.16415e-10,0.015)
+scene_vector_[7] = save_window_
+{save_window_.view(0, -1.16415e-10, 16000, 0.015, 815, 105, 300.48, 200.32)}
+graphList[2].append(save_window_)
+save_window_.save_name("graphList[2].")
+save_window_.addexpr("soma[0].ip3i(0.833)", 2, 2, 0.445367, 0.372843, 2)
+save_window_.addexpr("neurite.ip3i(0.1)", 1, 1, 0.250479, 0.823323, 2)
+}
+objectvar scene_vector_[1]
+{doNotify()}

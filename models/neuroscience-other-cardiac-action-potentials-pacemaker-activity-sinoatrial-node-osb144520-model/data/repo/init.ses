@@ -1,0 +1,107 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[3]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+
+//Begin Insert/Remove Mechanisms
+{
+load_file("inserter.hoc", "Inserter")
+}
+{
+soma ocbox_ = new Inserter(0)
+}
+{object_push(ocbox_)}
+{
+mt.select("pas") i = mt.selected()
+ms[i] = new MechanismStandard("pas")
+mstate[i]= 0
+mt.select("hh") i = mt.selected()
+ms[i] = new MechanismStandard("hh")
+mstate[i]= 0
+mt.select("Cadynam") i = mt.selected()
+ms[i] = new MechanismStandard("Cadynam")
+mstate[i]= 1
+maction(i)
+mt.select("ibg") i = mt.selected()
+ms[i] = new MechanismStandard("ibg")
+mstate[i]= 1
+maction(i)
+mt.select("ifun") i = mt.selected()
+ms[i] = new MechanismStandard("ifun")
+mstate[i]= 1
+maction(i)
+mt.select("ik1") i = mt.selected()
+ms[i] = new MechanismStandard("ik1")
+mstate[i]= 1
+maction(i)
+mt.select("ikd") i = mt.selected()
+ms[i] = new MechanismStandard("ikd")
+mstate[i]= 1
+maction(i)
+mt.select("inaca") i = mt.selected()
+ms[i] = new MechanismStandard("inaca")
+mstate[i]= 1
+maction(i)
+mt.select("INaf") i = mt.selected()
+ms[i] = new MechanismStandard("INaf")
+mstate[i]= 1
+maction(i)
+mt.select("inak") i = mt.selected()
+ms[i] = new MechanismStandard("inak")
+mstate[i]= 1
+maction(i)
+mt.select("Isi") i = mt.selected()
+ms[i] = new MechanismStandard("Isi")
+mstate[i]= 1
+maction(i)
+mt.select("ito") i = mt.selected()
+ms[i] = new MechanismStandard("ito")
+mstate[i]= 1
+maction(i)
+
+mt.select("K_acc") i = mt.selected()
+ms[i] = new MechanismStandard("K_acc")
+mstate[i]= 1
+maction(i)
+
+mt.select("Na_acc") i = mt.selected()
+ms[i] = new MechanismStandard("Na_acc")
+mstate[i]= 1
+maction(i)
+}
+{object_pop() doNotify()}
+{
+ocbox_ = ocbox_.v1
+ocbox_.map("Insert/Remove Mechanisms", 528, 0, 100, 250)
+}
+objref ocbox_
+//End Insert/Remove Mechanisms
+
+{WindowMenu[0].ses_gid(0, 0, 1, "Init")}
+{
+xpanel("RunControl", 0)
+v_init = -80
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1000
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 0
+xvalue("t","t", 2 )
+tstop = 1500
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 59.817
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 1
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+xcheckbox("Quiet",&stdrun_quiet,"")
+realtime = 0.75
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(0,460)
+}
+{WindowMenu[0].ses_gid(0, 0, 1, "Init")}
+objectvar scene_vector_[1]
+{doNotify()}

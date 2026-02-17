@@ -1,0 +1,254 @@
+load_file("nrngui.hoc")
+
+//Input Currents for Low Currents= 0, .025, .05, .1, .2, .25, .275, .3
+//Input Currents for High Currents= .45 .5 .6 .7 .8 .9 1
+
+//create electrode object
+objref stimIClamp
+soma stimIClamp = new IClamp(0.5)
+stimIClamp.del = 0
+stimIClamp.dur = 12000
+stimIClamp.amp = 0.1
+
+//Set Initial Ca level
+cai0_CaShell=0
+
+tstop = 12000
+
+//create graph object for plotting simulation results
+objref grph0
+objref scene_vector_
+grph0 = new Graph(0)
+scene_vector_[0] = grph0
+
+//(mleft, mbottom, mwidth, mheight, wleft,wtop, wwidth, wheight)
+// in a window with user-specified location (5th and 6th args) and size (last 2 args)
+{grph0.view(-5, 0, 200, 100, 50, 400, 700, 350)}
+
+//add graph object to list of objects to be plotted
+graphList[0].append(grph0)
+
+//add soma membrane potential to variables that will be plotted
+grph0.addvar("soma.v(0.5)")
+
+//create vectors to record data
+objref t_vect, vm_vect
+
+t_vect = new Vector()
+vm_vect = new Vector()
+
+objref savdata
+savdata = new File()
+
+//Create string object, print name in string object, sprint in documentation
+
+strdef datafilename
+datafilename= "fig10soma_i"
+
+stimIClamp.amp=0
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+stimIClamp.amp=0.025
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+
+savdata.wopen("fig10soma_i0.025.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+
+stimIClamp.amp=.05
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+
+savdata.wopen("fig10soma_i0.05.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+
+stimIClamp.amp=0.1
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.1.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+stimIClamp.amp=.15
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.15.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+stimIClamp.amp=0.2
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.2.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+
+stimIClamp.amp=0.25
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+
+savdata.wopen("fig10soma_i0.25.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+
+stimIClamp.amp=0.275
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+
+savdata.wopen("fig10soma_i0.275.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+
+stimIClamp.amp=0.3
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.3.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+
+stimIClamp.amp=0.45
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.45.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+stimIClamp.amp=0.5
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.5.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+stimIClamp.amp=0.6
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.6.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+
+stimIClamp.amp=0.7
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.7.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+
+stimIClamp.amp=0.8
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.8.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+stimIClamp.amp=0.9
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i0.9.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+
+stimIClamp.amp=1
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+savdata.wopen("fig10soma_i1.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close()
+
+graphList[0].remove_all()
+objref grph0

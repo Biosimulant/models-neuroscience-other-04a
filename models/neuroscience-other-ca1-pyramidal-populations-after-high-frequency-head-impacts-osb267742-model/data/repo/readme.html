@@ -1,0 +1,77 @@
+<html>
+
+<body>
+    <h1>
+        READ ME
+    </h1>
+    <p>
+        Instructions for code associated with the citation:<br>
+        <br>
+        Chapman DP, Vicini S, Burns MP, Evans R. (2023). Single Neuron Modeling Identifies Potassium Channel Modulation
+        as Potential Target for Repetitive Head Impacts <a
+            href="https://doi.org/10.1007/s12021-023-09633-7">Neuroinformatics</a>.
+    </p>
+    <hr>
+    <h2>Data</h2>
+    <p>
+        Contains source files for electrophysiology (Sloley et al.), results of optimization (HFHI or Sham), and
+        analysis of optimization (Results). Results of optimization contain the error of the optimized models against
+        the features (1000MSGenTestHofError.csv), the features (1000MSGenTestHofFeatures.csv), a file containing the
+        feature corresponding to each row (FeatureValueOrder.csv), and the channel densities
+        (1000MSGenTestHofParams.csv). Results contains the prism files and figures associated with the analyzed data.
+    </p>
+    <hr>
+    <h2>PyrOpt_GetData</h2>
+    <p>
+        Contains the python scripts that extract features from experimental data using the EFEL toolbox. Run the script
+        in python and select the folder containing 2 or more current clamp electrophysiology files (.abf). GetData.py
+        gets data for depolarizing steps. HyperPolGet_data.py gets data for a single hyperpolarizing steps. Running this
+        code on .abf files with a different protocol may require the user to change the timing as well as the trace # to
+        match the desire features.
+    </p>
+    <hr>
+    <h2>PyrOptRepo</h2>
+    <p>
+        Contains the code for the optimization using a modified version of BluePyOpt from Rumble and Kozloski,
+        "Dimensions of control for subthreshold oscillations and spontaneous firing in dopamine neurons." Run
+        BallAndStick_opt.py to run the actual optimization on a local computer or LongSlurmRun.sh on a high performance
+        cluster. Mechanisms contains all the mechanisms used in this. They must be compiled when being used in a new
+        location or on a new computer (follow instructions from:
+        <a
+            href="https://www.neuron.yale.edu/neuron/static/docs/nmodl/unix.html">https://www.neuron.yale.edu/neuron/static/docs/nmodl/unix.html</a>
+        to compile mechanisms).
+    </p>
+    <p>
+        Config contains the features, mechanism, parameters, and protocols.
+    </p>
+    <p style="margin-left:4em">
+        Features contains experimental values to compare models against (number of action potentials, action potential
+        height, etc.). These can be changed to match new experimental data gotten from "GetData.py".
+    </p>
+    <p style="margin-left:4em">
+        All mechanisms used in this model are listed under "soma" in mechanisms.json. New mechanisms not used in this
+        paper must be added to the Json file and the mechanisms folder.
+    </p>
+    <p style="margin-left:4em">
+        paramaters.json contains the values for constant mechanisms (ex: pas) or ranges for active currents to be
+        included in the optimization (kdr). These must match up with the mechanisms.
+    </p>
+    <p style="margin-left:4em">
+        protocols.json describes the protocol used for current clamp. This matches the protocol used in Sloley et al.
+        but can be changed to match new experimental data.
+    </p>
+    <p>
+        ReleaseParameters.py allows the user to manually enter a model # from the results (outputted in
+        1000MSGenTestHofParams.csv) to generate an image of the trace.
+    </p>
+    <hr>
+    <h2>Pyr_Opt_Analysis</h2>
+    <p>
+        Contains the Matlab code used to analyze the output from the optimization. Run Pyr_Opt_RunScript.mlx to analyze
+        outputted data using PCA and PLSR. After running, a prompt will appear and the user should select the folders
+        containing the files for the output from the Sham and HFHI results (or folders with new data if applicable).
+    </p>
+
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+/* base.hoc  */
+load_file("nrngui.hoc")
+cvode.active(1)
+
+dt=0.05
+celsius=30
+gna=0.02
+gkdr=0.004
+gkm=0.0005
+gqbar=0.001
+mid=1
+dist=7
+tstop=800
+
+xopen("model.axon")
+
+ropen("mod_ap.sod1d")
+num_na_ap=fscan()
+double sodium_ap[num_na_ap],coeff_ap[num_na_ap]
+for i=0, num_na_ap-1 {
+sodium_ap[i]=fscan()
+}
+ropen()
+
+ropen("mod_ap.nosod1d")
+no_num_na_ap=fscan()
+double no_sodium_ap[no_num_na_ap]
+for i=0, no_num_na_ap-1 {
+no_sodium_ap[i]=fscan()
+}
+ropen()
+
+access soma[0]
+distance()
+
+objref g, b
+b = new VBox()
+b.intercept(1)
+g = new Graph()
+xpanel("",1)
+xbutton("run Fig.3 ", "run3()")
+xbutton("run Fig.4bc ", "run4bc()")
+xbutton("run Fig.4bd ", "run4bd()")
+xpanel()
+b.intercept(0)
+b.map()
+
+forall {insert pas e_pas=-65 g_pas=1/8000 cm=3.5 Ra=200}
+
+for i=0,NumAxon-1 axon[i] {
+	Ra=50
+	insert namr ena=50
+		gnabar_namr=gna*50 
+                vhalf_namr=-55
+                vhalfl_namr=-62
+                vhalfn_namr=-35
+                vvh_namr=55
+	insert borgkdr ek=-91
+		gkdrbar_borgkdr=gkdr
+		vhalfn_borgkdr=-40
+		vhalfl_borgkdr=-60
+	insert borgkm  gkmbar_borgkm=gkm
+	insert q gqbar_q=0
+        }
+
+for i=0,NumSoma-1 soma[i] { 
+	insert namr ena=50
+		gnabar_namr=gna
+		vhalf_namr=-50
+		vhalfl_namr=-57
+		vhalfn_namr=-30
+		vvh_namr=58
+	insert borgkdr ek=-91
+		gkdrbar_borgkdr=gkdr
+		vhalfn_borgkdr=-40
+		vhalfl_borgkdr=-60
+	insert q gqbar_q=gqbar
+ 	}
+
+for i=0,num_na_ap-1 apical[sodium_ap[i]] {
+        insert namr ena=50
+		b_namr=0
+		gnabar_namr=gna
+		vhalf_namr=-50
+		vhalfl_namr=-57
+		vhalfn_namr=-30
+		vvh_namr=-58
+	insert borgkdr ek=-91
+		gkdrbar_borgkdr=gkdr
+		vhalfn_borgkdr=-40
+		vhalfl_borgkdr=-60
+	insert q gqbar_q=gqbar
+        }
+
+for i=0,NumBasal-1 basal[i] {
+	insert namr ena=50
+		gnabar_namr=gna
+		vhalfl_namr=-50
+		vhalfl_namr=-57
+		vhalfn_namr=-30
+		vvh_namr=58
+	insert borgkdr ek=-91
+		gkdrbar_borgkdr=gkdr
+		vhalfn_borgkdr=-40
+		vhalfl_borgkdr=-60
+	insert q gqbar_q=gqbar
+        }
+
+
+proc init() {
+	t=0
+        forall {v=-65}
+	finitialize(v)
+        fcurrent()
+        forall {if (ismembrane("namr")) {e_pas=v+(Iq_q+Ir_namr+ina+ik)/g_pas} else {e_pas=v}}
+	cvode.re_init()
+	}
+
+proc step() {
+	fadvance()
+	g.plot(t)
+//	g.flush()
+//	doNotify()
+}
+
+proc run() {
+	init()
+	t=0
+	while(t<tstop) { step()}
+}
+
+proc run3() {
+	tstop=800
+	access apical[7]
+        nstim=2
+        fstim(nstim)
+        fstim(0, 0.4, 5, 450, 0.1)
+        fstim(1, 0.4, 705, 70, 0.1)
+	g.erase_all()
+	g.size(0,tstop,-70,30)
+	g.addvar("soma[0].v(0.5)",2,1, 2*tstop,0,2)
+	g.addvar("apical[mid].v(0.25)",4,2,2*tstop,0,2)
+	g.addvar("apical[dist].v(0.4)",3,2,2*tstop,0,2)
+	g.color(2)
+	g.label(0.2,0.05,"soma")
+	g.color(4)
+	g.label(0.4,0.05,"152um ")
+	g.color(3)
+	g.label(0.6,0.05,"410um ")
+	g.xaxis(1)
+	g.begin()
+	printf ("running...")
+	run()
+	printf("done \n")
+}
+
+proc run4bc() {
+	tstop=1600
+	access apical[7]
+	g.erase_all()
+	g.size(0,tstop,-70,30)
+	g.addvar("apical[dist].v(0.4)",3,1,2*tstop,0,2)
+	g.addexpr("r_namr*30",3,1,2*tstop,0,2)
+	g.color(1)
+	g.label(0.25,0.5,"v 410um ")
+	g.label(0.25,0.8,"r_namr ")
+	g.xaxis(1)
+	g.begin()
+        nstim=2
+        fstim(nstim)
+        fstim(0, 0.4, 5, 450, 0.1)
+        fstim(1, 0.4, 655, 70, 0.1)
+	tstop=750
+	printf("running with 200ms delay...")
+	run()
+	printf("done \n")
+	g.flush()
+	doNotify()
+	tstop=1050
+	g.exec_menu("Keep Lines")
+	g.addvar("apical[dist].v(0.4)",2,1,2*tstop,0,2)
+	g.addexpr("r_namr*30",2,1,2*tstop,0,2)
+	g.begin()
+        fstim(nstim)
+        fstim(0, 0.4, 5, 450, 0.1)
+        fstim(1, 0.4, 955, 70, 0.1)
+	printf("running with 500ms delay...")
+	run()
+	printf("done \n")
+	g.flush()
+	doNotify()
+	tstop=1250
+	g.exec_menu("Keep Lines")
+	g.addvar("apical[dist].v(0.4)",4,1,2*tstop,0,2)
+	g.addexpr("r_namr*30",4,1,2*tstop,0,2)
+	g.begin()
+        fstim(nstim)
+        fstim(0, 0.4, 5, 450, 0.1)
+        fstim(1, 0.4, 1155, 70, 0.1)
+	printf("running with 750ms delay...")
+	run()
+	printf("done \n")
+	tstop=1550
+	g.exec_menu("Keep Lines")
+	g.addvar("apical[dist].v(0.4)",1,1,2*tstop,0,2)
+	g.addexpr("r_namr*30",1,1,2*tstop,0,2)
+	g.begin()
+        fstim(nstim)
+        fstim(0, 0.4, 5, 450, 0.1)
+        fstim(1, 0.4, 1455, 70, 0.1)
+	printf("running with 1000ms delay...")
+	run()
+	printf("done \n")
+}
+
+proc run4bd() {
+	tstop=800
+	access apical[7]
+        nstim=3
+        fstim(nstim)
+        fstim(0, 0.4, 5, 450, 0.1)
+        fstim(1, 0.4, 455, 250, -0.5)
+        fstim(2, 0.4, 705, 70, 0.1)
+	g.erase_all()
+	g.size(0,tstop,-120,0)
+	g.addvar("apical[dist].v(0.4)",3,1,2*tstop,0,2)
+	g.xaxis(1)
+	g.begin()
+	printf ("running...")
+	run()
+	printf("done \n")
+}
+
+

@@ -1,0 +1,80 @@
+// Creates Checkbox panel as User Interface to choose number of APs etc
+//
+// by B.Kampa 2006
+
+proc MakePanel() {
+	// this panel creates controls for basal dendrites
+	AP1_toq=0
+	AP2_toq=0
+	AP3_toq=0
+	AP4_toq=0
+	AP5_toq=0
+	IKa_toq=0
+	TTX_toq=0
+	forsec basal_dendrites {new_it = gbar_it/spinescale} 
+	forsec basal_dendrites {new_ca = gbar_ca/spinescale} 
+xpanel("BAPcontrol")
+	xlabel("AP stimulation")
+     	xcheckbox("1 AP",&AP1_toq,"set_stim()")
+     	xcheckbox("2 AP",&AP2_toq,"set_stim()")
+     	xcheckbox("3 AP",&AP3_toq,"set_stim()")
+     	xcheckbox("4 AP",&AP4_toq,"set_stim()")
+     	xcheckbox("5 AP",&AP5_toq,"set_stim()")
+	xlabel("basal dendritic mechanisms")
+	xcheckbox("4-AP application",&IKa_toq,"set_IKa()")
+	xcheckbox("TTX puff",&TTX_toq,"set_INa()")
+	xlabel("Ca channels in basal dendrites")
+	xvalue("T-type","new_it",1,"set_it()")
+	xvalue("HVA-type","new_ca",1,"set_ca()")
+xpanel()
+}
+
+proc set_stim() {
+	if(AP1_toq) {
+		Step[0].amp=4
+		print "1 AP"
+	} else{Step[0].amp=0}
+	if(AP2_toq) {
+		Step[1].amp=4
+		print "2 AP"
+	}else{Step[1].amp=0}
+	if(AP3_toq) {
+		Step[2].amp=4
+		print "3 AP"
+	}else{Step[2].amp=0}
+	if(AP4_toq) {
+		Step[3].amp=4
+		print "4 AP"
+	}else{Step[3].amp=0}
+	if(AP5_toq) {
+		Step[4].amp=4
+		print "5 AP"
+	}else{Step[4].amp=0}
+}
+
+proc set_IKa() {
+	if(IKa_toq) {
+		// 4-AP application
+		forsec dendritic_only gbar_ka=0
+		print "4-AP application"
+		}else{forsec dendritic_only gbar_ka = gka_dend
+			forsec basal_dendrites gbar_ka=gka_basal
+		}
+}
+
+proc set_INa() {
+	if(TTX_toq) {
+		// TTX puff
+		dend1[1045] distance()
+		forsec basal_dendrites for(x) if(distance(x)<30) gbar_na=0
+		print "TTX puff"
+		}else{forsec basal_dendrites gbar_na=gna_dend	}
+}
+
+proc set_it() {
+	forsec basal_dendrites gbar_it = new_it*spinescale
+}
+
+proc set_ca() {
+	forsec basal_dendrites gbar_ca = new_ca*spinescale
+}

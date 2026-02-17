@@ -1,0 +1,490 @@
+// **********************************************************
+// This file is based on the following paper:
+//
+// Maciej T. Lazarewicz, Michele Migliore, Giorgio A. Ascoli,
+// "A new bursting model of CA3 pyramidal cell physiology suggests multiple 
+// locations for spike initiation", Biosystems, 67(2002), 129-137
+//
+// Lee Suk-Ho (2014) modified  the programme of Lazarewicz et al (2002) by 
+// 1) implementing ion channel conductances according to the experimental data of Kim et al.(2012, Nat Neurosci 15:600-606) and Hyun et al. (2015, J Physiol. 593:3617-3643) 
+// 2) implementing synpatic inputs using Exp2GluSyn.mod (Baker et al. J Comp Nsc 2011).
+// Note that this programme adopted the young CA3c pyramidal cell morphology implemented in L22.hoc (ModelDB).
+// **********************************************************
+
+load_file("stdrun.hoc")
+
+// Set variable time step integration method
+cvode_active(1)
+
+steps_per_ms = 10 
+dt    = 0.1       // 0.025
+tstop = 100
+
+Rm     = 220e3    //Major Jack JNS 94 [ohm cm2]
+SpineFactor = 2
+RmSoma = Rm
+RmDend = Rm / SpineFactor
+
+Cm     = 0.8
+CmSoma = Cm     // [uF/cm2]
+CmDend = Cm*SpineFactor
+
+RaAll  = 200    //Major Jack (1994)  [ohm cm = ohm/cm*cm^2]
+RaSoma = 200    //Major Jack (1994) 
+Vrest  = -70    //[mV]
+
+celsius = 30.0  // [C deg]
+
+strdef MorphName
+MorphName = "L22.hoc"
+xopen(MorphName)
+
+gNa = 20e-3      //cf. 0.01 [S/cm2] in Kim Jonas Fig 4
+gKdr = 0.0036    //cf. 0.013 [S/cm2] in Kim Jonas; 0.01 for ikdr = 400 pA
+gKd = 0.003      // 
+gKdAxon = 0.005	 
+gKa  = 0.023     //cf. 0.01 S/cm2 in Kim Jonas Fig4e.
+gKh  = 1e-6      //[S/cm2] Ih, khdm01
+
+maxdist = 300  //this will be redefined in mesh_init()
+
+//Assuming that D-type K current is polarized to the distal apical dend > 150 um
+KaDt = 50		//cf. 50 [um] in Kim Jonas Fig4E; The distance where gKa density starts to increase. 
+KaSlope = 5.5e-5	//5.5e-5[(S/cm2)/um] in Kim Jonas Fig4E; The slope of gKa increase. 
+KdDt    = 150   // distance where gKd increases. For distance < KdDt, gKd = 0.1*gKd
+KdSlope = 0 	// no data in Kim Jonas 
+NaDt    = 150   // gNa begins to increase for distance > NaDt (um); 100 ~ 150 in Kim Jonas (2012)
+
+AXONM = 5    //gNa ratio axon to soma
+SomaNa = 1
+DendNa = 0.2  //gNa ratio prox apical_dendrite to soma; 0.2 in Kim Jonas (2012)
+DendKd = 0.1
+NaSlope = 9.615e-05  // 14e-5 [mS/cm2/um] in Kim Jonas Fig4 (2012)
+
+xopen("fixnseg.hoc")
+
+// Set up passive parameters
+
+proc ins_pasive() {
+	forall if(issection("soma")) { 
+		insert pas 
+		e_pas = Vrest 
+		g_pas = 1 / RmSoma 
+		Ra    = RaSoma 
+		cm    = CmSoma 
+	} else {
+		insert pas 
+		e_pas = Vrest 
+		g_pas = 1 / RmDend 
+		Ra    = RaAll  
+		cm    = CmDend 
+	}    	
+}
+
+// Functions for set up distributions of ion channels
+
+proc dist_NaKJ() {local xdist
+	forall gbar_Na 	= gNa 
+	forsec "soma"  gbar_Na = gNa*SomaNa
+	forsec "axon"  gbar_Na = gNa*AXONM
+	gNaDend = gNa*DendNa //##
+	forall for (x) if(issection("apical_dendrite.*")) {
+		xdist = abs(distance(x))
+		if((xdist > NaDt)&&(gNa>0))	{
+			gbar_Na(x)	=  gNaDend + NaSlope*(xdist-NaDt)
+		} else gbar_Na(x) = gNaDend
+	}	 
+}
+
+proc dist_Kdr() {
+	forall  gbar_Kdr = gKdr
+}
+
+proc dist_Ka() {local xdist
+	forall for (x) if(!issection("axon.*")) {
+		gbar_KaProx(x)	= gKa
+		xdist = abs(distance(x))
+		if(xdist > KaDt) gbar_KaProx(x)	= gKa + KaSlope * (xdist - KaDt) 
+		//gbar_KaDist(x)	= 0
+	}
+}
+
+proc dist_Kd() {
+	forall gbar_KdBG = gKd*DendKd
+	forall for (x) if(issection("apical_dendrite.*")) {
+		xdist = abs(distance(x))
+		if(xdist > KdDt) gbar_KdBG(x) = gKd
+	} else {
+		if(issection("axon.*")) gbar_KdBG = gKdAxon
+	}
+}
+
+proc dist_Khd() {local xdist
+	ehd_KhdM01  = -50  //-30, E702
+	forall for(x) if(!issection("axon.*")) { 
+		ghdbar_KhdM01(x) = gKh
+    }
+}
+
+//To reduce gKd
+proc condkd() {local factor
+	dist_Kd()
+	if($1!=1) forall for(x) gbar_KdBG(x)*=$1
+}
+
+proc condkdlocal() {local blockdist, bdistal 
+	dist_Kd()
+	forall for (x) if(issection("apical_dendrite.*")) {
+		xdist = abs(distance(x))
+		if($2>0) {
+			if(xdist > $1) gbar_KdBG(x) = 0
+		}	else {
+			if(xdist < $1) gbar_KdBG(x) = 0
+		}
+	}
+}
+
+proc condNa() {local factor
+	dist_NaKJ()
+	if($1!=1) forall for(x) gbar_Na(x)*=$1
+}
+
+// Set up active conductances
+
+proc ins_active() {
+	forsec "soma" {
+ 	    insert Na
+		insert Kdr
+		insert KaProx
+		insert KdBG		 //D-type K current	
+		insert KhdM01	 //Ih
+	}
+	
+	forsec "dendrite" {
+ 	    insert Na
+		insert Kdr
+		insert KaProx
+		insert KdBG		 //D-type K current	
+		insert KhdM01    //Ih		
+	}	
+	
+	forsec "axon" {   
+		insert Na
+        insert Kdr
+        insert KaProx 
+		insert KdBG
+	}
+}
+
+proc dist_active() {
+	dist_NaKJ()
+	dist_Kdr()
+	dist_Ka()
+	dist_Kd()
+	dist_Khd()
+	forsec "axon" {   
+        gbar_Kdr=gKdr
+        gbar_KaProx=gKa
+	}
+}
+
+// Initialization
+
+proc init() {
+	forall {
+		v  = Vrest
+		ek = -91
+		ena = 50
+		e_pas = Vrest
+	}
+
+	finitialize(Vrest)
+	fcurrent()
+
+    // Here is implemented the assumption that at steady state there is no current crossing the cell membrane 
+	// by setting nonhomogenous reversal potential for leakage current
+	forall if(!issection("axon.*")) {
+		for (x) e_pas(x) = v(x) + ( ina(x) + ik(x) + i_KhdM01(x) ) / g_pas(x)
+	} else {
+		e_pas(x)=v(x)+(ina(x)+ik(x))/g_pas(x)
+	}	
+	finitialize(Vrest)
+}
+
+// Main program  /////////////////////////////////////////////
+
+proc mesh_init() {local maxdist
+	geom_nseg()
+	
+	// Set up origin in soma & Show maxdist
+	access soma
+	soma distance() 	//specifies the soma as the location zero
+	forall for(x) {if (distance(x)>maxdist) {maxdist=distance(x)}}
+	print "maxdist = ", maxdist
+
+	dist_active()
+}
+
+// Main procedures for VC /////////////////////////////////////////////
+objectvar vc, cc 
+objref gvc
+objref rect, recy, recy1, recy2, recy3
+objref dfile, pfile, temp
+graphvmax = -60
+graphimax = 1.5
+durIinj = 500
+durcctail = 500
+Vhold = -80
+
+proc setupvc() {local Tprestep, Tstep
+	Tprestep = $1
+	Tstep = $2
+	access soma
+	vc = new SEClamp(0.5) 
+	//cf. VClamp: two electrode vclamp
+	//   SEClamp: single electrode vclamp
+
+	if(!yescc) Vrest = -80
+	
+	vc.rs  = 10 // MOhm
+	vc.dur1 = Tprestep
+	vc.dur2 = Tstep
+	vc.dur3 = 100
+	vc.amp1 = Vhold
+	vc.amp2 = -30
+	vc.amp3 = Vrest
+	cc = new IClamp(0.5)
+	cc.amp = 0
+	cc.dur = Tstep // durIinj
+	if(durIinj>50) cc.del = 50 else cc.del = durIinj
+
+	if(yescc) {
+		tstop = cc.del + cc.dur + durcctail
+	} else {
+		tstop = vc.dur1 + vc.dur2 + vc.dur3
+	}	
+	//if(tstop < 50) tstop = 50
+	graphvc()
+}
+
+proc vcmode() {local step2
+	//access soma
+	cc.amp = 0
+	vc.rs = 10
+	vc.amp1 = Vhold
+	vc.amp2 = $1
+	vc.amp3 = Vrest
+}
+
+proc ccmode() {local amp
+	//access soma
+	vc.rs = 1e15
+	cc.amp = $1  //nA
+}
+
+proc graphvc() {
+	gvc = new Graph(0)
+
+	if(yescc) { 
+		gvc.view(0, -90, tstop, (graphvmax+90), 0, 700, 900, 500)
+	} else {
+		gvc.view(0, -0.2, tstop, (graphimax+0.2), 0, 700, 900, 500)	
+	}	
+
+	gvc.xaxis(0)
+	if(yescc) gvc.addvar("soma.v(0.5)", 2, 1) else gvc.addvar("vc.i", 3, 1)
+}
+
+proc stepvc() {
+	fadvance()
+	gvc.plot(t)
+	gvc.fastflush()
+	doNotify()	
+}
+
+proc runvc() { local overlap
+	init()
+	if (!$1) {
+		gvc.erase()
+	}
+	while(t<tstop) { stepvc()}
+	gvc.flush()
+}
+
+
+/******************************************************************
+  Procedures for EPSP
+*******************************************************************/
+
+Ndsynmax = 9
+objectvar syn3[Ndsynmax], syn2[Ndsynmax], syn1
+objectvar ns, acnc[Ndsynmax], ppnc[Ndsynmax], mfnc
+objref gepsp
+gheight = 30
+double wt[5]
+
+proc setupsynapse() { local sr
+	//PP inputs
+  sr = $1
+  if(sr){
+	access apical_dendrite[5]
+		syn3[0] = new GluSyn(0.8)
+		syn3[1] = new GluSyn(0.9)
+		syn3[2] = new GluSyn(0.7)
+		syn3[3] = new GluSyn(0.75)	
+		syn3[4] = new GluSyn(0.85)
+	access apical_dendrite[13]
+		syn3[5] = new GluSyn(0.8)
+	access apical_dendrite[26]
+		syn3[6] = new GluSyn(0.8)	
+	access apical_dendrite[40]
+		syn3[7] = new GluSyn(0.9)
+	access apical_dendrite[41]
+		syn3[8] = new GluSyn(0.95)
+  }  else {
+	access apical_dendrite[5]
+		syn3[0] = new GluSyn(0.8)
+	access apical_dendrite[13]
+		syn3[1] = new GluSyn(0.8)
+	access apical_dendrite[26]
+		syn3[2] = new GluSyn(0.8)	
+	access apical_dendrite[35]
+		syn3[3] = new GluSyn(0.5)
+	access apical_dendrite[37]
+		syn3[4] = new GluSyn(0.9)	
+	access apical_dendrite[42]	
+		syn3[5] = new GluSyn(0.9)
+	access apical_dendrite[40]
+		syn3[6] = new GluSyn(0.9)
+	access apical_dendrite[33]
+		syn3[7] = new GluSyn(0.95)
+	access apical_dendrite[27]
+		syn3[8] = new GluSyn(0.9)
+	//access apical_dendrite[41]
+	//	syn3[9] = new GluSyn(0.95)
+  }				
+		
+//AC inputs	
+	access apical_dendrite[4]		
+		syn2[0] =  new GluSyn(0.5)
+	access apical_dendrite[10]		
+		syn2[1] =  new GluSyn(0.5)		
+	access apical_dendrite[19]
+		syn2[2] =  new GluSyn(0.5)
+	access apical_dendrite[25]
+		syn2[3] =  new GluSyn(0.5)
+	access apical_dendrite[39]		
+		syn2[4] =  new GluSyn(0.5)
+	access apical_dendrite[30]		
+		syn2[5] =  new GluSyn(0.3)
+	access apical_dendrite[34]		
+		syn2[6] =  new GluSyn(0.3)
+	access apical_dendrite[42]		
+		syn2[7] =  new GluSyn(0.3)
+	access apical_dendrite[21]		
+		syn2[8] =  new GluSyn(0.2)
+	//access apical_dendrite[7]		
+	//	syn2[9] =  new GluSyn(0.9)
+	
+	for(i=0;i<Ndsynmax;i+=1){
+		//pp synapse
+		syn3[i].tau1 = atau
+		syn3[i].ntar = NAratio
+		syn3[i].tau3 = ntau
+		syn3[i].tauD = tauD // RRP recovery tau
+		syn3[i].tauF = tauF // facilitation decay tau
+		syn3[i].Pb = p0
+		syn3[i].f = Af		
+		ppnc[i] = new NetCon(ns, syn3[i], 0,0,0) // NetCon(source, target, threshold, delay, weight)
+		ppnc[i].weight = 0
+		
+		//ac synapse
+		syn2[i].tau1 = atau
+		syn2[i].ntar = NAratio
+		syn2[i].tau3 = ntau	
+		syn2[i].tauD = tauD
+		syn2[i].tauF = tauF
+		syn2[i].Pb = p0
+		syn2[i].f = Af		
+		acnc[i] = new NetCon(ns, syn2[i], 0,0,0) // NetCon(source, target, threshold, delay, weight)
+		acnc[i].weight = 0
+	}
+	
+	//MF inputs
+	access apical_dendrite[1]
+	syn1 = new GluSyn(0.5)
+	syn1.e = 0
+	syn1.tau1 = atau	
+	syn1.ntar = NAratio
+	syn1.tauD = taudmf
+	syn1.tauF = taufmf
+	syn1.Pb = p0mf
+	syn1.f = Afmf	
+	
+	mfnc = new NetCon(ns, syn1, 0,0,0)
+	mfnc.weight = 0
+}
+
+proc epsc1(){ local gmax
+	gmax = $1
+	resetsyn()
+	mfnc.weight = gmax
+}
+
+proc epsc2(){ local gmax
+	gmax = $1
+	resetsyn()
+	for(i=0;i<Ndsyn;i+=1){
+		acnc[i].weight = gmax
+	}
+}
+
+proc epsc3(){ local gmax
+	gmax = $1
+	resetsyn()
+	for(i=0;i<Ndsyn;i+=1){
+		ppnc[i].weight = gmax
+	}
+}
+
+proc resetsyn() {
+	mfnc.weight = 0 
+	for(i=0;i<Ndsynmax;i+=1){
+		acnc[i].weight = 0
+		ppnc[i].weight = 0
+	}
+}
+
+proc graphepsp() {
+	gepsp = new Graph(0) //The arg '0' makes no window
+	gepsp.view(0, Vrest-1, tstop, gheight, 0, 700, 900, 500)
+	gepsp.xaxis(0)
+	gepsp.addvar("soma.v(0.5)", 3, 1)
+	gepsp.addvar("apical_dendrite[4].v(0.5)", 2,1)  //AC input site & conducting dend 
+	gepsp.addvar("apical_dendrite[5].v(0.7)", 4,1)  //PP input site
+}
+
+proc stepepsp() {
+	fadvance()
+	gepsp.plot(t)
+	gepsp.fastflush()
+	doNotify()	
+}
+
+proc runepsp() { local overlap
+	init()
+	if (!$1) gepsp.erase()
+	while(t<tstop) { stepepsp()}
+	gepsp.flush()
+}
+
+proc runsyn() {local loc, overlap, fileidx
+	loc = $1
+	weight = wt[loc]
+	
+	if(loc==1) epsc1(weight) //(weight[1])
+	if(loc==2) epsc2(weight) //(weight[2])
+	if(loc==3) epsc3(weight) //(weight[3])
+	
+	runepsp($2)
+}

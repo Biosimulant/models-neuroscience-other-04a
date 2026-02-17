@@ -1,0 +1,45 @@
+//moddir mods
+
+load_file("nrngui.hoc")
+
+xpanel("Traub Neuron Model")
+  xlabel("See the readme for more info")
+
+  xlabel("Choose a simulation to recreate each figure")
+  
+// For generating data shown in figure 3:
+//   xlabel("**  **")
+  xbutton("Figure 3","{load_file(1,\"GenerateFig3.hoc\")}")
+
+// For generating data shown in figure 4:
+//   xlabel("**  **")
+  xbutton("Figure 4","{load_file(1,\"GenerateFig4.hoc\")}")
+
+// For generating data shown in figure 5:
+//   xlabel("**  **")
+  xbutton("Figure 5","{load_file(1,\"GenerateFig5.hoc\")}")
+
+// For generating data shown in figure 6:
+//   xlabel("**  **")
+  xbutton("Figure 6","{load_file(1,\"GenerateFig6.hoc\")}")
+
+// For generating data shown in figure 7:
+//   xlabel("**  **")
+  xbutton("Figure 7","{load_file(1,\"GenerateFig7.hoc\")}")
+
+// For generating data shown in figure 8:
+//   xlabel("**  **")
+  xbutton("Figure 8","{load_file(1,\"GenerateFig8.hoc\")}")
+  
+// For generating data shown in figure 9:
+//   xlabel("**  **")
+  xbutton("Figure 9","{load_file(1,\"GenerateFig9.hoc\")}")
+
+// For generating data shown in figure 10:
+//   xlabel("**  **")
+  xbutton("Figure 10","{load_file(1,\"GenerateFig10.hoc\")}")
+
+  xlabel(" ")
+  xbutton("Quit","quit()")
+xpanel()
+

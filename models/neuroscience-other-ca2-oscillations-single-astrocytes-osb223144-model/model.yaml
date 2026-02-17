@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model223144223144Model'
+description: Ca2+ oscillations in single astrocytes (Lavrentovich and Hemkin 2008)
+  (python) (Manninen et al 2017)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:223144
+  source_db: opensourcebrain
+  source_id: '223144'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/223144
+  download_url: https://github.com/OpenSourceBrain/223144.git
+  license: ''
+bsim:
+  entrypoint: src.model_223144_223144_model:Model223144223144Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

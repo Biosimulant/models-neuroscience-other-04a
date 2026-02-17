@@ -1,0 +1,24 @@
+load_file("E807.hoc")
+/******************************************************************
+  Input Conductance or K current
+*******************************************************************/
+  Vrest  = -70
+
+  ins_pasive()
+  ins_active() // implements channels
+  mesh_init()  // assign the channel conductance  
+  
+  yescc = 1 //0: IK(D) record; 1: Gin 
+  setupvc(0, 500)
+
+  ccmode(-0.03)
+  gvc.begin()
+  runvc(1)
+  ccmode(0.01)
+  runvc(1)
+  
+  condkd(0.1) //reduces gKd to 10%
+  ccmode(-0.03)
+  runvc(1)
+  ccmode(0.01)
+  runvc(1)

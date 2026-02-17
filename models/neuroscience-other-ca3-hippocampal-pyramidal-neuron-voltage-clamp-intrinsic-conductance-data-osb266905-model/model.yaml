@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model266905266905Model'
+description: CA3 hippocampal pyramidal neuron with voltage-clamp intrinsic conductance
+  data (Traub et al 1991)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:266905
+  source_db: opensourcebrain
+  source_id: '266905'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/266905
+  download_url: https://github.com/OpenSourceBrain/266905.git
+  license: ''
+bsim:
+  entrypoint: src.model_266905_266905_model:Model266905266905Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

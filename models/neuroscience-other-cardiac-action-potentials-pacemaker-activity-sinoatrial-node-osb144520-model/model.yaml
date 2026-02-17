@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model144520144520Model'
+description: Cardiac action potentials and pacemaker activity of sinoatrial node (DiFrancesco
+  & Noble 1985)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:144520
+  source_db: opensourcebrain
+  source_id: '144520'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/144520
+  download_url: https://github.com/OpenSourceBrain/144520.git
+  license: ''
+bsim:
+  entrypoint: src.model_144520_144520_model:Model144520144520Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

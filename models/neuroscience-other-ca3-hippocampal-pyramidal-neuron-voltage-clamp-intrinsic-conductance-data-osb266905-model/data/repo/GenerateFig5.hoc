@@ -1,0 +1,11 @@
+// hoc file generating Fig. 5.
+// call as follows:
+//  ./x86_64/special GenerateFig5.hoc -
+//
+figNumber = 5
+load_file(1,"traub.hoc")
+chdir("Traub_Figures/TraubFigure5")
+load_file(1,"fig5.hoc")
+
+chdir("../..")
+printf("finished Figure 5 simulation\n")

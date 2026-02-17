@@ -1,0 +1,75 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+// Jan M Schulz
+// University of Basel
+// May, 2018
+//
+// Correspondence: j.schulz@unibas.ch
+//
+// Based on the model by Mark Cembrowski in Bloss et al., 2017
+//
+// The following scripts are designed to allow easy simulation of both
+// inhibition and excitation onto a model CA1 PC, with the spatial distribution 
+// of inputs reflecting subcellular, cell-type-specific distributions of 
+// inhibition (as determined by array tomography in Bloss et al., 2017) 
+// and physiological properties (as determined by optogenetic activation of inputs
+// during voltage-clamp recordings in Schulz et al. 2018).
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// LOAD GUI.
+{
+	load_file("nrngui.hoc")
+}
+
+// LOAD MORPHOLOGY.
+{
+	load_file("loadMorph.hoc")
+	load_file("resetNSeg.hoc")
+}
+
+// ADJUST MORPHOLOGY AND ANNOTATION.
+{
+	load_file("proofreadMorph.hoc") // proofread at-derived morph
+	load_file("idMorph.hoc") // create section lists for gross compartments
+	load_file("processMorph.hoc") // annotate how NEURON recognises sections
+}
+
+// IMPLEMENT INTRINSIC CHANNELS.
+{
+	load_file("addChannels_JMS.hoc")
+}
+
+// ADJUST NUMERICAL ASPECTS OF SIMULATION.
+{
+	load_file("initializationAndRun.hoc")
+} 
+
+// PLACE ALL INHIBITORY SYNAPSES (ie, all VGAT+ SYNAPSES) AND THEN ASSIGN THEM
+// AS OTHER GENOTYPES (SST, PV) AS DETERMINED BY ARRAY TOMOGRAPHY 
+// DISTRIBUTIONS.
+{
+	load_file("addVgatInhibition_JMS.hoc")
+	load_file("synHelperScripts.hoc") // scripts retrieving synapse information
+	load_file("flagVgatInhibition_JMS.hoc")
+	load_file("inhibitionBiophysics_JMS.hoc") // assign inhibition properties
+}				
+
+// PLACE ALL EXCITATORY SYNAPSES.
+{
+	load_file("addExcitation_JMS.hoc")
+}
+
+// PROVIDE SCRIPTS THAT ALLOW FOR EASY MANIPULATION OF EXCITATION AND
+// INHIBITION.
+{
+	load_file("activateInhibition_JMS.hoc") // fxn toggling inhibition activation
+	load_file("activateExcitation.hoc") // fxn toggling excitation activation
+}
+
+// START SIMULATION
+{
+    load_file("Fig8_tuft_NMDA_spike.hoc")
+    //load_file("FigS8_SR_SLM_burst_stim.hoc")
+    //load_file("FigS9_test_TI.hoc")
+}

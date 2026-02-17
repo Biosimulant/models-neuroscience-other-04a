@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: Ca2RequirementsForLongTermDepressionInPur245412Model'
+description: '{"value": "An updated stochastic model of cerebellar Long-Term Depression
+  (LTD) to study the requirements of calcium to induce LTD. Calcium signal is generated
+  as a train of calcium pulses and this ca'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:245412
+  source_db: modeldb
+  source_id: '245412'
+  standard: other
+  original_url: https://modeldb.science/245412
+  download_url: https://modeldb.science/download/245412
+  license: ''
+bsim:
+  entrypoint: src.ca2_requirements_for_long_term_depression_in_pur_245412_model:Ca2RequirementsForLongTermDepressionInPur245412Model
+  init_kwargs:
+    model_path: data/245412.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

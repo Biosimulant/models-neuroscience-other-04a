@@ -1,0 +1,161 @@
+load_file("stdlib.hoc")
+load_file("stdrun.hoc")
+load_file("nrngui.hoc") 
+
+//load morphology
+load_file("morphology.hoc")
+
+//Some simulation parameters
+stdrun=1
+celsius=30 //simulation temperature, since some of the currents are temperature dependent
+v_init=-75 //initialize membrane potential
+cai0_ca_ion=5e-06 //initial calcium concentration
+cao0_ca_ion=2
+ca2i0_ca2_ion=5e-06
+ca2o0_ca2_ion=2
+
+//simulation step in ms
+dt = 0.025 
+//simulation time
+tstop=1020
+
+//inserting current clamp at soma
+access soma
+objectvar stim
+stim = new IClamp(0.5)
+stim.del = 500 //this model needs quite a long time to achieve an equilibrium state
+stim.dur = 500
+
+//set the stimulation amplitude, varied from 0.4 to 0.9 nA throughout the paper 
+stim.amp = 0.8
+
+//record data at soma, axon hillock and axon inital segment
+objref somav, ahv, isav
+somav = new Vector(52000)
+somav.record(&soma.v(0.5), dt)
+
+//file for saving data
+objref all
+all = new File()
+strdef datei
+sprint(datei, "outputdata.dat")
+
+//save original values of Inap-density and initialize some variables
+soma_ah_orig = soma.gbar_nap
+isa_orig = isa.gbar_nap
+factor = 1
+sh = 0
+
+strdef soma_gbar_nap
+sprint(soma_gbar_nap, "%g", soma.gbar_nap)
+
+
+//defining some functions
+
+proc run_sim_graph() {
+    dt = 0.025
+    print "running simulation please wait"
+    init()
+    run()
+    print "writing data file of membrane voltages at soma"
+    write_file()
+    print "data was written into the file outputdata.dat"
+    print "done"
+}
+
+proc write_file() {
+    sprint(datei, "outputdata.dat") 
+    all.wopen(datei)
+
+    for i=0, somav.size()-1 {
+        all.printf("%g \r\n", somav.x(i))
+    }
+
+    all.close
+}
+
+proc update_shift(){
+    shift = $1
+    soma.sh_nap = shift
+    AH.sh_nap = shift
+    isa.sh_nap = shift
+}
+
+proc update_gbar(){
+    inap_isa = $1
+    fac = inap_isa/isa_orig
+    soma.gbar_nap = soma_ah_orig*fac
+    AH.gbar_nap = soma_ah_orig*fac
+    isa.gbar_nap = inap_isa
+    sprint(soma_gbar_nap, "%g mhO/cm^2", soma.gbar_nap)
+}
+
+//building gui controls for easy access to changed model parameters
+
+objref vbox
+vbox = new VBox()
+vbox.intercept(1)
+xpanel("")
+
+xlabel("shift of Inap at Soma, AH and AIS varied from 0 to -16 mV in the publication")
+xvalue("shift", "sh", 0, "update_shift(sh)") 
+xlabel("INap density at axon initial segment, varied from 0.00016 to 0.00166 S/cm^2 in the publication.")
+xlabel("INap density at soma and axon hillock (AH) will be changed accordingly.")
+xvalue("INap density at AIS", "isa.gbar_nap", 0, "update_gbar(isa.gbar_nap)") 
+xlabel("INap density at soma, AH")
+xvarlabel(soma_gbar_nap) 
+
+
+xpanel()
+vbox.intercept(0)
+vbox.map("adjust model parameters", 100, 150, -1, -1)
+
+
+objref vbox4
+vbox4 = new VBox()
+vbox4.intercept(1)
+xpanel("")
+xlabel("stimulation current amplitude, varied from 0.4 nA to 0.9 nA in the publication")
+xvalue("injection current amplitude", "stim.amp")
+xpanel()
+vbox4.intercept(0)
+vbox4.map("adjust stimulation", 100, 400, -1, -1)
+
+
+objref vbox3
+vbox3 = new VBox()
+vbox3.intercept(1)
+xpanel("Uebachs et al. 2009")
+xlabel("Recreate a voltage trace from figure 9A")
+xlabel("Attention: This takes some time, since the model needs quite a long time to establish a steady state.")
+xbutton("Run Simulation/graph then write file", "run_sim_graph()")
+xlabel("")
+xlabel("simulation time")
+xvalue("t")
+xbutton("Stop the simulation","stoprun=1")
+xpanel()
+vbox3.intercept(0)
+vbox3.map("run the simulation", 100,550,-1,-1)
+
+
+objref vbox2
+vbox2 = new VBox()
+vbox2.intercept(1)
+
+newPlot(480,1020,-80,40)
+graphItem.save_name("graphList[0].")
+graphList[0].append(graphItem)
+graphItem.addexpr("soma.v(0.5)")
+
+vbox2.intercept(0)
+vbox2.map("mebrane voltage at soma", 700,150,500,350)
+
+
+
+
+
+
+
+
+
+

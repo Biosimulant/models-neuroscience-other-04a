@@ -1,0 +1,7 @@
+tstop = 3000
+v_init = -80
+
+//load_file(1,"pa.ses")
+load_file(1,"fig6.ses")
+finitialize(v_init)
+run()

@@ -1,0 +1,44 @@
+{NumSoma=1 NumApical=13 NumBasal=3 NumAxon=1}
+create soma[NumSoma], apical[NumApical], basal[NumBasal],axon[NumAxon]
+
+axon[0]  {nseg=5 diam=2 L=50}
+soma[0]  {nseg=1 diam= 10  L= 15  }
+
+apical[0]   {nseg=4 diam= 4  L= 100  }
+apical[1]   {nseg=4 diam= 3  L= 100  }
+apical[2]   {nseg=5 diam= 3  L= 150  }
+apical[3]   {nseg=2 diam= 2  L= 90  }
+apical[4]   {nseg=10 diam= 0.7  L= 200  }
+apical[5]   {nseg=3 diam= 1.5  L= 90  }
+apical[6]   {nseg=10 diam= 0.7  L= 200  }
+apical[7]   {nseg=3 diam= 1.9  L= 90 }
+apical[8]   {nseg=8 diam= 0.7  L= 200  }
+apical[9]   {nseg=8 diam= 0.7  L= 200  }
+apical[10]   {nseg=3 diam= 1.9  L= 90  }
+apical[11]   {nseg=8 diam= 0.7  L= 200  }
+apical[12]   {nseg=8 diam= 0.7  L= 200  }
+
+basal[0]  {nseg=4 diam= 1.5  L= 100  }
+basal[1]  {nseg=6 diam= 1.5  L= 150  }
+basal[2]  {nseg=4 diam= 2  L= 100  }
+
+soma[0]  {  connect apical[0] (0),1
+         connect basal[0] (0),0
+	 connect basal[1] (0),0
+	 connect basal[2] (0),0
+	 connect axon[0](0),0.5}
+
+apical[0]  {connect apical[ 1]  (0), 1
+connect apical[3]  (0), 1}
+apical[1]  {connect apical[ 2]  (0), 1
+connect apical[5]  (0), 1}
+apical[2]  {connect apical[ 7]  (0), 1
+connect apical[10]  (0), 1}
+apical[3]  {connect apical[ 4]  (0), 1}
+apical[5]  {connect apical[ 6]  (0), 1}
+apical[7]  {connect apical[ 8]  (0), 1}
+apical[8]  {connect apical[ 9]  (0), 1}
+apical[10]  {connect apical[ 11]  (0), 1}
+apical[11]  {connect apical[ 12]  (0), 1}
+
+

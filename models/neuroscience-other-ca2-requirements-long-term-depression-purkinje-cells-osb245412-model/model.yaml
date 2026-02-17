@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model245412245412Model'
+description: Ca2+ requirements for Long-Term Depression in Purkinje Cells (Criseida
+  Zamora et al 2018)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:245412
+  source_db: opensourcebrain
+  source_id: '245412'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/245412
+  download_url: https://github.com/OpenSourceBrain/245412.git
+  license: ''
+bsim:
+  entrypoint: src.model_245412_245412_model:Model245412245412Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

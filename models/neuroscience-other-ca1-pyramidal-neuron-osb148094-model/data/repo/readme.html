@@ -1,0 +1,45 @@
+<html><pre>
+NEURON mod files from the paper:
+
+Miceli et al, Genotype–phenotype correlations in neonatal
+epilepsies caused by mutations in the voltage
+sensor of Kv7.2 potassium channel subunits, PNAS 2013 Feb 25. [Epub ahead of print]
+
+In this paper, functional studies revealed that in homomeric
+or heteromeric configuration with KV7.2 and/or KV7.3 subunits, R213W and 
+R213Q mutations markedly destabilized the open state, causing a dramatic
+decrease in channel voltage sensitivity.
+Modeling these channels in CA1 hippocampal pyramidal
+cells revealed that both mutations increased cell firing frequency,
+with the R213Q mutation prompting more dramatic functional
+changes compared with the R213W mutation  The fig4a.hoc
+reproduces the traces shown in Fig.4a of the paper.
+
+Under linux/unix systems:
+to compile the mod files use the command 
+nrnivmodl 
+and run the simulation hoc file with the command 
+nrngui fig6a.hoc
+
+Under Windows systems:
+to compile the mod files use the "mknrndll" command.
+A double click on the simulation file
+fig6a.hoc 
+will open the simulation window.
+
+Under MAC OS X:
+to compile the mod files drag and drop the extracted folder onto the
+mknrndll icon. Drag and drop the mosinit.hoc file onto the nrngui
+icon.
+
+Once the simulation is started you can select the desired simulation.
+
+Questions on how to use this model
+should be directed to michele.migliore@cnr.it
+
+20150524 Update from Ted Carnevale: In cad.mod fixed ca initialization
+by inserting cai = ca into INITIAL block.  Changed integration method
+from euler to derivimplicit which is appropriate for simple ion
+accumulation mechanisms.  See Integration methods for SOLVE statements
+http://www.neuron.yale.edu/phpBB/viewtopic.php?f=28&t=592
+</pre></html>

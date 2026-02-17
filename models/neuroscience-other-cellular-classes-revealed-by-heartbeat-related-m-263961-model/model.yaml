@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CellularClassesRevealedByHeartbeatRelatedM263961Model'
+description: '{"value": "\"Determining cell types is critical for understanding neural
+  circuits but remains elusive in the living human brain. Current approaches discriminate
+  units into putative cell classes using '
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:263961
+  source_db: modeldb
+  source_id: '263961'
+  standard: other
+  original_url: https://modeldb.science/263961
+  download_url: https://modeldb.science/download/263961
+  license: ''
+bsim:
+  entrypoint: src.cellular_classes_revealed_by_heartbeat_related_m_263961_model:CellularClassesRevealedByHeartbeatRelatedM263961Model
+  init_kwargs:
+    model_path: data/263961.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

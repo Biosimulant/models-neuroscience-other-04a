@@ -1,0 +1,23 @@
+
+>------------------------------->--------------------------------------->
+  VAR_TO_GRAPH: 		>	List of current contributing	>
+				>		to ion pools		>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:		>	Graph channel			>
+>------------------------------->--------------------------------------->
+	1			>	GAIN of Channel			>
+	time<{ivr}            	>	Var Name for X-axis		>
+		5           	>	Number of Tic Marks		>
+		00.0         	>	Min Value of X			>
+		20.0        	>	Max Value of X			>
+		white        	>	Color of Range			>
+	V[L7....]<{ivr}    	>	Var Name for Y-axis		>
+		9           	>	Number of Tic Marks		>
+		-70.0       	>	Min Value of Y			>
+		20.0        	>	Max Value of Y			>
+		white         	>	Color of RAnge			>
+>------------------------------->--------------------------------------->
+	END:			>					>
+>------------------------------->--------------------------------------->
+
+END:

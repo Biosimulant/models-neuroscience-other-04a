@@ -1,0 +1,33 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model150288150288Model'
+description: A 1000 cell network model for Lateral Amygdala (Kim et al. 2013)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:150288
+  source_db: opensourcebrain
+  source_id: '150288'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/150288
+  download_url: https://github.com/OpenSourceBrain/150288.git
+  license: ''
+bsim:
+  entrypoint: src.model_150288_150288_model:Model150288150288Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

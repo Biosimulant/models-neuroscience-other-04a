@@ -1,0 +1,27 @@
+/*************************************************************
+* Print-To-File.hoc 	 		JB 26.07.17
+* Main hoc file for setup and control simulations 
+* 
+*  
+**************************************************************/
+print "Exit with CTRL D"
+
+//load_file("nrngui.hoc")
+load_file("C:/Daten/Modeling/Alpha5_NMDA_single_comp/shared/ATF.hoc") 
+
+
+proc print2file(){ 	//print vectors into file
+	outfile = new ATF_File($s2) //has to be a string, can include address for subfolders
+	outfile.x_scale=dtime   // sampling interval; default is 1.0
+	outfile.x_units="ms"    // default is "ms"
+	outfile.y_units="mV"    // default is "mV"
+	//g.color(3)
+	for i =0,rec_conditions*simul_iter-1 {
+	 sprint($s3,"Sweep%d",i)
+	 outfile.addVec($o1.getcol(i), ColLabel)
+
+	 //outfile.addVec(vDend.cl, "Dend") 
+	 // vector.cl: passing a clone instead of allways the same vector
+	}
+	outfile.flush()
+}

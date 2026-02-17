@@ -1,0 +1,39 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="AllCells">
+    <include href="../nC_projects_lite/PN1LS_allORNs/generatedNeuroML2/neuron_PN1_LS_sk_419138.cell.nml"/>
+    <include href="../nC_projects_lite/PN1RS_allORNs/generatedNeuroML2/neuron_PN1_RS_sk_638603.cell.nml"/>
+    <include href="../nC_projects_lite/PN2LS_allORNs/generatedNeuroML2/neuron_PN2_LS_sk_427345.cell.nml"/>
+    <include href="../nC_projects_lite/PN2RS_allORNs/generatedNeuroML2/neuron_PN2_RS_sk_480245.cell.nml"/>
+    <include href="../nC_projects_lite/PN3LS_allORNs/generatedNeuroML2/neuron_PN3_LS_sk_668267.cell.nml"/>
+    <network id="AllCells">
+        <population id="Pop_neuron_PN1_LS_sk_419138" component="neuron_PN1_LS_sk_419138" type="populationList">
+            <property tag="color" value="0.582634905722 0.374949561098 0.454047164568"/>
+            <instance id="0">
+                <location x="0." y="0." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_neuron_PN1_RS_sk_638603" component="neuron_PN1_RS_sk_638603" type="populationList">
+            <property tag="color" value="0.0865602224876 0.447164026605 0.719455626199"/>
+            <instance id="0">
+                <location x="50." y="0." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_neuron_PN2_LS_sk_427345" component="neuron_PN2_LS_sk_427345" type="populationList">
+            <property tag="color" value="0.23326774103 0.901016967106 0.195602037443"/>
+            <instance id="0">
+                <location x="100." y="0." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_neuron_PN2_RS_sk_480245" component="neuron_PN2_RS_sk_480245" type="populationList">
+            <property tag="color" value="0.322241558315 0.811199417835 0.777856843312"/>
+            <instance id="0">
+                <location x="150." y="0." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_neuron_PN3_LS_sk_668267" component="neuron_PN3_LS_sk_668267" type="populationList">
+            <property tag="color" value="0.872498998833 0.842624870058 0.305713462365"/>
+            <instance id="0">
+                <location x="200." y="0." z="0."/>
+            </instance>
+        </population>
+    </network>
+</neuroml>

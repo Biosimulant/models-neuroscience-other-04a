@@ -1,0 +1,137 @@
+body {
+	margin: 0px;
+	font: 10pt verdana, arial, sans-serif;
+}
+
+h1 {
+	font: 14pt verdana, arial, sans-serif;
+}
+
+h2 {
+	font: 12pt verdana, arial, sans-serif;
+	margin-bottom: 2px;
+	margin-top: 2px;
+}
+
+td {
+	font: 9pt verdana, arial, sans-serif;
+}
+
+img {
+	border-style: solid;
+	border-color: #000000;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+}
+
+#header {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 900px;
+	height: 116px;
+	border: 1px solid #999999;
+}
+
+#content {
+	position: absolute;
+	top: 130px;
+	left: 165px;
+	width: 575px;
+	text-align: justify;
+}
+
+#side_bar {
+	position: absolute;
+	top: 130px;
+	left: 750px;
+	width: 145px;
+	border: 1px solid #000000;
+	background-color: #eee;
+	border-style: solid;
+	border-color: #999999;
+	margin: 0px 0px 5px 0px;
+	padding: 5px 5px 5px 5px;
+}
+
+#language_box {
+	position: absolute;
+	top: 70px;
+	left: 605px;
+	width: 300px;
+	height: 50px;
+}
+
+#language {
+	position: absolute;
+	top: 21px;
+	right: 5px;
+	height: 12px;
+	border: 1px solid #999999;
+	background-color: #eee;
+	margin: 0px 0px 5px 0px;
+	padding: 5px 5px 5px 5px;
+}
+
+#nav_bg {
+	background: url(web_images/nav_bg.gif);
+	background-repeat:no-repeat;
+	position: absolute;
+	left: 0px;
+	top: 122px;
+	width: 195px;
+	height: 442px;
+}
+
+#nav {
+	position: absolute;
+	left: 5px;
+	top: 130px;
+	width: 150px;
+}
+
+#nav_link {
+	text-decoration: none;
+	color: #000000;
+	font: 10pt verdana, arial, sans-serif;
+}
+
+#nav_element {
+	margin: 0px 0px 5px 0px;
+	padding: 5px 5px 5px 5px;
+	background-color: #eee;
+	border: 1px solid #999999;
+}
+
+#table-header {
+	vertical-align: top;
+	background-color: #999999;	
+	font: 9pt verdana, arial, sans-serif;
+	font-weight: bold;
+}
+
+#table-column {
+	vertical-align: top;
+	background-color: #CCCCCC;	
+	font: 9pt verdana, arial, sans-serif;
+}
+
+#comment {
+	font: 7pt verdana, arial, sans-serif;
+	color: #999999;	
+}
+
+a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:link, a:visited {
+	color: #000000;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: underline;
+}

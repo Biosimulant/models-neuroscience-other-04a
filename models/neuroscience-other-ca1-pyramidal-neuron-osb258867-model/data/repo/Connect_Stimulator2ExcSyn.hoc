@@ -1,0 +1,44 @@
+// Connects netstims representing the stimulator to all glu synapses via separate netcons, 
+// i.e. one netcon per stimulus per synapse 
+// This allows for the generation of arbitrary input patterns during repetitive stimulation 
+// due to short-term plasticity (STP) of synaptic transmission
+
+objref ncAmpa[nExc*stim_no],ncNmda[nExc*stim_no]
+
+proc reset_gluSyn(){local ii,jj
+    for ii=1,nExc {
+        for jj=1,stim_no{
+            ncAmpa[(ii-1)*stim_no+jj-1].weight = 0
+            ncAmpa[(ii-1)*stim_no+jj-1].delay = 0
+            ncNmda[(ii-1)*stim_no+jj-1].weight = 0
+            ncNmda[(ii-1)*stim_no+jj-1].delay = 0 
+        }  	
+    }
+}
+
+proc reset_NMDASyn(){local ii,jj
+    for ii=1,nExc {
+        for jj=1,stim_no{
+            ncNmda[(ii-1)*stim_no+jj-1].weight = 0
+            ncNmda[(ii-1)*stim_no+jj-1].delay = 0 
+        }  	
+    }
+}
+
+proc reset_AMPASyn(){local ii,jj
+    for ii=1,nExc {
+        for jj=1,stim_no{
+            ncAmpa[(ii-1)*stim_no+jj-1].weight = 0
+            ncAmpa[(ii-1)*stim_no+jj-1].delay = 0
+        }  	
+    }
+}
+
+// Generate individual netcons for each stimulation to allow for arbitrary input pattern during STP
+for ii=1,nExc {
+    for jj=1,stim_no{
+        ncAmpa[(ii-1)*stim_no+jj-1] = new NetCon(nsStim[jj-1],synAmpa[ii-1]) 
+        ncNmda[(ii-1)*stim_no+jj-1] = new NetCon(nsStim[jj-1],synNmda[ii-1]) 
+    } 
+}
+reset_gluSyn()

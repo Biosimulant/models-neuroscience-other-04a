@@ -1,0 +1,182 @@
+
+load_file("nrngui.hoc")
+
+objref grph0, grph1
+objref scene_vector_[2]
+objref Istim
+
+cai0_CaShell = 4.8
+
+grph0 = new Graph(0)
+scene_vector_[0] = grph0
+
+//(mleft, mbottom, mwidth, mheight, wleft,wtop, wwidth, wheight)
+// in a window with user-specified location (5th and 6th args) and size (last 2 args)
+{grph0.view(50, 0, 160, 7, 50, 200, 500, 600)}
+graphList[0].append(grph0)
+
+grph0.addexpr("5", 1,1)
+grph0.addexpr("soma.v( 0.5 )/50+5", 1,1)
+grph0.addexpr("soma.q_gKahp( 0.5 )+4", 1,1)
+grph0.addexpr("soma.n_gKdr( 0.5 )+3", 1,1)
+grph0.addexpr("soma.cxi_gKc( 0.5 )+2", 1,1)
+grph0.addexpr("soma.s_gCa( 0.5 )^2*soma.r_gCa( 0.5 )+1", 1,1)
+grph0.addexpr("soma.m_gNa( 0.5 )^2*soma.h_gNa( 0.5 )+0", 1,1)
+
+objref savdata
+savdata = new File()
+
+objref t_vect, vm_vect, apicalvm_vect, q_vect, apicalq_vect, n_vect, cxi_vect, apicalcxi_vect, s_vect, r_vect, sapical_vect, rapical_vect, m_vect, h_vect
+t_vect = new Vector()
+vm_vect = new Vector()
+apicalvm_vect = new Vector() 
+q_vect = new Vector()
+apicalq_vect = new Vector()
+n_vect = new Vector()
+cxi_vect = new Vector()
+apicalcxi_vect = new Vector()
+s_vect = new Vector()
+r_vect = new Vector()
+sapical_vect = new Vector()
+rapical_vect = new Vector()
+m_vect = new Vector()
+h_vect = new Vector()
+
+grph1 = new Graph(0)
+scene_vector_[1] = grph1
+
+//(mleft, mbottom, mwidth, mheight, wleft,wtop, wwidth, wheight)
+// in a window with user-specified location (5th and 6th args) and size (last 2 args)
+{grph1.view(50, 0, 160, 7, 600, 200, 500, 600)}
+graphList[0].append(grph1)
+grph1.addexpr("5", 1,1)
+grph1.addexpr("apical[5].v( 0.5 )/50+5", 4,1)
+grph1.addexpr("apical[5].q_gKahp( 0.5 )+4", 4,1)
+grph1.addexpr("apical[5].cxi_gKc( 0.5 )+2", 4,1)
+grph1.addexpr("apical[5].s_gCa( 0.5 )^2*apical[5].r_gCa( 0.5 )+1", 4,1)
+
+Istim = new IClamp(0.5)
+Istim.loc(0.5)
+
+Istim.del = 0
+Istim.dur = 280
+Istim.amp = 0.3
+
+tstop = 280
+
+//Recording Vector
+t_vect.record(&t)
+
+vm_vect.record(&soma.v(0.5))
+
+apicalvm_vect.record(&apical[5].v(0.5)) 
+
+q_vect.record(&soma.q_gKahp(0.5))
+
+apicalq_vect.record(&apical[5].q_gKahp(0.5))
+
+n_vect.record(&soma.n_gKdr(0.5)) 
+
+cxi_vect.record(&soma.cxi_gKc(0.5))
+
+apicalcxi_vect.record(&apical[5].cxi_gKc(0.5))
+
+s_vect.record(&soma.s_gCa(0.5))
+
+r_vect.record(&soma.r_gCa(0.5))
+
+sapical_vect.record(&apical[5].s_gCa(0.5))
+
+rapical_vect.record(&apical[5].r_gCa(0.5))
+
+m_vect.record(&soma.m_gNa(0.5))
+
+h_vect.record(&soma.h_gNa(0.5))
+
+run()
+
+//Saving Vectors
+
+savdata.wopen("TraubFig7SomaV.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7ApicalV.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), apicalvm_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7q_vect.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), q_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7cxi_vect.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), cxi_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7n_vect.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), n_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7apicalcxi_vect.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), apicalcxi_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7s_vect.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), s_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7r_vect.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), r_vect.x(i))
+}
+savdata.close
+
+
+savdata.wopen("TraubFig7sapical.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), sapical_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7rapical.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), rapical_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7m_vect.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), m_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7h_vect.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), h_vect.x(i))
+}
+savdata.close
+
+savdata.wopen("TraubFig7apicalq_vect.txt",i)
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), apicalq_vect.x(i))
+}
+savdata.close
+
+cai0_CaShell = 0
+
+graphList[0].remove_all()
+objref grph0, grph1

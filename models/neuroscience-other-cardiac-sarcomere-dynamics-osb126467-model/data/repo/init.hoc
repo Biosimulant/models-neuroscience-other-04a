@@ -1,0 +1,13 @@
+load_file("nrngui.hoc")
+
+create soma
+access soma
+
+celsius = 37
+{
+ diam=16  L=100 nseg=1
+ insert capacitance { cm = 2}
+} 
+
+cai0_ca_ion = 0.04e-3
+load_file("init.ses")

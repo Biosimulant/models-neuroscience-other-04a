@@ -1,0 +1,33 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model206267206267Model'
+description: Cerebellum granule cell FHF (Dover et al. 2016)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:206267
+  source_db: opensourcebrain
+  source_id: '206267'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/206267
+  download_url: https://github.com/OpenSourceBrain/206267.git
+  license: ''
+bsim:
+  entrypoint: src.model_206267_206267_model:Model206267206267Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

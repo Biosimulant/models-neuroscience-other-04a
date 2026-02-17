@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model244679244679Model'
+description: 'Cerebellum Purkinje cell: dendritic ion channels activated by climbing
+  fibre (Ait Ouares et al 2019)'
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:244679
+  source_db: opensourcebrain
+  source_id: '244679'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/244679
+  download_url: https://github.com/OpenSourceBrain/244679.git
+  license: ''
+bsim:
+  entrypoint: src.model_244679_244679_model:Model244679244679Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

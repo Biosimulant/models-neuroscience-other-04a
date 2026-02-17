@@ -1,0 +1,93 @@
+load_file("nrngui.hoc")
+
+//create electrode object
+objref stimIClamp
+soma stimIClamp = new IClamp(0.5)
+stimIClamp.del = 0
+stimIClamp.dur = 2000
+stimIClamp.amp = 0.1
+
+//Simulation Length
+tstop=2000
+
+//create graph object for plotting simulation results
+objref grph0
+grph0 = new Graph(0)
+scene_vector_[0] = grph0
+
+//(mleft, mbottom, mwidth, mheight, wleft,wtop, wwidth, wheight)
+// in a window with user-specified location (5th and 6th args) and size (last 2 args)
+{grph0.view(-5, 0, 200, 100, 50, 400, 700, 350)}
+
+//add graph object to list of objects to be plotted
+graphList[0].append(grph0)
+
+//add soma membrane potential to variables that will be plotted
+grph0.addvar("soma.v(0.5)")
+
+//create vectors to record data
+objref t_vect, vm_vect
+
+t_vect = new Vector()
+vm_vect = new Vector()
+
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+objref savdata
+savdata = new File()
+savdata.wopen("fig5soma_i1.txt")
+
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+
+savdata.close()
+
+//repeat for 0.4 nA current injection
+stimIClamp.amp = 0.4
+
+t_vect = new Vector()
+vm_vect = new Vector()
+
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+objref savdata
+savdata = new File()
+savdata.wopen("fig5soma_i4.txt")
+
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+
+savdata.close()
+
+//repeat for 0.5 nA current injection
+stimIClamp.amp = 0.5
+
+t_vect = new Vector()
+vm_vect = new Vector()
+
+t_vect.record(&t)
+vm_vect.record(&soma.v(0.5))
+
+run()
+
+objref savdata
+savdata = new File()
+savdata.wopen("fig5soma_i5.txt")
+
+for i=0,t_vect.size()-1 {
+    savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+}
+
+savdata.close()
+
+graphList[0].remove_all()
+objref grph0
+

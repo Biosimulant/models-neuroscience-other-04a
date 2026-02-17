@@ -1,0 +1,81 @@
+// set up shape plots with 10 evenly-spaced values
+
+NUMVALS = 10 // # levels in the color map
+
+IP3MINVAL = 0.0025
+IP3MAXVAL = 0.025
+
+CAMINVAL = 1.2e-4
+CAMAXVAL = 12e-4
+
+// set up RGB vectors for specifying shape plot color maps
+
+objref rvec, gvec, bvec
+
+proc buildmapvecs() { local i
+  rvec = new Vector(NUMVALS)
+  gvec = new Vector(NUMVALS)
+  bvec = new Vector(NUMVALS)
+  for i = 0, NUMVALS-1 {
+    rvec.x[i]=fscan()
+    gvec.x[i]=fscan()
+    bvec.x[i]=fscan()
+//    print i, rvec.x[i], gvec.x[i], bvec.x[i]
+  }
+}
+
+buildmapvecs()
+
+// RGB values for thermal scale (yellow-white hottest, purple coolest
+
+111     0       111
+143	30	93
+185     55      64
+223     76      42
+245     120     11
+255     155     0
+255     195     0
+255     233     0
+255     255     0
+255     255     200
+
+// use the RGB vectors to set up color map for shape plot passed as $o1
+
+proc setmap() { local i
+  $o1.colormap(rvec.size())
+  for i = 0, rvec.size()-1 {
+    $o1.colormap(i, rvec.x[i], gvec.x[i], bvec.x[i])
+  }
+}
+
+// shape plot of ip3i
+
+objref ip3sh
+ip3sh = new PlotShape(0)
+ip3sh.size(-10.209,151.019,-80.4855,80.4853)
+ip3sh.view(-10.209, -80.4855, 161.228, 160.971, 265, 105, 200.64, 200.32)
+fast_flush_list.append(ip3sh)
+
+ip3sh.exec_menu("Shape Plot")
+ip3sh.variable("ip3i")
+ip3sh.exec_menu("Show Diam")
+
+setmap(ip3sh)
+ip3sh.scale(IP3MINVAL, IP3MAXVAL)
+
+// shape plot of cai
+
+objref cash
+cash = new PlotShape(0)
+cash.size(-10.209,151.019,-80.4855,80.4853)
+cash.view(-10.209, -80.4855, 161.228, 160.971, 265, 369, 200.64, 200.32)
+fast_flush_list.append(cash)
+
+cash.exec_menu("Shape Plot")
+cash.variable("cai")
+cash.exec_menu("Show Diam")
+
+setmap(cash)
+cash.scale(CAMINVAL, CAMAXVAL)
+
+stdinit() // so IP3 shape plot shows initial color

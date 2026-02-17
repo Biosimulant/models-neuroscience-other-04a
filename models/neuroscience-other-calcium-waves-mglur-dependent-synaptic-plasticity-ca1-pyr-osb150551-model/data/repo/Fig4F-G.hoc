@@ -1,0 +1,119 @@
+
+load_file("nrngui.hoc")
+load_file("CalciumWave.hoc")
+
+
+
+/**********************************************************************/
+
+
+
+
+objectvar g[20]         // max 20 graphs
+ngraph = 0
+
+proc addgraph() {  // define subroutine to add a new graph
+                // addgraph("variable", minvalue, maxvalue)
+    ngraph = ngraph+1
+    ii = ngraph-1
+    g[ii] = new Graph()
+    g[ii].size(0,tstop,$2,$3)
+    g[ii].xaxis()
+    g[ii].yaxis()
+    g[ii].addvar($s1,1,0)
+    g[ii].save_name("graphList[0].")
+    graphList[0].append(g[ii])
+}
+
+if(ismenu==0) {
+  nrnmainmenu()         // create main menu
+  nrncontrolmenu()      // create control menu
+  ismenu=1
+
+
+addgraph("soma[1].cai (0.5)",50e-6,1.4e-3)
+g[ii].addexpr("apical[0].cai (0.5)",2,1)
+g[ii].addexpr("apical[14].cai (0.5)",3,1)
+g[ii].addexpr("apical[16].cai (0.5)",4,1)
+g[ii].addexpr("apical[46].cai (0.5)",5,1)
+g[ii].addexpr("apical[1].cai (0.1)",6,1)
+g[ii].addexpr("apical[1].cai (0.5)",7,1)
+g[ii].addexpr("apical[112].cai (0.3)",8,1)
+
+}
+ //Make shape plot for [Ca2+]c
+objref shbox, sl, s
+
+proc make_shapeplot() {
+        shbox = new VBox()
+        shbox.intercept(1)
+        sl = new SectionList()
+        sl.wholetree()
+        s = new PlotShape(sl)
+        s.colormap(13,1)
+
+        s.colormap(0,78,161,215)
+        s.colormap(1,116,203,218)
+        s.colormap(2,112,190,109)
+        s.colormap(3,146,198,71)
+        //s.colormap(4,207,219,59)
+        s.colormap(4,227,152,37)
+        s.colormap(5,243,140,47)
+        s.colormap(6,239,112,45)
+        s.colormap(7,235,82,44)
+        s.colormap(8,218,48,52)
+        s.colormap(9,202,32,67)
+        s.colormap(10,170,33,98)
+        s.colormap(11,136,41,125)
+        s.colormap(12,107,39,109)
+
+       s.variable("cai")
+//s.variable("gcalbar_call")
+        s.exec_menu("Shape Plot")
+        s.scale(5e-5,3e-4) 
+//s.scale(5e-5 5e-4e-) 
+        fast_flush_list.append(s)
+        shbox.intercept(0)
+        s.show(0)
+        shbox.map("Shape",600,400,400,400)
+}
+
+// Make shape plot for Ca2+  wave amplitude 
+objref shbox1, sl1, s1
+
+proc make_shapeplot1() {
+        shbox1 = new VBox()
+        shbox1.intercept(1)
+        sl1 = new SectionList()
+        sl1.wholetree()
+        s1 = new PlotShape(sl1)
+        s1.colormap(13,1)
+
+        s1.colormap(0,78,161,215)
+        s1.colormap(1,116,203,218)
+        s1.colormap(2,112,190,109)
+        s1.colormap(3,146,198,71)
+        //s.colormap(4,207,219,59)
+        s1.colormap(4,227,152,37)
+        s1.colormap(5,243,140,47)
+        s1.colormap(6,239,112,45)
+        s1.colormap(7,235,82,44)
+        s1.colormap(8,218,48,52)
+        s1.colormap(9,202,32,67)
+        s1.colormap(10,170,33,98)
+        s1.colormap(11,136,41,125)
+        s1.colormap(12,107,39,109)
+        s1.variable("camx_camax")
+        s1.exec_menu("Shape Plot")
+        s1.scale(0.5e-3,1.7e-3) 
+        fast_flush_list.append(s1)
+        shbox1.intercept(0)
+        s1.show(0)
+        shbox1.map("Shape",1200,400,400,400)
+}
+//make_shapeplot()
+make_shapeplot1() 
+
+
+
+ 

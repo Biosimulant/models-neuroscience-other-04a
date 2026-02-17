@@ -1,0 +1,202 @@
+// GENERATES AN IO CURVE OF RESPONSES TO STIMULATION OF INCREASING NUMBER OF EXCITATORY INPUTS IN SR AND SLM
+// TESTS FOR CONTRIBUTION OF NMDARs AND EFFECT OF RECTIFYING TONIC INHIBITION
+//
+// This script:
+// - runs a family of two simulations: 
+//		stimulation in stratum rediatum and stratum lacunosum moleculare,
+//		same stimulation in the presence of AP5.
+// For each simulation, membrane potentials are displayed for the soma, a proximal tuft
+// dendrite, and a distal tuft dendrite. Additionally, shape plots are used
+// to illustrate the location of excitatory and inhibitory synapses.
+
+// Numerical parameters for simulation.
+tstop = 220 //  stop time of simulation
+stimStart=20
+dtime=0.2
+stim_no=5
+stim_inter=20
+stim_delay=0
+stim_noise=0
+simul_iter=6
+
+//seed of random number generator
+randShift = 6.37
+
+//specify levels of tonic inhibition
+gtonic=1.e-4
+objref TI_strength
+TI_strength = new Vector()
+TI_strength.append(0,0.5,1,5,10,50,100)
+
+//parameters for rectifying and non rectifying part of GABAsynapses
+GABAweight_total=0.0007 
+GABAweight0=GABAweight_total/5 
+GABAweight1=4*GABAweight_total/5  
+GABAtau2=30
+GABAtau1=1.0
+GABArelP=0.5
+slope_factor=4 
+V50=-60 
+
+//establish rectifying and non-rectifying parts of GABA synapses
+for ii=1,totVgatAt  {
+    synGABA[ii-1].tau1= GABAtau1/2
+    synGABA[ii-1].tau2 = GABAtau2/2
+    synGABA[ii-1].slope_factor=0.3
+    synGABA[ii-1].V50=-150
+
+    synGABArect[ii-1].tau1= GABAtau1
+    synGABArect[ii-1].tau2 = GABAtau2
+    synGABArect[ii-1].slope_factor=slope_factor
+    synGABArect[ii-1].V50=V50
+}
+
+//connect synapses
+load_file("Generate_Stimulator.hoc")
+load_file("Connect_Stimulator2ExcSyn.hoc")
+load_file("Connect_Stimulator2InhSyn.hoc")
+
+//setup recording vectors etc.
+objref recv_tuft1, recv_tuft2, recv_tuft3, recv_soma, rect
+objref recv_obl1, recv_obl2, recv_obl3, filenames[6]
+strdef ColLabel, file_name, file_name1, file_name2, file_name3, file_name4, file_name5, file_name6, file_name7
+objref outfile, storeM, storeM_control, storeM_TI_X1, storeM_TI_X10, storeM_TI_X100, storeM_TI_X1000, storeM_TI_X10000
+load_file("Print-to-File.hoc")
+
+ColLabel = "Membrane potential"
+file_name1="C:/../TI_X0.atf"
+file_name2="C:/../TI_X05.atf"
+file_name3="C:/../TI_X1.atf"
+file_name4="C:/../TI_X5.atf"
+file_name5="C:/../TI_X10.atf"
+file_name6="C:/../TI_X50.atf"
+file_name7="C:/../TI_X100.atf"
+
+recv_soma = new Vector()
+recv_tuft1 = new Vector()
+recv_tuft2 = new Vector()
+recv_tuft3 = new Vector()
+recv_obl1 = new Vector()
+recv_obl2 = new Vector()
+recv_obl3 = new Vector()
+rect = new Vector()
+recv_soma.record(&soma.sec.v(0.5),dtime)
+rect.record(&t)
+
+rec_conditions=14
+
+storeM_control = new Matrix(tstop/dtime+1,rec_conditions*simul_iter) 
+storeM_TI_X1 = new Matrix(tstop/dtime+1,rec_conditions*simul_iter)
+storeM_TI_X10 = new Matrix(tstop/dtime+1,rec_conditions*simul_iter)
+storeM_TI_X100 = new Matrix(tstop/dtime+1,rec_conditions*simul_iter)
+storeM_TI_X1000 = new Matrix(tstop/dtime+1,rec_conditions*simul_iter)
+storeM_TI_X10000 = new Matrix(tstop/dtime+1,rec_conditions*simul_iter)
+
+nExcAct_SLM = 50// number of excitatory synapses to activate, ~3.3% of 1464 total with spine density of 0.5/um2
+nInhAct_SLM =  95 // number of inhibitory synapses to activate; 34% of 280 total
+nExcAct_SR = 200//number of excitatory synapses to activate, ~3% of 6000 total (oblique plus trunk)
+nInhAct_SR = 50 //number of inhibitory synapses to activate; 34% of 145 total
+
+load_file("update_Synapses.hoc")
+
+// Parameters for visualisation. dendInd1 and dendInd2 refer to dendritic
+// indices that will have voltage traces plotted.
+dendInd1 = 107 // left apical, SLM
+dendInd2 = 149 // left apical, terminal neurite, SLM
+dendInd3 = 176 // SLM
+dendInd4 = 186 // SR
+dendInd5 = 144 // SR
+dendInd6 = 136 // SR
+objref dend1Ref,dend2Ref,dend3Ref,dend4Ref,dend5Ref,dend6Ref
+Cell[0].dend[dendInd1] {dend1Ref = new SectionRef()} 
+Cell[0].dend[dendInd2] {dend2Ref = new SectionRef()} 
+Cell[0].dend[dendInd3] {dend3Ref = new SectionRef()} 
+Cell[0].dend[dendInd4] {dend4Ref = new SectionRef()} 
+Cell[0].dend[dendInd5] {dend5Ref = new SectionRef()} 
+Cell[0].dend[dendInd6] {dend6Ref = new SectionRef()} 
+    
+recv_tuft1.record(&dend1Ref.sec.v(0.5),dtime)    
+recv_tuft2.record(&dend2Ref.sec.v(0.5),dtime)    
+recv_tuft3.record(&dend3Ref.sec.v(0.5),dtime)    
+recv_obl1.record(&dend4Ref.sec.v(0.5),dtime)    
+recv_obl2.record(&dend5Ref.sec.v(0.5),dtime)    
+recv_obl3.record(&dend6Ref.sec.v(0.5),dtime)
+
+// Determine number of segments to track.
+totSegs = 0
+forall { for (x,0) { totSegs +=1 } }
+
+// Create shape plots
+strdef shape_label 
+objref shapeExc[simul_iter],shapeInh
+
+for (ii=1;ii<simul_iter+1; ii=ii+1){ 
+    sprint(shape_label,"Exc, %d",ii)
+    print shape_label
+    shapeExc[ii-1] = new Shape()
+    shapeExc[ii-1].label(shape_label)
+}
+
+shapeInh = new Shape()
+shapeInh.label("Inh")
+
+
+// Create vectors that will store indices of active excitatory and 
+// inhibitory synapses.
+objref curExc_SLM, curExc_SR, curInh_SLM, curInh_SR  
+
+// Vectors of release of normalised release probability 
+objref norm_Pr_exc, norm_Pr_inh_SR, norm_Pr_inh_SLM, ActSyn, ActSyn_inh, SynAct
+
+// Initialise simulations by adding channels and assigning genotypes to
+// inhibitory synapses.
+initChannels()
+seedGenotypes()
+	
+// Implement short-term plasticity at excitatory synapses
+norm_Pr_exc = new Vector(5) //
+ActSyn = new Vector(5)
+norm_Pr_exc.x[0] = 1
+norm_Pr_exc.x[1] = 1.5 
+norm_Pr_exc.x[2] = 1.8
+norm_Pr_exc.x[3] = 1.9 
+norm_Pr_exc.x[4] = 2.0
+
+// DO SIMULATION AND PLOT RESULTS.
+// turn off cvode variable time step in order to avoid errors during repetitive simulations
+cvode_active(0)
+
+// activate inhibitory inputs
+activateInhibition(cellList,-1,1) // clear inhibition
+curInh_SR = activateInhibition(radiatumList,nInhAct_SR,randShift,"vgat",1)
+curInh_SLM = activateInhibition(tuftList,nInhAct_SLM,randShift,"vgat",1) 
+   
+// Implement short-term plasticity at inhibitory synapses in stratum radiatum
+norm_Pr_inh_SR = new Vector(5) //
+ActSyn_inh = new Vector(5)
+norm_Pr_inh_SR.x[0] = 1
+norm_Pr_inh_SR.x[1] = 0.7   
+norm_Pr_inh_SR.x[2] = 0.7  
+norm_Pr_inh_SR.x[3] = 0.7
+norm_Pr_inh_SR.x[4] = 0.7
+
+// Define activated inhibitory synapses
+ActSyn_inh = set_InhSyn_fixed_N(curInh_SR, randShift/3, GABArelP, norm_Pr_inh_SR, shapeInh) 
+print "In SR, the number of activated inhibitory synapses at each pulse are: ",ActSyn_inh.x[0], ", " , ActSyn_inh.x[1], ", " , ActSyn_inh.x[2], ", " , ActSyn_inh.x[3], ", " , ActSyn_inh.x[4]
+
+// Implement short-term plasticity at inhibitory synapses in stratum lacunosum moleculare
+norm_Pr_inh_SLM = new Vector(5) //
+ActSyn_inh = new Vector(5)
+norm_Pr_inh_SLM.x[0] = 1
+norm_Pr_inh_SLM.x[1] = 0.6 
+norm_Pr_inh_SLM.x[2] = 0.5   
+norm_Pr_inh_SLM.x[3] = 0.4 
+norm_Pr_inh_SLM.x[4] = 0.4
+
+ActSyn_inh = set_InhSyn_fixed_N(curInh_SLM, randShift/4, GABArelP, norm_Pr_inh_SLM, shapeInh) 
+print "In SLM, the number of activated inhibitory synapses at each pulse are: ",ActSyn_inh.x[0], ", " , ActSyn_inh.x[1], ", " , ActSyn_inh.x[2], ", " , ActSyn_inh.x[3], ", " , ActSyn_inh.x[4]
+
+// run simulation with increasing tonic inhibition
+load_file("SynStim_SR_SLM_TI.hoc")
+
+

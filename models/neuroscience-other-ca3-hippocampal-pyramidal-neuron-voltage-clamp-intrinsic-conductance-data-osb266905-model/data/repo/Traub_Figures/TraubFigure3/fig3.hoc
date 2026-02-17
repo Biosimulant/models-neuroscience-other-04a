@@ -1,0 +1,44 @@
+rss_gCa=1	// sets gCa to steady state (no inactivation)
+
+objref iSoma, iapical3, iapical6
+iSoma= new Vector()
+iapical3=  new Vector()
+iapical6=  new Vector()
+
+
+objref saviSoma, saviapical3, saviapical6
+
+saviSoma= new File()
+saviapical3= new File()
+saviapical6= new File()
+
+saviSoma.wopen("iSomafig3.txt")
+saviapical3.wopen("iApical3fig3.txt")
+saviapical6.wopen("iApical6fig3.txt")
+
+for j = 0,5 {
+
+	cai0_CaShell=j*50
+	
+	for i = -25, 99 {
+		finitialize(i)
+		
+		isoma=soma.i_cap+soma.i_pas+soma.ica+soma.ik+soma.ina
+		iApical3=apical[2].i_cap+apical[2].i_pas+apical[2].ica+apical[2].ik+apical[2].ina
+		iApical6=apical[5].i_cap+apical[5].i_pas+apical[5].ica+apical[5].ik
+		
+		iSoma.append(isoma)
+		iapical3.append(iApical3)
+		iapical6.append(iApical6)
+	}
+	printf("initial Cai=%d µM\n", soma.cai)
+}
+iSoma.printf(saviSoma)
+iapical3.printf(saviapical3)
+iapical6.printf(saviapical6)		
+
+saviSoma.close
+saviapical3.close
+saviapical6.close
+
+cai0_CaShell=0

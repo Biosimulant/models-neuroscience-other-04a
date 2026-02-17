@@ -1,0 +1,57 @@
+// Connects netstims representing the stimulator to all GABA synapses via separate netcons, 
+// i.e. one netcon per stimulus per synapse 
+// This allows for the generation of arbitrary input patterns during repetitive stimulation 
+// due to short-term plasticity (STP) of synaptic transmission
+
+objref ncGABA[totVgatAt *stim_no],ncGABArect[totVgatAt *stim_no],ncGABAB[totVgatAt *stim_no]
+
+proc reset_InhSyn(){local ii,jj
+    for ii=1,totVgatAt  {
+        for jj=1,stim_no{
+            ncGABA[(ii-1)*stim_no+jj-1].weight = 0
+            ncGABA[(ii-1)*stim_no+jj-1].delay = 0
+            ncGABAB[(ii-1)*stim_no+jj-1].weight = 0
+            ncGABAB[(ii-1)*stim_no+jj-1].delay = 0
+            ncGABArect[(ii-1)*stim_no+jj-1].weight = 0
+            ncGABArect[(ii-1)*stim_no+jj-1].delay = 0 
+        }  	
+    }
+}
+
+proc reset_GABA(){local ii,jj
+    for ii=1,totVgatAt  {
+        for jj=1,stim_no{
+            ncGABA[(ii-1)*stim_no+jj-1].weight = 0
+            ncGABA[(ii-1)*stim_no+jj-1].delay = 0
+        }  	
+    }
+}
+
+proc reset_GABArect(){local ii,jj
+    for ii=1,totVgatAt  {
+        for jj=1,stim_no{
+            ncGABArect[(ii-1)*stim_no+jj-1].weight = 0
+            ncGABArect[(ii-1)*stim_no+jj-1].delay = 0
+        }  	
+    }
+}
+
+proc reset_GABAB(){local ii,jj
+    for ii=1,totVgatAt  {
+        for jj=1,stim_no{
+            ncGABAB[(ii-1)*stim_no+jj-1].weight = 0
+            ncGABAB[(ii-1)*stim_no+jj-1].delay = 0
+        }  	
+    }
+}
+
+
+// Generate individual netcons for each stimulation to allow for arbitrary input pattern during STP
+for ii=1,totVgatAt  {
+    for jj=1,stim_no{
+        ncGABA[(ii-1)*stim_no+jj-1] = new NetCon(nsStim[jj-1],synGABA[ii-1]) 
+        ncGABArect[(ii-1)*stim_no+jj-1] = new NetCon(nsStim[jj-1],synGABArect[ii-1]) 
+        ncGABAB[(ii-1)*stim_no+jj-1] = new NetCon(nsStim[jj-1],synGABAB[ii-1]) 
+    } 
+}
+reset_InhSyn()

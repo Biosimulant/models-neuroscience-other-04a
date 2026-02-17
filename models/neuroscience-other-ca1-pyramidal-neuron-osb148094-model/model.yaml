@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model148094148094Model'
+description: 'CA1 pyramidal neuron: effects of R213Q and R312W Kv7.2 mutations (Miceli
+  et al. 2013)'
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:148094
+  source_db: opensourcebrain
+  source_id: '148094'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/148094
+  download_url: https://github.com/OpenSourceBrain/148094.git
+  license: ''
+bsim:
+  entrypoint: src.model_148094_148094_model:Model148094148094Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

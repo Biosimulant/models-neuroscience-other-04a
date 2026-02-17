@@ -1,0 +1,47 @@
+xopen("./_saveIVplot.hoc")
+
+
+playstim = 0
+save_window_.exec_menu("Erase")
+save_window_.exec_menu("Keep Lines")
+
+stim2.amp=0
+IClamp[0].amp = 0.0
+IClamp[0].dur = 200
+IClamp[0].del = 20
+sprint(input_file,"./stimxout_jns_sqwave_dend1_PreNO.dat")
+
+
+saveIVplot("./data3/IV000.txt")
+IClamp[0].amp = -0.32
+saveIVplot("./data3/IV_032.txt")
+IClamp[0].amp = -0.28
+saveIVplot("./data3/IV_028.txt")
+IClamp[0].amp = -0.24
+saveIVplot("./data3/IV_024.txt")
+IClamp[0].amp = -0.2
+saveIVplot("./data3/IV_020.txt")
+IClamp[0].amp = -0.16
+saveIVplot("./data3/IV_016.txt")
+IClamp[0].amp = -0.12
+saveIVplot("./data3/IV_012.txt")
+IClamp[0].amp = -0.08
+saveIVplot("./data3/IV_008.txt")
+IClamp[0].amp = -0.04
+saveIVplot("./data3/IV_004.txt")
+IClamp[0].amp = 0.04
+saveIVplot("./data3/IV004.txt")
+IClamp[0].amp = 0.08
+saveIVplot("./data3/IV008.txt")
+IClamp[0].amp = 0.12
+saveIVplot("./data3/IV012.txt")
+IClamp[0].amp = 0.16
+saveIVplot("./data3/IV016.txt")
+IClamp[0].amp = 0.2
+saveIVplot("./data3/IV020.txt")
+IClamp[0].amp = 0.24
+saveIVplot("./data3/IV024.txt")
+IClamp[0].amp = 0.28
+saveIVplot("./data3/IV028.txt")
+
+save_window_.exec_menu("Keep Lines")

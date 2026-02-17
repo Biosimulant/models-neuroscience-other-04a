@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model258867258867Model'
+description: 'CA1 pyramidal neuron: nonlinear a5-GABAAR controls synaptic NMDAR activation
+  (Schulz et al 2018)'
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:258867
+  source_db: opensourcebrain
+  source_id: '258867'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/258867
+  download_url: https://github.com/OpenSourceBrain/258867.git
+  license: ''
+bsim:
+  entrypoint: src.model_258867_258867_model:Model258867258867Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

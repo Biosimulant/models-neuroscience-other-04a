@@ -1,0 +1,8 @@
+load_file("nrngui.hoc")
+
+xpanel("Ashhad & Narayanan 2013")
+  xlabel("Choose a simulation")
+  xlabel("Then press Init & Run")
+  xbutton("Figure 4F-G", "{ load_file(\"Fig4F-G.hoc\") }")
+  xbutton("Figure 6C-F", "{ load_file(\"Fig6C-F.hoc\") }")
+xpanel()

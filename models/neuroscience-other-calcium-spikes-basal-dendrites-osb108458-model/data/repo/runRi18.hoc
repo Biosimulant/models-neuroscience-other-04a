@@ -1,0 +1,98 @@
+// ====================================================================== //
+// This hoc file starts simulation of AP backpropagation
+// in basal dendrites of cortical layer 5 pyramidal neurons
+// as shown in Kampa & Stuart (2006) J Neurosci 26(28):7424 –7432
+// 
+// File runs a simulation plotting voltage and calcium concentration
+// in soma and basal dendrite of Ri18 model neuron from Stuart & Spruston
+// (1998). Additional mechanisms were based on those used in a previous model 
+// by Schaefer et al. (2003). In addition, a calcium buffer was included 
+// similar to Helmchen (1996) with a buffer binding ratio of 20 and a
+// clearance rate of 1200 s1 as reported for small dendrites (Sabatini et al.,
+// 2002). 
+//
+// by B.Kampa (2006)
+// ======================================================================= //
+
+// program to get geometry and initialise properties of Ri18//
+
+load_file("nrngui.hoc")
+
+xopen("Ri18geo.hoc")
+xopen("Ri18organise.hoc")
+xopen("Ri18init.hoc")
+
+init_params()
+init_spine()
+init_cell()
+addca()
+boostca()
+init_basals()
+
+print "Ri18 successfully built\n"
+
+steps_per_ms=10
+dt=.1
+tstop=1100
+access dend1[21]
+distance()
+
+		objectvar Step[5]
+
+		Step[0] = new IClamp(0.5)
+		Step[0].del= 1010	
+		Step[0].dur= 2
+		Step[0].amp= 4
+		Step[0].i=0
+
+		Step[1] = new IClamp(0.5)
+		Step[1].del= 1015	
+		Step[1].dur= 2
+		Step[1].amp= 4
+		Step[1].i=0
+
+		Step[2] = new IClamp(0.5)
+		Step[2].del= 1020	
+		Step[2].dur= 2
+		Step[2].amp= 4
+		Step[2].i=0
+
+		Step[3] = new IClamp(0.5)
+		Step[3].del= 1025
+		Step[3].dur= 2
+		Step[3].amp= 4
+		Step[3].i=0
+
+		Step[4] = new IClamp(0.5)
+		Step[4].del= 1030
+		Step[4].dur= 2
+		Step[4].amp= 4
+		Step[4].i=0
+
+// --------------------------------------------------------------
+// replace init procedure to have sufficiently long prepulse
+// --------------------------------------------------------------
+
+proc init() {local saveDt, i
+  finitialize(v_init)
+  fcurrent()
+  saveDt = dt
+  dt = 10
+  for i=0,99 fadvance()
+  dt = saveDt
+}
+	
+proc DoIt() {local i, j
+
+  init()
+  for i=0,999 {
+    for j=0,0.1/dt-1 fadvance()
+  }
+}
+
+xopen("BAP_Ca.ses")
+xopen("BAPcontrol.hoc")
+MakePanel()
+
+
+

@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CerebellarStellateCellModelRizzaEtAl20212018019Model'
+description: '{"value": "\"Simulations showed that, following parallel fiber stimulation,
+  Purkinje cells almost linearly increased their response with input frequency, but
+  such an increase was inhibited by stellate'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:2018019
+  source_db: modeldb
+  source_id: '2018019'
+  standard: other
+  original_url: https://modeldb.science/2018019
+  download_url: https://modeldb.science/download/2018019
+  license: ''
+bsim:
+  entrypoint: src.cerebellar_stellate_cell_model_rizza_et_al_2021_2018019_model:CerebellarStellateCellModelRizzaEtAl20212018019Model
+  init_kwargs:
+    model_path: data/2018019.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

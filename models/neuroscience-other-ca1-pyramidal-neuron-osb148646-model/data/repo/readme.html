@@ -1,0 +1,45 @@
+<html>
+  <p/>Model files for the Springer <a href="http://dx.doi.org/10.1007/978-1-4614-6675-8_123">Encyclopedia of Computational Neuroscience</a>
+entry "Action potential Back-Propagation"
+by Sonia Gasparini and Michele Migliore.
+<p/><p/>The model shows how the back-propagation of action potentials 
+in the dendrites of CA1 pyramidal neurons is modulated by
+active conductances and synaptic inputs.
+<p/><p/>The simulation file springer-bAP.hoc reproduces Fig.2 of the entry:
+  <p/><img src="./bAP.PNG" alt="bAP screenshot" align="middle">
+  <p/ align="left"><br/>
+  A somatic AP is first elicited with a short current pulse.
+Its peak amplitude as it backpropagates into the dendritic tree
+is shown in the bottom panel at the end of the simulation.
+Users can set the somatic peak conductance of the Na and KA currents
+to see their effect on the AP backpropagation.
+<p/><p/>springer-bAPsyn.hoc reproduces Fig.4 of the entry:
+<p/><img src="./stdp.PNG" alt="STDP screenshot" align="middle"><p/>
+    <p align="left">
+      A somatic AP and a synaptic input are elicited with a relative delay.
+The simulation shows the local mebrane potential of an oblique dendrite
+at about 400 um from the soma under two different conditions: 
+</p>
+    <p/>(white) synaptic input is activated after the AP.
+<p/>(red) synaptic input is activated before the AP.
+<p/>Users can set the relative delay (in ms) 
+to see its effect on the local membrane potential.
+<p/>
+<p/>Under unix systems:<br/>
+to compile the mod files use the command 
+nrnivmodl <br/>
+and run the simulation file with the command 
+nrngui filename
+<p/><p/>Under Windows systems:<br/>
+to compile the mod files use the "mknrndll" command.
+A double click on a simulation file<br/>
+  will open the simulation window. If you need more help running the model please consult this page:<br/>
+  <a href="https://senselab.med.yale.edu/ModelDB/NEURON_DwnldGuide">https://senselab.med.yale.edu/ModelDB/NEURON_DwnldGuide</a>
+<p/><p/>Questions on how to use this model<br/>
+should be directed to <a href="mailto:michele.migliore@cnr.it">michele.migliore@cnr.it</a>
+<p/>
+
+
+
+</body>
+</html>

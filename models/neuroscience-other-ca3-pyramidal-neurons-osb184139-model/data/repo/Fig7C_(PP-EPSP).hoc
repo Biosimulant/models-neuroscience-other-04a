@@ -1,0 +1,64 @@
+load_file("E807.hoc")
+
+/******************************************************************/
+// Insert passive & active conductances
+/******************************************************************/
+Vrest = -70
+ins_pasive()
+ins_active()
+mesh_init()
+
+/******************************************************************/
+// Main Setup for EPSP
+/******************************************************************/
+// Setup synapse
+Ndsyn = 2     //No of syn to be stim'd
+NAratio = 0.2 // NMDA-to-AMPA ratio
+atau = 1.5	//Rise time of I_AMPA
+ntau = 16   //decay tau of Inmda
+tauD = 100  // Recovery of RRP in ms
+tauF = 50   // decay of Af in ms
+p0 = 0.2    // basal rls prob.
+Af = 1	// = postAP facilitation inc / pb
+//
+taudmf = 20
+taufmf = 100
+p0mf = 0.05
+Afmf = 2
+//
+ns = new NetStim(0.5)
+ns.start = 10 //StimInit
+ns.number = 1 //StimN
+ns.interval = 20 //StimIntv, 50 Hz
+tstop = 4*ns.start + ns.number * ns.interval + 500
+//
+
+wt[1] = 5.0e-4/p0mf  // MF, atau*1
+wt[2] = 1.0e-4/p0    // AC, atau*1
+wt[3] = 1.9e-4/p0    // PP, atau*1
+
+/******************************************************************/
+// Run EPSP
+/******************************************************************/
+//
+synloc = 3        // 1: MF input, 2: AC, 3: PP.
+gheight = 20	  // graph height in mV
+graphepsp()
+gepsp.begin()
+setupsynapse(0) //0, distributed; 1, sngl branch.
+
+// control
+runsyn(synloc, 1)  //run(synloc, overlap)
+
+// low Gkd
+condkd(0.1)
+runsyn(synloc, 1)
+
+// low Gkd && low dendritic Na channel
+condNa(0.5)
+runsyn(synloc, 1)
+
+// low dendritic Na channel
+condkd(1)
+condNa(0.5)
+runsyn(synloc, 1)

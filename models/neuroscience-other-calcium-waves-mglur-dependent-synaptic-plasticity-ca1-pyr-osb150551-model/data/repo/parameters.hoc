@@ -1,0 +1,30 @@
+
+forall{
+	//insert na3
+	//insert kdr
+	//insert cat
+	//insert call
+	insert ip3dif
+	insert cal4
+	//Ek= -91
+	//Ena= 50
+	//Eca = 140
+	//v_init=-65
+	//gna=0.045
+	//gkdr=0.015
+	//gka = 0.0
+	//gcat= 0.e-3  //poiraziet al
+	//gcal=0.316e-3  // poiraziet al
+
+
+	ip3i0=0.16e-3
+	ip3i0_ip3dif=ip3i0
+
+	DCa_cal4=0.22
+	DIP3_ip3dif=0.283
+
+	celsius= 34
+	cao0_ca_ion=2
+	
+}
+

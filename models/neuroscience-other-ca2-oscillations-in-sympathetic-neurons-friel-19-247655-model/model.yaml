@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: Ca2OscillationsInSympatheticNeuronsFriel19247655Model'
+description: '{"value": "\" ... This\r\nstudy focuses on caffeine-induced [Ca2+]i
+  oscillations in sympathetic\r\nneurons. ... The aim of the study\r\nwas to understand
+  the mechanism responsible for the oscillations'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:247655
+  source_db: modeldb
+  source_id: '247655'
+  standard: other
+  original_url: https://modeldb.science/247655
+  download_url: https://modeldb.science/download/247655
+  license: ''
+bsim:
+  entrypoint: src.ca2_oscillations_in_sympathetic_neurons_friel_19_247655_model:Ca2OscillationsInSympatheticNeuronsFriel19247655Model
+  init_kwargs:
+    model_path: data/247655.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

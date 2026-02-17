@@ -1,0 +1,112 @@
+
+load_file("nrngui.hoc")
+
+scale_mv = 50
+scale_na = 14
+sf = scale_mv/scale_na
+sep = 100
+base = 10
+ch = 10
+th = ch+base+sep*3
+
+objref grph[4]
+objref scene_vector_[4]
+objref Istim[3]
+
+grph[0] = new Graph(0)
+scene_vector_[0] = grph[0]
+
+//(mleft, mbottom, mwidth, mheight, wleft,wtop, wwidth, wheight)
+// in a window with user-specified location (5th and 6th args) and size (last 2 args)
+{grph[0].view(0, 0, 120, th, 50, 200, 300, 600)}
+
+grph[1] = new Graph(0)
+scene_vector_[1] = grph[1]
+{grph[1].view(0, 0, 120, th, 375, 200, 300, 600)}
+
+grph[2] = new Graph(0)
+scene_vector_[2] = grph[2]
+{grph[2].view(0, 0, 120, th, 700, 200, 300, 600)}
+
+tstop = 125
+Istim[0] = new IClamp(0.5)
+Istim[0].loc(0.5)
+Istim[0].del = 0
+Istim[0].dur = 2
+
+Istim[1] = new IClamp(0.5)
+Istim[1].loc(0.5)
+Istim[1].del = 0
+
+v_init = -3
+cai0_CaShell =1.6
+
+objref t_vect, vm_vect, vm_vect1, vm_vect2
+t_vect = new Vector()
+vm_vect = new Vector()
+vm_vect1 = new Vector()
+vm_vect2 = new Vector()
+
+objref savdata
+savdata = new File()
+
+strdef Filename
+strdef Filename1
+strdef Filename2
+
+for n=0,2 {
+	
+	graphList[0].remove_all()
+	if (n==0) {	// panel A
+		Istim[0].amp = 3
+		Istim[0].del = 15
+		Istim[0].dur = 2
+		Istim[1].del = 17
+		Istim[1].dur = 4
+		Istim[1].amp = -3
+		graphList[0].append(grph[0])
+	} else if (n==1) {	// panel B
+		Istim[1].dur = 0
+		Istim[1].amp = 0
+	} else if (n==2) {	// panel C
+		graphList[0].append(grph[3])
+		forall if (ismembrane("gCa")) {
+			gmax_gCa=0
+		}
+	}
+	graphList[0].append(grph[n])
+	grph[n].addexpr("(Istim[1].i+Istim[0].i)*sf", 2,1)
+	grph[n].addexpr("soma.v(0.5)+base", 1,1)
+	grph[n].addexpr("apical[2].v(1)+base+sep", 1,1)
+	grph[n].addexpr("apical[5].v(1)+base+sep*2", 1,1)
+
+	t_vect.record(&t)
+	vm_vect.record(&soma.v(0.5))
+	vm_vect1.record(&apical[2].v(0.5))
+	vm_vect2.record(&apical[5].v(0.5))
+	
+	run()
+
+	sprint(Filename,"fig6_Somapanel%d.txt",n)
+	sprint(Filename1,"fig6_apical[2]panel%d.txt",n)  
+	sprint(Filename2,"fig6_apical[5]panel%d.txt",n) 
+	savdata.wopen(Filename,i)
+		for i=0,t_vect.size()-1 {
+    		savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+	}
+	savdata.close()
+	savdata.wopen(Filename1,i)
+	for i=0,t_vect.size()-1 {
+    		savdata.printf("%g %g\n", t_vect.x(i), vm_vect1.x(i))
+	}
+	savdata.close()
+	savdata.wopen(Filename2,i)
+	for i=0,t_vect.size()-1 {
+    		savdata.printf("%g %g\n", t_vect.x(i), vm_vect2.x(i))
+	}
+	savdata.close()
+
+}
+
+graphList[0].remove_all()
+objref grph

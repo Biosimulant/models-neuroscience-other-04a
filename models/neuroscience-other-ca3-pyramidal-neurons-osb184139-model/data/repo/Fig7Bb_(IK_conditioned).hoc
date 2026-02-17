@@ -1,0 +1,29 @@
+load_file("E807.hoc")
+
+/******************************************************************
+ Main Procedures for VC
+******************************************************************/
+// Insert passive & active conductances
+
+gNa = 0
+Vrest = -70
+Vhold = -80
+
+ins_pasive()
+ins_active() // implements channels
+mesh_init() // assign the channel conductance
+
+condkd(.1) //reduce gKd to 10%
+ 
+yescc = 0  // vc mode
+stepdur = 500 // ms
+graphimax = 2
+  
+setupvc(500, stepdur)
+gvc.begin() 
+for(idx=2; idx<7; idx+=1){
+	vt = Vrest + 10*idx
+	vcmode(vt)
+	runvc(1) //0, erase; 1, overlap
+}
+  

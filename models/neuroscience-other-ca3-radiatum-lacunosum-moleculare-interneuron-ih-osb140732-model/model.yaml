@@ -1,0 +1,33 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model140732140732Model'
+description: CA3 Radiatum/Lacunosum-Moleculare interneuron, Ih (Anderson et al. 2011)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:140732
+  source_db: opensourcebrain
+  source_id: '140732'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/140732
+  download_url: https://github.com/OpenSourceBrain/140732.git
+  license: ''
+bsim:
+  entrypoint: src.model_140732_140732_model:Model140732140732Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

@@ -1,0 +1,91 @@
+load_file("nrngui.hoc")
+
+load_file("geo5038804.hoc")
+numbasal  = 52
+numapical = 70
+numuser5  = 49
+
+load_file("biophys.hoc")
+load_file("synapses.hoc")
+load_file("efheader.hoc")
+
+
+
+tstop=700
+
+proc init() {
+
+  t=0
+
+  
+  finitialize(Vrest)
+
+	forall {
+		v = Vrest
+		if(ismembrane("nax") || ismembrane("na3")) {
+			ena=55
+		}
+		if(ismembrane("kdr") || ismembrane("kap") || ismembrane("kad")) {
+			ek=-90
+		}
+		if(ismembrane("hd")) {
+			ehd_hd=-30
+		}
+	}
+
+	finitialize(Vrest)
+	fcurrent()
+
+	forall {
+		for(x) {
+			if(ismembrane("na3") || ismembrane("nax")) {
+				e_pas(x)=v(x)+(ina(x)+ik(x))/g_pas(x)
+			}
+			if(ismembrane("hd")) {
+				e_pas(x)=e_pas(x)+i_hd(x)/g_pas(x)
+			}
+		}
+	}
+
+}
+
+
+
+load_file("voltage.ses")
+
+objref vp
+vp = Graph[1]
+vp.exec_menu("Keep Lines")
+
+proc sim() {
+
+  vp.erase_all()
+  vp.label(0.8, 0.931495, "no EF", 2, 1, 0, 0, 1)
+  vp.label(0.8, 0.878114, "EF", 2, 1, 0, 0, 2)
+
+  vp.brush(2)
+  vp.color(1)
+  vp.addvar("", "v(0.5)")
+  for i = 0, nsyn-1 {
+    st[i].seed(114+i)
+    nc[i].weight=2e-4
+  }
+  setstim(100, 500, 0, 0, 40)
+  changefield(100, 90, 90)
+  run()
+
+  vp.color(2)
+  vp.addexpr("", "v(0.5)")
+  for i = 0, nsyn-1 {
+    st[i].seed(114+i)
+    nc[i].weight=2e-4
+  }
+  setstim(100, 500, 50, 50, 40)
+  changefield(100, 90, 90)
+  run()
+}
+
+xpanel("")
+xbutton("run sim", "sim()")
+xpanel(200,200)
+

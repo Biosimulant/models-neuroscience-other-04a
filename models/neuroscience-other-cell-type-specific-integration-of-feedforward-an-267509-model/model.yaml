@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CellTypeSpecificIntegrationOfFeedforwardAn267509Model'
+description: '{"value": "Simple compartmental model is used to explore and predict
+  channel mechanisms that underlie differences in non-integration of synaptic inputs
+  to posterior parietal cortex pyramidal subtypes,'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:267509
+  source_db: modeldb
+  source_id: '267509'
+  standard: other
+  original_url: https://modeldb.science/267509
+  download_url: https://modeldb.science/download/267509
+  license: ''
+bsim:
+  entrypoint: src.cell_type_specific_integration_of_feedforward_an_267509_model:CellTypeSpecificIntegrationOfFeedforwardAn267509Model
+  init_kwargs:
+    model_path: data/267509.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

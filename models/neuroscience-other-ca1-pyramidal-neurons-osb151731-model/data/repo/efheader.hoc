@@ -1,0 +1,17 @@
+// based on initxstimu.hoc
+// extracellular stimulation
+
+forall {
+  insert extracellular
+  insert xtrau
+}
+
+load_file("interpxyzu.hoc")	// only interpolates sections that have xtrau
+load_file("setpointersu.hoc")	// automatically calls grindaway() in interpxyzu.hoc
+load_file("calcrxcu.hoc")	// computes transfer r between segments and recording electrodes
+load_file("calcd.hoc")	// computes scale factor used to calculate extracellular potential
+			            //   produced by a uniform electrical field
+load_file("zapstimu.hoc")		// extracellular stimulus
+
+
+

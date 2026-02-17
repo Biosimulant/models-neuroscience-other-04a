@@ -1,0 +1,45 @@
+// THIS SCRIPT ASSIGNS THE PROPERTIES OF INHIBITORY SYNAPSES.
+
+for ii=1,totVgatAt {
+
+	// detect location of synapse and assign properties accordingly.
+	{
+		theX = synGABA[ii-1].get_loc()
+		
+		// increment corresponding tracker for synapses
+		if(synGABA[ii-1].sst==1){
+			sstAt_syns(theX) = sstAt_syns(theX) + 1
+		}
+		if(synGABA[ii-1].npy==1){
+			npyAt_syns(theX) = npyAt_syns(theX) + 1
+		}
+		
+		// assign synapse properties
+		curSec = new SectionRef()
+        
+        synGABA[ii-1].tau1= npyTau1
+        synGABA[ii-1].tau2 = npyTau2
+        synGABA[ii-1].e = inhRev
+        synGABArect[ii-1].tau1= npyTau1
+        synGABArect[ii-1].tau2 = npyTau2
+        synGABArect[ii-1].e = inhRev
+                
+        synGABAB[ii-1].tauD= GABAB_tauD 
+        synGABAB[ii-1].gmax = GIRK_conductance_weight
+        
+		if(isTuft_id){
+			synGABA[ii-1].tau1= sstTau1 
+			synGABA[ii-1].tau2 = sstTau2
+			synGABA[ii-1].e = inhRev
+            
+			synGABArect[ii-1].tau1= sstTau1 
+			synGABArect[ii-1].tau2 = sstTau2
+			synGABArect[ii-1].e = inhRev
+			
+			synGABAB[ii-1].tauD= GABAB_tauD 
+			synGABAB[ii-1].gmax = GIRK_conductance_weight
+			
+		}
+		pop_section()
+	}
+}

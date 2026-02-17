@@ -1,0 +1,226 @@
+load_file("nrngui.hoc")
+create soma[1], apical[1], basal[1]
+objectvar st
+objectvar sh
+strdef str1
+
+tstop = 1500
+steps_per_ms = 40
+ra     = 200			
+rm     = 60000
+c_m       = 0.75
+
+v_init    = -65
+celsius   = 30
+
+t = 0.025
+
+proc setpassive() {
+	forall {
+	  	insert pas
+	  	cm = c_m 
+	  	e_pas = v_init
+		Ra=ra
+		g_pas=1/rm
+	}
+}
+
+objref Trunk
+
+proc load_3dcell() {
+	xopen("n123.hoc")
+	forall { 
+		soma area(0.5)
+		nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  
+		totcomp=totcomp+nseg
+	}
+	setpassive()
+	access soma[0]
+	Trunk = new SectionList()
+	soma[0]  Trunk.append() // 13.40um from soma
+	apical[0]  Trunk.append() // 13.40um from soma
+	apical[4]  Trunk.append() // 46.03 
+	apical[6]  Trunk.append() // 45.75
+	apical[14] Trunk.append() // 52.53
+	apical[15] Trunk.append() // 58.97
+	apical[16] Trunk.append() // 70.89
+	apical[22] Trunk.append() // 72.93
+	apical[23] Trunk.append() // 74.48
+	apical[25] Trunk.append() // 93.56
+	apical[26] Trunk.append() // 98.55
+	apical[27] Trunk.append() // 121.89
+	apical[41] Trunk.append() // 144.46
+	apical[42] Trunk.append() // 142.81
+	apical[46] Trunk.append() // 156.96
+	apical[48] Trunk.append() // 162.99
+	apical[56] Trunk.append() // 179.58
+	apical[58] Trunk.append() // 180.11
+	apical[60] Trunk.append() // 210.33
+	apical[62] Trunk.append() // 222.80
+	apical[64] Trunk.append() // 233.67
+	apical[65] Trunk.append() // 252.71
+	apical[69] Trunk.append() // 292.06
+	apical[71] Trunk.append() // 324.53
+	apical[81] Trunk.append() // 346.84
+	apical[83] Trunk.append() // 387.00
+	apical[95] Trunk.append() // 413.05
+	apical[103] Trunk.append() // 417.73
+	apical[104] Trunk.append() // 423.75
+}	
+
+/*****************************************************************/
+
+objref netlist, s, ampasyn, f1, DEND, sapamp, sampvec, sampvec
+strdef  str2
+
+somax=2.497
+somay=-13.006
+somaz=11.12
+double distances[200]
+
+proc compute_distances() {
+	
+		wopen("n123_all.rdis")
+		load_3dcell()
+		access soma[0]
+		distance()
+		
+		DEND = new SectionList()
+		forsec "basal" { 
+			DEND.append()
+		}
+		forsec "apical"{
+			DEND.append()
+		}
+
+		forsec Trunk {
+			for(x) {
+				if(x!=0){
+					rdist=raddist(x)
+					//rdist=distance(x)
+					fprint("%s\t%f\t%f\n", secname(),x,rdist) 
+					print secname(), "\t\t", x,"\t\t", rdist, "\t\t", distance(x)
+				}	
+			}	
+		}
+		wopen()
+}
+
+/*****************************************************************/
+
+func raddist() {
+	distn0=distance(0)
+	distances[0]=0
+	sum=0
+
+	for i=1,n3d()-1 {
+		xx=(x3d(i)-x3d(i-1))*(x3d(i)-x3d(i-1))
+		yy=(y3d(i)-y3d(i-1))*(y3d(i)-y3d(i-1))
+		zz=(z3d(i)-z3d(i-1))*(z3d(i)-z3d(i-1))
+		sum=sum+sqrt(xx+yy+zz)
+		distances[i]=sum
+	}
+
+	xval=$1
+
+// Amoung the various pt3d's find which one matches the distance of
+// current x closely
+
+	distn=distance(xval)
+	match=distn-distn0
+	matchptdist=100000
+	for i=0,n3d()-1 {		
+		matptdist=(match-distances[i])*(match-distances[i])
+		if(matchptdist>matptdist){
+			matchptdist=matptdist
+			matchi=i
+		}
+	}
+
+	//print "Match for ", x, " is ", matchi, " XDIST ", match, " MATCH ", distances[matchi], " ERROR ", sqrt(matchptdist)
+
+			
+// Find the distance of the closely matched point to the somatic
+// centroid and use that as the distance for this BPAP measurement			
+
+	xx=(x3d(matchi)-somax)*(x3d(matchi)-somax)
+	yy=(y3d(matchi)-somay)*(y3d(matchi)-somay)
+	zz=(z3d(matchi)-somaz)*(z3d(matchi)-somaz)
+	return sqrt(xx+yy+zz)
+}
+
+/*****************************************************************/
+proc update_init(){
+    finitialize(v_init)
+    fcurrent()
+}	
+ 
+/*****************************************************************/
+// CA3b4: Centroid of Soma is: -2.68892  13.0872  1.07191
+
+/*
+
+proc saveradialamps(){local count, distn, nlcount, distn0, sum, match,\
+						matchptdist, matchptdist, raddist
+
+	wopen($s1)
+	count=0
+	nlcount=0
+
+	forall {
+		distn0=distance(0)
+		distances[0]=0
+		sum=0
+
+		for i=1,n3d()-1 {
+			xx=(x3d(i)-x3d(i-1))*(x3d(i)-x3d(i-1))
+			yy=(y3d(i)-y3d(i-1))*(y3d(i)-y3d(i-1))
+			zz=(z3d(i)-z3d(i-1))*(z3d(i)-z3d(i-1))
+			sum=sum+sqrt(xx+yy+zz)
+			distances[i]=sum
+		}
+
+		for (x) {
+
+// Amoung the various pt3d's find which one matches the distance of
+// current x closely
+
+			distn=distance(x)
+			match=distn-distn0
+			matchptdist=100000
+			for i=0,n3d()-1 {		
+				matptdist=(match-distances[i])*(match-distances[i])
+				if(matchptdist>matptdist){
+					matchptdist=matptdist
+					matchi=i
+				}
+			}
+
+			//print "Match for ", x, " is ", matchi, " XDIST ", match, " MATCH ", distances[matchi], " ERROR ", sqrt(matchptdist)
+
+			
+// Find the distance of the closely matched point to the somatic
+// centroid and use that as the distance for this BPAP measurement			
+
+			xx=(x3d(matchi)-somax)*(x3d(matchi)-somax)
+			yy=(y3d(matchi)-somay)*(y3d(matchi)-somay)
+			zz=(z3d(matchi)-somaz)*(z3d(matchi)-somaz)
+			raddist=sqrt(xx+yy+zz)
+
+			if (ampvec[count].size()>0){
+				fprint("%s\t%f\t%f\n", secname(), raddist, \
+						ampvec[count].x[0]-v_init)
+			} else {
+				nlcount=nlcount+1
+				fprint("%s\t%f\t0\n", secname(), raddist)
+			}	
+			count=count+1
+		}	
+	}
+	print "Nilcount = ", nlcount
+	wopen()
+}	
+
+*/
+
+compute_distances()

@@ -1,0 +1,102 @@
+load_file("nrngui.hoc")
+cvode_active(1)
+
+Vrest = -65
+dt = 0.05
+celsius = 34.0
+freq=50
+
+Rm = 41358
+Cm    = 0.85
+RaAll= 634
+ghd=0.0001
+ghdd=0	
+ehd=-30
+
+tstop=200
+
+xopen("geo-cell1zr.hoc")
+xopen("fixnseg.hoc")           
+
+objref s, nc, syn, pd, ps, psn, pdn
+
+pd = new Vector()
+ps = new Vector()
+psn = new Vector()
+pdn = new Vector()
+
+access soma
+
+soma {
+	s = new NetStim(.5)
+	s.start=5
+	s.interval=1000
+	s.number=5
+
+	syn = new Exp2Syn(.5)
+	syn.tau1=.4
+	syn.tau2=5
+	syn.e=0
+}
+
+nc = new NetCon(s, syn, 0, 0, 0.05e-3)
+
+forall { 
+	insert pas
+	insert ds
+	insert hd ehd_hd=ehd ghdbar_hd=ghdd
+
+	e_pas=Vrest 
+	g_pas = 1/Rm 
+	Ra=RaAll 
+	cm=Cm
+}
+
+	geom_nseg()
+	tot=0
+	forall {tot=tot+nseg}
+
+	access soma
+	distance()
+
+proc init() {
+	finitialize(Vrest)
+        fcurrent()
+        forall for (z,0) {
+		ghdbar_hd(z)=ghdd
+		e_pas(z)=v(z)+i_hd(z)/g_pas
+	}
+	cvode.re_init()
+}
+
+proc runl() {
+ff=50 
+if (flag>0) {ghdd=ghd} else {ghdd=0}
+print " running with Ih=",ghdd
+for (mind=0; mind<650; mind=mind+100) {
+	pd.resize(0)
+	ps.resize(0)
+	psn.resize(0)
+	forsec "apical" for(gg,0) {if (distance(gg)>mind && distance(gg)<mind+100) {
+	syn.loc(gg)
+	s.interval=1000
+	run()
+	ref=soma.vmax_ds(.5)-Vrest
+	refd=vmax_ds(gg)-Vrest
+	s.interval=1000/ff
+	run()
+	pd.append(vmax_ds(gg)-Vrest)
+	pdn.append((vmax_ds(gg)-Vrest)/refd)
+	ps.append(soma.vmax_ds(gg)-Vrest)
+	psn.append((soma.vmax_ds(gg)-Vrest)/ref)
+	}
+	}
+	print " avr soma summ ", psn.mean()," +/- ", psn.stderr(), " at ", mind+50, "um"  
+}
+}
+
+flag=0
+xpanel(" ")
+xbutton(" run ", "runl()") 
+xcheckbox(" with Ih ",&flag)
+xpanel()

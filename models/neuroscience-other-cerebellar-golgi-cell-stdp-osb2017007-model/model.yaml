@@ -1,0 +1,33 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model20170072017007Model'
+description: Cerebellar Golgi cell model with STDP (Pali et al., 2025)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:2017007
+  source_db: opensourcebrain
+  source_id: '2017007'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/2017007
+  download_url: https://github.com/OpenSourceBrain/2017007.git
+  license: ''
+bsim:
+  entrypoint: src.model_2017007_2017007_model:Model20170072017007Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

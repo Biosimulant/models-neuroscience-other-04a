@@ -1,0 +1,19 @@
+load_file("nrngui.hoc")
+create soma
+access soma
+
+	
+load_file("init.ses")
+
+load_file("cellinit.hoc")
+concentration_init()
+finitialize(v_init)
+tstop = 2000
+
+screen_update_invl = 0.5
+cvode_active(1)
+atol_ = 1e-6
+cvode.atol(atol_)
+
+load_file("fig6.hoc")
+

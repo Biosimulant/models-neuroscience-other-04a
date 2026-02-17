@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CerebellarGranularLayerMaexAndDeSchutter1227363Model'
+description: '{"value": "Circuit model of the granular layer representing a one-dimensional
+  array of single-compartmental granule cells (grcs) and Golgi cells (Gocs). This
+  paper examines the effects of feedback inh'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:227363
+  source_db: modeldb
+  source_id: '227363'
+  standard: other
+  original_url: https://modeldb.science/227363
+  download_url: https://modeldb.science/download/227363
+  license: ''
+bsim:
+  entrypoint: src.cerebellar_granular_layer_maex_and_de_schutter_1_227363_model:CerebellarGranularLayerMaexAndDeSchutter1227363Model
+  init_kwargs:
+    model_path: data/227363.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

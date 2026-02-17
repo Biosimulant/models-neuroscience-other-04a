@@ -1,0 +1,83 @@
+//run simulation with reduced rectifying inhibition, mimicking RO effect
+
+// Create graphs for visualisation.
+objref volt_redInh_AP5,volt_redInh
+
+volt_redInh = new Graph()
+volt_redInh.addvar("soma.sec.v(0.5)",2,1)
+volt_redInh.addvar("dend2Ref.sec.v(0.5)",4,1) 
+volt_redInh.label("alpha5-NAM")
+volt_redInh.exec_menu("Keep Lines")
+volt_redInh.size(stimStart-20,tstop,-75,-15)
+
+volt_redInh_AP5 = new Graph()
+volt_redInh_AP5.addvar("soma.sec.v(0.5)",2,1)
+volt_redInh_AP5.addvar("dend2Ref.sec.v(0.5)",4,1)  
+volt_redInh_AP5.label("alpha5-NAM, no NMDA")
+volt_redInh_AP5.exec_menu("Keep Lines")
+volt_redInh_AP5.size(stimStart-20,tstop,-75,-15)
+
+//reduce rectifying inhibition by 50%
+GABAweight1=0.5*(4/5)*GABAweight_total
+reset_InhSyn()
+ActSyn_inh = set_InhSyn_fixed_N(curInh_SR, randShift/3, GABArelP, norm_Pr_inh_SR, shapeInh) 
+//print "In SR, the number of activated inhibitory synapses at each pulse are: ",ActSyn_inh.x[0], ", " , ActSyn_inh.x[1], ", " , ActSyn_inh.x[2], ", " , ActSyn_inh.x[3], ", " , ActSyn_inh.x[4]
+ActSyn_inh = set_InhSyn_fixed_N(curInh_SLM, randShift/4, GABArelP, norm_Pr_inh_SLM, shapeInh) 
+//print "In SLM, the number of activated inhibitory synapses at each pulse are: ",ActSyn_inh.x[0], ", " , ActSyn_inh.x[1], ", " , ActSyn_inh.x[2], ", " , ActSyn_inh.x[3], ", " , ActSyn_inh.x[4]
+    
+for(jj=1; jj<simul_iter+1; jj=jj+1){
+    print jj
+	// Clear excitation and then turn on select synapses.
+	activateExcitation(cellList,-1,1) // clear excitation
+	curExc_SR = activateExcitation(radiatumList,jj*nExcAct_SR,randShift) // activate excitatory synapses
+	curExc_SLM = activateExcitation(tuftList,jj*nExcAct_SLM,randShift) // activate excitatory synapses
+	
+    shape_no=(jj/2)-1
+    if (jj%2==1){shape_no=(jj-1)/2}
+	ActSyn = set_gluSyn(curExc_SR, randShift, 0.1, norm_Pr_exc, shapeExc[shape_no])
+	print "In SR, the number of activated synapses at each pulse are: ",ActSyn.x[0], ", " , ActSyn.x[1], ", " , ActSyn.x[2], ", " , ActSyn.x[3], ", " , ActSyn.x[4]
+	 
+	ActSyn = set_gluSyn(curExc_SLM, randShift/2, 0.1, norm_Pr_exc, shapeExc[shape_no])
+	print "In SLM, the number of activated synapses at each pulse are: ",ActSyn.x[0], ", " , ActSyn.x[1], ", " , ActSyn.x[2], ", " , ActSyn.x[3], ", " , ActSyn.x[4]
+	
+    if (jj%2==1){curGr = graphList[0].append(volt_redInh) }
+        init()
+        run()
+        if (jj%2==1){graphList[0].remove(curGr-1)    }
+        storeM_redRect.setcol(jj-1,recv_soma)
+        storeM_redRect.setcol(jj-1+simul_iter,recv_tuft1) 
+        storeM_redRect.setcol(jj-1+2*simul_iter,recv_tuft2) 
+        storeM_redRect.setcol(jj-1+3*simul_iter,recv_tuft3)
+        storeM_redRect.setcol(jj-1+4*simul_iter,recv_obl1) 
+        storeM_redRect.setcol(jj-1+5*simul_iter,recv_obl2) 
+        storeM_redRect.setcol(jj-1+6*simul_iter,recv_obl3)
+        
+    // Wash-in AP5, block NMDA conductance
+    reset_NMDASyn()
+    
+    if (jj%2==1){curGr = graphList[0].append(volt_redInh_AP5)   }
+        init() 
+        run()
+        if (jj%2==1){graphList[0].remove(curGr-1)    }
+        storeM_redRect.setcol(jj-1+7*simul_iter,recv_soma) 
+        storeM_redRect.setcol(jj-1+8*simul_iter,recv_tuft1) 
+        storeM_redRect.setcol(jj-1+9*simul_iter,recv_tuft2) 
+        storeM_redRect.setcol(jj-1+10*simul_iter,recv_tuft3)
+        storeM_redRect.setcol(jj-1+11*simul_iter,recv_obl1) 
+        storeM_redRect.setcol(jj-1+12*simul_iter,recv_obl2) 
+        storeM_redRect.setcol(jj-1+13*simul_iter,recv_obl3)
+        
+    reset_AMPASyn()    
+}
+// SAVE OUTPUT
+//print2file(storeM_redRect,file_name3,ColLabel)	
+
+
+//set rectifying inhibition back to 100%
+GABAweight1=4*GABAweight_total/5 
+reset_InhSyn()
+ActSyn_inh = set_InhSyn_fixed_N(curInh_SR, randShift/3, GABArelP, norm_Pr_inh_SR, shapeInh) 
+//print "In SR, the number of activated inhibitory synapses at each pulse are: ",ActSyn_inh.x[0], ", " , ActSyn_inh.x[1], ", " , ActSyn_inh.x[2], ", " , ActSyn_inh.x[3], ", " , ActSyn_inh.x[4]
+ActSyn_inh = set_InhSyn_fixed_N(curInh_SLM, randShift/4, GABArelP, norm_Pr_inh_SLM, shapeInh) 
+//print "In SLM, the number of activated inhibitory synapses at each pulse are: ",ActSyn_inh.x[0], ", " , ActSyn_inh.x[1], ", " , ActSyn_inh.x[2], ", " , ActSyn_inh.x[3], ", " , ActSyn_inh.x[4]
+  

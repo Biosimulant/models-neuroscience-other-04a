@@ -1,0 +1,166 @@
+{
+    "Step9": {
+        "soma": {
+            "Spikecount": [
+                10,
+                3.16
+            ],
+            "AP_amplitude_from_voltagebase": [
+                95.0,
+                9.73
+            ],
+            "voltage_base": [
+                -70.0,
+                1.0
+            ],
+            "AHP_depth": [
+                22.91,
+                7.36
+            ],
+            "AHP_time_from_peak": [
+                12.49,
+                1.81
+            ],
+            "AHP_depth_abs_slow": [
+                -48.61,
+                6.85
+            ],
+            "AHP_slow_time": [
+                0.50,
+                0.13
+            ],
+            "AP_duration_half_width": [
+                1.03,
+                0.26
+            ],
+            "AP_width": [
+                3.43,
+                0.92
+            ],
+            "AP_peak_downstroke": [
+                -23.92,
+                6.44
+            ],
+            "steady_state_voltage_stimend": [
+                -43.29,
+                7.83
+            ],
+            "AP2_AP1_diff": [
+                -10.90,
+                5.63
+            ],
+            "decay_time_constant_after_stim": [
+                17.73,
+                6.79
+            ],
+            "ISI_CV": [
+                0.0,
+                0.1
+            ]
+        }
+},
+    "Step8": {
+        "soma": {
+            "Spikecount": [
+                9.25,
+                2.68
+                ],
+            "steady_state_voltage_stimend":[
+                -42.51,
+                7.21
+            ]
+        }
+        
+},
+    "Step7": {
+        "soma": {
+            "Spikecount": [
+                8,
+                3
+            ],
+            "steady_state_voltage_stimend":[
+                -46.18,
+                5.59
+            ]
+        }
+        
+},
+    "Step6": {
+        "soma": {
+            "Spikecount": [
+                6.89,
+                2.89
+            ],
+            "steady_state_voltage_stimend":[
+                -47.41,
+                6.81
+            ]
+        }
+        
+},
+    "Step5": {
+        "soma": {
+            "Spikecount": [
+                4.875,
+                3.13
+            ],
+            "steady_state_voltage_stimend":[
+                -50.28,
+                5.71
+            ]
+        }
+        
+},
+    "Step4": {
+        "soma": {
+            "Spikecount": [
+                3.13,
+                3.21
+            ],
+            "steady_state_voltage_stimend":[
+                -54.68,
+                5.23
+            ]
+        }
+        
+},
+    "Step3": {
+        "soma": {
+            "Spikecount": [
+                1.75,
+                2.86
+                ],
+            "steady_state_voltage_stimend":[
+                -59.0,
+                6.31
+            ]
+        }
+        
+},
+    "Step2": {
+        "soma": {
+            "Spikecount": [
+                0.75,
+                1.39
+            ],
+            "steady_state_voltage_stimend":[
+                -63.10,
+                3.98
+            ]
+        }
+        
+},
+    "Step1": {
+        "soma": {
+            "Spikecount": [
+                0.0,
+                0.1
+            ],
+            "steady_state_voltage_stimend":[
+                -67.66,
+                2.12
+            ]
+        }
+        
+}
+}

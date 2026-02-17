@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: Ca3PyramidalNeuronsKv12MediatesModulation184139Model'
+description: '{"value": "This model simulates the contribution of dendritic Na+ and
+  D-type K+ channels to EPSPs at three different locations of apical dendrites, which
+  mimicking innervation sites of mossy fibers (M'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:184139
+  source_db: modeldb
+  source_id: '184139'
+  standard: other
+  original_url: https://modeldb.science/184139
+  download_url: https://modeldb.science/download/184139
+  license: ''
+bsim:
+  entrypoint: src.ca3_pyramidal_neurons_kv1_2_mediates_modulation_184139_model:Ca3PyramidalNeuronsKv12MediatesModulation184139Model
+  init_kwargs:
+    model_path: data/184139.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

@@ -1,0 +1,33 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model186768186768Model'
+description: CA3 Network Model of Epileptic Activity (Sanjay et. al, 2015)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:186768
+  source_db: opensourcebrain
+  source_id: '186768'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/186768
+  download_url: https://github.com/OpenSourceBrain/186768.git
+  license: ''
+bsim:
+  entrypoint: src.model_186768_186768_model:Model186768186768Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

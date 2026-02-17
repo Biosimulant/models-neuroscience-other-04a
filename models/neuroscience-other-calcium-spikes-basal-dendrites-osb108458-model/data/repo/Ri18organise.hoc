@@ -1,0 +1,67 @@
+
+/*
+--------------
+new organisation of original geometry to make more user friendly
+--------------
+-the compartment called soma is really part of the axon that was
+ reconstructed
+-an additional axon is added to this "soma" by ntscable, and therefore
+ serves as an extension of the axon
+-the reconstructed axon also includes dend1[0] to dend1[13]
+-the real soma is dend1[14] to dend1[27]
+-dend1[21] is the middle of the soma
+-dend1[183] (beginning, ie, 0) is the dendritic recording location
+
+by B.Kampa 2006
+*/
+
+access dend1[21]
+distance()
+
+objref somaAll,somaCenter,dendritic,dendritic_only,dendritic_distal,axon_only,basal_dendrites
+
+// Soma
+somaAll = new SectionList()
+for i=14,27 {
+	dend1[i] somaAll.append()
+	}
+somaCenter = new SectionList()
+dend1[21] somaCenter.append()
+
+// Dendrites including soma
+dendritic = new SectionList()
+// make sure no compartments exceed 20 uM length
+forall {
+    if(nseg < L/20) { print secname(), " not accurate" nseg=L/20+1 }
+    dendritic.append()
+  	}
+for i=0,13 {
+  	dend1[i] dendritic.remove()
+	}
+forsec "axon" dendritic.remove()
+forsec "soma" dendritic.remove()
+
+// dendrites without soma
+dendritic_only = new SectionList()
+forsec dendritic dendritic_only.append()
+for i=14,27 {
+  	dend1[i]  dendritic_only.remove()
+	}
+
+axon_only = new SectionList()
+for i=0,13 {
+  	dend1[i] axon_only.append()
+	}
+forsec "axon" axon_only.append()
+forsec "soma" axon_only.append()
+
+// distal dendrites
+dendritic_distal = new SectionList()
+forsec dendritic_only for(x) if(distance(x) > 500) {dendritic_distal.append()}
+
+// basal dendrites
+basal_dendrites = new SectionList()
+for i=777,1090 {
+  	dend1[i]  basal_dendrites.append()
+	}
+

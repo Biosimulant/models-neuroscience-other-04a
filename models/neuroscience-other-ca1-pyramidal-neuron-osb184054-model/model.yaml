@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model184054184054Model'
+description: 'CA1 pyramidal neuron: Dendritic Na+ spikes are required for LTP at distal
+  synapses (Kim et al 2015)'
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:184054
+  source_db: opensourcebrain
+  source_id: '184054'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/184054
+  download_url: https://github.com/OpenSourceBrain/184054.git
+  license: ''
+bsim:
+  entrypoint: src.model_184054_184054_model:Model184054184054Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

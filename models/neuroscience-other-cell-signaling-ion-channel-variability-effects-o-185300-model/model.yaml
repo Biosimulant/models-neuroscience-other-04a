@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CellSignalingIonChannelVariabilityEffectsO185300Model'
+description: '{"value": "\" ... We evaluated the impact of molecular variability in
+  the expression of cell signaling components and ion channels\r\n on electrophysiological
+  excitability and neuromodulation. We empl'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:185300
+  source_db: modeldb
+  source_id: '185300'
+  standard: other
+  original_url: https://modeldb.science/185300
+  download_url: https://modeldb.science/download/185300
+  license: ''
+bsim:
+  entrypoint: src.cell_signaling_ion_channel_variability_effects_o_185300_model:CellSignalingIonChannelVariabilityEffectsO185300Model
+  init_kwargs:
+    model_path: data/185300.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

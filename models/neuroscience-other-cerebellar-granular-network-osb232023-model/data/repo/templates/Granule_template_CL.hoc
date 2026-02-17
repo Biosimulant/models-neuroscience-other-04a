@@ -1,0 +1,147 @@
+/*******Cerebellar Granule Cell Model **********
+
+FILE: Granule_template.hoc
+
+// Cerebellum Granular Cell Model
+// Last revised by Fontana Andrea 5.2.1999
+// Last revised by Nieus Thierry 11.1.2001
+
+
+FILE: Granule_template.hoc
+
+---
+Adapted by Sungho Hong and Claus Lang
+Computational Neuroscience Unit, Okinawa Institute of Science and Technology, Japan
+Supervision: Erik De Schutter
+
+Correspondence: Sungho Hong (shhong@oist.jp)
+
+September 16, 2017
+********************************************/
+
+begintemplate GC_cl
+public soma, axon,connect2target, MFdel,GoCID,spiketime, spikecount,ite,GLID,gabai,gabag,record_flag
+public ampa, gaba, NMDA, synapses, MFID,GoCdel,spikecount,AP, cellID,setv,MFT,MFI,Volvec
+create soma
+
+objref netcon, nil, MFID, MFdel,GoCID, spiketime, AP, spikecount,MFT,MFI,ICl,Volvec
+objref ampa, gaba, NMDA, synapses,GoCdel,spikecount,AP, cellID,GLID,gabag,gabai,alph,syntonicGABA
+
+proc init() {
+
+	MFID = new Vector()
+	MFI = new Vector()
+    gabag = new Vector()
+    gabai = new Vector()
+	ite = 0
+    record_flag = 0
+	MFdel = new Vector()
+	GoCID = new Vector()
+    GLID=new Vector()
+	GoCdel = new Vector()
+	cellID = new Vector()
+	spiketime = new Vector()
+	spikecount= new Vector()
+	eseed=$1
+    Volvec = new Vector()
+	ampa = new List()
+	gaba = new List()
+	NMDA = new List()
+    alph = new Random(eseed)
+	create soma
+	soma {
+        ICl=new IClamp(0.5)
+        ICl.del=0
+        ICl.dur=1000
+        ICl.amp=0
+
+        nseg = 1
+    	diam = 9.76
+    	L = 9.76
+    	cm = 1
+    	Ra = 100
+
+        dprob=alph.uniform(-diam*0.2, diam*0.2)
+        diam = diam + dprob
+
+		fix_celsius=37
+
+        insert GRANULE_LKG1
+    	insert GRANULE_LKG2
+    	insert GRANULE_Nmda_leak
+    	insert GRANULE_NA
+    	insert GRANULE_NAR
+    	insert GRANULE_PNA
+    	insert GRANULE_KV
+    	insert GRANULE_KA
+    	insert GRANULE_KIR
+    	insert GRANULE_KCA
+    	insert GRANULE_KM
+    	insert GRANULE_CA
+    	insert GRANULE_CALC
+
+    	usetable_GRANULE_NA = 1
+    	usetable_GRANULE_NAR = 1
+    	usetable_GRANULE_PNA = 1
+    	usetable_GRANULE_KV  = 1
+    	usetable_GRANULE_KA = 1
+    	usetable_GRANULE_KIR = 1
+    	usetable_GRANULE_KCA = 1
+    	usetable_GRANULE_KM = 1
+    	usetable_GRANULE_CA = 1
+		usetable_GRANULE_Nmda_leak = 1
+
+        fix_celsius_GRANULE_LKG1 = fix_celsius
+    	fix_celsius_GRANULE_LKG2 = fix_celsius
+    	fix_celsius_GRANULE_Nmda_leak = fix_celsius
+    	fix_celsius_GRANULE_NA = fix_celsius
+    	fix_celsius_GRANULE_NAR = fix_celsius
+    	fix_celsius_GRANULE_PNA = fix_celsius
+    	fix_celsius_GRANULE_KV = fix_celsius
+    	fix_celsius_GRANULE_KA = fix_celsius
+    	fix_celsius_GRANULE_KIR = fix_celsius
+    	fix_celsius_GRANULE_KCA = fix_celsius
+    	fix_celsius_GRANULE_KM = fix_celsius
+    	fix_celsius_GRANULE_CA = fix_celsius
+    	fix_celsius_GRANULE_CALC = fix_celsius
+
+        ena = 87.39
+    	ek = -84.69
+    	eca = 129.33
+    	ecl = -65
+
+        // syntonicGABA = new GrCtonicGABA(0.5)
+
+
+		// create a different seed for each synapse
+		for i=0,0 {
+    		ampa.append(new GrCAMPAplusNMDA(0.5))
+            // gaba.append(new GrCGABAreduced(0.5))
+            // instead using the old GABA mechanism
+            gaba.append(new GrCGABAexp(0.5))
+            gaba.object(i).tau1 =  3
+            gaba.object(i).tau2 =  5
+            gaba.object(i).tau3 =  35
+            gaba.object(i).e=-73
+		}
+
+		AP = new APCount(0.5)
+    	AP.thresh = -10
+    	AP.record(spikecount)
+	}
+  //Volvec.record(&soma.v(0.5))
+}
+
+obfunc connect2target() {localobj nc // $o1 target point proces, optinal $o2 returned Netcon
+    soma nc = new NetCon(&v(0.5),$o1)
+    nc.threshold=10
+    nc.record(spiketime)
+    if (numarg()==2) {$o2 = nc} // for backward compatibility
+    return nc
+}
+
+proc setv() {
+    forall v = $1
+}
+
+endtemplate GC_cl

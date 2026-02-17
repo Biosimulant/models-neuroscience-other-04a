@@ -1,0 +1,195 @@
+// initialize user-defined membrane parameters 
+// use mechanisms na, kv, ka, cad, ca, it
+// active conductances from Schaefer et al 2003
+//
+// by B.Kampa 2006
+
+proc init_params() {
+		celsius=35
+		Ri=150    
+		Cm=1     
+		Rm=15000 
+		v_init = -65 	 	// RMP -81 mV under ZD 7288 
+		spinescale=2.0  		// scale total area to account for spines 
+		hblock=0			// fraction of h current blocked by ZD 7288 
+		hfactor = 0.00010144 	// for 2.5 mM K+
+		hinvtau = 0.0041  	// for 2.5 mM K+
+}
+
+
+//-------------------------------------------------------------------------
+// initalise passive properties and add spines by scaling Rm and Cm, NOT scaled for spines: axon, soma, 1st 100 um of apical dend, the 1st 20 um of basals 
+//----------------------------------------------------------------------
+
+proc init_spine() {
+	forall {insert pas g_pas=1/(Rm/spinescale) cm=Cm*spinescale Ra=Ri 
+}
+
+axon {g_pas=0.02 }
+soma {g_pas=1/Rm cm=Cm}
+
+	 for i=0,14 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=15,27 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=28,32 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=43,47 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=71,72 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=777,778 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}2
+	 }
+ 	for i=808,810 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=923,924 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=957,959 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=1006,1007 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=1055,1058 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=1059,1060 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+	 for i=1067,1069 {
+		 dend1[i]  {g_pas=1/Rm cm=Cm}
+	 }
+}
+
+//--------------------------------------------------
+// initialise nonunifrom resting Vm
+//----------------------------------------------------
+
+proc init_vm() { 
+	forall {
+		e_pas=v_init
+	}
+	access dend1[21]
+	distance()
+
+	for i=0,1090 {
+	dend1[i] {e_pas=v_init+(0.011*(distance(.5)))
+		}
+	}
+}
+
+//-------------------------------------------------
+// Insert active mod.mechanisms
+// --------------------------------------------------
+
+proc init_cell() {
+
+gna_dend 	= 30		*spinescale 
+gna_node 	= 30000   
+gna_soma 	= 30
+ 
+gkv_axon 	= 30	
+gkv_soma 	= 30 	
+gkv_dend 	= 30		*spinescale 
+
+git_dend 	= 0		*spinescale
+gca_dend 	= 0.5		*spinescale
+gka_dend 	= 0.02	*spinescale 
+
+git_basal 	= 0.0003	*spinescale
+gca_basal 	= 0.7		*spinescale
+gka_basal 	= 0.02	*spinescale 
+		
+gca_soma 	= 0.5 
+git_soma 	= 0
+
+vshift_na 	= -13
+
+// the reconstructed axon 
+	axon {insert na gbar_na = gna_node
+		insert kv gbar_kv = gkv_axon}
+
+	soma {insert na gbar_na = gna_node
+ 		insert kv gbar_kv = gkv_axon}
+
+	for i=0,13 {
+		dend1[i]  {insert na gbar_na=gna_node
+			insert kv gbar_kv = gkv_axon}}
+
+// all dendrites 
+	for i=28,1090 {
+		dend1[i] {
+		insert na 		gbar_na = gna_dend
+		insert kv 		gbar_kv = gkv_dend
+		insert ka 		gbar_ka = gka_dend
+  		}
+	}
+// specific soma 
+	for i=14,27 {
+		dend1[i] {
+		insert na 		gbar_na = gna_soma
+		insert kv 		gbar_kv = gkv_soma
+		} 
+  	}
+	forall {ena = 60
+	 ek = -90}
+}
+
+// ---------------------------------------------------------------------
+// Calcium enhancement to reproduce frequency effect (Larkum et al,1999)
+// ----------------------------------------------------------------------
+
+proc addca() {
+	// all dendrites 
+	for i=28,1090 {
+		dend1[i] {
+		insert cad 
+		insert ca 		gbar_ca = gca_dend
+		insert it 		gbar_it = git_dend
+  		}
+	}
+	// specific soma 
+	for i=14,27 {
+		dend1[i] {
+		insert ca 		gbar_ca = gca_soma
+		insert cad
+		insert it		gbar_it = git_soma
+		}
+	}
+	forall if(ismembrane("ca_ion")) {
+    		eca = 140
+    		ion_style("ca_ion",0,1,0,0,0)
+    		vshift_ca = 10
+	} 
+}
+
+proc boostca() {
+
+	forall { 	vh1_it    = 56
+			vh2_it    = 415
+			ah_it     = 30				
+			v12m_it   = 45
+			v12h_it   = 65  
+			am_it     = 3
+			vshift_it = 10
+			vm1_it    = 50
+			vm2_it    = 125
+		}
+
+}
+
+proc init_basals() {
+	forsec basal_dendrites {
+		gbar_ca = gca_basal 
+		gbar_it = git_basal 
+		gbar_ka = gka_basal
+		}
+}

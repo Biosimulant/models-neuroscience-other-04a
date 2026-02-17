@@ -1,0 +1,220 @@
+load_file("nrngui.hoc")
+cvode_active(1)
+
+nsyn=15
+weight=2.2
+low=0
+high=50
+highindex = 111
+
+Rm = 28000
+RmDend = Rm
+RmSoma = Rm
+RmAx = Rm
+
+Cm    = 1
+CmSoma= Cm
+CmAx  = Cm
+CmDend = Cm
+
+RaAll= 150
+RaSoma=150  
+RaAx = 50
+
+Vrest = -65
+gna =  .03
+AXONM = 2
+gkdr = 0.001
+celsius = 34.0  
+KMULT =  0.01
+KMULTP = 0.01
+ghd=0.0
+nash=0
+tstop=200
+
+objref nc[nsyn], g, b, rsyn[nsyn], s[nsyn], rc, rd
+
+use_mcell_ran4()
+lowindex = mcell_ran4_init()
+rc = new Random()
+rc.uniform(0,134)
+rd = new Random()
+rd.uniform(0,1)
+
+xopen("n128su.hoc")             // geometry file
+
+access soma
+	for i=0, nsyn-1 {
+	s[i] = new NetStimm(0.5)
+	s[i].interval=100
+	s[i].number = 1
+	s[i].start=0
+	s[i].noise=1
+	s[i].seed(highindex+3)
+}
+distance()
+
+for i=0, nsyn-1 {
+		rsyn[i] = new Exp2Syn(0.5)
+		rsyn[i].e=0
+		rsyn[i].tau1 = 0.5
+		rsyn[i].tau2 = 3
+		nc[i] = new NetCon(s[i],rsyn[i],0,0,weight*1.e-3)
+}
+
+b = new VBox()
+b.intercept(1)
+g = new Graph()
+g.size(0,tstop,-70,-10)
+g.addvar("soma.v(0.5)",1,0, 2*tstop,0,2)
+g.xaxis(1)
+g.begin()
+g.family(1)
+b.intercept(0)
+b.map()
+
+xopen("n128su.ses")
+PlotShape[0].exec_menu("Shape Plot")
+PlotShape[0].show(0)
+
+proc init() {
+axon[1] {
+                insert nax gbar_nax=gna * AXONM
+			sh_nax=nash
+                insert kdr gkdrbar_kdr=gkdr
+                insert pas e_pas=Vrest g_pas = 1/RmAx Ra=RaAx cm=CmAx
+                insert kap gkabar_kap = KMULTP*0.2
+}
+
+axon[0] {   
+                insert nax  gbar_nax=gna * AXONM
+			sh_nax=nash
+                insert kdr  gkdrbar_kdr=gkdr 
+                insert pas e_pas=Vrest g_pas = 1/RmAx Ra=RaAx cm=CmAx
+                insert kap gkabar_kap = KMULTP*0.2
+}
+
+soma {   
+		insert hd ghdbar_hd=ghd
+			vhalfl_hd=-73
+                insert na3  gbar_na3=gna     
+			sh_na3=nash
+			ar_na3=1
+                insert kdr gkdrbar_kdr=gkdr
+                insert kap gkabar_kap = KMULTP
+                insert pas e_pas=Vrest g_pas = 1/RmSoma Ra=RaSoma cm=CmSoma
+}
+
+for i=135,ndend-1 dend[i] { //basal
+                insert na3    gbar_na3=gna   
+			sh_na3=nash
+			ar_na3=1
+                insert kdr gkdrbar_kdr=gkdr 
+                insert kap gkabar_kap=KMULTP
+                insert pas e_pas=Vrest g_pas = 1/RmDend Ra=RaAll cm=CmDend
+}
+                
+for i=0,134 dend[i] { //apical
+              insert pas e_pas=Vrest g_pas = 1/RmDend Ra=RaAll  cm=CmDend
+		insert ds
+		if (diam>0.5 && distance(0.5)<500) {
+		insert hd ghdbar_hd=ghd
+                insert na3 
+		ar_na3=0.7
+		gbar_na3=gna
+                insert kdr 
+		gkdrbar_kdr=gkdr
+		insert kap
+		insert kad
+		gkabar_kap=0
+		gkabar_kad=0
+
+              for (x) if (x>0 && x<1) { xdist = distance(x)
+                if (xdist>500) {xdist=500}
+                ghdbar_hd(x) = ghd*(1+3*xdist/100)
+                if (xdist > 100){
+			vhalfl_hd=-81
+                        gkabar_kad(x) = KMULT*(1+xdist/100)
+                } else {
+			vhalfl_hd=-73
+                        gkabar_kap(x) = KMULTP*(1+xdist/100)
+                	}
+              				}
+							}
+				}
+
+	t=0
+        forall {
+        v=Vrest
+        if (ismembrane("nax") || ismembrane("na3")) {ena=55}
+        if (ismembrane("kdr") || ismembrane("kap") || ismembrane("kad")) {ek=-90}
+        if (ismembrane("hd") ) {ehd_hd=-30 }
+	}
+	finitialize(Vrest)
+        fcurrent()
+
+        forall {
+	for (x) {
+	if (ismembrane("na3")||ismembrane("nax")){e_pas(x)=v(x)+(ina(x)+ik(x))/g_pas(x)}
+	if (ismembrane("hd")) {e_pas(x)=e_pas(x)+i_hd(x)/g_pas(x)}
+		}
+	}
+	cvode.re_init()
+	access soma
+	g.begin()
+}
+
+proc advance() {
+	fadvance()
+	g.plot(t)
+	g.flush()
+	doNotify()
+}
+
+proc runl() {
+	g.color(1)
+	g.label(0.5,0.6,"0-50um no Ih")
+	weight=2.2
+	low=0
+	high=50
+	runc()
+	g.color(2)
+	g.label(0.5,0.55,"0-50um with Ih")
+	ghd=5.e-5
+	runc()
+	g.color(3)
+	g.label(0.5,0.45,"250-300um no Ih")
+	weight=8
+	low=250
+	high=300
+	ghd=0
+	runc()
+	g.color(4)
+	g.label(0.5,0.4,"250-300um with Ih")
+	ghd=5.e-5
+	runc()
+
+}	
+
+proc runc() {
+	rc.MCellRan4(highindex+1)
+	rd.MCellRan4(highindex+2)
+	for i=0, nsyn-1 {
+	s[i].seed(highindex+3)
+	nc[i].weight = weight*1.e-3
+	}
+	for i=0, nsyn-1 {
+		flag=0
+		while (flag==0) {
+		comp=int(rc.repick())
+		tmp=rd.repick()
+		dend[comp] {if (distance(tmp)<low || distance(tmp)>high) {flag=0} else{flag=1}}
+		}
+		dend[comp] {
+			rsyn[i].loc(tmp)
+			}
+	}
+	run()
+}
+
+runl()

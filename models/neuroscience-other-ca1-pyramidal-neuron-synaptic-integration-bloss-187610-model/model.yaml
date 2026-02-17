@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: Ca1PyramidalNeuronSynapticIntegrationBloss187610Model'
+description: '{"value": "\"... We examined synaptic connectivity\r\nbetween molecularly
+  defined inhibitory interneurons\r\nand CA1 pyramidal cell dendrites using\r\ncorrelative
+  light-electron microscopy and large-v'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:187610
+  source_db: modeldb
+  source_id: '187610'
+  standard: other
+  original_url: https://modeldb.science/187610
+  download_url: https://modeldb.science/download/187610
+  license: ''
+bsim:
+  entrypoint: src.ca1_pyramidal_neuron_synaptic_integration_bloss_187610_model:Ca1PyramidalNeuronSynapticIntegrationBloss187610Model
+  init_kwargs:
+    model_path: data/187610.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

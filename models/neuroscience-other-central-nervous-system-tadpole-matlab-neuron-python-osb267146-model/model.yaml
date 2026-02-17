@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model267146267146Model'
+description: Central Nervous System tadpole model in Matlab and NEURON-Python (Ferrario
+  et al, 2021)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:267146
+  source_db: opensourcebrain
+  source_id: '267146'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/267146
+  download_url: https://github.com/OpenSourceBrain/267146.git
+  license: ''
+bsim:
+  entrypoint: src.model_267146_267146_model:Model267146267146Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

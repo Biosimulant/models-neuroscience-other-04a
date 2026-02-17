@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: Ca3NetworkModelOfEpilepticActivitySanjayE186768Model'
+description: '{"value": "This computational study investigates how a CA3 neuronal
+  network consisting of pyramidal cells, basket cells and OLM interneurons becomes
+  epileptic when dendritic inhibition to pyramidal ce'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:186768
+  source_db: modeldb
+  source_id: '186768'
+  standard: other
+  original_url: https://modeldb.science/186768
+  download_url: https://modeldb.science/download/186768
+  license: ''
+bsim:
+  entrypoint: src.ca3_network_model_of_epileptic_activity_sanjay_e_186768_model:Ca3NetworkModelOfEpilepticActivitySanjayE186768Model
+  init_kwargs:
+    model_path: data/186768.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

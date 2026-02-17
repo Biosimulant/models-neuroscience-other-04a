@@ -1,0 +1,80 @@
+
+load_file("nrngui.hoc")
+
+scale_mv = 10
+scale_na = 0.12
+sf = scale_mv/scale_na
+sep = 100
+base = 10
+ch = 15
+th = ch+base+sep*3
+
+objref grph0, grph1
+objref scene_vector_[2]
+objref Istim[2]
+
+objref t_vect, vm_vect
+t_vect = new Vector()
+vm_vect = new Vector()
+
+objref savdata
+savdata = new File()
+
+grph0 = new Graph(0)
+scene_vector_[0] = grph0
+
+//(mleft, mbottom, mwidth, mheight, wleft,wtop, wwidth, wheight)
+// in a window with user-specified location (5th and 6th args) and size (last 2 args)
+{grph0.view(190, 0, 275, th, 350, 200, 400, 600)}
+graphList[0].append(grph0)
+grph0.family(1)
+
+tstop = 500
+Istim[0] = new IClamp(0.5)
+Istim[0].loc(0.5)
+Istim[0].del = 0
+Istim[0].dur = 500
+
+Istim[1] = new IClamp(0.5)
+Istim[1].loc(0.5)
+Istim[1].del = 0
+
+strdef Filename
+
+for n=0,2 {
+	
+	if (n==2) {	// panel C
+		Istim[0].amp = 0.12
+		Istim[0].del = 200
+		Istim[0].dur = 198.5
+		Istim[1].dur = 500
+		Istim[1].amp = -0.05
+		grph0.addexpr("(Istim[1].i+Istim[0].i)*sf", 1,1)
+	} else if (n==1) {	// panel B
+		Istim[0].amp = 0.1
+		Istim[0].del = 0
+		Istim[0].dur = 500
+		Istim[1].dur = 0
+		Istim[1].amp = 0
+	} else if (n==0) {	// panel A
+		Istim[0].amp = 0.015
+		Istim[0].del = 0
+		Istim[0].dur = 500
+		Istim[1].dur = 0
+		Istim[1].amp = 0
+	}
+	grph0.addexpr("soma.v( 0.5 )+th-sep*(n+1)", 1,1)
+	grph0.addexpr("th-sep*(n+1)-5", 3,1)
+	t_vect.record(&t)
+	vm_vect.record(&soma.v(0.5))
+	run()
+	sprint(Filename,"fig4_panel%d.txt",n) 
+	savdata.wopen(Filename,i)
+	for i=0,t_vect.size()-1 {
+    		savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+	}
+	savdata.close()
+}
+
+graphList[0].remove_all()
+objref grph0

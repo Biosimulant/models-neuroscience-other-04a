@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CerebellarBasketCellModelMasoliEtAl20252018018Model'
+description: '{"value": "\"The analysis of BC inhibition of PCs was extended over
+  a broad parameter space using accurate multi-compartmental computational models.
+  During pf bursts, the BC reduced the PC response at'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:2018018
+  source_db: modeldb
+  source_id: '2018018'
+  standard: other
+  original_url: https://modeldb.science/2018018
+  download_url: https://modeldb.science/download/2018018
+  license: ''
+bsim:
+  entrypoint: src.cerebellar_basket_cell_model_masoli_et_al_2025_2018018_model:CerebellarBasketCellModelMasoliEtAl20252018018Model
+  init_kwargs:
+    model_path: data/2018018.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

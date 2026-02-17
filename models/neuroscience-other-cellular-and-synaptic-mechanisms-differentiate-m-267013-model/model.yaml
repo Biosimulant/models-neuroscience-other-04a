@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CellularAndSynapticMechanismsDifferentiateM267013Model'
+description: '{"value": "\"To evaluate how... different electrophysiological aspects
+  contributed to spiking of the output MCs and sTCs, we used computational modeling.
+  By exchanging the different cell properties in'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:267013
+  source_db: modeldb
+  source_id: '267013'
+  standard: other
+  original_url: https://modeldb.science/267013
+  download_url: https://modeldb.science/download/267013
+  license: ''
+bsim:
+  entrypoint: src.cellular_and_synaptic_mechanisms_differentiate_m_267013_model:CellularAndSynapticMechanismsDifferentiateM267013Model
+  init_kwargs:
+    model_path: data/267013.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

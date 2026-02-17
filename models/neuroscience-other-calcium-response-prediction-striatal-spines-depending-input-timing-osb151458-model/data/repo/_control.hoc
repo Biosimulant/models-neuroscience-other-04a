@@ -1,0 +1,53 @@
+
+
+////add current (up-state)
+//stim1.del = 0
+
+////default current 
+//stim1.del = 100000
+
+////single AP stim
+//stim4.del=50
+
+////3 APs stim
+//stim2.amp=30
+//stim2a.amp=30
+//stim2b.amp=30
+
+
+
+///////////////////////////
+
+////caL block
+//set_caL(0)
+//set_caL13(0)
+
+////cat block
+//set_cat(0)
+
+
+////Kv1.2 block
+//set_kas(0)
+//set_kasd(0)
+
+////Kv4.2 block
+//set_kaf(0)
+//set_kafd(0)
+
+
+////Na channel block
+//prox
+//set_naf(0)
+//set_nap(0)
+//distal
+//set_nafd(0)
+//set_napd(0)
+
+////
+//chmgluwt(0)
+//chnmdawt(0)
+//champawt(0)
+//chnmdawt(2)
+
+/////Mg-free
+//nmda_mg(0)//default 1

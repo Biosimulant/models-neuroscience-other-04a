@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="network_PN1LS_allORNs">
+
+    <notes>
+
+Network structure (NeuroML 2beta5) for project: PN1LS_allORNs saved with neuroConstruct v1.7.1 on: 11:59:27, 10-May-19
+
+Cell Group: neuron_PN1_LS_sk_419138 contains 1 cells
+
+
+
+    </notes>
+
+
+    <include href="DoubExpSynA.synapse.nml"/>
+    <include href="LeakConductance.channel.nml"/>
+    <include href="neuron_PN1_LS_sk_419138.cell.nml"/>
+    <poissonFiringSynapse id="syn_398576" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_395984" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_321092" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_403794" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_333916" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_339573" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_225960" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_319492" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_153798" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_360361" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_320688" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_402811" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_360235" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_362999" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_309595" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_331430" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_329095" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_343030" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_220151" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_392106" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_332797" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_596799" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_396156" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_401986" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_401378" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_426230" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_333138" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_337765" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_373935" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_379686" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_379044" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_404952" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_362954" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_373736" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_328875" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_362982" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_366040" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_420141" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_327347" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_492811" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_362882" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_331514" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_392665" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_415503" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_373569" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_332879" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_337396" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_317572" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_699676" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_331413" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_591293" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <poissonFiringSynapse id="syn_401197" averageRate="20.0 per_s" synapse="DoubExpSynA" spikeTarget="./DoubExpSynA"/>
+    
+    <network id="network_PN1LS_allORNs" type="networkWithTemperature" temperature="6.3 degC">
+
+        
+
+        <population id="neuron_PN1_LS_sk_419138" component="neuron_PN1_LS_sk_419138" type="populationList" size="1">
+           <annotation>
+                <property tag="color" value="0.78515625 0.71484375 0.0390625"/>
+            </annotation>
+            <instance id="0">
+                <location x="0.0" y="0.0" z="0.0"/>
+            </instance>
+        </population>
+
+
+
+            <!--There are no synaptic connections present in the network-->
+
+
+        <inputList id="input_398576" component="syn_398576" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_395984" component="syn_395984" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_321092" component="syn_321092" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_403794" component="syn_403794" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_333916" component="syn_333916" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_339573" component="syn_339573" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_225960" component="syn_225960" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_319492" component="syn_319492" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_153798" component="syn_153798" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_360361" component="syn_360361" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_320688" component="syn_320688" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_402811" component="syn_402811" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_360235" component="syn_360235" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_362999" component="syn_362999" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_309595" component="syn_309595" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_331430" component="syn_331430" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_329095" component="syn_329095" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_343030" component="syn_343030" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_220151" component="syn_220151" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_392106" component="syn_392106" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_332797" component="syn_332797" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_596799" component="syn_596799" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_396156" component="syn_396156" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_401986" component="syn_401986" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_401378" component="syn_401378" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_426230" component="syn_426230" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_333138" component="syn_333138" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_337765" component="syn_337765" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_373935" component="syn_373935" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_379686" component="syn_379686" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_379044" component="syn_379044" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_404952" component="syn_404952" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_362954" component="syn_362954" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_373736" component="syn_373736" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_328875" component="syn_328875" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_362982" component="syn_362982" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_366040" component="syn_366040" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_420141" component="syn_420141" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_327347" component="syn_327347" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_492811" component="syn_492811" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_362882" component="syn_362882" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_331514" component="syn_331514" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_392665" component="syn_392665" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_415503" component="syn_415503" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_373569" component="syn_373569" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_332879" component="syn_332879" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_337396" component="syn_337396" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_317572" component="syn_317572" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_699676" component="syn_699676" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_331413" component="syn_331413" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_591293" component="syn_591293" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="input_401197" component="syn_401197" population="neuron_PN1_LS_sk_419138">
+            <input id="0" target="../neuron_PN1_LS_sk_419138/0/neuron_PN1_LS_sk_419138" destination="synapses"/>
+        </inputList>
+
+
+
+
+
+    </network>
+
+</neuroml>

@@ -1,0 +1,311 @@
+//One can change synapse distribution in this morphology to replicate Fig7E
+//Figure7E: morphology1: distal syanpses; morphology2: proximal synapses; morphology3: distributed synapses
+//PPC L5 Regular spiking Pyramidal cell
+//SUBTHRESHOLD EXCITATORY SYNAPTIC INPUTS TO PRODUCE EPSP
+load_file("nrngui.hoc")
+npyrcell= 1           
+objref PYRcell[npyrcell]
+
+	begintemplate Pyramidalcell
+
+ndend1=2
+public subsets
+public soma, pcdend1
+public all, pcdend, pcddend
+
+
+create soma, pcdend1[ndend1]
+objref syn, pre_list
+
+
+proc init() {
+	pre_list = new List()
+	subsets()
+	pctemp()
+}
+objref all, pcdend, pcddend
+proc subsets(){ local i
+	objref all, pcdend, pcddend
+	all = new SectionList()
+		soma all.append()
+		pcdend1 [0] all.append() // distal dendritic segment
+		pcdend1 [1] all.append() //proximal dendritic segment
+
+	  pcddend  = new SectionList()
+		pcdend1 [0] pcddend.append() //distal
+		
+        pcdend = new SectionList()
+	        pcdend1 [1] pcdend.append() //proximal
+		
+}
+proc pctemp() {
+  
+
+ 	soma {nseg=1 L=15 diam=15} // changed L & diam	
+	pcdend1 [0] {nseg=1 L=150 diam=1} //distal dend with synapses
+      pcdend1 [1] {nseg=1 L=150 diam=1} //proximal with higher Ca pcdend1[1]
+  
+	forsec all {
+	Ra=100
+         insert gskch
+	   gskbar_gskch=0.00075  //To reproduce Mibefradil Ca2+ block drug effect - set the conductance to 0
+         esk= -80
+         insert ichan2
+         gnatbar_ichan2= 0.015 //To reproduce TTX drug effect - set this conductance to 0
+	   gkfbar_ichan2=0.0003
+	   gksbar_ichan2=0.0006
+	   gl_ichan2=0.0009
+ 	   enat =50
+           ekf = -90
+           eks =-90
+           el_ichan2 = -70
+       	}
+           
+        soma {
+	     cm =1.5   
+           insert it // Need to change this conductance below sytematically to produce data points for 4D graph
+           gcabar_it =0.0031 //To reproduce Mibefradil Ca2+ block drug effect - set the conductance to 0
+           insert hcn1
+           gpeak_hcn1=0.00001
+           Vrev_hcn1=-40
+                }
+
+           forsec pcdend{ 
+           cm =1.5  
+           insert it // Need to change this conductance below sytematically to produce data points for 4D graph
+           gcabar_it = 0.0062 //"proximal high T-Ca" - To reproduce Mibefradil Ca2+ block drug effect - set the conductance to 0
+           insert hcn1
+           gpeak_hcn1=0.0000125
+           Vrev_hcn1=-40
+	   	}
+     
+        forsec pcddend {
+	     cm =1.5 
+           insert it // Need to change this conductance below sytematically to produce data points for 4D graph
+           gcabar_it = 0.0031 //To reproduce Mibefradil Ca2+ block drug effect - set the conductance to 0
+           insert hcn1
+           gpeak_hcn1=0.0002
+           Vrev_hcn1=-40
+                       }
+
+        connect pcdend1[1](0), soma(0)
+	connect pcdend1[0](0), pcdend1[1](1)
+
+	}
+
+	func is_art() { return 0 }
+	endtemplate Pyramidalcell
+
+//**********************************************************************************
+// NETWORK SPECIFICATION INTERFACE
+for i=0, npyrcell-1 {PYRcell[i] = new Pyramidalcell(i)} 
+//*************************************************************************************************
+//In slice physiology we didn't see significant differences in A1 or ACC input kinetics.
+//Basically one can call same mod file at different times - this is going to simulate unimodal activation.
+//To reproduce slice physiology RS cell data regarding synaptic integration - use slower NMDA kinetics as predicted in the model exploration of parameters
+// Right now synapses are set at distal dend that reproduces morphology1 in Fig7E, Fig4 and Fig3.
+// To reproduce morphology2 in Fig7E change to PYRcell[0].pcdend1[1] synapse = new A1_RS(0.5) and PYRcell[0].pcdend1[1] synapse2 = new ACC_RS(0.5) below.
+// To reproduce morphology3 in Fig7E (distributed syn) Set one of synapses to PYRcell[0].pcdend1[0] synapse = new A1_RS(0.5) and PYRcell[0].pcdend1[1] synapse2 = new ACC_RS(0.5) and vice versa. 
+objref evec
+evec = new Vector(1)
+evec.x[0]=4000 
+objref vs
+vs = new VecStim(0.5)
+//distal dend synapses
+objref nc, synapse
+PYRcell[0].pcdend1[0] synapse = new A1_RS(0.5)  
+nc = new NetCon(vs, synapse)
+vs.play(evec)
+nc.weight[0]=4  ////this is for AMPA 
+nc.weight[1]=4 // To reproduce AP5 NMDA block drug effect only set this weight to zero
+
+objref evec2
+evec2 = new Vector(1)
+evec2.x[0]=10000 
+objref vs2
+vs2 = new VecStim(0.5)
+//distal dend synapses
+objref nc2, synapse2
+PYRcell[0].pcdend1[0] synapse2 = new ACC_RS(0.5) 
+nc2 = new NetCon(vs2, synapse2)
+vs2.play(evec2)
+nc2.weight[0]=4 //this is for AMPA
+nc2.weight[1]=4 // To reproduce AP5 NMDA block drug effect only set this weight to zero
+
+//Depresssing GABA**************************
+//Move the GABA synapses location paralelly to above excitatory synapses for Fig3, Fig4 and Fig7
+objref evec3
+evec3 = new Vector(1)
+evec3.x[0]=4000.5 //this is indicating disyanptic delay
+objref vs3
+vs3 = new VecStim(0.5)
+objref nc3, synapse3
+PYRcell[0].pcdend1[0] synapse3 = new gaba_syn(0.5)
+//PYRcell[0].soma synapse3 = new gaba_syn(0.5)  //this one for perisomatic synapses. Only using one or the other
+nc3 = new NetCon(vs3, synapse3)
+vs3.play(evec3)
+nc3.weight[0]=4
+
+objref evec4
+evec4 = new Vector(1)
+evec4.x[0]=10000.5  //this is indicating disyanptic delay
+objref vs4
+vs4 = new VecStim(0.5)
+objref nc4, synapse4
+PYRcell[0].pcdend1[0] synapse4 = new gaba_syn(0.5)
+//PYRcell[0].soma synapse4 = new gaba_syn(0.5)
+nc4 = new NetCon(vs4, synapse4)
+vs4.play(evec4)
+nc4.weight[0]=4 // because this is coincident activation, No depressing GABA conductance here.
+
+//*****************************************
+objref stim
+PYRcell[0].soma stim = new IClamp(0.5)
+stim.del = 0 
+stim.dur = 12000  //basically entire simulation period
+stim.amp = -0.03// Small current injetion to maintain the cell at ~ -75mV similar to slice experiments
+
+//*************************************************************************************
+// saving the memmbrane potential EPSP tarces to .txt file, uncomment this section if you want to the output file
+/*objref  VmT
+objref VmMat[npyrcell]
+VmT = new Vector()
+for i=0,npyrcell-1 {
+	VmMat[i] = new Vector()
+	}
+
+proc VecMx() { local i
+	VmT.append(t)
+	for i=0,npyrcell-1 {
+		VmMat[i].append( PYRcell[i].soma.v(0.5))
+		}
+	}
+
+strdef strmat
+objref efile
+efile = new File()
+
+	efile.wopen("2.txt")
+	efile.printf("t\t")
+for i = 0, npyrcell-1 {
+	efile.printf("%s\t", PYRcell[i])}
+	efile.printf("\n")
+        efile.close("2.txt")
+
+proc sMatrix(){ local  i
+	efile.aopen("2.txt")   
+	efile.printf("%f\t", t)
+	for i = 0, npyrcell-1 {
+	//efile.printf("%f\t", PYRcell[i].soma.v(0.5))}
+        efile.printf("%f\t", PYRcell[i].soma.v(0.5))}
+	efile.printf("\n")
+	efile.close("2.txt")
+
+}*/ 
+
+proc init() { local dtsav, temp, secsav
+finitialize(v_init)
+t = -1000
+dtsav = dt
+secondorder =0
+dt= 10
+// if cvode is on, turn it off to do large fixed step
+temp= cvode.active()
+if (temp!=0) {cvode.active(0)}
+while(t<-100) { fadvance() print t}
+//restore cvode if reqd
+if (temp!=0) {cvode.active(1)}
+dt = dtsav
+secondorder =2
+t = 0
+if (cvode.active()){
+cvode.re_init()
+}else{
+fcurrent()
+}
+}
+proc continuerun() {local rt
+	eventcount =0
+	eventslow =1
+	stoprun =0
+	if (using_cvode_) {
+	cvode.event($1)
+	}
+	while(t < $1 && stoprun == 0) {
+	step()
+	//sMatrix() // comment this code here if you want to supress the .txt file output, it's easy this way
+	//VecMx()   // comment this code here if you want to supress the .txt file output, it's easy this way
+	rt = stopsw()
+	if (rt > realtime) {
+		realtime = rt
+		if (!stdrun_quiet) fastflushPlot()
+		doNotify()
+		if (realtime == 2 && eventcount > 50) {
+			eventslow = int(eventcount/50)+1
+		}
+		eventcount = 0
+	}else{
+		eventcount = eventcount +1
+		if ((eventcount%eventslow) == 0) {
+			doEvents()
+		}
+	}
+	}
+	flushPlot()
+}
+
+objectvar save_window_, rvp_
+objectvar scene_vector_[4]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+
+{
+xpanel("RunControl", 0)
+v_init = -60
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 0
+xvalue("t","t", 2 )
+tstop =12000  // you can decide when to stop the simulation 
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 0.1
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 10	
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+xpanel(544,121)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,100,-65,-40)
+scene_vector_[2] = save_window_
+{save_window_.view(2450, -65, tstop, 120, 290, 870, 579.84, 208)}
+graphList[0].append(save_window_)
+save_window_.save_name("graphList[0].")
+save_window_.addexpr("PYRcell[0].soma.v(0.5)",2,2)
+}
+
+{
+save_window_ = new Graph(0)
+save_window_.size(0,100,-65,-40)
+scene_vector_[2] = save_window_
+{save_window_.view(2450, -65, tstop, 120, 290, 470, 579.84, 208)}
+graphList[0].append(save_window_)
+save_window_.save_name("graphList[0].")
+save_window_.addexpr("ACC_RS[0].iampa",3,2)
+save_window_.addexpr("ACC_RS[0].inmda",4,2)
+save_window_.addexpr("A1_RS[0].iampa",1,2)
+save_window_.addexpr("A1_RS[0].inmda",2,2)
+}
+
+proc rrun(){
+run()
+}
+rrun()
+objectvar scene_vector_[1]
+{doNotify()}

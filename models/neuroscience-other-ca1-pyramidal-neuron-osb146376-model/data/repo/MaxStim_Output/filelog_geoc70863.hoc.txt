@@ -1,0 +1,111 @@
+Log file:
+
+--------------------------------------------------
+Morphology: geoc70863.hoc
+synNum: 40
+positionSeed: 2181150
+poissonSeed: 1505849
+NSpike Morfologico: 36
+
+
+%%%%%%%%%%%
+synNum	muSpikesOr	sdSpikesOr
+40	36.00	0.00
+%%%%%%%%%%%
+
+--------------------------------------------------
+Morphology: geoc70863.hoc
+synNum: 60
+positionSeed: 2181150
+poissonSeed: 1505849
+NSpike Morfologico: 45
+
+
+%%%%%%%%%%%
+synNum	muSpikesOr	sdSpikesOr
+60	45.00	0.00
+%%%%%%%%%%%
+
+--------------------------------------------------
+Morphology: geoc70863.hoc
+synNum: 80
+positionSeed: 2181150
+poissonSeed: 1505849
+NSpike Morfologico: 50
+
+
+%%%%%%%%%%%
+synNum	muSpikesOr	sdSpikesOr
+80	50.00	0.00
+%%%%%%%%%%%
+
+--------------------------------------------------
+Morphology: geoc70863.hoc
+synNum: 100
+positionSeed: 2181150
+poissonSeed: 1505849
+NSpike Morfologico: 58
+
+
+%%%%%%%%%%%
+synNum	muSpikesOr	sdSpikesOr
+100	58.00	0.00
+%%%%%%%%%%%
+
+--------------------------------------------------
+Morphology: geoc70863.hoc
+synNum: 120
+positionSeed: 2181150
+poissonSeed: 1505849
+NSpike Morfologico: 63
+
+
+%%%%%%%%%%%
+synNum	muSpikesOr	sdSpikesOr
+120	63.00	0.00
+%%%%%%%%%%%
+
+--------------------------------------------------
+Morphology: geoc70863.hoc
+synNum: 140
+positionSeed: 2181150
+poissonSeed: 1505849
+NSpike Morfologico: 66
+
+
+%%%%%%%%%%%
+synNum	muSpikesOr	sdSpikesOr
+140	66.00	0.00
+%%%%%%%%%%%
+
+--------------------------------------------------
+Morphology: geoc70863.hoc
+synNum: 160
+positionSeed: 2181150
+poissonSeed: 1505849
+NSpike Morfologico: 70
+
+
+%%%%%%%%%%%
+synNum	muSpikesOr	sdSpikesOr
+160	70.00	0.00
+%%%%%%%%%%%
+
+--------------------------------------------------
+Morphology: geoc70863.hoc
+synNum: 180
+positionSeed: 2181150
+poissonSeed: 1505849
+NSpike Morfologico: 79
+
+
+%%%%%%%%%%%
+synNum	muSpikesOr	sdSpikesOr
+180	79.00	0.00
+%%%%%%%%%%%
+
+--------------------------------------------------
+Morphology: geoc70863.hoc
+synNum: 200
+positionSeed: 2181150
+poissonSeed: 1505849

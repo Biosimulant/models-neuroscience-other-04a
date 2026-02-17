@@ -1,0 +1,13 @@
+load_file("init.hoc")
+printf("Sarcomere dynamics modelisation - Negroni & Lascano 1996 ")
+printf("J Mol Cell Cardiol 28, 915-929 (1996)")
+printf("modified for Neuron by FE GANNIER & CO MALECOT")
+printf("francois.gannier@univ-tours.fr (University of TOURS)")
+
+atol_ = 1e-3
+tstop = 1000
+cvode.atol(atol_)
+cvode_active(1)
+load_file("fig2.ses")
+load_file("fig3.ses")
+run()

@@ -1,0 +1,40 @@
+load_file("T0810142_3aATIS.hoc")//the cell
+
+forall {
+	nseg=9
+	insert pas
+	e_pas=-60
+
+	g_pas=0.00005
+	cm=2
+}
+
+forsec basal {nseg=9 diam=diam*0.9}
+
+dend[16].nseg=17
+dend[40].nseg=200
+
+
+//load_file("11_12.ses")//the cell
+load_file("basal.ses")
+
+forall{
+	insert hh3
+	gnabar_hh3=0.0
+	gkbar_hh3=0.003
+
+	l_hh3=0
+}
+
+ena=70
+taus_hh3=30
+tausv_hh3=10
+tausn_hh3=5
+tausb_hh3=0.1
+taun_hh3=.5
+forsec somatic {
+	nseg=9
+	gnabar_hh3=0
+	gkbar_hh3=0.01
+}
+

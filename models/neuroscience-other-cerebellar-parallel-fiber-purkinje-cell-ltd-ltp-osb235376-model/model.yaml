@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model235376235376Model'
+description: Model of cerebellar parallel fiber-Purkinje cell LTD and LTP (Gallimore
+  et al 2018)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:235376
+  source_db: opensourcebrain
+  source_id: '235376'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/235376
+  download_url: https://github.com/OpenSourceBrain/235376.git
+  license: ''
+bsim:
+  entrypoint: src.model_235376_235376_model:Model235376235376Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

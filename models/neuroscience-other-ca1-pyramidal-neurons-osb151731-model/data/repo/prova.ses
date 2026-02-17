@@ -1,0 +1,26 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[5]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,600,-65,25)
+scene_vector_[3] = save_window_
+{save_window_.view(0, -65, 600, 90, 132, 355, 1093.44, 359.68)}
+graphList[0].append(save_window_)
+save_window_.save_name("graphList[0].")
+save_window_.label(0.949956, 0.931495, "no EF", 2, 1, 0, 0, 1)
+save_window_.label(0.950834, 0.878114, "EF", 2, 1, 0, 0, 2)
+}
+{WindowMenu[0].ses_gid(1, 0, 1, "unnamed Window Group")}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,700,0,1)
+scene_vector_[4] = save_window_
+{save_window_.view(0, 0, 700, 1, 132, 140, 1093.44, 200.32)}
+graphList[2].append(save_window_)
+save_window_.save_name("graphList[2].")
+}
+{WindowMenu[0].ses_gid(0, 0, 1, "unnamed Window Group")}
+objectvar scene_vector_[1]
+{doNotify()}

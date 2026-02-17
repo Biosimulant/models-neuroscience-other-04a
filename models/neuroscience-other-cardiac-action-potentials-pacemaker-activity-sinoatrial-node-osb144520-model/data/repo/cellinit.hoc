@@ -1,0 +1,21 @@
+{
+	celsius = 37
+	diam=0.05  L=2 nseg = 1
+	insert capacitance { cm = 1.2}   // 0.0756µF
+	v_init = -87
+	RPot = v_init
+} 
+
+proc concentration_init() {
+	cao0_ca_ion = 1.8
+	cai0_ca_ion = 5e-5
+
+	cri0_cr_ion = 1
+	cui0_cu_ion = 2
+
+	ki0_k_ion = 140
+	ko0_k_ion = 4
+
+	nai0_na_ion = 8
+	nao0_na_ion = 140
+}

@@ -1,0 +1,202 @@
+load_file("stdgui.hoc")
+
+cvode_active()
+Vrest=restV
+dt=0.025
+tstop=1000
+
+print "ginputmono=", ginputmono
+print "ginputpoly=", ginputpoly
+print "latepolyinput=", latepolyinput
+
+
+v_init=restV
+print "v_init=", v_init
+
+objref volt2, time2, syn1, syn2, syn3, syn4
+volt2= new Vector()
+time2= new Vector()
+
+create soma, priden, tuftden[5], secden[4]
+
+proc init() {
+
+topol()
+segments()
+geometry()
+memb()
+}
+
+
+connect secden[0](0), soma(0)
+connect secden[1](0),soma(0)
+connect priden(0), soma(1)
+for i=0,4 {
+    connect tuftden[i](0), priden(1)
+}
+    soma.nseg=10
+    priden.nseg=100
+    for i=0,4 {
+        tuftden[i].nseg=50
+    }
+    for i = 0,3 {
+        secden[i].nseg=30
+    }
+
+    soma { L=10 diam=10}
+    priden {L=100 diam=3}
+    for i=0,4 {
+    tuftden[i] {L=40 diam(0:1)=.4:.4}
+    }
+    for i=0,3 {
+        secden[i] {L=200 diam=2}
+    }
+
+// kfasttab
+objref tabkinfvec, tabninfvec, tabktauvec, tabntauvec, vvec
+clipboard_retrieve("kfast_k.inf")
+tabkinfvec = hoc_obj_[0]
+vvec = hoc_obj_[1]
+clipboard_retrieve("kfast_n.inf")
+tabninfvec = hoc_obj_[0]
+clipboard_retrieve("kfast_k.tau")
+tabktauvec = hoc_obj_[0]
+clipboard_retrieve("kfast_n.tau")
+tabntauvec = hoc_obj_[0]
+table_tabkinf_kfasttab(&tabkinfvec.x[0], vvec.size, &vvec.x[0])
+table_tabninf_kfasttab(&tabninfvec.x[0], vvec.size, &vvec.x[0])
+table_tabktau_kfasttab(&tabktauvec.x[0], vvec.size, &vvec.x[0])
+table_tabntau_kfasttab(&tabntauvec.x[0], vvec.size, &vvec.x[0])
+
+//kslowtab
+objref tabkinfvecs, tabninfvecs, tabktauvecs, tabntauvecs
+clipboard_retrieve("kslow_k.inf")
+tabkinfvecs = hoc_obj_[0]
+clipboard_retrieve("kslow_n.inf")
+tabninfvecs = hoc_obj_[0]
+clipboard_retrieve("kslow_k.tau")
+tabktauvecs = hoc_obj_[0]
+clipboard_retrieve("kslow_n.tau")
+tabntauvecs = hoc_obj_[0]
+table_tabkinf_kslowtab(&tabkinfvecs.x[0], vvec.size, &vvec.x[0])
+table_tabninf_kslowtab(&tabninfvecs.x[0], vvec.size, &vvec.x[0])
+table_tabktau_kslowtab(&tabktauvecs.x[0], vvec.size, &vvec.x[0])
+table_tabntau_kslowtab(&tabntauvecs.x[0], vvec.size, &vvec.x[0])
+
+
+soma {insert pas
+e_pas=restV
+g_pas=membres
+insert nafast
+insert kfasttab
+insert kA
+insert kslowtab
+insert lcafixed
+insert kca3
+insert cad
+depth_cad = diam/4
+gnabar_nafast = 0.1532
+gkbar_kfasttab = 0.1956
+gkbar_kA = 0.00587
+gkbar_kslowtab = 0.0028
+gcabar_lcafixed = 0.0040
+gkbar_kca3 = 0.0142
+}
+priden {insert pas
+e_pas=restV
+g_pas=membres
+
+}
+for i=0,3{
+secden[i] {insert pas
+e_pas=restV
+g_pas=membres
+}
+}
+
+
+for i=0,4{
+tuftden[i] {insert pas
+e_pas=restV
+g_pas=membres
+
+}
+}
+
+
+
+
+
+tuftden[0] {
+    syn1= new Exp2Delay(1)
+    syn1.onset=syn1onset
+    syn1.tau1=tau1inputmono
+    syn1.tau2=tau2inputmono
+    syn1.gmax=ginputmono
+    syn1.e=0
+}
+
+tuftden[3] {
+syn4= new Exp2Delay(1)
+syn4.onset=syn1onset
+syn4.tau1=tau1inputmono
+syn4.tau2=tau2inputmono
+syn4.gmax=ginputmono
+syn4.e=0
+}
+
+
+tuftden[1] {
+    syn2=new Exp2Delay(1)
+    syn2.onset=syn2onset
+    syn2.tau1=tau1inputpoly
+    syn2.tau2=tau2inputpoly
+    syn2.gmax=ginputpoly
+    syn2.e=0
+}
+
+tuftden[2] {
+    syn3= new IClamp(1)
+    syn3.del=syn3onset
+    syn3.dur=900
+    syn3.amp=latepolyinput
+}
+
+
+
+
+soma {
+cvode.record(&v(0.5),volt2, time2)
+}
+
+
+proc init() {
+
+
+
+    t=0
+
+finitialize(v_init)
+    fcurrent()
+cvode.re_init()
+
+}
+
+proc advance() {
+    fadvance()
+    doNotify()
+}
+
+proc runc() {
+
+run()
+}
+
+proc run() {
+stdinit()
+    continuerun(tstop)
+    doNotify()
+}
+
+runc()
+

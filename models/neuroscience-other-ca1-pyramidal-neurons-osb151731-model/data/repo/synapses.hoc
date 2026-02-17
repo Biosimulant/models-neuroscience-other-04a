@@ -1,0 +1,80 @@
+
+nsyn_dist = 50
+nsyn_prox = 3 * nsyn_dist
+
+cutdist = 350
+
+nsyn = nsyn_dist + nsyn_prox
+
+objref syn[nsyn], nc[nsyn], st[nsyn]
+
+weight = 5e-5
+
+for i = 0, nsyn - 1 {
+	st[i] = new NetStimm(.5)
+	st[i].interval = 1000 / 50
+	st[i].number = 100000000000
+	st[i].noise = 1
+	st[i].start = 0
+	st[i].seed(114)
+
+	syn[i] = new Exp2Syn(.5)
+	syn[i].e = 0
+	syn[i].tau1 = 2
+	syn[i].tau2 = 10
+
+	nc[i] = new NetCon(st[i], syn[i], 0, 0, weight)
+}
+
+objref rcomp[2], rsec
+
+use_mcell_ran4()
+mcell_ran4_init()
+
+rsec = new Random()
+rsec.uniform(0, 1)
+
+for i = 0, 1 rcomp[i] = new Random()
+rcomp[0].uniform(0, numapical - 1)
+
+/* distribuzione synapsi prossimali */
+for i = 0, nsyn_prox - 1 {
+	flag = 0
+	while(flag == 0) {
+		comp = int(rcomp[0].repick())
+		tmp  = rsec.repick()
+		apical_dendrite[comp] if(distance(tmp) < cutdist) flag = 1
+	}
+	apical_dendrite[comp] syn[i].loc(tmp)
+}
+
+
+
+
+objref seclst, rnd, secobj
+seclst = new List()
+
+forsec "user5" {
+	secobj = new SectionRef()
+	seclst.append(secobj)
+}
+
+forsec "apical" {
+	secobj = new SectionRef()
+	seclst.append(secobj)
+}
+
+rcomp[1].uniform(0, seclst.count() - 1)
+
+for i = nsyn_prox, nsyn - 1 {
+	flag = 0
+	while(flag == 0) {
+		comp = int(rcomp[1].repick())
+		tmp  = rsec.repick()
+		seclst.o(comp).sec if(distance(tmp) >= cutdist) flag = 1
+	}
+	seclst.o(comp).sec syn[i].loc(tmp)
+}
+
+
+

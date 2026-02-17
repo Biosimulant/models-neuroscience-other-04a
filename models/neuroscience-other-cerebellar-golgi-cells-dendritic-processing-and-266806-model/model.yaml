@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CerebellarGolgiCellsDendriticProcessingAnd266806Model'
+description: '{"value": "The Golgi cells are the main inhibitory interneurons of the
+  cerebellar granular layer. To study the mechanisms through which these neurons integrate
+  complex input patterns, a new set of mod'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:266806
+  source_db: modeldb
+  source_id: '266806'
+  standard: other
+  original_url: https://modeldb.science/266806
+  download_url: https://modeldb.science/download/266806
+  license: ''
+bsim:
+  entrypoint: src.cerebellar_golgi_cells_dendritic_processing_and_266806_model:CerebellarGolgiCellsDendriticProcessingAnd266806Model
+  init_kwargs:
+    model_path: data/266806.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

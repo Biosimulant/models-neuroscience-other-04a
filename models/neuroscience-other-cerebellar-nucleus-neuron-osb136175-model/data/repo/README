@@ -1,0 +1,167 @@
+README for the cerebellar nucleus (CN) neuron model described in the paper:
+
+Volker Steuber, Nathan Schultheiss, R. Angus Silver, Erik De Schutter
+& Dieter Jaeger (2010). Determinants of synaptic integration and
+heterogeneity in rebound firing explored with data-driven models of
+deep cerebellar nucleus cells. Journal of Computational Neuroscience,
+epub ahead of print.
+
+GENESIS files included:
+
+cn0106c_z15_l01_ax.p 	CN neuron morphology 
+cn_chan.g      		functions that create ion channel prototypes
+cn_comp.g   		functions that create compartments
+cn_fileout.g      	functions that provide output to files
+cn_syn.g       		functions that create synapse prototypes
+cn_vclamp.g      	functions that create a voltage clamp circuit
+cn_AMPAcomps.txt      	list of compartments containing AMPA and NMDA receptors
+cn_cip_main.g  		main simulation script for current injection
+cn_const.g  		simulation parameters
+cn_GABAcomps.txt  	list of compartments containing GABAA receptors
+cn_syn_main.g  		main simulation script for synaptic input
+cn_vclamp_main.g  	main simulation script for voltage clamp simulations
+
+
+Note: As most biologically detailed neuron models, this model is under
+continuous development, and modifications of it (both in GENESIS and
+NEURON) have already been used for follow-up publications by Dieter
+Jaeger's and Volker Steuber's teams (Rin et al. and Luthman et al.,
+submitted). Please contact us (djaeger@emory.edu and
+v.steuber@herts.ac.uk) for information about the latest
+updates. Moreover, we hope that future updates by others will be made
+available on ModelDB and we would appreciate hearing about them. We
+would also like to hear about any new experimental data that could be
+used to improve the model.
+
+Usage: Download and extract the archive, and create a subdirectory called data
+in the directory that contains all simulation files. There are three
+separate main scripts to simulate current injection, voltage clamp and
+synaptic input. These three types of simulations are run with:
+
+genesis cn_cip_main.g
+genesis cn_vclamp_main.g
+genesis cn_syn_main.g
+
+How to reproduce the figures in Steuber et al. (2010):
+
+Figure 1 (b)
+run with: genesis cn_cip_main.g  
+in cn_const.g, set
+GNaPs = 0
+Ghs = 1.0
+GCaLVAs = 0
+spontaneous activity:
+cipamp = 0
+current injection:
+cipamp = 50.0e-12 // 50 pA
+ciponset = 3.0
+cipdur = 1.5
+
+Figure 1 (c)
+run with: genesis cn_cip_main.g  	
+in cn_const.g, set
+GNaPs = 8.0
+Ghs = 1.0
+GCaLVAs = 2.0
+cipamp = 0.0 - 400.0e-12
+
+Figure 2
+run with: genesis cn_cip_main.g  	
+in cn_const.g, set
+GNaPs = 0
+Ghs = 0
+GCaLVAs = 0
+cipamp = 50.0e-12 
+ciponset = 3.0
+cipdur = 1.5
+
+Figures 3 and 4
+run with: genesis cn_cip_main.g  	
+in cn_const.g, set
+cipamp = -150.0e-12 
+ciponset = 3.0
+cipdur = 1.5
+Neuron 1 model: 
+GNaPs = 2
+Ghs = 0.5
+GCaLVAs = 3.5
+Neuron 2 model: 
+GNaPs = 6
+Ghs = 0.5
+GCaLVAs = 4.5
+Neuron 3 model: 
+GNaPs = 8
+Ghs = 2
+GCaLVAs = 1.5
+
+Figure 5
+run with: genesis cn_vclamp_main.g
+in cn_const.g, set
+vcstep = -90e-3 
+vconset = 3.0
+vcdur = 0.5
+
+Figures 6, 7, 8
+run with: genesis cn_cip_main.g  	
+in cn_const.g, set cipamp and cipdur as specified in the Figure Legends
+
+Figures 9 and 10 
+run with: genesis cn_syn_main.g 
+in cn_const.g, set
+E_GABA = -80e-3 
+ex_rate_d, inhib_rate_d, GNaPs, Ghs, GCaLVAs as
+specified in the Figure Legends and panels 
+low Gsyn:
+G_AMPAd = 5.0e-11 
+G_GABAd = 5.0e-11 
+intermediate Gsyn:
+G_AMPAd = 1.0e-10 
+G_GABAd = 1.0e-10 
+high Gysn: 
+G_AMPAd = 2.0e-10 
+G_GABAd = 2.0e-10
+
+Figure 11
+run with: genesis cn_syn_main.g 
+in cn_const.g, set
+E_GABA as specified in the panels
+ex_rate_d = 20
+inhib_rate_d = 30
+G_AMPAd = 1.0e-10 
+G_GABAd = 1.0e-10 
+inb1onset = 3.0
+inb1dur = 0.25
+inb1rate = 300
+Neuron 2 model: 
+GNaPs = 6
+Ghs = 0.5
+GCaLVAs = 4.5
+Neuron 3 model: 
+GNaPs = 8
+Ghs = 2
+GCaLVAs = 1.5
+
+Figures 12 and 13
+run with: genesis cn_syn_main.g 
+in cn_const.g, set
+E_GABA = -90e-3
+ex_rate_d and inhib_rate_d as specified in the panels
+inb1onset = 3.0
+inb1dur = 0.25
+inb1rate = 300
+low Gsyn:
+G_AMPAd = 5.0e-11 
+G_GABAd = 5.0e-11 
+high Gysn: 
+G_AMPAd = 2.0e-10 
+G_GABAd = 2.0e-10
+Neuron 1 model: 
+GNaPs = 2
+Ghs = 0.5
+GCaLVAs = 3.5
+Neuron 3 model: 
+GNaPs = 8
+Ghs = 2
+GCaLVAs = 1.5
+
+

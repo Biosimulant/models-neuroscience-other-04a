@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1404.47">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">This is a NEURON version of the CA3 pyramidal cell model of Traub et al. 1991 (J. Neurophysiol. 66(2): 635-650).</p>
+<p class="p2"><br></p>
+<p class="p1">The Bash shell script MakeSpecial.sh will create the special executable with the required mechanisms to simulate the model. Location: subdirectory x86_64 (created after running MakeSpecial.sh). This assumes NEURON is installed and nrnivmodl is in the executable PATH.</p>
+<p class="p2"><br></p>
+<p class="p1">Run the following command from the root directory for a graphical interface allowing to generate each figure:<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1">./x86_64/special mosinit.hoc -</p>
+<p class="p2"><br></p>
+<p class="p1">Alternatively, each of the files GenerateFigX.hoc (where X = 3, 4, … 10) will generate the data for the corresponding figure in Traub et al. (1991):</p>
+<p class="p2"><br></p>
+<p class="p1">./x86_64/special GenerateFigX.hoc -</p>
+<p class="p2"><br></p>
+<p class="p1">To plot the results, start Matlab, switch to the appropriate figure directory, for example for figure 3:</p>
+<p class="p2"><br></p>
+<p class="p1">./Traub_Figures/TraubFigure3</p>
+<p class="p2"><br></p>
+<p class="p1">and run the corresponding Matlab script:</p>
+<p class="p2"><br></p>
+<p class="p1">Graph_fig3Traub.m</p>
+<p class="p2"><br></p>
+<p class="p1">Comparison with the original paper figures are in the Traub_Figures&gt;CompareOriginalFigs subdirectory</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+</body>
+</html>

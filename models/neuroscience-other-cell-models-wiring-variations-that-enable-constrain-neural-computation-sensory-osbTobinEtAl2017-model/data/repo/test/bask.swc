@@ -1,0 +1,9 @@
+# Cell bask taken from NeuroML file bask.cell.nml converted to SWC
+# Using pyNeuroML v0.3.16
+# For group: soma_group, found 1 NeuroML segments, resulting in 2 SWC lines
+# For group: dendrite_group, found 1 NeuroML segments, resulting in 2 SWC lines
+# For group: axon_group, found 0 NeuroML segments, resulting in 0 SWC lines
+1 1 0.0 0.0 0.0 20.0 -1 
+2 1 0.0 40.0 0.0 20.0 1 
+3 3 0.0 40.0 0.0 1.0 2 
+4 3 0.0 200.0 0.0 1.0 3 

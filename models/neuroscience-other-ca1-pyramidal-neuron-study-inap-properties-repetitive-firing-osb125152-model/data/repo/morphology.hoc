@@ -1,0 +1,2649 @@
+load_file("subiter.hoc")
+
+proc celldef() {
+  topol()
+  subsets()
+  geom()
+  biophys()
+  geom_nseg()
+  biophys_inhomo()
+}
+
+create soma, ak1, ak2, ak3, ak4, ak5, ak6
+create ak7, ak8, ak9, ak10, aik1, aik2, aik3
+create aik4, aik5, aik6a, aik6b, aik7, adk1, adk2
+create adk3, adk4, adk5a, adk5b, adk6, adk7, as1
+create as2, as3a, as3b, as4a, as4b, as4c, as5
+create as6a, as6b, as7a, as7b, as8, as9a, as9b
+create as9c, as9d, as10, as11a, as11b, as12a, as12b
+create as13a, as13b, as14a, as14b, as15a, as15b, as16a
+create as16b, as17a, as17b, as18a, as18b, as19a, as19b
+create as20, as21a, as21b, as22a, as22b, as22c, as22d
+create as23a, as23b, as23c, as24a, as24b, as24c, as25a
+create as25b, as25c, as25d, at1, at2a, at2b, at3
+create at4a, at4b, at4c, at5, at6a, at6b, at6c
+create at6d, at7a, at7b, at7c, at8, at9a, at9b
+create at10a, at10b, at11a, at11b, at12, at13a, at13b
+create at13c, at14a, at14b, at15, at16, ac7, ac8a
+create ac8b, ac9a, ac9b, ac10, ac11, ac12, ac13
+create ac14a, ac14b, aq3, aq4a, aq4b, aq5a, aq5b
+create aq6, ax1a, ax1b, ax2a, ax2b, ax3, ax4
+create ax5, ax6, bs1, bs2, ac1a, ac1b, ac1c
+create ac2, ac3a, ac3b, ac4a, ac4b, ac5a, ac5b
+create ac6a, ac6b, ac6c, aq1, aq2a, aq2b, bt1a
+create bt1b, bt2, bt3, bc1a, bc1b, bc2, bc3
+create bc4, bc5a, bc5b, bc6a, bc6b, bt4, bc7
+create bc8, bq1a, bq1b, bq2, bq3, bq4, bq5
+create bq6a, bq6b, bq7a, bq7b, bq8, bq9a, bq9b
+create bq10, bx1, bx2a, bx2b, bx3, bx4, bx5
+create bx6, bx7a, bx7b, bx8a, bx8b, bx9a, bx9b
+create bx10, bx11a, bx11b, bx11c, bx12a, bx12b, bp1
+create bp2, bp3a, bp3b, bp4, bp5, bp6a, bp6b
+create bp7, bp8, bp9a, bp9b, bp9c, bp10, bp11a
+create bp11b, bp11c, bp12a, bp12b, bp13a, bp13b, bp14a
+create bp14b, bo1a, bo1b, bo2, bo5a, bo5b, bo6
+create bo7a, bo7b, bo7c, bo8, bo9a, bo9b, bo9c
+create bo10a, bo10b, bn1, bn2, bn3, bn4a, bn4b
+create bn5a, bn5b, bn5c, bn6a, bn6b, AH, isa
+create isb, m1a, m1b, r1, m2a, m2b, m2c
+create r2, m3a, m3b, r3, bo3, bo4
+
+proc topol() { local i
+  connect ak1(0), soma(1)
+  connect ak2(0), ak1(1)
+  connect ak3(0), ak2(1)
+  connect ak4(0), ak3(1)
+  connect ak5(0), ak4(1)
+  connect ak6(0), ak5(1)
+  connect ak7(0), ak6(1)
+  connect ak8(0), ak7(1)
+  connect ak9(0), ak8(1)
+  connect ak10(0), ak9(1)
+  connect aik1(0), ak10(1)
+  connect aik2(0), aik1(1)
+  connect aik3(0), aik2(1)
+  connect aik4(0), aik3(1)
+  connect aik5(0), aik4(1)
+  connect aik6a(0), aik5(1)
+  connect aik6b(0), aik6a(1)
+  connect aik7(0), aik6b(1)
+  connect adk1(0), ak10(1)
+  connect adk2(0), adk1(1)
+  connect adk3(0), adk2(1)
+  connect adk4(0), adk3(1)
+  connect adk5a(0), adk4(1)
+  connect adk5b(0), adk5a(1)
+  connect adk6(0), adk5b(1)
+  connect adk7(0), adk6(1)
+  connect as1(0), ak1(1)
+  connect as2(0), ak2(1)
+  connect as3a(0), ak3(1)
+  connect as3b(0), as3a(1)
+  connect as4a(0), ak4(1)
+  connect as4b(0), as4a(1)
+  connect as4c(0), as4b(1)
+  connect as5(0), ak5(1)
+  connect as6a(0), ak6(1)
+  connect as6b(0), as6a(1)
+  connect as7a(0), ak7(1)
+  connect as7b(0), as7a(1)
+  connect as8(0), ak8(1)
+  connect as9a(0), ak9(1)
+  connect as9b(0), as9a(1)
+  connect as9c(0), as9b(1)
+  connect as9d(0), as9c(1)
+  connect as10(0), aik1(1)
+  connect as11a(0), adk1(1)
+  connect as11b(0), as11a(1)
+  connect as12a(0), aik2(1)
+  connect as12b(0), as12a(1)
+  connect as13a(0), adk2(1)
+  connect as13b(0), as13a(1)
+  connect as14a(0), adk3(1)
+  connect as14b(0), as14a(1)
+  connect as15a(0), aik3(1)
+  connect as15b(0), as15a(1)
+  connect as16a(0), aik4(1)
+  connect as16b(0), as16a(1)
+  connect as17a(0), adk4(1)
+  connect as17b(0), as17a(1)
+  connect as18a(0), aik5(1)
+  connect as18b(0), as18a(1)
+  connect as19a(0), adk5b(1)
+  connect as19b(0), as19a(1)
+  connect as20(0), adk6(1)
+  connect as21a(0), aik6b(1)
+  connect as21b(0), as21a(1)
+  connect as22a(0), aik7(1)
+  connect as22b(0), as22a(1)
+  connect as22c(0), as22b(1)
+  connect as22d(0), as22c(1)
+  connect as23a(0), aik7(1)
+  connect as23b(0), as23a(1)
+  connect as23c(0), as23b(1)
+  connect as24a(0), adk7(1)
+  connect as24b(0), as24a(1)
+  connect as24c(0), as24b(1)
+  connect as25a(0), adk7(1)
+  connect as25b(0), as25a(1)
+  connect as25c(0), as25b(1)
+  connect as25d(0), as25c(1)
+  connect at1(0), as1(1)
+  connect at2a(0), as1(1)
+  connect at2b(0), at2a(1)
+  connect at3(0), as2(1)
+  connect at4a(0), as2(1)
+  connect at4b(0), at4a(1)
+  connect at4c(0), at4b(1)
+  connect at5(0), as5(1)
+  connect at6a(0), as5(1)
+  connect at6b(0), at6a(1)
+  connect at6c(0), at6b(1)
+  connect at6d(0), at6c(1)
+  connect at7a(0), as8(1)
+  connect at7b(0), at7a(1)
+  connect at7c(0), at7b(1)
+  connect at8(0), as8(1)
+  connect at9a(0), as10(1)
+  connect at9b(0), at9a(1)
+  connect at10a(0), as10(1)
+  connect at10b(0), at10a(1)
+  connect at11a(0), as22d(1)
+  connect at11b(0), at11a(1)
+  connect at12(0), as22d(1)
+  connect at13a(0), as23c(1)
+  connect at13b(0), at13a(1)
+  connect at13c(0), at13b(1)
+  connect at14a(0), as23c(1)
+  connect at14b(0), at14a(1)
+  connect at15(0), as25d(1)
+  connect at16(0), as25d(1)
+  connect ac7(0), at12(1)
+  connect ac8a(0), at12(1)
+  connect ac8b(0), ac8a(1)
+  connect ac9a(0), at14b(1)
+  connect ac9b(0), ac9a(1)
+  connect ac10(0), at14b(1)
+  connect ac11(0), at15(1)
+  connect ac12(0), at15(1)
+  connect ac13(0), at16(1)
+  connect ac14a(0), at16(1)
+  connect ac14b(0), ac14a(1)
+  connect aq3(0), ac7(1)
+  connect aq4a(0), ac7(1)
+  connect aq4b(0), aq4a(1)
+  connect aq5a(0), ac13(1)
+  connect aq5b(0), aq5a(1)
+  connect aq6(0), ac13(1)
+  connect ax1a(0), aq3(1)
+  connect ax1b(0), ax1a(1)
+  connect ax2a(0), aq3(1)
+  connect ax2b(0), ax2a(1)
+  connect ax3(0), aq4b(1)
+  connect ax4(0), aq4b(1)
+  connect ax5(0), aq6(1)
+  connect ax6(0), aq6(1)
+  connect bs1(0), soma(0)
+  connect bs2(0), soma(0)
+  connect ac1a(0), at3(1)
+  connect ac1b(0), ac1a(1)
+  connect ac1c(0), ac1b(1)
+  connect ac2(0), at3(1)
+  connect ac3a(0), at5(1)
+  connect ac3b(0), ac3a(1)
+  connect ac4a(0), at5(1)
+  connect ac4b(0), ac4a(1)
+  connect ac5a(0), at8(1)
+  connect ac5b(0), ac5a(1)
+  connect ac6a(0), at8(1)
+  connect ac6b(0), ac6a(1)
+  connect ac6c(0), ac6b(1)
+  connect aq1(0), ac2(1)
+  connect aq2a(0), ac2(1)
+  connect aq2b(0), aq2a(1)
+  connect bt1a(0), bs1(1)
+  connect bt1b(0), bt1a(1)
+  connect bt2(0), bs1(1)
+  connect bt3(0), bs2(1)
+  connect bc1a(0), bt1b(1)
+  connect bc1b(0), bc1a(1)
+  connect bc2(0), bt1b(1)
+  connect bc3(0), bt2(1)
+  connect bc4(0), bt2(1)
+  connect bc5a(0), bt3(1)
+  connect bc5b(0), bc5a(1)
+  connect bc6a(0), bt3(1)
+  connect bc6b(0), bc6a(1)
+  connect bt4(0), bs2(1)
+  connect bc7(0), bt4(1)
+  connect bc8(0), bt4(1)
+  connect bq1a(0), bc2(1)
+  connect bq1b(0), bq1a(1)
+  connect bq2(0), bc2(1)
+  connect bq3(0), bc3(1)
+  connect bq4(0), bc3(1)
+  connect bq5(0), bc4(1)
+  connect bq6a(0), bc4(1)
+  connect bq6b(0), bq6a(1)
+  connect bq7a(0), bc7(1)
+  connect bq7b(0), bq7a(1)
+  connect bq8(0), bc7(1)
+  connect bq9a(0), bc8(1)
+  connect bq9b(0), bq9a(1)
+  connect bq10(0), bc8(1)
+  connect bx1(0), bq3(1)
+  connect bx2a(0), bq3(1)
+  connect bx2b(0), bx2a(1)
+  connect bx3(0), bq4(1)
+  connect bx4(0), bq4(1)
+  connect bx5(0), bq5(1)
+  connect bx6(0), bq5(1)
+  connect bx7a(0), bq7b(1)
+  connect bx7b(0), bx7a(1)
+  connect bx8a(0), bq7b(1)
+  connect bx8b(0), bx8a(1)
+  connect bx9a(0), bq8(1)
+  connect bx9b(0), bx9a(1)
+  connect bx10(0), bq8(1)
+  connect bx11a(0), bq10(1)
+  connect bx11b(0), bx11a(1)
+  connect bx11c(0), bx11b(1)
+  connect bx12a(0), bq10(1)
+  topol_1()
+}
+proc topol_1() {
+  connect bx12b(0), bx12a(1)
+  connect bp1(0), bx1(1)
+  connect bp2(0), bx1(1)
+  connect bp3a(0), bx2b(1)
+  connect bp3b(0), bp3a(1)
+  connect bp4(0), bx2b(1)
+  connect bp5(0), bx3(1)
+  connect bp6a(0), bx3(1)
+  connect bp6b(0), bp6a(1)
+  connect bp7(0), bx4(1)
+  connect bp8(0), bx4(1)
+  connect bp9a(0), bx5(1)
+  connect bp9b(0), bp9a(1)
+  connect bp9c(0), bp9b(1)
+  connect bp10(0), bx5(1)
+  connect bp11a(0), bx6(1)
+  connect bp11b(0), bp11a(1)
+  connect bp11c(0), bp11b(1)
+  connect bp12a(0), bx6(1)
+  connect bp12b(0), bp12a(1)
+  connect bp13a(0), bx10(1)
+  connect bp13b(0), bp13a(1)
+  connect bp14a(0), bx10(1)
+  connect bp14b(0), bp14a(1)
+  connect bo1a(0), bp5(1)
+  connect bo1b(0), bo1a(1)
+  connect bo2(0), bp5(1)
+  connect bo5a(0), bp7(1)
+  connect bo5b(0), bo5a(1)
+  connect bo6(0), bp7(1)
+  connect bo7a(0), bp8(1)
+  connect bo7b(0), bo7a(1)
+  connect bo7c(0), bo7b(1)
+  connect bo8(0), bp8(1)
+  connect bo9a(0), bp10(1)
+  connect bo9b(0), bo9a(1)
+  connect bo9c(0), bo9b(1)
+  connect bo10a(0), bp10(1)
+  connect bo10b(0), bo10a(1)
+  connect bn1(0), bo2(1)
+  connect bn2(0), bo2(1)
+  connect bn3(0), bo6(1)
+  connect bn4a(0), bo6(1)
+  connect bn4b(0), bn4a(1)
+  connect bn5a(0), bo8(1)
+  connect bn5b(0), bn5a(1)
+  connect bn5c(0), bn5b(1)
+  connect bn6a(0), bo8(1)
+  connect bn6b(0), bn6a(1)
+  connect AH(0), soma(0)
+  connect isa(0), AH(1)
+  connect isb(0), isa(1)
+  connect m1a(0), isb(1)
+  connect m1b(0), m1a(1)
+  connect r1(0), m1b(1)
+  connect m2a(0), r1(1)
+  connect m2b(0), m2a(1)
+  connect m2c(0), m2b(1)
+  connect r2(0), m2c(1)
+  connect m3a(0), r1(1)
+  connect m3b(0), m3a(1)
+  connect r3(0), m3b(1)
+  connect bo3(0), bp6b(1)
+  connect bo4(0), bp6b(1)
+  basic_shape()
+}
+proc basic_shape() {
+  soma {pt3dclear() pt3dadd(0, 0, 0, 1) pt3dadd(15, 0, 0, 1)}
+  ak1 {pt3dclear() pt3dadd(15, 0, 0, 1) pt3dadd(15, 45, 0, 1)}
+  ak2 {pt3dclear() pt3dadd(15, 45, 0, 1) pt3dadd(15, 90, 0, 1)}
+  ak3 {pt3dclear() pt3dadd(15, 90, 0, 1) pt3dadd(15, 135, 0, 1)}
+  ak4 {pt3dclear() pt3dadd(15, 135, 0, 1) pt3dadd(15, 165, 0, 1)}
+  ak5 {pt3dclear() pt3dadd(15, 165, 0, 1) pt3dadd(15, 210, 0, 1)}
+  ak6 {pt3dclear() pt3dadd(15, 210, 0, 1) pt3dadd(15, 240, 0, 1)}
+  ak7 {pt3dclear() pt3dadd(15, 240, 0, 1) pt3dadd(15, 285, 0, 1)}
+  ak8 {pt3dclear() pt3dadd(15, 285, 0, 1) pt3dadd(15, 330, 0, 1)}
+  ak9 {pt3dclear() pt3dadd(15, 330, 0, 1) pt3dadd(15, 375, 0, 1)}
+  ak10 {pt3dclear() pt3dadd(15, 375, 0, 1) pt3dadd(15, 420, 0, 1)}
+  aik1 {pt3dclear() pt3dadd(15, 420, 0, 1) pt3dadd(60, 465, 0, 1)}
+  aik2 {pt3dclear() pt3dadd(60, 465, 0, 1) pt3dadd(90, 495, 0, 1)}
+  aik3 {pt3dclear() pt3dadd(90, 495, 0, 1) pt3dadd(150, 555, 0, 1)}
+  aik4 {pt3dclear() pt3dadd(150, 555, 0, 1) pt3dadd(195, 600, 0, 1)}
+  aik5 {pt3dclear() pt3dadd(195, 600, 0, 1) pt3dadd(255, 660, 0, 1)}
+  aik6a {pt3dclear() pt3dadd(255, 660, 0, 1) pt3dadd(300, 705, 0, 1)}
+  aik6b {pt3dclear() pt3dadd(300, 705, 0, 1) pt3dadd(345, 750, 0, 1)}
+  aik7 {pt3dclear() pt3dadd(345, 750, 0, 1) pt3dadd(420, 825, 0, 1)}
+  adk1 {pt3dclear() pt3dadd(15, 420, 0, 1) pt3dadd(-44, 465, 0, 1)}
+  adk2 {pt3dclear() pt3dadd(-44, 465, 0, 1) pt3dadd(-134, 525, 0, 1)}
+  adk3 {pt3dclear() pt3dadd(-134, 525, 0, 1) pt3dadd(-194, 570, 0, 1)}
+  adk4 {pt3dclear() pt3dadd(-194, 570, 0, 1) pt3dadd(-269, 630, 0, 1)}
+  adk5a {pt3dclear() pt3dadd(-269, 630, 0, 1) pt3dadd(-344, 690, 0, 1)}
+  adk5b {pt3dclear() pt3dadd(-344, 690, 0, 1) pt3dadd(-419, 750, 0, 1)}
+  adk6 {pt3dclear() pt3dadd(-419, 750, 0, 1) pt3dadd(-479, 795, 0, 1)}
+  adk7 {pt3dclear() pt3dadd(-479, 795, 0, 1) pt3dadd(-554, 855, 0, 1)}
+  as1 {pt3dclear() pt3dadd(15, 45, 0, 1) pt3dadd(195, 45, 0, 1)}
+  as2 {pt3dclear() pt3dadd(15, 90, 0, 1) pt3dadd(195, 90, 0, 1)}
+  as3a {pt3dclear() pt3dadd(15, 135, 0, 1) pt3dadd(195, 135, 0, 1)}
+  as3b {pt3dclear() pt3dadd(195, 135, 0, 1) pt3dadd(360, 135, 0, 1)}
+  as4a {pt3dclear() pt3dadd(15, 165, 0, 1) pt3dadd(255, 165, 0, 1)}
+  as4b {pt3dclear() pt3dadd(255, 165, 0, 1) pt3dadd(360, 165, 0, 1)}
+  as4c {pt3dclear() pt3dadd(360, 165, 0, 1) pt3dadd(480, 165, 0, 1)}
+  as5 {pt3dclear() pt3dadd(15, 210, 0, 1) pt3dadd(195, 210, 0, 1)}
+  as6a {pt3dclear() pt3dadd(15, 240, 0, 1) pt3dadd(180, 240, 0, 1)}
+  as6b {pt3dclear() pt3dadd(180, 240, 0, 1) pt3dadd(300, 240, 0, 1)}
+  as7a {pt3dclear() pt3dadd(15, 285, 0, 1) pt3dadd(180, 285, 0, 1)}
+  as7b {pt3dclear() pt3dadd(180, 285, 0, 1) pt3dadd(300, 285, 0, 1)}
+  as8 {pt3dclear() pt3dadd(15, 330, 0, 1) pt3dadd(180, 330, 0, 1)}
+  as9a {pt3dclear() pt3dadd(15, 375, 0, 1) pt3dadd(150, 375, 0, 1)}
+  as9b {pt3dclear() pt3dadd(150, 375, 0, 1) pt3dadd(255, 375, 0, 1)}
+  as9c {pt3dclear() pt3dadd(255, 375, 0, 1) pt3dadd(360, 375, 0, 1)}
+  as9d {pt3dclear() pt3dadd(360, 375, 0, 1) pt3dadd(480, 375, 0, 1)}
+  as10 {pt3dclear() pt3dadd(60, 465, 0, 1) pt3dadd(-14, 525, 0, 1)}
+  as11a {pt3dclear() pt3dadd(-44, 465, 0, 1) pt3dadd(-119, 390, 0, 1)}
+  as11b {pt3dclear() pt3dadd(-119, 390, 0, 1) pt3dadd(-179, 330, 0, 1)}
+  as12a {pt3dclear() pt3dadd(90, 495, 0, 1) pt3dadd(30, 555, 0, 1)}
+  as12b {pt3dclear() pt3dadd(30, 555, 0, 1) pt3dadd(-44, 630, 0, 1)}
+  as13a {pt3dclear() pt3dadd(-134, 525, 0, 1) pt3dadd(-209, 450, 0, 1)}
+  as13b {pt3dclear() pt3dadd(-209, 450, 0, 1) pt3dadd(-269, 390, 0, 1)}
+  as14a {pt3dclear() pt3dadd(-194, 570, 0, 1) pt3dadd(-269, 495, 0, 1)}
+  as14b {pt3dclear() pt3dadd(-269, 495, 0, 1) pt3dadd(-344, 420, 0, 1)}
+  as15a {pt3dclear() pt3dadd(150, 555, 0, 1) pt3dadd(30, 675, 0, 1)}
+  as15b {pt3dclear() pt3dadd(30, 675, 0, 1) pt3dadd(-59, 765, 0, 1)}
+  as16a {pt3dclear() pt3dadd(195, 600, 0, 1) pt3dadd(120, 675, 0, 1)}
+  as16b {pt3dclear() pt3dadd(120, 675, 0, 1) pt3dadd(45, 750, 0, 1)}
+  as17a {pt3dclear() pt3dadd(-269, 630, 0, 1) pt3dadd(-344, 555, 0, 1)}
+  as17b {pt3dclear() pt3dadd(-344, 555, 0, 1) pt3dadd(-419, 480, 0, 1)}
+  as18a {pt3dclear() pt3dadd(255, 660, 0, 1) pt3dadd(180, 735, 0, 1)}
+  as18b {pt3dclear() pt3dadd(180, 735, 0, 1) pt3dadd(105, 810, 0, 1)}
+  as19a {pt3dclear() pt3dadd(-419, 750, 0, 1) pt3dadd(-509, 660, 0, 1)}
+  as19b {pt3dclear() pt3dadd(-509, 660, 0, 1) pt3dadd(-569, 600, 0, 1)}
+  as20 {pt3dclear() pt3dadd(-479, 795, 0, 1) pt3dadd(-539, 735, 0, 1)}
+  as21a {pt3dclear() pt3dadd(345, 750, 0, 1) pt3dadd(255, 840, 0, 1)}
+  as21b {pt3dclear() pt3dadd(255, 840, 0, 1) pt3dadd(165, 930, 0, 1)}
+  as22a {pt3dclear() pt3dadd(420, 825, 0, 1) pt3dadd(330, 915, 0, 1)}
+  as22b {pt3dclear() pt3dadd(330, 915, 0, 1) pt3dadd(270, 975, 0, 1)}
+  as22c {pt3dclear() pt3dadd(270, 975, 0, 1) pt3dadd(195, 1050, 0, 1)}
+  as22d {pt3dclear() pt3dadd(195, 1050, 0, 1) pt3dadd(135, 1110, 0, 1)}
+  as23a {pt3dclear() pt3dadd(420, 825, 0, 1) pt3dadd(510, 735, 0, 1)}
+  as23b {pt3dclear() pt3dadd(510, 735, 0, 1) pt3dadd(585, 660, 0, 1)}
+  as23c {pt3dclear() pt3dadd(585, 660, 0, 1) pt3dadd(660, 585, 0, 1)}
+  as24a {pt3dclear() pt3dadd(-554, 855, 0, 1) pt3dadd(-629, 780, 0, 1)}
+  as24b {pt3dclear() pt3dadd(-629, 780, 0, 1) pt3dadd(-719, 690, 0, 1)}
+  as24c {pt3dclear() pt3dadd(-719, 690, 0, 1) pt3dadd(-779, 630, 0, 1)}
+  as25a {pt3dclear() pt3dadd(-554, 855, 0, 1) pt3dadd(-449, 960, 0, 1)}
+  as25b {pt3dclear() pt3dadd(-449, 960, 0, 1) pt3dadd(-389, 1020, 0, 1)}
+  as25c {pt3dclear() pt3dadd(-389, 1020, 0, 1) pt3dadd(-299, 1110, 0, 1)}
+  as25d {pt3dclear() pt3dadd(-299, 1110, 0, 1) pt3dadd(-224, 1185, 0, 1)}
+  at1 {pt3dclear() pt3dadd(195, 45, 0, 1) pt3dadd(255, -14, 0, 1)}
+  at2a {pt3dclear() pt3dadd(195, 45, 0, 1) pt3dadd(240, 75, 0, 1)}
+  at2b {pt3dclear() pt3dadd(240, 75, 0, 1) pt3dadd(270, 90, 0, 1)}
+  at3 {pt3dclear() pt3dadd(195, 90, 0, 1) pt3dadd(210, 75, 0, 1)}
+  at4a {pt3dclear() pt3dadd(195, 90, 0, 1) pt3dadd(225, 105, 0, 1)}
+  at4b {pt3dclear() pt3dadd(225, 105, 0, 1) pt3dadd(255, 120, 0, 1)}
+  at4c {pt3dclear() pt3dadd(255, 120, 0, 1) pt3dadd(285, 135, 0, 1)}
+  at5 {pt3dclear() pt3dadd(195, 210, 0, 1) pt3dadd(225, 195, 0, 1)}
+  at6a {pt3dclear() pt3dadd(195, 210, 0, 1) pt3dadd(225, 225, 0, 1)}
+  at6b {pt3dclear() pt3dadd(225, 225, 0, 1) pt3dadd(285, 255, 0, 1)}
+  at6c {pt3dclear() pt3dadd(285, 255, 0, 1) pt3dadd(315, 270, 0, 1)}
+  at6d {pt3dclear() pt3dadd(315, 270, 0, 1) pt3dadd(345, 285, 0, 1)}
+  at7a {pt3dclear() pt3dadd(180, 330, 0, 1) pt3dadd(210, 315, 0, 1)}
+  at7b {pt3dclear() pt3dadd(210, 315, 0, 1) pt3dadd(240, 300, 0, 1)}
+  at7c {pt3dclear() pt3dadd(240, 300, 0, 1) pt3dadd(300, 270, 0, 1)}
+  at8 {pt3dclear() pt3dadd(180, 330, 0, 1) pt3dadd(225, 345, 0, 1)}
+  at9a {pt3dclear() pt3dadd(-14, 525, 0, 1) pt3dadd(-14, 570, 0, 1)}
+  at9b {pt3dclear() pt3dadd(-14, 570, 0, 1) pt3dadd(-14, 645, 0, 1)}
+  at10a {pt3dclear() pt3dadd(-14, 525, 0, 1) pt3dadd(-74, 540, 0, 1)}
+  at10b {pt3dclear() pt3dadd(-74, 540, 0, 1) pt3dadd(-134, 555, 0, 1)}
+  basic_shape_1()
+}
+proc basic_shape_1() {
+  at11a {pt3dclear() pt3dadd(135, 1110, 0, 1) pt3dadd(135, 1155, 0, 1)}
+  at11b {pt3dclear() pt3dadd(135, 1155, 0, 1) pt3dadd(135, 1200, 0, 1)}
+  at12 {pt3dclear() pt3dadd(135, 1110, 0, 1) pt3dadd(75, 1110, 0, 1)}
+  at13a {pt3dclear() pt3dadd(660, 585, 0, 1) pt3dadd(720, 585, 0, 1)}
+  at13b {pt3dclear() pt3dadd(720, 585, 0, 1) pt3dadd(780, 585, 0, 1)}
+  at13c {pt3dclear() pt3dadd(780, 585, 0, 1) pt3dadd(825, 585, 0, 1)}
+  at14a {pt3dclear() pt3dadd(660, 585, 0, 1) pt3dadd(660, 540, 0, 1)}
+  at14b {pt3dclear() pt3dadd(660, 540, 0, 1) pt3dadd(660, 510, 0, 1)}
+  at15 {pt3dclear() pt3dadd(-224, 1185, 0, 1) pt3dadd(-149, 1185, 0, 1)}
+  at16 {pt3dclear() pt3dadd(-224, 1185, 0, 1) pt3dadd(-224, 1230, 0, 1)}
+  ac7 {pt3dclear() pt3dadd(75, 1110, 0, 1) pt3dadd(60, 1080, 0, 1)}
+  ac8a {pt3dclear() pt3dadd(75, 1110, 0, 1) pt3dadd(60, 1140, 0, 1)}
+  ac8b {pt3dclear() pt3dadd(60, 1140, 0, 1) pt3dadd(45, 1170, 0, 1)}
+  ac9a {pt3dclear() pt3dadd(660, 510, 0, 1) pt3dadd(630, 480, 0, 1)}
+  ac9b {pt3dclear() pt3dadd(630, 480, 0, 1) pt3dadd(600, 450, 0, 1)}
+  ac10 {pt3dclear() pt3dadd(660, 510, 0, 1) pt3dadd(690, 480, 0, 1)}
+  ac11 {pt3dclear() pt3dadd(-149, 1185, 0, 1) pt3dadd(-104, 1155, 0, 1)}
+  ac12 {pt3dclear() pt3dadd(-149, 1185, 0, 1) pt3dadd(-104, 1200, 0, 1)}
+  ac13 {pt3dclear() pt3dadd(-224, 1230, 0, 1) pt3dadd(-194, 1260, 0, 1)}
+  ac14a {pt3dclear() pt3dadd(-224, 1230, 0, 1) pt3dadd(-254, 1260, 0, 1)}
+  ac14b {pt3dclear() pt3dadd(-254, 1260, 0, 1) pt3dadd(-284, 1290, 0, 1)}
+  aq3 {pt3dclear() pt3dadd(60, 1080, 0, 1) pt3dadd(15, 1065, 0, 1)}
+  aq4a {pt3dclear() pt3dadd(60, 1080, 0, 1) pt3dadd(75, 1050, 0, 1)}
+  aq4b {pt3dclear() pt3dadd(75, 1050, 0, 1) pt3dadd(90, 1020, 0, 1)}
+  aq5a {pt3dclear() pt3dadd(-194, 1260, 0, 1) pt3dadd(-164, 1260, 0, 1)}
+  aq5b {pt3dclear() pt3dadd(-164, 1260, 0, 1) pt3dadd(-134, 1260, 0, 1)}
+  aq6 {pt3dclear() pt3dadd(-194, 1260, 0, 1) pt3dadd(-194, 1290, 0, 1)}
+  ax1a {pt3dclear() pt3dadd(15, 1065, 0, 1) pt3dadd(0, 1035, 0, 1)}
+  ax1b {pt3dclear() pt3dadd(0, 1035, 0, 1) pt3dadd(-14, 1005, 0, 1)}
+  ax2a {pt3dclear() pt3dadd(15, 1065, 0, 1) pt3dadd(-29, 1080, 0, 1)}
+  ax2b {pt3dclear() pt3dadd(-29, 1080, 0, 1) pt3dadd(-74, 1095, 0, 1)}
+  ax3 {pt3dclear() pt3dadd(90, 1020, 0, 1) pt3dadd(75, 990, 0, 1)}
+  ax4 {pt3dclear() pt3dadd(90, 1020, 0, 1) pt3dadd(120, 1005, 0, 1)}
+  ax5 {pt3dclear() pt3dadd(-194, 1290, 0, 1) pt3dadd(-164, 1320, 0, 1)}
+  ax6 {pt3dclear() pt3dadd(-194, 1290, 0, 1) pt3dadd(-224, 1320, 0, 1)}
+  bs1 {pt3dclear() pt3dadd(0, 0, 0, 1) pt3dadd(-344, -269, 0, 1)}
+  bs2 {pt3dclear() pt3dadd(0, 0, 0, 1) pt3dadd(360, -284, 0, 1)}
+  ac1a {pt3dclear() pt3dadd(210, 75, 0, 1) pt3dadd(240, 90, 0, 1)}
+  ac1b {pt3dclear() pt3dadd(240, 90, 0, 1) pt3dadd(270, 105, 0, 1)}
+  ac1c {pt3dclear() pt3dadd(270, 105, 0, 1) pt3dadd(300, 120, 0, 1)}
+  ac2 {pt3dclear() pt3dadd(210, 75, 0, 1) pt3dadd(405, 15, 0, 1)}
+  ac3a {pt3dclear() pt3dadd(225, 195, 0, 1) pt3dadd(285, 225, 0, 1)}
+  ac3b {pt3dclear() pt3dadd(285, 225, 0, 1) pt3dadd(345, 255, 0, 1)}
+  ac4a {pt3dclear() pt3dadd(225, 195, 0, 1) pt3dadd(300, 180, 0, 1)}
+  ac4b {pt3dclear() pt3dadd(300, 180, 0, 1) pt3dadd(390, 150, 0, 1)}
+  ac5a {pt3dclear() pt3dadd(225, 345, 0, 1) pt3dadd(270, 330, 0, 1)}
+  ac5b {pt3dclear() pt3dadd(270, 330, 0, 1) pt3dadd(315, 315, 0, 1)}
+  ac6a {pt3dclear() pt3dadd(225, 345, 0, 1) pt3dadd(270, 360, 0, 1)}
+  ac6b {pt3dclear() pt3dadd(270, 360, 0, 1) pt3dadd(360, 390, 0, 1)}
+  ac6c {pt3dclear() pt3dadd(360, 390, 0, 1) pt3dadd(450, 420, 0, 1)}
+  aq1 {pt3dclear() pt3dadd(405, 15, 0, 1) pt3dadd(450, -44, 0, 1)}
+  aq2a {pt3dclear() pt3dadd(405, 15, 0, 1) pt3dadd(435, 45, 0, 1)}
+  aq2b {pt3dclear() pt3dadd(435, 45, 0, 1) pt3dadd(465, 75, 0, 1)}
+  bt1a {pt3dclear() pt3dadd(-344, -269, 0, 1) pt3dadd(-569, -284, 0, 1)}
+  bt1b {pt3dclear() pt3dadd(-569, -284, 0, 1) pt3dadd(-779, -299, 0, 1)}
+  bt2 {pt3dclear() pt3dadd(-344, -269, 0, 1) pt3dadd(-329, -464, 0, 1)}
+  bt3 {pt3dclear() pt3dadd(360, -284, 0, 1) pt3dadd(390, -479, 0, 1)}
+  bc1a {pt3dclear() pt3dadd(-779, -299, 0, 1) pt3dadd(-854, -404, 0, 1)}
+  bc1b {pt3dclear() pt3dadd(-854, -404, 0, 1) pt3dadd(-929, -524, 0, 1)}
+  bc2 {pt3dclear() pt3dadd(-779, -299, 0, 1) pt3dadd(-899, -179, 0, 1)}
+  bc3 {pt3dclear() pt3dadd(-329, -464, 0, 1) pt3dadd(-434, -554, 0, 1)}
+  bc4 {pt3dclear() pt3dadd(-329, -464, 0, 1) pt3dadd(-224, -554, 0, 1)}
+  bc5a {pt3dclear() pt3dadd(390, -479, 0, 1) pt3dadd(270, -569, 0, 1)}
+  bc5b {pt3dclear() pt3dadd(270, -569, 0, 1) pt3dadd(150, -659, 0, 1)}
+  bc6a {pt3dclear() pt3dadd(390, -479, 0, 1) pt3dadd(525, -614, 0, 1)}
+  bc6b {pt3dclear() pt3dadd(525, -614, 0, 1) pt3dadd(615, -719, 0, 1)}
+  bt4 {pt3dclear() pt3dadd(360, -284, 0, 1) pt3dadd(555, -269, 0, 1)}
+  bc7 {pt3dclear() pt3dadd(555, -269, 0, 1) pt3dadd(645, -374, 0, 1)}
+  bc8 {pt3dclear() pt3dadd(555, -269, 0, 1) pt3dadd(645, -194, 0, 1)}
+  bq1a {pt3dclear() pt3dadd(-899, -179, 0, 1) pt3dadd(-854, -44, 0, 1)}
+  bq1b {pt3dclear() pt3dadd(-854, -44, 0, 1) pt3dadd(-824, 75, 0, 1)}
+  bq2 {pt3dclear() pt3dadd(-899, -179, 0, 1) pt3dadd(-1034, -179, 0, 1)}
+  bq3 {pt3dclear() pt3dadd(-434, -554, 0, 1) pt3dadd(-584, -569, 0, 1)}
+  bq4 {pt3dclear() pt3dadd(-434, -554, 0, 1) pt3dadd(-419, -659, 0, 1)}
+  bq5 {pt3dclear() pt3dadd(-224, -554, 0, 1) pt3dadd(-239, -674, 0, 1)}
+  bq6a {pt3dclear() pt3dadd(-224, -554, 0, 1) pt3dadd(-104, -554, 0, 1)}
+  bq6b {pt3dclear() pt3dadd(-104, -554, 0, 1) pt3dadd(0, -554, 0, 1)}
+  bq7a {pt3dclear() pt3dadd(645, -374, 0, 1) pt3dadd(600, -479, 0, 1)}
+  bq7b {pt3dclear() pt3dadd(600, -479, 0, 1) pt3dadd(555, -569, 0, 1)}
+  bq8 {pt3dclear() pt3dadd(645, -374, 0, 1) pt3dadd(795, -404, 0, 1)}
+  bq9a {pt3dclear() pt3dadd(645, -194, 0, 1) pt3dadd(645, -119, 0, 1)}
+  bq9b {pt3dclear() pt3dadd(645, -119, 0, 1) pt3dadd(645, -44, 0, 1)}
+  bq10 {pt3dclear() pt3dadd(645, -194, 0, 1) pt3dadd(765, -209, 0, 1)}
+  bx1 {pt3dclear() pt3dadd(-584, -569, 0, 1) pt3dadd(-659, -494, 0, 1)}
+  bx2a {pt3dclear() pt3dadd(-584, -569, 0, 1) pt3dadd(-644, -674, 0, 1)}
+  bx2b {pt3dclear() pt3dadd(-644, -674, 0, 1) pt3dadd(-704, -794, 0, 1)}
+  bx3 {pt3dclear() pt3dadd(-419, -659, 0, 1) pt3dadd(-509, -734, 0, 1)}
+  bx4 {pt3dclear() pt3dadd(-419, -659, 0, 1) pt3dadd(-329, -704, 0, 1)}
+  bx5 {pt3dclear() pt3dadd(-239, -674, 0, 1) pt3dadd(-329, -794, 0, 1)}
+  bx6 {pt3dclear() pt3dadd(-239, -674, 0, 1) pt3dadd(-164, -809, 0, 1)}
+  bx7a {pt3dclear() pt3dadd(555, -569, 0, 1) pt3dadd(690, -659, 0, 1)}
+  bx7b {pt3dclear() pt3dadd(690, -659, 0, 1) pt3dadd(795, -734, 0, 1)}
+  bx8a {pt3dclear() pt3dadd(555, -569, 0, 1) pt3dadd(720, -554, 0, 1)}
+  bx8b {pt3dclear() pt3dadd(720, -554, 0, 1) pt3dadd(870, -539, 0, 1)}
+  bx9a {pt3dclear() pt3dadd(795, -404, 0, 1) pt3dadd(945, -299, 0, 1)}
+  bx9b {pt3dclear() pt3dadd(945, -299, 0, 1) pt3dadd(1050, -239, 0, 1)}
+  bx10 {pt3dclear() pt3dadd(795, -404, 0, 1) pt3dadd(960, -494, 0, 1)}
+  bx11a {pt3dclear() pt3dadd(765, -209, 0, 1) pt3dadd(840, -119, 0, 1)}
+  bx11b {pt3dclear() pt3dadd(840, -119, 0, 1) pt3dadd(930, -14, 0, 1)}
+  bx11c {pt3dclear() pt3dadd(930, -14, 0, 1) pt3dadd(1005, 75, 0, 1)}
+  basic_shape_2()
+}
+proc basic_shape_2() {
+  bx12a {pt3dclear() pt3dadd(765, -209, 0, 1) pt3dadd(915, -179, 0, 1)}
+  bx12b {pt3dclear() pt3dadd(915, -179, 0, 1) pt3dadd(1080, -149, 0, 1)}
+  bp1 {pt3dclear() pt3dadd(-659, -494, 0, 1) pt3dadd(-749, -509, 0, 1)}
+  bp2 {pt3dclear() pt3dadd(-659, -494, 0, 1) pt3dadd(-644, -419, 0, 1)}
+  bp3a {pt3dclear() pt3dadd(-704, -794, 0, 1) pt3dadd(-809, -839, 0, 1)}
+  bp3b {pt3dclear() pt3dadd(-809, -839, 0, 1) pt3dadd(-899, -884, 0, 1)}
+  bp4 {pt3dclear() pt3dadd(-704, -794, 0, 1) pt3dadd(-674, -914, 0, 1)}
+  bp5 {pt3dclear() pt3dadd(-509, -734, 0, 1) pt3dadd(-494, -809, 0, 1)}
+  bp6a {pt3dclear() pt3dadd(-509, -734, 0, 1) pt3dadd(-584, -749, 0, 1)}
+  bp6b {pt3dclear() pt3dadd(-584, -749, 0, 1) pt3dadd(-659, -764, 0, 1)}
+  bp7 {pt3dclear() pt3dadd(-329, -704, 0, 1) pt3dadd(-284, -839, 0, 1)}
+  bp8 {pt3dclear() pt3dadd(-329, -704, 0, 1) pt3dadd(-284, -644, 0, 1)}
+  bp9a {pt3dclear() pt3dadd(-329, -794, 0, 1) pt3dadd(-404, -839, 0, 1)}
+  bp9b {pt3dclear() pt3dadd(-404, -839, 0, 1) pt3dadd(-479, -884, 0, 1)}
+  bp9c {pt3dclear() pt3dadd(-479, -884, 0, 1) pt3dadd(-569, -914, 0, 1)}
+  bp10 {pt3dclear() pt3dadd(-329, -794, 0, 1) pt3dadd(-284, -914, 0, 1)}
+  bp11a {pt3dclear() pt3dadd(-164, -809, 0, 1) pt3dadd(-194, -914, 0, 1)}
+  bp11b {pt3dclear() pt3dadd(-194, -914, 0, 1) pt3dadd(-224, -1034, 0, 1)}
+  bp11c {pt3dclear() pt3dadd(-224, -1034, 0, 1) pt3dadd(-254, -1139, 0, 1)}
+  bp12a {pt3dclear() pt3dadd(-164, -809, 0, 1) pt3dadd(-59, -809, 0, 1)}
+  bp12b {pt3dclear() pt3dadd(-59, -809, 0, 1) pt3dadd(90, -809, 0, 1)}
+  bp13a {pt3dclear() pt3dadd(960, -494, 0, 1) pt3dadd(990, -569, 0, 1)}
+  bp13b {pt3dclear() pt3dadd(990, -569, 0, 1) pt3dadd(1005, -644, 0, 1)}
+  bp14a {pt3dclear() pt3dadd(960, -494, 0, 1) pt3dadd(1080, -479, 0, 1)}
+  bp14b {pt3dclear() pt3dadd(1080, -479, 0, 1) pt3dadd(1200, -464, 0, 1)}
+  bo1a {pt3dclear() pt3dadd(-494, -809, 0, 1) pt3dadd(-644, -959, 0, 1)}
+  bo1b {pt3dclear() pt3dadd(-644, -959, 0, 1) pt3dadd(-719, -1034, 0, 1)}
+  bo2 {pt3dclear() pt3dadd(-494, -809, 0, 1) pt3dadd(-359, -959, 0, 1)}
+  bo5a {pt3dclear() pt3dadd(-284, -839, 0, 1) pt3dadd(-134, -869, 0, 1)}
+  bo5b {pt3dclear() pt3dadd(-134, -869, 0, 1) pt3dadd(-44, -884, 0, 1)}
+  bo6 {pt3dclear() pt3dadd(-284, -839, 0, 1) pt3dadd(-314, -929, 0, 1)}
+  bo7a {pt3dclear() pt3dadd(-284, -644, 0, 1) pt3dadd(-314, -554, 0, 1)}
+  bo7b {pt3dclear() pt3dadd(-314, -554, 0, 1) pt3dadd(-329, -494, 0, 1)}
+  bo7c {pt3dclear() pt3dadd(-329, -494, 0, 1) pt3dadd(-359, -404, 0, 1)}
+  bo8 {pt3dclear() pt3dadd(-284, -644, 0, 1) pt3dadd(-179, -644, 0, 1)}
+  bo9a {pt3dclear() pt3dadd(-284, -914, 0, 1) pt3dadd(-299, -989, 0, 1)}
+  bo9b {pt3dclear() pt3dadd(-299, -989, 0, 1) pt3dadd(-314, -1064, 0, 1)}
+  bo9c {pt3dclear() pt3dadd(-314, -1064, 0, 1) pt3dadd(-329, -1139, 0, 1)}
+  bo10a {pt3dclear() pt3dadd(-284, -914, 0, 1) pt3dadd(-179, -914, 0, 1)}
+  bo10b {pt3dclear() pt3dadd(-179, -914, 0, 1) pt3dadd(-104, -914, 0, 1)}
+  bn1 {pt3dclear() pt3dadd(-359, -959, 0, 1) pt3dadd(-404, -1049, 0, 1)}
+  bn2 {pt3dclear() pt3dadd(-359, -959, 0, 1) pt3dadd(-254, -944, 0, 1)}
+  bn3 {pt3dclear() pt3dadd(-314, -929, 0, 1) pt3dadd(-344, -929, 0, 1)}
+  bn4a {pt3dclear() pt3dadd(-314, -929, 0, 1) pt3dadd(-269, -974, 0, 1)}
+  bn4b {pt3dclear() pt3dadd(-269, -974, 0, 1) pt3dadd(-239, -1004, 0, 1)}
+  bn5a {pt3dclear() pt3dadd(-179, -644, 0, 1) pt3dadd(-149, -689, 0, 1)}
+  bn5b {pt3dclear() pt3dadd(-149, -689, 0, 1) pt3dadd(-119, -734, 0, 1)}
+  bn5c {pt3dclear() pt3dadd(-119, -734, 0, 1) pt3dadd(-104, -764, 0, 1)}
+  bn6a {pt3dclear() pt3dadd(-179, -644, 0, 1) pt3dadd(-149, -629, 0, 1)}
+  bn6b {pt3dclear() pt3dadd(-149, -629, 0, 1) pt3dadd(-119, -614, 0, 1)}
+  AH {pt3dclear() pt3dadd(0, 0, 0, 1) pt3dadd(-104, 45, 0, 1)}
+  isa {pt3dclear() pt3dadd(-104, 45, 0, 1) pt3dadd(-179, 75, 0, 1)}
+  isb {pt3dclear() pt3dadd(-179, 75, 0, 1) pt3dadd(-314, 120, 0, 1)}
+  m1a {pt3dclear() pt3dadd(-314, 120, 0, 1) pt3dadd(-404, 150, 0, 1)}
+  m1b {pt3dclear() pt3dadd(-404, 150, 0, 1) pt3dadd(-539, 195, 0, 1)}
+  r1 {pt3dclear() pt3dadd(-539, 195, 0, 1) pt3dadd(-614, 225, 0, 1)}
+  m2a {pt3dclear() pt3dadd(-614, 225, 0, 1) pt3dadd(-689, 255, 0, 1)}
+  m2b {pt3dclear() pt3dadd(-689, 255, 0, 1) pt3dadd(-824, 300, 0, 1)}
+  m2c {pt3dclear() pt3dadd(-824, 300, 0, 1) pt3dadd(-959, 345, 0, 1)}
+  r2 {pt3dclear() pt3dadd(-959, 345, 0, 1) pt3dadd(-1094, 375, 0, 1)}
+  m3a {pt3dclear() pt3dadd(-614, 225, 0, 1) pt3dadd(-614, 315, 0, 1)}
+  m3b {pt3dclear() pt3dadd(-614, 315, 0, 1) pt3dadd(-614, 420, 0, 1)}
+  r3 {pt3dclear() pt3dadd(-614, 420, 0, 1) pt3dadd(-614, 525, 0, 1)}
+  bo3 {pt3dclear() pt3dadd(-659, -764, 0, 1) pt3dadd(-644, -824, 0, 1)}
+  bo4 {pt3dclear() pt3dadd(-659, -764, 0, 1) pt3dadd(-614, -719, 0, 1)}
+}
+
+objref all, basal1List, basal2List, apiList, distalApi1List, distalApi2List, axonList
+proc subsets() { local i
+  objref all, basal1List, basal2List, apiList, distalApi1List, distalApi2List, axonList
+  all = new SectionList()
+    soma all.append()
+    ak1 all.append()
+    ak2 all.append()
+    ak3 all.append()
+    ak4 all.append()
+    ak5 all.append()
+    ak6 all.append()
+    ak7 all.append()
+    ak8 all.append()
+    ak9 all.append()
+    ak10 all.append()
+    aik1 all.append()
+    aik2 all.append()
+    aik3 all.append()
+    aik4 all.append()
+    aik5 all.append()
+    aik6a all.append()
+    aik6b all.append()
+    aik7 all.append()
+    adk1 all.append()
+    adk2 all.append()
+    adk3 all.append()
+    adk4 all.append()
+    adk5a all.append()
+    adk5b all.append()
+    adk6 all.append()
+    adk7 all.append()
+    as1 all.append()
+    as2 all.append()
+    as3a all.append()
+    as3b all.append()
+    as4a all.append()
+    as4b all.append()
+    as4c all.append()
+    as5 all.append()
+    as6a all.append()
+    as6b all.append()
+    as7a all.append()
+    as7b all.append()
+    as8 all.append()
+    as9a all.append()
+    as9b all.append()
+    as9c all.append()
+    as9d all.append()
+    as10 all.append()
+    as11a all.append()
+    as11b all.append()
+    as12a all.append()
+    as12b all.append()
+    as13a all.append()
+    as13b all.append()
+    as14a all.append()
+    as14b all.append()
+    as15a all.append()
+    as15b all.append()
+    as16a all.append()
+    as16b all.append()
+    as17a all.append()
+    as17b all.append()
+    as18a all.append()
+    as18b all.append()
+    as19a all.append()
+    as19b all.append()
+    as20 all.append()
+    as21a all.append()
+    as21b all.append()
+    as22a all.append()
+    as22b all.append()
+    as22c all.append()
+    as22d all.append()
+    as23a all.append()
+    as23b all.append()
+    as23c all.append()
+    as24a all.append()
+    as24b all.append()
+    as24c all.append()
+    as25a all.append()
+    as25b all.append()
+    as25c all.append()
+    as25d all.append()
+    at1 all.append()
+    at2a all.append()
+    at2b all.append()
+    at3 all.append()
+    at4a all.append()
+    at4b all.append()
+    at4c all.append()
+    at5 all.append()
+    at6a all.append()
+    at6b all.append()
+    at6c all.append()
+    at6d all.append()
+    at7a all.append()
+    at7b all.append()
+    at7c all.append()
+    at8 all.append()
+    at9a all.append()
+    at9b all.append()
+    at10a all.append()
+    at10b all.append()
+    at11a all.append()
+    at11b all.append()
+    at12 all.append()
+    at13a all.append()
+    at13b all.append()
+    at13c all.append()
+    at14a all.append()
+    at14b all.append()
+    at15 all.append()
+    at16 all.append()
+    ac7 all.append()
+    ac8a all.append()
+    ac8b all.append()
+    ac9a all.append()
+    ac9b all.append()
+    ac10 all.append()
+    ac11 all.append()
+    ac12 all.append()
+    ac13 all.append()
+    ac14a all.append()
+    ac14b all.append()
+    aq3 all.append()
+    aq4a all.append()
+    aq4b all.append()
+    aq5a all.append()
+    aq5b all.append()
+    aq6 all.append()
+    ax1a all.append()
+    ax1b all.append()
+    ax2a all.append()
+    ax2b all.append()
+    ax3 all.append()
+    ax4 all.append()
+    ax5 all.append()
+    ax6 all.append()
+    bs1 all.append()
+    bs2 all.append()
+    ac1a all.append()
+    ac1b all.append()
+    ac1c all.append()
+    ac2 all.append()
+    ac3a all.append()
+    ac3b all.append()
+    ac4a all.append()
+    ac4b all.append()
+    ac5a all.append()
+    ac5b all.append()
+    ac6a all.append()
+    ac6b all.append()
+    ac6c all.append()
+    aq1 all.append()
+    aq2a all.append()
+    aq2b all.append()
+    bt1a all.append()
+    bt1b all.append()
+    bt2 all.append()
+    bt3 all.append()
+    bc1a all.append()
+    bc1b all.append()
+    bc2 all.append()
+    bc3 all.append()
+    bc4 all.append()
+    bc5a all.append()
+    bc5b all.append()
+    bc6a all.append()
+    bc6b all.append()
+    bt4 all.append()
+    bc7 all.append()
+    bc8 all.append()
+    bq1a all.append()
+    bq1b all.append()
+    bq2 all.append()
+    bq3 all.append()
+    bq4 all.append()
+    bq5 all.append()
+    bq6a all.append()
+    bq6b all.append()
+    bq7a all.append()
+    bq7b all.append()
+    bq8 all.append()
+    bq9a all.append()
+    bq9b all.append()
+    bq10 all.append()
+    bx1 all.append()
+    bx2a all.append()
+    bx2b all.append()
+    bx3 all.append()
+    bx4 all.append()
+    bx5 all.append()
+    bx6 all.append()
+    bx7a all.append()
+    bx7b all.append()
+    bx8a all.append()
+    bx8b all.append()
+    bx9a all.append()
+    bx9b all.append()
+    bx10 all.append()
+    bx11a all.append()
+    bx11b all.append()
+  subsets_1()
+}
+proc subsets_1(){
+    bx11c all.append()
+    bx12a all.append()
+    bx12b all.append()
+    bp1 all.append()
+    bp2 all.append()
+    bp3a all.append()
+    bp3b all.append()
+    bp4 all.append()
+    bp5 all.append()
+    bp6a all.append()
+    bp6b all.append()
+    bp7 all.append()
+    bp8 all.append()
+    bp9a all.append()
+    bp9b all.append()
+    bp9c all.append()
+    bp10 all.append()
+    bp11a all.append()
+    bp11b all.append()
+    bp11c all.append()
+    bp12a all.append()
+    bp12b all.append()
+    bp13a all.append()
+    bp13b all.append()
+    bp14a all.append()
+    bp14b all.append()
+    bo1a all.append()
+    bo1b all.append()
+    bo2 all.append()
+    bo5a all.append()
+    bo5b all.append()
+    bo6 all.append()
+    bo7a all.append()
+    bo7b all.append()
+    bo7c all.append()
+    bo8 all.append()
+    bo9a all.append()
+    bo9b all.append()
+    bo9c all.append()
+    bo10a all.append()
+    bo10b all.append()
+    bn1 all.append()
+    bn2 all.append()
+    bn3 all.append()
+    bn4a all.append()
+    bn4b all.append()
+    bn5a all.append()
+    bn5b all.append()
+    bn5c all.append()
+    bn6a all.append()
+    bn6b all.append()
+    AH all.append()
+    isa all.append()
+    isb all.append()
+    m1a all.append()
+    m1b all.append()
+    r1 all.append()
+    m2a all.append()
+    m2b all.append()
+    m2c all.append()
+    r2 all.append()
+    m3a all.append()
+    m3b all.append()
+    r3 all.append()
+    bo3 all.append()
+    bo4 all.append()
+
+  basal1List = new SectionList()
+    bs1 basal1List.append()
+    bt1a basal1List.append()
+    bt1b basal1List.append()
+    bt2 basal1List.append()
+    bc1a basal1List.append()
+    bc1b basal1List.append()
+    bc2 basal1List.append()
+    bc3 basal1List.append()
+    bc4 basal1List.append()
+    bq1a basal1List.append()
+    bq1b basal1List.append()
+    bq2 basal1List.append()
+    bq3 basal1List.append()
+    bq4 basal1List.append()
+    bq5 basal1List.append()
+    bq6a basal1List.append()
+    bq6b basal1List.append()
+    bx1 basal1List.append()
+    bx2a basal1List.append()
+    bx2b basal1List.append()
+    bx3 basal1List.append()
+    bx4 basal1List.append()
+    bx5 basal1List.append()
+    bx6 basal1List.append()
+    bp1 basal1List.append()
+    bp2 basal1List.append()
+    bp3a basal1List.append()
+    bp3b basal1List.append()
+    bp4 basal1List.append()
+    bp5 basal1List.append()
+    bp6a basal1List.append()
+    bp6b basal1List.append()
+    bp7 basal1List.append()
+    bp8 basal1List.append()
+    bp9a basal1List.append()
+    bp9b basal1List.append()
+    bp9c basal1List.append()
+    bp10 basal1List.append()
+    bp11a basal1List.append()
+    bp11b basal1List.append()
+    bp11c basal1List.append()
+    bp12a basal1List.append()
+    bp12b basal1List.append()
+    bo1a basal1List.append()
+    bo1b basal1List.append()
+    bo2 basal1List.append()
+    bo5a basal1List.append()
+    bo5b basal1List.append()
+    bo6 basal1List.append()
+    bo7a basal1List.append()
+    bo7b basal1List.append()
+    bo7c basal1List.append()
+    bo8 basal1List.append()
+    bo9a basal1List.append()
+    bo9b basal1List.append()
+    bo9c basal1List.append()
+    bo10a basal1List.append()
+    bo10b basal1List.append()
+    bn1 basal1List.append()
+    bn2 basal1List.append()
+    bn3 basal1List.append()
+    bn4a basal1List.append()
+    bn4b basal1List.append()
+    bn5a basal1List.append()
+    bn5b basal1List.append()
+    bn5c basal1List.append()
+    bn6a basal1List.append()
+    bn6b basal1List.append()
+    bo3 basal1List.append()
+    bo4 basal1List.append()
+
+  basal2List = new SectionList()
+    bs2 basal2List.append()
+    bt3 basal2List.append()
+    bc5a basal2List.append()
+    bc5b basal2List.append()
+    bc6a basal2List.append()
+    bc6b basal2List.append()
+    bt4 basal2List.append()
+    bc7 basal2List.append()
+    bc8 basal2List.append()
+    bq7a basal2List.append()
+    bq7b basal2List.append()
+    bq8 basal2List.append()
+    bq9a basal2List.append()
+    bq9b basal2List.append()
+    bq10 basal2List.append()
+    bx7a basal2List.append()
+    bx7b basal2List.append()
+    bx8a basal2List.append()
+    bx8b basal2List.append()
+    bx9a basal2List.append()
+    bx9b basal2List.append()
+    bx10 basal2List.append()
+    bx11a basal2List.append()
+    bx11b basal2List.append()
+    bx11c basal2List.append()
+    bx12a basal2List.append()
+    bx12b basal2List.append()
+    bp13a basal2List.append()
+    bp13b basal2List.append()
+    bp14a basal2List.append()
+    bp14b basal2List.append()
+
+  apiList = new SectionList()
+    ak1 apiList.append()
+    ak2 apiList.append()
+    ak3 apiList.append()
+    ak4 apiList.append()
+    ak5 apiList.append()
+    ak6 apiList.append()
+    ak7 apiList.append()
+    ak8 apiList.append()
+    ak9 apiList.append()
+    ak10 apiList.append()
+    aik1 apiList.append()
+    aik2 apiList.append()
+    aik3 apiList.append()
+    aik4 apiList.append()
+    aik5 apiList.append()
+    aik6a apiList.append()
+    aik6b apiList.append()
+    aik7 apiList.append()
+    adk1 apiList.append()
+    adk2 apiList.append()
+    adk3 apiList.append()
+    adk4 apiList.append()
+    adk5a apiList.append()
+    adk5b apiList.append()
+    adk6 apiList.append()
+    adk7 apiList.append()
+    as1 apiList.append()
+    as2 apiList.append()
+    as3a apiList.append()
+    as3b apiList.append()
+  subsets_2()
+}
+proc subsets_2(){
+    as4a apiList.append()
+    as4b apiList.append()
+    as4c apiList.append()
+    as5 apiList.append()
+    as6a apiList.append()
+    as6b apiList.append()
+    as7a apiList.append()
+    as7b apiList.append()
+    as8 apiList.append()
+    as9a apiList.append()
+    as9b apiList.append()
+    as9c apiList.append()
+    as9d apiList.append()
+    as10 apiList.append()
+    as11a apiList.append()
+    as11b apiList.append()
+    as12a apiList.append()
+    as12b apiList.append()
+    as13a apiList.append()
+    as13b apiList.append()
+    as14a apiList.append()
+    as14b apiList.append()
+    as15a apiList.append()
+    as15b apiList.append()
+    as16a apiList.append()
+    as16b apiList.append()
+    as17a apiList.append()
+    as17b apiList.append()
+    as18a apiList.append()
+    as18b apiList.append()
+    as19a apiList.append()
+    as19b apiList.append()
+    as20 apiList.append()
+    as21a apiList.append()
+    as21b apiList.append()
+    as22a apiList.append()
+    as22b apiList.append()
+    as22c apiList.append()
+    as22d apiList.append()
+    as23a apiList.append()
+    as23b apiList.append()
+    as23c apiList.append()
+    as24a apiList.append()
+    as24b apiList.append()
+    as24c apiList.append()
+    as25a apiList.append()
+    as25b apiList.append()
+    as25c apiList.append()
+    as25d apiList.append()
+    at1 apiList.append()
+    at2a apiList.append()
+    at2b apiList.append()
+    at3 apiList.append()
+    at4a apiList.append()
+    at4b apiList.append()
+    at4c apiList.append()
+    at5 apiList.append()
+    at6a apiList.append()
+    at6b apiList.append()
+    at6c apiList.append()
+    at6d apiList.append()
+    at7a apiList.append()
+    at7b apiList.append()
+    at7c apiList.append()
+    at8 apiList.append()
+    at9a apiList.append()
+    at9b apiList.append()
+    at10a apiList.append()
+    at10b apiList.append()
+    at11a apiList.append()
+    at11b apiList.append()
+    at12 apiList.append()
+    at13a apiList.append()
+    at13b apiList.append()
+    at13c apiList.append()
+    at14a apiList.append()
+    at14b apiList.append()
+    at15 apiList.append()
+    at16 apiList.append()
+    ac7 apiList.append()
+    ac8a apiList.append()
+    ac8b apiList.append()
+    ac9a apiList.append()
+    ac9b apiList.append()
+    ac10 apiList.append()
+    ac11 apiList.append()
+    ac12 apiList.append()
+    ac13 apiList.append()
+    ac14a apiList.append()
+    ac14b apiList.append()
+    aq3 apiList.append()
+    aq4a apiList.append()
+    aq4b apiList.append()
+    aq5a apiList.append()
+    aq5b apiList.append()
+    aq6 apiList.append()
+    ax1a apiList.append()
+    ax1b apiList.append()
+    ax2a apiList.append()
+    ax2b apiList.append()
+    ax3 apiList.append()
+    ax4 apiList.append()
+    ax5 apiList.append()
+    ax6 apiList.append()
+    ac1a apiList.append()
+    ac1b apiList.append()
+    ac1c apiList.append()
+    ac2 apiList.append()
+    ac3a apiList.append()
+    ac3b apiList.append()
+    ac4a apiList.append()
+    ac4b apiList.append()
+    ac5a apiList.append()
+    ac5b apiList.append()
+    ac6a apiList.append()
+    ac6b apiList.append()
+    ac6c apiList.append()
+    aq1 apiList.append()
+    aq2a apiList.append()
+    aq2b apiList.append()
+
+  distalApi1List = new SectionList()
+    adk1 distalApi1List.append()
+    adk2 distalApi1List.append()
+    adk3 distalApi1List.append()
+    adk4 distalApi1List.append()
+    adk5a distalApi1List.append()
+    adk5b distalApi1List.append()
+    adk6 distalApi1List.append()
+    adk7 distalApi1List.append()
+    as11a distalApi1List.append()
+    as11b distalApi1List.append()
+    as13a distalApi1List.append()
+    as13b distalApi1List.append()
+    as14a distalApi1List.append()
+    as14b distalApi1List.append()
+    as17a distalApi1List.append()
+    as17b distalApi1List.append()
+    as19a distalApi1List.append()
+    as19b distalApi1List.append()
+    as20 distalApi1List.append()
+    as24a distalApi1List.append()
+    as24b distalApi1List.append()
+    as24c distalApi1List.append()
+    as25a distalApi1List.append()
+    as25b distalApi1List.append()
+    as25c distalApi1List.append()
+    as25d distalApi1List.append()
+    at15 distalApi1List.append()
+    at16 distalApi1List.append()
+    ac11 distalApi1List.append()
+    ac12 distalApi1List.append()
+    ac13 distalApi1List.append()
+    ac14a distalApi1List.append()
+    ac14b distalApi1List.append()
+    aq5a distalApi1List.append()
+    aq5b distalApi1List.append()
+    aq6 distalApi1List.append()
+    ax5 distalApi1List.append()
+    ax6 distalApi1List.append()
+
+  distalApi2List = new SectionList()
+    aik1 distalApi2List.append()
+    aik2 distalApi2List.append()
+    aik3 distalApi2List.append()
+    aik4 distalApi2List.append()
+    aik5 distalApi2List.append()
+    aik6a distalApi2List.append()
+    aik6b distalApi2List.append()
+    aik7 distalApi2List.append()
+    as10 distalApi2List.append()
+    as12a distalApi2List.append()
+    as12b distalApi2List.append()
+    as15a distalApi2List.append()
+    as15b distalApi2List.append()
+    as16a distalApi2List.append()
+    as16b distalApi2List.append()
+    as18a distalApi2List.append()
+    as18b distalApi2List.append()
+    as21a distalApi2List.append()
+    as21b distalApi2List.append()
+    as22a distalApi2List.append()
+    as22b distalApi2List.append()
+    as22c distalApi2List.append()
+    as22d distalApi2List.append()
+    as23a distalApi2List.append()
+    as23b distalApi2List.append()
+    as23c distalApi2List.append()
+    at9a distalApi2List.append()
+    at9b distalApi2List.append()
+    at10a distalApi2List.append()
+    at10b distalApi2List.append()
+    at11a distalApi2List.append()
+    at11b distalApi2List.append()
+    at12 distalApi2List.append()
+    at13a distalApi2List.append()
+    at13b distalApi2List.append()
+    at13c distalApi2List.append()
+    at14a distalApi2List.append()
+    at14b distalApi2List.append()
+    ac7 distalApi2List.append()
+    ac8a distalApi2List.append()
+  subsets_3()
+}
+proc subsets_3(){
+    ac8b distalApi2List.append()
+    ac9a distalApi2List.append()
+    ac9b distalApi2List.append()
+    ac10 distalApi2List.append()
+    aq3 distalApi2List.append()
+    aq4a distalApi2List.append()
+    aq4b distalApi2List.append()
+    ax1a distalApi2List.append()
+    ax1b distalApi2List.append()
+    ax2a distalApi2List.append()
+    ax2b distalApi2List.append()
+    ax3 distalApi2List.append()
+    ax4 distalApi2List.append()
+
+  axonList = new SectionList()
+    AH axonList.append()
+    isa axonList.append()
+    isb axonList.append()
+    m1a axonList.append()
+    m1b axonList.append()
+    r1 axonList.append()
+    m2a axonList.append()
+    m2b axonList.append()
+    m2c axonList.append()
+    r2 axonList.append()
+    m3a axonList.append()
+    m3b axonList.append()
+    r3 axonList.append()
+
+}
+proc geom() {
+  soma {  /*area = 962 */ L = diam = 17.499  }
+  ak1 {  L = 22.4  diam = 3.5  }
+  ak2 {  L = 20  diam = 3.2  }
+  ak3 {  L = 55.5  diam = 3  }
+  ak4 {  L = 18.9  diam = 2.8  }
+  ak5 {  L = 22.2  diam = 2.7  }
+  ak6 {  L = 11.7  diam = 2.6  }
+  ak7 {  L = 24.8  diam = 2.5  }
+  ak8 {  L = 10.6  diam = 2.4  }
+  ak9 {  L = 44  diam = 2.4  }
+  ak10 {  L = 37.7  diam = 2.4  }
+  aik1 {  L = 9.6  diam = 2  }
+  aik2 {  L = 10.1  diam = 2  }
+  aik3 {  L = 20.2  diam = 1.9  }
+  aik4 {  L = 11.1  diam = 1.8  }
+  aik5 {  L = 15.5  diam = 1.7  }
+  aik6a {  L = 47.2  diam = 1.6  }
+  aik6b {  L = 47.2  diam = 1.6  }
+  aik7 {  L = 17.7  diam = 1.5  }
+  adk1 {  L = 11.1  diam = 2  }
+  adk2 {  L = 15.5  diam = 2  }
+  adk3 {  L = 22.2  diam = 1.9  }
+  adk4 {  L = 20  diam = 1.8  }
+  adk5a {  L = 43.3  diam = 1.7  }
+  adk5b {  L = 43.3  diam = 1.7  }
+  adk6 {  L = 11.1  diam = 1.6  }
+  adk7 {  L = 55.5  diam = 1.5  }
+  as1 {  L = 26.6  diam = 0.75  }
+  as2 {  L = 22.2  diam = 0.75  }
+  as3a {  L = 54.4  diam = 0.75  }
+  as3b {  L = 54.4  diam = 0.75  }
+  as4a {  L = 63  diam = 0.75  }
+  as4b {  L = 63  diam = 0.75  }
+  as4c {  L = 63  diam = 0.75  }
+  as5 {  L = 17.7  diam = 0.75  }
+  as6a {  L = 63.3  diam = 0.75  }
+  as6b {  L = 63.3  diam = 0.75  }
+  as7a {  L = 63.3  diam = 0.75  }
+  as7b {  diam = 63.3  L = 0.75  }
+  as8 {  L = 17.7  diam = 0.75  }
+  as9a {  L = 55  diam = 0.75  }
+  as9b {  L = 55  diam = 0.75  }
+  as9c {  L = 55  diam = 0.75  }
+  as9d {  L = 55  diam = 0.75  }
+  as10 {  L = 22.2  diam = 0.75  }
+  as11a {  L = 60  diam = 0.75  }
+  as11b {  L = 60  diam = 0.75  }
+  as12a {  L = 48.85  diam = 0.75  }
+  as12b {  L = 48.85  diam = 0.75  }
+  as13a {  L = 70.5  diam = 0.75  }
+  as13b {  L = 70.5  diam = 0.75  }
+  as14a {  L = 48.85  diam = 0.75  }
+  as14b {  L = 48.85  diam = 0.75  }
+  as15a {  L = 53.3  diam = 0.75  }
+  as15b {  L = 53.3  diam = 0.75  }
+  as16a {  L = 70  diam = 0.75  }
+  as16b {  L = 70  diam = 0.75  }
+  as17a {  L = 56.65  diam = 0.75  }
+  as17b {  L = 56.65  diam = 0.75  }
+  as18a {  L = 67.7  diam = 0.75  }
+  as18b {  L = 67.7  diam = 0.75  }
+  as19a {  L = 40  diam = 0.75  }
+  as19b {  L = 40  diam = 0.75  }
+  as20 {  L = 51.1  diam = 0.75  }
+  as21a {  L = 52.7  diam = 0.75  }
+  as21b {  L = 52.7  diam = 0.75  }
+  as22a {  L = 50  diam = 0.75  }
+  as22b {  L = 50  diam = 0.75  }
+  as22c {  L = 50  diam = 0.75  }
+  as22d {  L = 50  diam = 0.75  }
+  as23a {  L = 39.23  diam = 0.75  }
+  as23b {  L = 39.23  diam = 0.75  }
+  as23c {  L = 39.23  diam = 0.75  }
+  as24a {  L = 38.5  diam = 0.75  }
+  as24b {  L = 38.5  diam = 0.75  }
+  as24c {  L = 38.5  diam = 0.75  }
+  as25a {  L = 48.87  diam = 0.75  }
+  as25b {  L = 48.87  diam = 0.75  }
+  as25c {  L = 48.87  diam = 0.75  }
+  as25d {  L = 48.87  diam = 0.75  }
+  at1 {  L = 60  diam = 0.75  }
+  at2a {  L = 42.2  diam = 0.75  }
+  at2b {  L = 42.2  diam = 0.75  }
+  at3 {  L = 28.8  diam = 0.75  }
+  at4a {  L = 52.6  diam = 0.75  }
+  at4b {  L = 52.6  diam = 0.75  }
+  at4c {  L = 52.6  diam = 0.75  }
+  at5 {  L = 40  diam = 0.75  }
+  at6a {  L = 54.4  diam = 0.75  }
+  at6b {  L = 54.4  diam = 0.75  }
+  at6c {  L = 54.4  diam = 0.75  }
+  at6d {  L = 54.4  diam = 0.75  }
+  at7a {  L = 55.2  diam = 0.75  }
+  at7b {  L = 55.2  diam = 0.75  }
+  at7c {  L = 55.2  diam = 0.75  }
+  at8 {  L = 37.7  diam = 0.75  }
+  at9a {  L = 42.8  diam = 0.75  }
+  at9b {  L = 42.8  diam = 0.75  }
+  at10a {  L = 64.4  diam = 0.75  }
+  at10b {  L = 64.4  diam = 0.75  }
+  at11a {  L = 46.7  diam = 0.75  }
+  at11b {  L = 46.7  diam = 0.75  }
+  at12 {  L = 28.8  diam = 0.75  }
+  at13a {  L = 74  diam = 0.75  }
+  at13b {  L = 74  diam = 0.75  }
+  at13c {  diam = 0.75  L = 74  }
+  at14a {  L = 45.5  diam = 0.75  }
+  at14b {  L = 45.5  diam = 0.75  }
+  at15 {  L = 82.22  diam = 0.75  }
+  at16 {  L = 11.1  diam = 0.75  }
+  ac7 {  L = 22.2  diam = 0.75  }
+  ac8a {  L = 44.4  diam = 0.75  }
+  ac8b {  L = 44.4  diam = 0.75  }
+  ac9a {  L = 71.1  diam = 0.75  }
+  ac9b {  L = 71.1  diam = 0.75  }
+  ac10 {  L = 73.3  diam = 0.75  }
+  ac11 {  L = 57.7  diam = 0.75  }
+  ac12 {  L = 55.5  diam = 0.75  }
+  ac13 {  L = 17.7  diam = 0.75  }
+  ac14a {  L = 52.2  diam = 0.75  }
+  ac14b {  L = 52.2  diam = 0.75  }
+  aq3 {  L = 86.6  diam = 0.75  }
+  aq4a {  L = 44.4  diam = 0.75  }
+  aq4b {  L = 44.4  diam = 0.75  }
+  aq5a {  L = 51.1  diam = 0.75  }
+  aq5b {  L = 51.1  diam = 0.75  }
+  aq6 {  L = 28.8  diam = 0.75  }
+  ax1a {  L = 74.4  diam = 0.75  }
+  ax1b {  L = 74.4  diam = 0.75  }
+  ax2a {  L = 51.1  diam = 0.75  }
+  ax2b {  L = 51.1  diam = 0.75  }
+  ax3 {  L = 31.1  diam = 0.75  }
+  ax4 {  L = 80  diam = 0.75  }
+  ax5 {  L = 68.8  diam = 0.75  }
+  ax6 {  L = 66.6  diam = 0.75  }
+  bs1 {  L = 9.4  diam = 0.75  }
+  bs2 {  L = 9.6  diam = 0.75  }
+  ac1a {  L = 57  diam = 0.75  }
+  ac1b {  L = 57  diam = 0.75  }
+  ac1c {  L = 57  diam = 0.75  }
+  ac2 {  L = 15.5  diam = 0.75  }
+  ac3a {  L = 71.1  diam = 0.75  }
+  ac3b {  L = 71.1  diam = 0.75  }
+  ac4a {  L = 69.4  diam = 0.75  }
+  ac4b {  L = 69.4  diam = 0.75  }
+  ac5a {  L = 55.5  diam = 0.75  }
+  ac5b {  L = 55.5  diam = 0.75  }
+  ac6a {  L = 48.9  diam = 0.75  }
+  ac6b {  L = 48.9  diam = 0.75  }
+  ac6c {  L = 48.9  diam = 0.75  }
+  aq1 {  L = 68.8  diam = 0.75  }
+  aq2a {  L = 57.8  diam = 0.75  }
+  aq2b {  L = 57.8  diam = 0.75  }
+  bt1a {  L = 36.4  diam = 0.75  }
+  bt1b {  L = 39.4  diam = 0.75  }
+  bt2 {  L = 6.7  diam = 0.75  }
+  bt3 {  L = 40.5  diam = 0.75  }
+  bc1a {  L = 69.4  diam = 0.75  }
+  bc1b {  L = 69.4  diam = 0.75  }
+  bc2 {  L = 39.3  diam = 0.75  }
+  bc3 {  L = 7  diam = 0.75  }
+  bc4 {  L = 17.2  diam = 0.75  }
+  bc5a {  L = 70  diam = 0.75  }
+  bc5b {  L = 70  diam = 0.75  }
+  bc6a {  L = 39.2  diam = 0.75  }
+  bc6b {  L = 39.2  diam = 0.75  }
+  bt4 {  L = 11.2  diam = 0.75  }
+  bc7 {  L = 8.7  diam = 0.75  }
+  bc8 {  L = 29.4  diam = 0.75  }
+  bq1a {  L = 50.1  diam = 0.75  }
+  bq1b {  L = 50.1  diam = 0.75  }
+  bq2 {  L = 60.6  diam = 0.75  }
+  bq3 {  L = 27.3  diam = 0.75  }
+  bq4 {  L = 10.5  diam = 0.75  }
+  bq5 {  L = 11.9  diam = 0.75  }
+  bq6a {  L = 48.15  diam = 0.75  }
+  bq6b {  L = 48.15  diam = 0.75  }
+  bq7a {  L = 39.6  diam = 0.75  }
+  bq7b {  L = 39.5  diam = 0.75  }
+  bq8 {  L = 6  diam = 0.75  }
+  bq9a {  L = 58  diam = 0.75  }
+  bq9b {  L = 58  diam = 0.75  }
+  bq10 {  L = 20.8  diam = 0.75  }
+  bx1 {  L = 44.7  diam = 0.75  }
+  bx2a {  L = 47.1  diam = 0.75  }
+  bx2b {  L = 47.1  diam = 0.75  }
+  bx3 {  L = 22.6  diam = 0.75  }
+  bx4 {  L = 6.4  diam = 0.75  }
+  bx5 {  L = 20.3  diam = 0.75  }
+  bx6 {  L = 21  diam = 0.75  }
+  bx7a {  diam = 58.55  L = 0.75  }
+  bx7b {  L = 58.55  diam = 0.75  }
+  bx8a {  L = 55.85  diam = 0.75  }
+  bx8b {  L = 55.85  diam = 0.75  }
+  bx9a {  L = 56  diam = 0.75  }
+  bx9b {  L = 56  diam = 0.75  }
+  bx10 {  L = 69.2  diam = 0.75  }
+  bx11a {  L = 56.93  diam = 0.75  }
+  bx11b {  L = 56.93  diam = 0.75  }
+  bx11c {  L = 56.94  diam = 0.75  }
+ geom_1()
+}
+proc geom_1() {
+  bx12a {  L = 58  diam = 0.75  }
+  bx12b {  L = 58  diam = 0.75  }
+  bp1 {  L = 50  diam = 0.75  }
+  bp2 {  L = 43  diam = 0.75  }
+  bp3a {  L = 44.3  diam = 0.75  }
+  bp3b {  L = 44.3  diam = 0.75  }
+  bp4 {  L = 24.5  diam = 0.75  }
+  bp5 {  L = 31.4  diam = 0.75  }
+  bp6a {  L = 51.5  diam = 0.75  }
+  bp6b {  L = 51.5  diam = 0.75  }
+  bp7 {  L = 36.4  diam = 0.75  }
+  bp8 {  L = 17.5  diam = 0.75  }
+  bp9a {  L = 62.53  diam = 0.75  }
+  bp9b {  L = 62.53  diam = 0.75  }
+  bp9c {  L = 62.54  diam = 0.75  }
+  bp10 {  L = 6.8  diam = 0.75  }
+  bp11a {  L = 54.33  diam = 0.75  }
+  bp11b {  L = 54.33  diam = 0.75  }
+  bp11c {  L = 54.34  diam = 0.75  }
+  bp12a {  L = 51.7  diam = 0.75  }
+  bp12b {  L = 51.7  diam = 0.75  }
+  bp13a {  L = 52.5  diam = 0.75  }
+  bp13b {  L = 52.5  diam = 0.75  }
+  bp14a {  L = 40.8  diam = 0.75  }
+  bp14b {  L = 40.8  diam = 0.75  }
+  bo1a {  L = 69  diam = 0.75  }
+  bo1b {  L = 69.1  diam = 0.75  }
+  bo2 {  L = 71.5  diam = 0.75  }
+  bo5a {  L = 71.5  diam = 0.75  }
+  bo5b {  L = 71.5  diam = 0.75  }
+  bo6 {  L = 19.3  diam = 0.75  }
+  bo7a {  L = 63.63  diam = 0.75  }
+  bo7b {  L = 63.63  diam = 0.75  }
+  bo7c {  L = 63.64  diam = 0.75  }
+  bo8 {  L = 35  diam = 0.75  }
+  bo9a {  L = 54.26  diam = 0.75  }
+  bo9b {  diam = 0.75  L = 54.27  }
+  bo9c {  L = 54.27  diam = 0.75  }
+  bo10a {  L = 55.7  diam = 0.75  }
+  bo10b {  L = 55.7  diam = 0.75  }
+  bn1 {  L = 52.2  diam = 0.75  }
+  bn2 {  L = 69.3  diam = 0.75  }
+  bn3 {  L = 61.7  diam = 0.75  }
+  bn4a {  L = 41.05  diam = 0.75  }
+  bn4b {  diam = 0.75  L = 41.05  }
+  bn5a {  L = 51.23  diam = 0.75  }
+  bn5b {  L = 51.23  diam = 0.75  }
+  bn5c {  L = 51.24  diam = 0.75  }
+  bn6a {  L = 67.65  diam = 0.75  }
+  bn6b {  L = 67.65  diam = 0.75  }
+  AH {  L = 20  diam = 1.75  }
+  isa {  L = 30  diam = 1  }
+  isb {  L = 30  diam = 1  }
+  m1a {  L = 75  diam = 1  }
+  m1b {  L = 75  diam = 1  }
+  r1 {  L = 20  diam = 2  }
+  m2a {  L = 66.6  diam = 0.5  }
+  m2b {  L = 66.6  diam = 0.5  }
+  m2c {  L = 66.8  diam = 0.5  }
+  r2 {  L = 20  diam = 2  }
+  m3a {  diam = 1  L = 100  }
+  m3b {  L = 100  diam = 1  }
+  r3 {  L = 20  diam = 2  }
+  bo3 {  L = 73  diam = 0.75  }
+  bo4 {  L = 69.9  diam = 0.75  }
+}
+proc geom_nseg() {
+  soma { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak5 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak6 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak7 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak8 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak9 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ak10 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aik1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aik2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aik3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aik4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aik5 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aik6a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aik6b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aik7 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  adk1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  adk2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  adk3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  adk4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  adk5a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  adk5b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  adk6 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  adk7 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as3a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as3b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as4a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as4b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as4c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as5 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as6a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as6b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as7a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as7b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as8 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as9a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as9b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as9c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as9d { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as10 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as11a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as11b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as12a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as12b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as13a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as13b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as14a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as14b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as15a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as15b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as16a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as16b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as17a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as17b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as18a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as18b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as19a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as19b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as20 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as21a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as21b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as22a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as22b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as22c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as22d { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as23a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as23b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as23c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as24a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as24b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as24c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as25a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as25b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as25c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  as25d { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at2a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at2b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at4a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at4b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at4c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at5 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at6a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at6b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at6c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at6d { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at7a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at7b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at7c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at8 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at9a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at9b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at10a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at10b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  geom_nseg_1()
+}
+proc geom_nseg_1() {
+  at11a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at11b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at12 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at13a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at13b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at13c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at14a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at14b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at15 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  at16 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac7 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac8a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac8b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac9a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac9b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac10 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac11 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac12 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac13 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac14a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac14b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aq3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aq4a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aq4b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aq5a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aq5b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aq6 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ax1a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ax1b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ax2a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ax2b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ax3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ax4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ax5 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ax6 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bs1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bs2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac1a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac1b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac1c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac3a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac3b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac4a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac4b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac5a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac5b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac6a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac6b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  ac6c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aq1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aq2a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  aq2b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bt1a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bt1b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bt2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bt3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc1a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc1b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc5a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc5b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc6a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc6b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bt4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc7 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bc8 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq1a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq1b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq5 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq6a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq6b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq7a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq7b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq8 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq9a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq9b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bq10 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx2a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx2b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx5 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx6 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx7a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx7b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx8a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx8b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx9a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx9b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx10 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx11a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx11b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx11c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  geom_nseg_2()
+}
+proc geom_nseg_2() {
+  bx12a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bx12b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp3a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp3b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp5 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp6a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp6b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp7 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp8 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp9a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp9b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp9c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp10 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp11a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp11b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp11c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp12a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp12b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp13a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp13b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp14a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bp14b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo1a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo1b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo5a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo5b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo6 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo7a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo7b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo7c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo8 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo9a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo9b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo9c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo10a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo10b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn4a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn4b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn5a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn5b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn5c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn6a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bn6b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  AH { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  isa { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  isb { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  m1a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  m1b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  r1 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  m2a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  m2b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  m2c { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  r2 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  m3a { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  m3b { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  r3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo3 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+  bo4 { nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  }
+}
+proc biophys() {
+  forsec all {
+    Ra = 150
+  }
+  forsec basal1List {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+    insert cat
+      PcaTbar_cat = 1e-05
+    insert cadyn
+      depth_cadyn = 1
+      taur_cadyn = 100
+      cainf_cadyn = 0.0001
+    insert hd
+      ghdbar_hd = 1e-05
+      vhalfl_hd = -90
+    insert kdrG
+      gbar_kdrG = 0.009
+    insert kaG
+      gbar_kaG = 0.011
+    insert na3Mig
+      sh_na3Mig = 0
+      gbar_na3Mig = 0.014
+      ar2_na3Mig = 1
+    insert kslow
+      gbar_kslow = 0.002
+    insert kleck
+      gbar_kleck = 0.00004
+  }
+  forsec basal2List {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+    insert cat
+      PcaTbar_cat = 1e-05
+    insert cadyn
+      depth_cadyn = 1
+      taur_cadyn = 100
+      cainf_cadyn = 0.0001
+    insert hd
+      ghdbar_hd = 1e-05
+      vhalfl_hd = -90
+    insert kdrG
+      gbar_kdrG = 0.009
+    insert kaG
+      gbar_kaG = 0.011
+    insert na3Mig
+      sh_na3Mig = 0
+      gbar_na3Mig = 0.014
+      ar2_na3Mig = 1
+    insert kslow
+      gbar_kslow = 0.002
+    insert kleck
+      gbar_kleck = 0.00004
+  }
+  forsec apiList {
+    Ra = 150
+    cm = 1.192
+    insert pas
+      g_pas = 2.2712e-05
+      e_pas = -70
+    insert cat
+      PcaTbar_cat = 1e-05
+    insert cadyn
+      depth_cadyn = 1
+      taur_cadyn = 100
+      cainf_cadyn = 0.0001
+    insert hd
+      ghdbar_hd = 1e-05
+      vhalfl_hd = -90
+    insert kdrG
+      gbar_kdrG = 0.009
+    insert kaG
+      gbar_kaG = 0.011
+    insert na3Mig
+      sh_na3Mig = 0
+      gbar_na3Mig = 0.014
+      ar2_na3Mig = 1
+    insert kslow
+      gbar_kslow = 0.002
+    insert kleck
+      gbar_kleck = 0.00004
+  }
+  forsec axonList {
+    Ra = 100
+    insert nap
+      gbar_nap = 0
+      sh_nap = 0
+    insert KM
+      gMbar_KM = 0.005
+      timesTau_KM = 2
+      plusTau_KM = 0
+    insert kdrG
+      gbar_kdrG = 0.025
+    insert kaG
+      gbar_kaG = 0.02
+    insert naxMig
+      sh_naxMig = 0
+      gbar_naxMig = 0.08
+    insert napIn
+      gbar_napIn = 0
+      htau_napIn = 15
+  }
+  soma {
+    Ra = 150
+    cm = 0.75
+    insert pas
+      g_pas = 0.00014286
+      e_pas = -70
+    insert car
+      PcaRbar_car = 4.4e-05
+    insert cat
+      PcaTbar_cat = 1e-05
+    insert CAl
+      PcalBar_CAl = 6.622e-05
+    insert CAnpq
+      PcanpqBar_CAnpq = 0.000154
+    insert cadyn
+      depth_cadyn = 1
+      taur_cadyn = 1
+      cainf_cadyn = 0.0001
+    insert KCT
+      gCTbar_KCT = 0.02
+    insert nap
+      gbar_nap = 0.0003
+      sh_nap = 0
+    insert ca2dyn
+      depth_ca2dyn = 1
+      taur_ca2dyn = 1000
+      ca2inf_ca2dyn = 0.0001
+    insert KAHP
+      gAHPbar_KAHP = 0.0004
+    insert KM
+      gMbar_KM = 0.0032
+      timesTau_KM = 2
+      plusTau_KM = 0
+    insert hd
+      ghdbar_hd = 5e-06
+      vhalfl_hd = -90
+    insert kdrG
+      gbar_kdrG = 0.005
+    insert kaG
+      gbar_kaG = 0.011
+    insert na3Mig
+      sh_na3Mig = 0
+      gbar_na3Mig = 0.05
+      ar2_na3Mig = 1
+    insert napIn
+      gbar_napIn = 0.0005
+      htau_napIn = 15
+    insert kslow
+      gbar_kslow = 0.012
+    insert kleck
+      gbar_kleck = 0.00004
+  }
+  ak1 {
+    Ra = 150
+    cm = 0.75
+    insert pas
+      g_pas = 1.4286e-05
+      e_pas = -70
+  }
+  ak2 {
+    Ra = 150
+    cm = 0.75
+    insert pas
+      g_pas = 1.4286e-05
+      e_pas = -70
+  }
+  ak3 {
+    Ra = 150
+    cm = 0.75
+    insert pas
+      g_pas = 1.4286e-05
+      e_pas = -70
+  }
+  ak4 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  ak5 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  ak6 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  ak7 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  ak8 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  ak9 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  ak10 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  aik1 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  aik2 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  aik3 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  aik4 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  aik5 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  aik6a {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  biophys_1()
+}
+proc biophys_1() {
+  aik6b {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  aik7 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  adk1 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  adk2 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  adk3 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  adk4 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  adk5a {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  adk5b {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  adk6 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  adk7 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  at11a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  at11b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  at12 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  at13a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  at13b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  at13c {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  at14a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  at14b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  at15 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  at16 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac7 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac8a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac8b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac9a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac9b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac10 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac11 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac12 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac13 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac14a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ac14b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  aq3 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  aq4a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  aq4b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  biophys_2()
+}
+proc biophys_2() {
+  aq5a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  aq5b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  aq6 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ax1a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ax1b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ax2a {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ax2b {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ax3 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ax4 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ax5 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  ax6 {
+    Ra = 150
+    cm = 0.937
+    insert pas
+      g_pas = 1.7857e-05
+      e_pas = -70
+  }
+  bs1 {
+    Ra = 150
+    cm = 0.75
+    insert pas
+      g_pas = 1.4286e-05
+      e_pas = -70
+  }
+  bs2 {
+    Ra = 150
+    cm = 0.75
+    insert pas
+      g_pas = 1.4286e-05
+      e_pas = -70
+  }
+  
+  AH {
+    Ra = 100
+    cm = 0.75
+    insert pas
+      g_pas = 1.4286e-05
+      e_pas = -70
+    insert KM
+      gMbar_KM = 0.0032
+      timesTau_KM = 2
+      plusTau_KM = 0
+    insert nap
+      gbar_nap = 0.0003
+      sh_nap = 0
+    insert naxMig
+      sh_naxMig = 0
+      gbar_naxMig = 0.05
+    insert kdrG
+      gbar_kdrG = 0.005
+    insert napIn
+      gbar_napIn = 0.0005
+      htau_napIn = 15
+    insert kslow
+      gbar_kslow = 0.012
+    insert kaG
+      gbar_kaG = 0.011
+  }
+  isa {
+    Ra = 100
+    cm = 0.75
+    insert pas
+      g_pas = 0.001
+      e_pas = -70
+    insert KM
+      gMbar_KM = 0.004
+      timesTau_KM = 2
+      plusTau_KM = 0
+    insert naxMig
+      sh_naxMig = -7
+      gbar_naxMig = 0.2
+    insert kdrG
+      gbar_kdrG = 0.03
+    insert nap
+      gbar_nap = 0.0005
+      sh_nap = 0
+    insert napIn
+      gbar_napIn = 0.0005
+      htau_napIn = 15
+    insert kslow
+      gbar_kslow = 0.008
+  }
+  isb {
+    Ra = 100
+    cm = 0.75
+    insert pas
+      g_pas = 0
+      e_pas = -70
+  }
+  m1a {
+    Ra = 100
+    cm = 0.1
+    insert pas
+      g_pas = 2e-06
+      e_pas = -70
+  }
+  m1b {
+    Ra = 100
+    cm = 0.1
+    insert pas
+      g_pas = 2e-06
+      e_pas = -70
+  }
+  r1 {
+    Ra = 100
+    cm = 0.75
+    insert pas
+      g_pas = 0.001
+      e_pas = -70
+  }
+  m2a {
+    Ra = 100
+    cm = 0.1
+    insert pas
+      g_pas = 2e-06
+      e_pas = -70
+  }
+  m2b {
+    Ra = 100
+    cm = 0.1
+    insert pas
+      g_pas = 2e-06
+      e_pas = -70
+  }
+  m2c {
+    Ra = 100
+    cm = 0.1
+    insert pas
+      g_pas = 2e-06
+      e_pas = -70
+  }
+  r2 {
+    Ra = 100
+    cm = 0.75
+    insert pas
+      g_pas = 0.001
+      e_pas = -70
+  }
+  m3a {
+    Ra = 100
+    cm = 0.1
+    insert pas
+      g_pas = 2e-06
+      e_pas = -70
+  }
+  m3b {
+    Ra = 100
+    cm = 0.1
+    insert pas
+      g_pas = 2e-06
+      e_pas = -70
+  }
+  r3 {
+    Ra = 100
+    cm = 0.75
+    insert pas
+      g_pas = 0.001
+      e_pas = -70
+  }
+  bo3 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+  bo4 {
+    Ra = 150
+    cm = 1.144
+    insert pas
+      g_pas = 2.1786e-05
+      e_pas = -70
+  }
+}
+objref basal1List_x, basal2List_x, apiList_x
+proc biophys_inhomo() {
+  // Path Length from root translated so most proximal end at 0
+  //   and normalized so most distal end at 1 ranges from 0 to 1
+  basal1List_x = new SubsetDomainIterator(basal1List, 0, 1, 1)
+  PcaTbar_cat_basal1List_x()
+  gbar_kaG_basal1List_x()
+  gbar_na3Mig_basal1List_x()
+  // Path Length from root translated so most proximal end at 0
+  //   and normalized so most distal end at 1 ranges from 0 to 1
+  basal2List_x = new SubsetDomainIterator(basal2List, 0, 1, 1)
+  PcaTbar_cat_basal2List_x()
+  gbar_kaG_basal2List_x()
+  gbar_na3Mig_basal2List_x()
+  // Path Length from root translated so most proximal end at 0
+  //   and normalized so most distal end at 1 ranges from 0 to 1
+  apiList_x = new SubsetDomainIterator(apiList, 0, 1, 1)
+  PcaTbar_cat_apiList_x()
+  gbar_kaG_apiList_x()
+  gbar_na3Mig_apiList_x()
+}
+proc PcaTbar_cat_basal1List_x() {local x, p, p0, p1, b, m
+  basal1List_x.update()
+  p0 = basal1List_x.p0  p1 = basal1List_x.p1
+  b = 6.0e-06 //1.0e-05
+  m = 1.2e-05 //1.5e-05
+  for basal1List_x.loop() {
+    x = basal1List_x.x  p = basal1List_x.p
+    PcaTbar_cat(x) = b + m*p/(p1 - p0)
+  }
+}
+proc gbar_kaG_basal1List_x() {local x, p, p0, p1, b, m
+  basal1List_x.update()
+  p0 = basal1List_x.p0  p1 = basal1List_x.p1
+  b = 0.02 //0.01
+  m = 0.02 //0.012
+  for basal1List_x.loop() {
+    x = basal1List_x.x  p = basal1List_x.p
+    gbar_kaG(x) = b + m*p/(p1 - p0)
+  }
+}
+proc gbar_na3Mig_basal1List_x() {local x, p, p0, p1, b, m
+  basal1List_x.update()
+  p0 = basal1List_x.p0  p1 = basal1List_x.p1
+  b = 0.01 //0.02
+  m = -0.005 //-0.012
+  for basal1List_x.loop() {
+    x = basal1List_x.x  p = basal1List_x.p
+    gbar_na3Mig(x) = b + m*p/(p1 - p0)
+  }
+}
+proc PcaTbar_cat_basal2List_x() {local x, p, p0, p1, b, m
+  basal2List_x.update()
+  p0 = basal2List_x.p0  p1 = basal2List_x.p1
+  b = 6.0e-06 //1.0e-05
+  m = 1.2e-05 //1.5e-05
+  for basal2List_x.loop() {
+    x = basal2List_x.x  p = basal2List_x.p
+    PcaTbar_cat(x) = b + m*p/(p1 - p0)
+  }
+}
+proc gbar_kaG_basal2List_x() {local x, p, p0, p1, b, m
+  basal2List_x.update()
+  p0 = basal2List_x.p0  p1 = basal2List_x.p1
+  b = 0.02 //0.01
+  m = 0.02 //0.012
+  for basal2List_x.loop() {
+    x = basal2List_x.x  p = basal2List_x.p
+    gbar_kaG(x) = b + m*p/(p1 - p0)
+  }
+}
+proc gbar_na3Mig_basal2List_x() {local x, p, p0, p1, b, m
+  basal2List_x.update()
+  p0 = basal2List_x.p0  p1 = basal2List_x.p1
+  b = 0.01 // 0.02
+  m = -0.005 //-0.012
+  for basal2List_x.loop() {
+    x = basal2List_x.x  p = basal2List_x.p
+    gbar_na3Mig(x) = b + m*p/(p1 - p0)
+  }
+}
+proc PcaTbar_cat_apiList_x() {local x, p, p0, p1, b, m
+  apiList_x.update()
+  p0 = apiList_x.p0  p1 = apiList_x.p1
+  b = 6.0e-06 //1.0e-05
+  m = 3.0e-05 //3.0e-05
+  for apiList_x.loop() {
+    x = apiList_x.x  p = apiList_x.p
+    PcaTbar_cat(x) = b + m*p/(p1 - p0)
+  }
+}
+proc gbar_kaG_apiList_x() {local x, p, p0, p1, b, m
+  apiList_x.update()
+  p0 = apiList_x.p0  p1 = apiList_x.p1
+  b = 0.02 //0.01
+  m = 0.03 //0.012
+  
+  for apiList_x.loop() {
+    x = apiList_x.x  p = apiList_x.p
+    gbar_kaG(x) = b + m*p/(p1 - p0)
+  }
+}
+proc gbar_na3Mig_apiList_x() {local x, p, p0, p1, b, m
+  apiList_x.update()
+  p0 = apiList_x.p0  p1 = apiList_x.p1
+  b = 0.01//0.02
+  m = -0.005//-0.012
+  for apiList_x.loop() {
+    x = apiList_x.x  p = apiList_x.p
+    gbar_na3Mig(x) = b + m*p/(p1 - p0)
+  }
+}
+access soma
+
+celldef()

@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model240960240960Model'
+description: 'CA1 pyramidal neuron: Persistent Na current mediates steep synaptic
+  amplification (Hsu et al 2018)'
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:240960
+  source_db: opensourcebrain
+  source_id: '240960'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/240960
+  download_url: https://github.com/OpenSourceBrain/240960.git
+  license: ''
+bsim:
+  entrypoint: src.model_240960_240960_model:Model240960240960Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

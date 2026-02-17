@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CerebellarThalamoCorticalBrainNetworkForSe2019877Model'
+description: '{"value": "A mass-model, large-scale network of the interactions between
+  cerebellum, thalamus and neocortex in the mouse during active whisking. The model
+  successfully predicts the correlation lags hi'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:2019877
+  source_db: modeldb
+  source_id: '2019877'
+  standard: other
+  original_url: https://modeldb.science/2019877
+  download_url: https://modeldb.science/download/2019877
+  license: ''
+bsim:
+  entrypoint: src.cerebellar_thalamo_cortical_brain_network_for_se_2019877_model:CerebellarThalamoCorticalBrainNetworkForSe2019877Model
+  init_kwargs:
+    model_path: data/2019877.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

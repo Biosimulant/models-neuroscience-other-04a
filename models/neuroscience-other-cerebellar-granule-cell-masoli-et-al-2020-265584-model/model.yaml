@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CerebellarGranuleCellMasoliEtAl2020265584Model'
+description: '{"value": "\"The cerebellar granule cells (GrCs) are classically described
+  as a homogeneous neuronal population discharging \r\nregularly without adaptation.
+  We show that GrCs in fact generate diverse'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:265584
+  source_db: modeldb
+  source_id: '265584'
+  standard: other
+  original_url: https://modeldb.science/265584
+  download_url: https://modeldb.science/download/265584
+  license: ''
+bsim:
+  entrypoint: src.cerebellar_granule_cell_masoli_et_al_2020_265584_model:CerebellarGranuleCellMasoliEtAl2020265584Model
+  init_kwargs:
+    model_path: data/265584.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

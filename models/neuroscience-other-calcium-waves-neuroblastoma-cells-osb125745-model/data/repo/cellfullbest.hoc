@@ -1,0 +1,112 @@
+/*
+Defines cell geometry and biophysics based on the model cell 
+used for the "best fit" results shown in Fig. 7 of Fink et al. 2000
+
+The biophysical parameters were extracted from paper and from the entry called
+NE_Full_best_ in Virtual Cell's MathModel Database
+(MathModel Database / math models / Shared Models / boris / NE_Full_best_).
+
+There are two reasons why these simulation results cannot be exactly identical 
+to those shown in Fig. 7 of Fink et al. 2000.
+
+1.  The morphometric data for this NEURON implementation 
+were obtained by measurements taken from an idraw tracing of the cell image.
+
+2.  Because of differences between the approaches used by NEURON and 
+Virtual Cell to represent geometry and to deal with spatial discretization,
+the distribution of spatially inhomogeneous variables in this NEURON 
+implementation is a qualitative approximation of the distribution 
+specified in NE_Full_best_ 
+
+Finally, this implementation uses a "thermal" color map rather than the 
+"rainbow" color map used in the paper.
+
+That said, the NEURON implementation reproduces the essential qualitative 
+features of the simulations presented in Fink et al. 2000, 
+and the quantitative differences between the time course of cai in soma 
+and neurite and the graphs shown in Fig. 7 under "Best Fit" are small.
+*/
+
+create soma[2], neurite, cone
+access soma[0]
+
+connect soma[1](0), soma[0](1)
+connect neurite(0), soma[1](1)
+connect cone(0), neurite(1)
+
+SCALE = 164.4/67.6 // um/idraw distance units
+
+soma[0] {
+  pt3dclear()
+  pt3dadd(0,0,0, 13.6*SCALE)
+  pt3dadd(13.6*SCALE,0,0, 13.6*SCALE)
+}
+
+soma[1] {
+  pt3dclear()
+  pt3dadd(0*SCALE, 0, 0, 5.6*SCALE)
+  pt3dadd(3.1*SCALE, 0, 0, 2.3*SCALE)
+}
+
+neurite {
+  pt3dclear()
+  pt3dadd(3.1*SCALE, 0, 0, 2.3*SCALE)
+  pt3dadd(42.6*SCALE, 0, 0, 1.1*SCALE)
+  pt3dadd(44.9*SCALE, 0, 0, 2.5*SCALE)
+}
+
+cone {
+  pt3dclear()
+  pt3dadd(44.9*SCALE, 0, 0, 2.5*SCALE)
+  pt3dadd(46.9*SCALE, 0, 0, 4.6*SCALE)
+  pt3dadd(48.8*SCALE, 0, 0, 3.6*SCALE)
+  pt3dadd(50.2*SCALE, 0, 0, 1.8*SCALE)
+}
+
+// finally the biophysical specification
+
+forall insert ip3cum
+forall insert cdp // includes SERCA
+forall insert bkr
+
+// densities as per Table 1
+
+soma[0] {
+  nseg = 3
+  for (x,0) alpha_cdp(x) = 1.55 
+  // 1 1.05 1.11 1.16 (soma[1])
+  beta_bkr(1/6) = 1.0
+  beta_bkr(1/2) = 1.1
+  beta_bkr(5/6) = 1.2
+}
+
+soma[1] {
+  alpha_cdp = (1.55+1)/2
+  beta_bkr = (1.2 + 2.46)/2
+}
+
+neurite {
+  nseg = 5
+  alpha_cdp(0.1) = 1.0
+  alpha_cdp(0.3) = 0.76
+  alpha_cdp(0.5) = 0.76
+  alpha_cdp(0.7) = 0.75
+  alpha_cdp(0.9) = 0.75
+  beta_bkr(0.1) = 2.46
+  beta_bkr(0.3) = 2.46
+  beta_bkr(0.5) = 1.8
+  beta_bkr(0.7) = 1.7
+  beta_bkr(0.9) = 1.6
+}
+
+cone {
+  alpha_cdp = 0.75
+  beta_bkr = 0.95
+}
+
+// discretization adjustments to reduce spatial error
+
+soma[0] nseg*=3
+soma[1] nseg*=3
+neurite nseg*=5
+cone nseg*=3

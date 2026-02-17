@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CerebellarModelForTheOptokineticResponseKi267334Model'
+description: '{"value": "We consider a cerebellar spiking neural network for the optokinetic
+  response (OKR). Individual granule (GR) cells exhibit diverse spiking patterns which
+  are in-phase, anti-phase, or complex'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:267334
+  source_db: modeldb
+  source_id: '267334'
+  standard: other
+  original_url: https://modeldb.science/267334
+  download_url: https://modeldb.science/download/267334
+  license: ''
+bsim:
+  entrypoint: src.cerebellar_model_for_the_optokinetic_response_ki_267334_model:CerebellarModelForTheOptokineticResponseKi267334Model
+  init_kwargs:
+    model_path: data/267334.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

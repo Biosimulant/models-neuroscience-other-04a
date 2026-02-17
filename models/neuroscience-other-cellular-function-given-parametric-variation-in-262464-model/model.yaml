@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CellularFunctionGivenParametricVariationIn262464Model'
+description: '{"value": "\"How is reliable physiological function maintained in cells
+  despite considerable variability in the values of key parameters of multiple interacting
+  processes that govern that function? He'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:262464
+  source_db: modeldb
+  source_id: '262464'
+  standard: other
+  original_url: https://modeldb.science/262464
+  download_url: https://modeldb.science/download/262464
+  license: ''
+bsim:
+  entrypoint: src.cellular_function_given_parametric_variation_in_262464_model:CellularFunctionGivenParametricVariationIn262464Model
+  init_kwargs:
+    model_path: data/262464.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

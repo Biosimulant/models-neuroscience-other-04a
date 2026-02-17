@@ -1,0 +1,43 @@
+<html><pre>
+This model reproduces the cardiac action potentials and pacemaker
+activity of a mammalian cell of the sinoatrial node.
+
+It is based on the paper by :
+
+DiFrancesco D & Noble D (1985) A model of cardiac electrical activity
+incorporating ionic pumps and concentration changes.
+Phil. Trans. R. Soc. Lond. B 307:353-398
+[<a href="http://www.ncbi.nlm.nih.gov/pubmed/2578676" target='url'
+>PubMed</a>]
+
+implemented and modified for Neuron by Francois E. Gannier
+	from University of Tours - FRANCE
+	Physiologie des Cellules Cardiaques et Vasculaires
+	email address: francois.gannier@univ-tours.fr
+
+It was the first model to incorporate the external and internal
+concentration changes and has been very influential in directing
+modeling efforts.
+
+To run the simulation auto-launch the model from modeldb or download
+and extract the archive and then compile the mod files under:
+
+unix/linux:
+-----------
+type nrnivmodl in the DiFrancescoNoble1985 folder and then
+nrngui mosinit.hoc
+
+mswin:
+------
+run mknrndll and then double click on mosinit.hoc
+
+MAC OS X:
+--------
+Drag and drop the DiFrancescoNoble1985 folder onto the mknrndll icon.  
+Drag and drop the mosinit.hoc file onto the nrngui icon.
+
+Once the simulation starts it recreates the Fig. 6 of the original
+paper:
+
+<img src="./fig6.jpg"" alt="Figure 6">
+</pre></html>

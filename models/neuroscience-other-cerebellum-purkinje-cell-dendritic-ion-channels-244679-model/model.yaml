@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CerebellumPurkinjeCellDendriticIonChannels244679Model'
+description: '{"value": "\"In cerebellar Purkinje neuron (PN) dendrites, the transient\r\ndepolarisation
+  associated with a climbing fibre (CF) EPSP\r\nactivates voltage-gated Ca2+ channels
+  (VGCCs), voltage-gated K+'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:244679
+  source_db: modeldb
+  source_id: '244679'
+  standard: other
+  original_url: https://modeldb.science/244679
+  download_url: https://modeldb.science/download/244679
+  license: ''
+bsim:
+  entrypoint: src.cerebellum_purkinje_cell_dendritic_ion_channels_244679_model:CerebellumPurkinjeCellDendriticIonChannels244679Model
+  init_kwargs:
+    model_path: data/244679.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

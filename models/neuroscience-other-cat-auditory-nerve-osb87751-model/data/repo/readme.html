@@ -1,0 +1,66 @@
+<html><head><title>Zilany and Bruce (JASA 2006) Auditory Nerve Model code</title>
+
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+<link rel="SHORTCUT ICON" href="http://www.ece.mcmaster.ca/%7Eibruce/images/shell.ico"></head>
+<body>
+
+<h1>Source code for the Zilany and Bruce (JASA 2006, 2007) Cat Auditory Nerve Model</h1>
+
+<p>This is <span class="style1">Version 2</span> of the public distribution of the
+code for the auditory periphery model of:</p>
+
+<blockquote>
+	<a href="http://www.ece.mcmaster.ca/%7Eibruce/papers/papers.htm#PeripheryModels" target="_blank">Zilany, M. S.
+    A. and Bruce, I. C. (<b>2006</b>). "Modeling auditory-nerve responses for high
+    sound pressure levels in the normal and impaired auditory periphery," <i>Journal
+    of the Acoustical Society of America</i> <b>120</b>(3):1446&#8211;1466.</a></blockquote>
+
+<p class="style1">and</p>
+
+	<blockquote>
+	<a href="http://www.ece.mcmaster.ca/%7Eibruce/papers/papers.htm#PeripheryModels" target="_blank">Zilany, M. S.
+    A. and Bruce, I. C. (<b>2007</b>). "Representation of the vowel /<font face="Symbol">e</font>/ in normal and impaired
+	auditory nerve fibers: Model predictions of responses in cats," <i>Journal
+    of the Acoustical Society of America</i> <b>122</b>(1):402&#8211;417.</a></blockquote>
+
+<p><b>Please cite these papers if you publish any research results
+  obtained with this code or any modified versions of this code.</b></p>
+
+<p class="style1"><u>The highlights of the improvements in version 2 are:-</u></p>
+<ul>
+  <li><span class="style1">  Model now runs at sampling rates of 100, 200 and 500 kHz:</span><br>
+    The major improvement in this version of the code is that it is able<br>
+    run at 100 kHz for model fibers with characteristic frequencies (CFs)<br>
+    up to 20 kHz.  To model fibers up to CFs of 40 kHz, a minimum<br>
+    sampling rate of 200 kHz should be used.  The flexibility in sampling<br>
+    rate is made possible by some changes to the middle-ear filter and<br>
+    spike generator code, as described in <a href="http://www.ece.mcmaster.ca/%7Eibruce/zbcatmodel/readme.txt">readme.txt</a>.</li>
+  <li><span class="style1">  Improved speed and reduced memory consumption:</span><br>
+    Running the model at a lower sampling rate produces a major speed<br>
+    increase and reduction in memory usage.  In addition, the new spike<br>
+    generator code is substantially faster than the old method.  We have<br>
+    also found some savings that can be made in memory allocation.<br>
+  </li>
+  </ul>
+<p>The code is archived in the following formats:</p>
+
+<ul>
+  <li> A PKZIP-compatible .zip file: <a href="http://www.ece.mcmaster.ca/%7Eibruce/zbcatmodel/zbcatmodel2007v2.zip">zbcatmodel2007v2.zip</a></li>
+  <li> A .tar.gz file: <a href="http://www.ece.mcmaster.ca/%7Eibruce/zbcatmodel/zbcatmodel2007v2.tar.gz">zbcatmodel2007v2.tar.gz</a> </li>
+</ul>
+
+<p>The files in both of these archives are identical and are suitable for compiling
+as a MEX file in Matlab running on either Windows or Unix. See <a href="http://www.ece.mcmaster.ca/%7Eibruce/zbcatmodel/readme.txt">readme.txt</a>  for
+instructions regarding platform-dependent compiling issues. (This readme
+file is also included in the .zip and .tar.gz archives.)</p>
+<p><a href="http://www.ece.mcmaster.ca/%7Eibruce/">
+<img src="readme_files/Home" alt="Return to Home" border="0" height="36" width="36"></a><a href="http://www.ece.mcmaster.ca/%7Eibruce/">Back to Ian's Home Page</a> </p>
+<hr>
+<p><i>Created by Ian Bruce &lt;</i>ibruce@ieee.org&gt;<i> - last modified
+Thursday, December 20, 2007</i></p>
+
+</body></html>

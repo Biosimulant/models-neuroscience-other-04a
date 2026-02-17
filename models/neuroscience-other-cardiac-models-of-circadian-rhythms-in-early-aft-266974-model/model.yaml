@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CardiacModelsOfCircadianRhythmsInEarlyAft266974Model'
+description: '{"value": "We fit a simplified Luo-Rudy model to voltage-clamp data
+  showing a circadian rhythm in L-type calcium conductance. Simulations of the model
+  (single-cell and 2-D spatial versions) suggest th'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:266974
+  source_db: modeldb
+  source_id: '266974'
+  standard: other
+  original_url: https://modeldb.science/266974
+  download_url: https://modeldb.science/download/266974
+  license: ''
+bsim:
+  entrypoint: src.cardiac_models_of_circadian_rhythms_in_early_aft_266974_model:CardiacModelsOfCircadianRhythmsInEarlyAft266974Model
+  init_kwargs:
+    model_path: data/266974.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

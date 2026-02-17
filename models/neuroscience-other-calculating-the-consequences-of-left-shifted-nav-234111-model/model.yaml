@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CalculatingTheConsequencesOfLeftShiftedNav234111Model'
+description: '{"value": "\"Two features common to diverse sick excitable cells are
+  \u201cleaky\u201d Nav channels and bleb damage-damaged membranes. The bleb damage,
+  we have argued, causes a channel kinetics based '
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:234111
+  source_db: modeldb
+  source_id: '234111'
+  standard: other
+  original_url: https://modeldb.science/234111
+  download_url: https://modeldb.science/download/234111
+  license: ''
+bsim:
+  entrypoint: src.calculating_the_consequences_of_left_shifted_nav_234111_model:CalculatingTheConsequencesOfLeftShiftedNav234111Model
+  init_kwargs:
+    model_path: data/234111.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

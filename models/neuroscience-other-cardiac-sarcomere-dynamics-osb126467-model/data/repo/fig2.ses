@@ -1,0 +1,18 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[6]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,500,-200,1700)
+scene_vector_[2] = save_window_
+{save_window_.view(0, -200, 500, 1900, 702, 336, 300.6, 200.8)}
+graphList[1].append(save_window_)
+save_window_.save_name("graphList[1].")
+save_window_.addvar("soma.Qpump_Cont( 0.5 )", 2, 1, 0.554491, 0.868626, 2)
+save_window_.addvar("soma.Qrel_Cont( 0.5 )", 3, 1, 0.548503, 0.859661, 2)
+save_window_.addexpr("soma.Qrel_Cont( 0.5 ) - soma.Qpump_Cont(0.5)", 1, 1, 0.294012, 1.05827, 2)
+}
+{WindowMenu[0].ses_gid(1, 1, 1, "Fig2")}
+objectvar scene_vector_[1]
+{doNotify()}

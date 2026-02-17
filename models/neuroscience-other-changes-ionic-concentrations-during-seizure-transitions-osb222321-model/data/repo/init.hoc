@@ -1,0 +1,282 @@
+load_file("nrngui.hoc")
+
+
+//Compartments definition
+create soma, psoma
+create dendrite1, pdendrite1
+create dendrite2, pdendrite2
+//Cells creation
+objectvar inter, pyram
+inter = new SectionList()
+pyram = new SectionList()
+forall inter.append()
+forsec "p" pyram.append()
+forsec "p" inter.remove()
+//Segments connection
+connect dendrite1(1), soma(0)
+connect soma(1), dendrite2(0)
+connect pdendrite1(1), psoma(0)
+connect psoma(1), pdendrite2(0)
+
+
+//Membrane mechanisms
+forall {
+     insert nakpump {km_k_nakpump=2
+		     km_na_nakpump=10}
+     Ra=100 				
+     cm=1   				
+}
+forsec inter {
+     insert leak
+     insert accum {setvolout_accum=0.15
+		   setvolpyram_accum=1}
+}
+forsec pyram {
+     insert kcc2
+     insert leak
+     insert getconc
+     insert cal     {gcal_cal=0.00015}
+     insert kahp    {gkahp_kahp=0.0001}
+     insert kc      {gkc_kc=0.196}     
+}
+soma {
+     nseg=1
+     L=20				
+     diam=15				
+     insert inas  {gna_inas=0.025}      
+     insert ikdrs {gkdr_ikdrs=0.05}     
+}
+dendrite1 {
+     nseg=1
+     L=300				
+     diam=1.9			
+     insert inad   {gna_inad=0.0095}
+     insert ikdrd  {gkdr_ikdrd=0.012}
+}
+dendrite2 {
+     nseg=1
+     L=400
+     diam=1.9
+     insert inad   {gna_inad=0.0095} 
+     insert ikdrd  {gkdr_ikdrd=0.012}
+}   
+psoma {
+     nseg=1
+     L=20				
+     diam=15				
+     insert pnas  {gna_pnas=0.025}      
+     insert pkdrs {gkdr_pkdrs=0.05}     
+     insert nap   {gna_nap=0.0002}      
+     insert km    {gkm_km=0.0035}       
+}
+pdendrite1 {
+     nseg=1
+     L=300				
+     diam=1.9				
+     insert pnad  {gna_pnad=0.0045}     
+     insert pkdrd {gkdr_pkdrd=0.00185}  
+}
+pdendrite2 {				
+     nseg=1
+     L=150				
+     diam=6.2				
+     insert pnad  {gna_pnad=0.0045}     
+     insert pkdrd {gkdr_pkdrd=0.00185}  
+}
+
+
+//Connecting pointers definition
+proc connectpointers() {
+forsec pyram {
+   for (x) if (x!=0||x!=1) {
+	setpointer soma.ikp_accum(x),     psoma.ik(x)
+	setpointer soma.inap_accum(x),    psoma.ina(x)
+	setpointer soma.icap_accum(x),    psoma.ica(x)
+	setpointer soma.iclp_accum(x),    psoma.icl(x)
+	setpointer soma.diamp_accum(x),   psoma.diam(x)
+	setpointer psoma.kop_getconc(x),  soma.ko(x)
+	setpointer psoma.naop_getconc(x), soma.nao(x)
+	setpointer psoma.caop_getconc(x), soma.cao(x)
+	setpointer psoma.clop_getconc(x), soma.clo(x)
+	setpointer psoma.kip_getconc(x),  soma.kp_accum(x)
+	setpointer psoma.naip_getconc(x), soma.nap_accum(x)
+	setpointer psoma.caip_getconc(x), soma.cap_accum(x)
+	setpointer psoma.clip_getconc(x), soma.clp_accum(x)
+
+	setpointer dendrite1.ikp_accum(x),     pdendrite1.ik(x)
+	setpointer dendrite1.inap_accum(x),    pdendrite1.ina(x)
+	setpointer dendrite1.icap_accum(x),    pdendrite1.ica(x)
+	setpointer dendrite1.iclp_accum(x),    pdendrite1.icl(x)
+	setpointer dendrite1.diamp_accum(x),   pdendrite1.diam(x)
+	setpointer pdendrite1.kop_getconc(x),  dendrite1.ko(x)
+	setpointer pdendrite1.naop_getconc(x), dendrite1.nao(x)
+	setpointer pdendrite1.caop_getconc(x), dendrite1.cao(x)
+	setpointer pdendrite1.clop_getconc(x), dendrite1.clo(x)
+	setpointer pdendrite1.kip_getconc(x),  dendrite1.kp_accum(x)
+	setpointer pdendrite1.naip_getconc(x), dendrite1.nap_accum(x)
+	setpointer pdendrite1.caip_getconc(x), dendrite1.cap_accum(x)
+	setpointer pdendrite1.clip_getconc(x), dendrite1.clp_accum(x)
+	
+	setpointer dendrite2.ikp_accum(x),     pdendrite2.ik(x)
+	setpointer dendrite2.inap_accum(x),    pdendrite2.ina(x)
+	setpointer dendrite2.icap_accum(x),    pdendrite2.ica(x)
+	setpointer dendrite2.iclp_accum(x),    pdendrite2.icl(x)
+	setpointer dendrite2.diamp_accum(x),   pdendrite2.diam(x)
+	setpointer pdendrite2.kop_getconc(x),  dendrite2.ko(x)
+	setpointer pdendrite2.naop_getconc(x), dendrite2.nao(x)
+	setpointer pdendrite2.caop_getconc(x), dendrite2.cao(x)
+	setpointer pdendrite2.clop_getconc(x), dendrite2.clo(x)
+	setpointer pdendrite2.kip_getconc(x),  dendrite2.kp_accum(x)
+	setpointer pdendrite2.naip_getconc(x), dendrite2.nap_accum(x)
+	setpointer pdendrite2.caip_getconc(x), dendrite2.cap_accum(x)
+	setpointer pdendrite2.clip_getconc(x), dendrite2.clp_accum(x)
+  }
+ }
+}
+connectpointers()
+
+
+//Temperature, initial voltage
+celsius = 32        
+v_init = -70        
+
+
+//Ion concentrations
+//Extracellular concentrations
+ko0_k_ion = 3.5      
+nao0_na_ion = 140    
+cao0_ca_ion = 2      
+clo0_cl_ion = 135    
+//Concentrations in inter
+ki0_k_ion = 135     
+nai0_na_ion = 10    
+cai0_ca_ion = 5e-5  
+cli0_cl_ion = 3.5   
+//Concentrations in pyram
+setkp_accum  = 135  
+setnap_accum = 10   
+setcap_accum = 5e-5 
+setclp_accum = 3.5  
+
+
+//Stability with no stimulation - pyram
+proc pyramstab() {
+	access psoma
+	rm=$1
+	init()
+	vrest = -70
+	dr_na = vrest-ena
+	dr_k = vrest-ek
+
+	eqinit()
+	depvar gna, gk
+	eqn gk:: gk = 1/rm - gna
+	eqn gna:: gna = (-dr_k*(3/2)*gk)/dr_na
+	solve()
+	forall gk_leak=gk
+	forall gna_leak=gna
+
+	p_k=(1+km_k_nakpump/ko)^(-2)
+	p_na=(1+km_na_nakpump/nai)^(-3)
+	p_tot=p_k*p_na
+	forall imax_nakpump = (-gna_leak*dr_na)/(3*p_tot)
+}
+//Stability with no stimulation - inter
+proc interstab() {
+	access soma
+	rm=$1
+	init()
+	vrest = -70
+	dr_na = vrest-ena
+	dr_k = vrest-ek
+
+	eqinit()
+	depvar gna, gk
+	eqn gk:: gk = 1/rm - gna
+	eqn gna:: gna = (-dr_k*(3/2)*gk)/dr_na
+	solve()
+	forall gk_leak=gk
+	forall gna_leak=gna
+
+	p_k=(1+km_k_nakpump/ko)^(-2)
+	p_na=(1+km_na_nakpump/nai)^(-3)
+	p_tot=p_k*p_na
+	forall imax_nakpump = (-gna_leak*dr_na)/(3*p_tot)
+}
+
+
+//Initialization procedure
+proc init() {
+	finitialize()
+	//Init inter
+	forsec inter {
+		v=v_init
+	}
+	//Init pyram
+	forsec pyram {
+		v=v_init
+		ki=setkp_accum
+		nai=setnap_accum
+		cai=setcap_accum
+		cli=setclp_accum
+	}
+	fcurrent()
+}
+
+
+//Synapses
+
+//Pyram
+
+//Synapse trigger
+objref pp
+pp = new NetStim()
+pp.number = 1000000
+pp.interval = 5
+pp.noise = 1	
+pp.start = 0	
+
+//Inhibitory synapse (GABA_A)
+objref ncl
+ncl = new List()
+objref syn
+psoma syn = new is(0.5)
+setpointer syn.e, psoma.ecl(0.5)
+syn.tau2 = 6
+syn.tau1 = 2
+soma ncl.append(new NetCon(&v(1),syn,-10,0,0.003))
+
+//Excitatory synapse
+objref syn1
+psoma syn1 = new Exp2Syn(0.5)
+syn1.e = 0			
+syn1.tau2 = 6
+syn1.tau1 = 2					   
+objref pinput
+pinput = new NetCon(pp,syn1,0,0,0.002) 
+
+//Inter
+
+//Excitatory feedback of the pyramidal cell to the interneuron
+objref ncl2
+ncl2 = new List()
+objref syn2
+soma syn2 = new Exp2Syn(0.5)
+syn2.e = 0			
+syn2.tau2 = 6					   
+syn2.tau1 = 2
+psoma ncl2.append(new NetCon(&v(1),syn2,0,0,0.001))
+
+
+//Times
+tstart = 0
+tstop = 60000
+
+
+//Call to the main procedures
+interstab(5e3)
+pyramstab(5e3)
+
+
+//Control and graphics
+xopen("MySession.ses")

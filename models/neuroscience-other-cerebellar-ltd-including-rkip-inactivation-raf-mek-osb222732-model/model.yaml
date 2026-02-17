@@ -1,0 +1,34 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model222732222732Model'
+description: A model of cerebellar LTD including RKIP inactivation of Raf and MEK
+  (Hepburn et al 2017)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:222732
+  source_db: opensourcebrain
+  source_id: '222732'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/222732
+  download_url: https://github.com/OpenSourceBrain/222732.git
+  license: ''
+bsim:
+  entrypoint: src.model_222732_222732_model:Model222732222732Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

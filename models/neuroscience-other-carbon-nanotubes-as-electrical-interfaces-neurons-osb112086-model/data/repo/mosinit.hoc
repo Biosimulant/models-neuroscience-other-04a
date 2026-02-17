@@ -1,0 +1,43 @@
+load_file("nrngui.hoc")                     // Loading of the standard GUI controls...
+
+proc metal() {
+xopen("metal_electrode.ses")
+}
+
+proc cntel() {
+xopen("cnt_electrode_hp1.ses")
+}
+
+proc cntel2() {
+xopen("cnt_electrode_hp2.ses")
+}
+
+xpanel("CNT - Metal")
+xradiobutton("a. Metal electrode","restart(\"metal()\")")
+xradiobutton("b. CNT electrode","restart(\"cntel()\")")
+xradiobutton("c. CNT electrode (hp2)","restart(\"cntel2()\")")
+xpanel(5,100)
+
+// use Print and Window Manager to close any windows for a restart
+
+pwmcnt = PWManager[0].count // the initial gui should not be dismissed
+
+proc restart() {local i
+	objref graphItem, save_window_
+	for i=0, n_graph_lists-1 {
+		graphList[i].remove_all()
+	}
+	flush_list.remove_all()
+	fast_flush_list.remove_all()
+	doNotify()
+
+	for (i= PWManager[0].count-1; i >= pwmcnt; i -= 1) {
+		print "closing ", i, ", PWManager[0].count = ",PWManager[0].count
+        	if (i<PWManager[0].count) { // lin cir causes jump by 2 when closed
+		  PWManager[0].close(i)
+		}
+		doNotify()
+	}
+	
+	execute($s1)
+}

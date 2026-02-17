@@ -1,0 +1,11 @@
+// Generates as many netstim as there are stimulation pulses 
+
+objref nsStim[stim_no]
+
+for ii=1,stim_no {
+    nsStim[ii-1] = new NetStim()
+	nsStim[ii-1].interval = stim_inter
+	nsStim[ii-1].number = 1
+	nsStim[ii-1].start = stimStart+(ii-1)*stim_inter
+	nsStim[ii-1].noise = stim_noise
+}

@@ -1,0 +1,51 @@
+<h1 id="model-of-the-cerebellar-granular-network">Model of the cerebellar granular network</h1>
+<p>This is a physiologically detailed model of the cerebellar granular network, used for</p>
+<p>Sudhakar, S.K., Hong, S., Raikov, I., Publio, R., Lang, C., Close, T., Guo, D., Negrello, M., De Schutter, E., 2017. Spatiotemporal network coding of physiological mossy fiber inputs by the cerebellar granular layer. PLOS Comput Biol 13, e1005754. doi:<a href="http://dx.doi.org/10.1371/journal.pcbi.1005754">10.1371/journal.pcbi.1005754</a><p/>
+
+<p>This model runs on the <a href="https://www.neuron.yale.edu/neuron/">NEURON</a> simulation platform with an <a href="https://www.neuron.yale.edu/neuron/static/papers/jnm/parallelizing_models_jnm2008.pdf">MPI-based parallel running feature</a> enabled.</p>
+<h2 id="how-to-run-the-model">How to run the model</h2>
+<p>Steps to run a simulation using our model are:</p>
+<ol style="list-style-type: decimal">
+<li><a href="#brep-installation">Install BREP</a>,</li>
+<li><a href="#preparation-of-a-parameter-file-and-mossy-fiber-spike-times">Prepare a parameter file and mossy fiber spike times</a>,</li>
+<li><a href="#construction-and-running-of-a-simulation">Construct and run a simulation</a>.</li>
+</ol>
+<p>Below are details about each step.</p>
+<h3 id="brep-installation">BREP installation</h3>
+<p>BREP is a program to compute the connectivity between parallel fibers and Golgi cells. Compiling this requires the latest version of <a href="https://www.call-cc.org">chicken-scheme</a>, working <a href="https://en.wikipedia.org/wiki/F2c">f2c</a> libraries, and MPI environment.</p>
+<p>After installing these, go to <a href="./brep">brep</a> directory, modify variables in <a href="./brep/brep-deploy-linux.sh">brep-deploy-linux.sh</a>, and run it to install BREP.</p>
+<h3 id="preparation-of-a-parameter-file-and-mossy-fiber-spike-times">Preparation of a parameter file and mossy fiber spike times</h3>
+<p>The simulation will look for a directory that contains a parameter files and also files about mossy fibers. We prepared an example in <a href="./params/set3005">params/set3005</a>, which will generate a result in Figure 2 of the paper (&quot;On patch network oscillation&quot;). In this directory, you will find:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="./params/set3005/Parameters.hoc">Parameters.hoc</a>, which has various parameters including run time, time step, density of neurons, etc.,</p></li>
+<li><p><a href="./params/set3005/MFCr.dat">MFCr.dat</a>, which has coordinates of mossy fibers,</p></li>
+<li><p><a href="./params/set3005/GLpoints.dat">GLpoints.dat</a>, which has coordinates of mossy fiber rosettes,</p></li>
+<li><p><a href="./params/set3005/activeMfibres1.dat">activeMfibres1.dat</a>, which has a list of active (firing) mossy fibers,</p></li>
+<li><p><a href="./params/set3005/l.dat">l.dat</a>, which lists the number of spikes for each active mossy fiber,</p></li>
+<li><p><a href="./params/set3005/datasp.dat">datasp.dat</a>, which contains spike times of active mossy fibers in milliseconds.</p></li>
+</ol>
+<p>For generation of *.dat files, please see example MATLAB scripts in <a href="./mossy_fiber_utils">mossy_fiber_utils</a>.</p>
+<h3 id="construction-and-running-of-a-simulation">Construction and running of a simulation</h3>
+<p>A simulation is constructed and run in four steps.</p>
+<ol style="list-style-type: decimal">
+<li>All of <a href="./mechanisms">mechanism (*.mod) files</a> are compiled,</li>
+<li>Cell populations are generarted,</li>
+<li>Connectivity between Golgi cells and parallel fibers is computed,</li>
+<li>The simulation is launched.</li>
+</ol>
+<p>The first two and last steps are handled by <a href="./main.py">main.py</a>, and the third step requires installed BREP. For more details, take a look at an example batch script to run all the steps, <a href="./batch_slurm_start.sh">batch_slurm_start.sh</a>, which first compiles mod files and then calls <a href="./population_init.slurm">population_init.slurm</a>, <a href="./pf_goc_projection.slurm">pf_goc_projection.slurm</a>, and <a href="./simulation_job.slurm">simulation_job.slurm</a> in order for step 2, 3, and 4, respectively. These scripts are written for cluster computers managed by <a href="https://slurm.schedmd.com">SLURM system</a>, and would need to be changed accordingly in different systems.</p>
+<hr />
+<p><em>Written by Sungho Hong, Computational Neurosience Unit, Okinawa Institute of Science and Technology, Japan</em></p>
+<p><em>September 16, 2017</em></p>
+
+<b> Changelog </b>
+<ul>
+  <li>20220924: Update MOD files to avoid declaring variables and functions with the same name. See https://github.com/neuronsimulator/nrn/pull/1992</li>
+</ul>
+
+<p><em>Correspondence: <script type="text/javascript">
+<!--
+h='&#x6f;&#x69;&#x73;&#116;&#46;&#106;&#112;';a='&#64;';n='&#x65;&#114;&#x69;&#x6b;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x45;&#114;&#x69;&#x6b;&#32;&#68;&#x65;&#32;&#x53;&#x63;&#104;&#x75;&#116;&#116;&#x65;&#114;'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x45;&#114;&#x69;&#x6b;&#32;&#68;&#x65;&#32;&#x53;&#x63;&#104;&#x75;&#116;&#116;&#x65;&#114;&#32;&#40;&#x65;&#114;&#x69;&#x6b;&#32;&#x61;&#116;&#32;&#x6f;&#x69;&#x73;&#116;&#32;&#100;&#x6f;&#116;&#32;&#106;&#112;&#x29;</noscript>, Computational Neurosience Unit, Okinawa Institute of Science and Technology, Japan</em></p>

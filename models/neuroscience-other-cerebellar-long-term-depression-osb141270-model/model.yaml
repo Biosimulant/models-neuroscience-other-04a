@@ -1,0 +1,33 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model141270141270Model'
+description: Cerebellar long-term depression (LTD) (Antunes and De Schutter 2012)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:141270
+  source_db: opensourcebrain
+  source_id: '141270'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/141270
+  download_url: https://github.com/OpenSourceBrain/141270.git
+  license: ''
+bsim:
+  entrypoint: src.model_141270_141270_model:Model141270141270Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

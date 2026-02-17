@@ -1,0 +1,208 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[8]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(16,62,1)}
+
+//Begin PointProcessGroupManager
+{
+load_file("pointgrp.hoc")
+}
+{
+ocbox_ = new PointProcessGroupManager(0)
+}
+{object_push(ocbox_)}
+{
+ms = new MechanismStandard("IClamp")
+ms.set("del", 20, 0)
+ms.set("dur", 5, 0)
+ms.set("amp", 0, 0)
+mnews("IClamp", ms)
+select(0)
+execute("soma ocbox_.move(0.5)")
+ms = new MechanismStandard("dsyn")
+ms.set("gmax", 1.8, 0)
+ms.set("tau1", 23, 0)
+ms.set("tau2", 2, 0)
+ms.set("del", 20, 0)
+ms.set("Tspike", 10, 0)
+ms.set("Nspike", 1, 0)
+mnews("dsyn", ms)
+select(1)
+execute("dend[56] ocbox_.move(0.0882353)")
+ms = new MechanismStandard("nmda_m")
+ms.set("gmax", 14, 0)
+ms.set("e", 0, 0)
+ms.set("gw", 14, 0)
+ms.set("del", 30, 0)
+ms.set("Tspike", 10, 0)
+ms.set("Nspike", 1, 0)
+mnews("nmda_m", ms)
+select(2)
+execute("apic[24] ocbox_.move(0.7)")
+ms = new MechanismStandard("nmda_m")
+ms.set("gmax", 14, 0)
+ms.set("e", 0, 0)
+ms.set("gw", 14, 0)
+ms.set("del", 30, 0)
+ms.set("Tspike", 10, 0)
+ms.set("Nspike", 1, 0)
+mnews("nmda_m", ms)
+select(3)
+execute("apic[24] ocbox_.move(0.2)")
+ms = new MechanismStandard("nmda_m")
+ms.set("gmax", 14, 0)
+ms.set("e", 0, 0)
+ms.set("gw", 14, 0)
+ms.set("del", 30, 0)
+ms.set("Tspike", 10, 0)
+ms.set("Nspike", 1, 0)
+mnews("nmda_m", ms)
+select(4)
+execute("apic[24] ocbox_.move(0.1)")
+}
+{object_pop() doNotify()}
+{
+ocbox_ = ocbox_.v1
+ocbox_.map("PointProcessGroupManager", 405, 74, 1180.8, 567.9)
+}
+objref ocbox_
+//End PointProcessGroupManager
+
+
+//Begin LinearCircuit[0]
+{
+load_file("lincir.hoc", "LinearCircuit")
+}
+{
+ocbox_ = new LinearCircuit(1)
+}
+{object_push(ocbox_)}
+{version(2)}
+{mkelm(8, 150, 40, 2, 0)}
+{mklabel(0, "soma(0.5)", 15.833, -11.7611)}
+{sel.extra_info.set("soma", 0.5) sel.extra_info.name(sel)}
+{mkelm(1, 130, 120, 2, 0)}
+15
+{mklabel(0, "Re", 1.328, 18.629)}
+{mkelm(0, 150, 90, 3, -1.5708)}
+{mkelm(2, 110, 95, 2.5, -1.5708)}
+0.0005
+{mklabel(0, "Ce", -10.1548, -17.5376)}
+{mkelm(6, 110, 50, 2, 0)}
+{mkelm(6, 70, 50, 2, 0)}
+{mkelm(5, 70, 95, 2.5, 1.5708)}
+{mklabel(0, "ie", 15, 15)}
+{sel.extra_info.restore()}
+3
+20 0
+200 0
+10 0
+{mkelm(0, 90, 120, 2, 0)}
+{mkelm(8, 310, 40, 2, 0)}
+{mklabel(0, "dend[56](0.0882353)", -3.574, -18.7429)}
+{sel.extra_info.set("dend[56]", 0.0882353) sel.extra_info.name(sel)}
+{mkelm(0, 310, 85, 2.5, -1.5708)}
+{mkelm(1, 290, 110, 2, 0)}
+100
+{mklabel(0, "rdend", -1.701, 16.01)}
+{mkelm(0, 250, 110, 2, 0)}
+{mkelm(5, 230, 90, 2, 1.5708)}
+{mklabel(0, "idend", -13.925, 21.029)}
+{sel.extra_info.restore()}
+3
+10 0
+10 0
+10 0
+{mkelm(6, 230, 50, 2, 0)}
+{mkelm(6, 270, 50, 2, 0)}
+{mkelm(2, 270, 90, 2, 1.5708)}
+0.0005
+{mklabel(0, "cdend", -17.813, -17.6065)}
+{parasitic_ = 0  noconsist_ = 0}
+{graphlist.append(new LincirGraph(this, 1))}
+4
+1 (mV)
+2 3 0.8 0.9 2
+2 (mV)
+1 3 0.8 0.9 2
+3 (mV)
+5 1 0.8 0.9 2
+4 (mV)
+9 1 0.8 0.9 2
+0 100 -67 19 // graph size
+1123 -17 331.2 482.4 // box size
+// end info
+{graphlist.append(new LincirGraph(this, 1))}
+2
+4 (mV)
+1 1 0.8 0.9 2
+3 (mV)
+2 1 0.8 0.9 2
+0 100 -70 50 // graph size
+498 60 325.8 432 // box size
+// end info
+{g.exec_menu("Simulate")  tool(2)}
+{sel = nil}
+{object_pop()}
+{
+{
+save_window_=ocbox_.g
+save_window_.size(0,300,0,200)
+scene_vector_[3] = save_window_
+ocbox_.g = save_window_
+save_window_.save_name("ocbox_.g")
+save_window_.label(165.833, 28.2389, "soma(0.5)", 1, 1, 0.5, 0.5, 1)
+save_window_.label(131.328, 138.629, "Re", 1, 1, 0.5, 0.5, 1)
+save_window_.label(99.8452, 77.4624, "Ce", 1, 1, 0.5, 0.5, 1)
+save_window_.label(85, 110, "ie", 1, 1, 0.5, 0.5, 1)
+save_window_.label(306.426, 21.2571, "dend[56](0.0882353)", 1, 1, 0.5, 0.5, 1)
+save_window_.label(288.299, 126.01, "rdend", 1, 1, 0.5, 0.5, 1)
+save_window_.label(216.075, 111.029, "idend", 1, 1, 0.5, 0.5, 1)
+save_window_.label(252.187, 72.3935, "cdend", 1, 1, 0.5, 0.5, 1)
+}
+ocbox_.map("LinearCircuit[0]", 1, 642, 285.3, 477.9)
+}
+objref ocbox_
+//End LinearCircuit[0]
+
+{
+xpanel("RunControl", 0)
+v_init = -68
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 100
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 100
+xvalue("t","t", 2 )
+tstop = 100
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 0.1
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 10
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+screen_update_invl = 0.05
+xvalue("Scrn update invl","screen_update_invl", 1,"", 0, 1 )
+realtime = 12.14
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(66,210)
+}
+{
+xpanel("forall Ra=global_ra", 0)
+global_ra = 100
+xvalue("global Ra","global_ra", 1,"set_ra()", 1, 1 )
+xpanel(0,558)
+}
+{
+xpanel("Temperature", 0)
+celsius = 37
+xvalue("celsius","celsius", 1,"", 0, 1 )
+xpanel(56,133)
+}
+objectvar scene_vector_[1]
+{doNotify()}
+

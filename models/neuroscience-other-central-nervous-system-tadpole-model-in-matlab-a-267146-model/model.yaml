@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: CentralNervousSystemTadpoleModelInMatlabA267146Model'
+description: '{"value": "This is the source code for three compuational models used
+  for generating connectivity and swimming dynamics of spinal cord and hindbrain neurons
+  in the Xenopus tadpoles using biological da'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:267146
+  source_db: modeldb
+  source_id: '267146'
+  standard: other
+  original_url: https://modeldb.science/267146
+  download_url: https://modeldb.science/download/267146
+  license: ''
+bsim:
+  entrypoint: src.central_nervous_system_tadpole_model_in_matlab_a_267146_model:CentralNervousSystemTadpoleModelInMatlabA267146Model
+  init_kwargs:
+    model_path: data/267146.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

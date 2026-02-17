@@ -1,0 +1,35 @@
+schema_version: '2.0'
+title: 'Neuroscience: ChannelDensityVariabilityAmongCa1NeuronsMi244688Model'
+description: '{"value": "The peak conductance of many ion channel types measured in
+  any given animal is highly variable across neurons, both within and between neuronal
+  populations. The current view is that this oc'
+standard: other
+tags:
+- neuroscience
+- other
+- modeldb
+- faithful
+authors:
+- Biosimulant Team
+- modeldb
+upstream:
+  id: modeldb:244688
+  source_db: modeldb
+  source_id: '244688'
+  standard: other
+  original_url: https://modeldb.science/244688
+  download_url: https://modeldb.science/download/244688
+  license: ''
+bsim:
+  entrypoint: src.channel_density_variability_among_ca1_neurons_mi_244688_model:ChannelDensityVariabilityAmongCa1NeuronsMi244688Model
+  init_kwargs:
+    model_path: data/244688.zip
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

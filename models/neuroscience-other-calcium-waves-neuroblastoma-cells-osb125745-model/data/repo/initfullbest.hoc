@@ -1,0 +1,12 @@
+load_file("nrngui.hoc")
+
+load_file("cellfullbest.hoc")
+
+forall {
+  insert pas
+  e_pas = -65
+}
+
+load_file("rig.ses")
+
+xopen("shape.hoc")

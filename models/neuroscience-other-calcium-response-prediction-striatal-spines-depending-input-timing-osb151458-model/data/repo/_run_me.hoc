@@ -1,0 +1,363 @@
+// _run_me.hoc runs a current clamp experiment
+// "play_netstims" activates synaptic input - the current clamp will be turned
+//    - ampa, gaba, and nmda weight can be changed in the panel
+
+//****************************************************************************
+// create cells, load appropriate session file
+strdef preface, dirstr
+preface = "."
+ 
+xopen("./nacb_main.hoc")
+print "main hoc loaded"
+
+xopen("./current_clamp.ses")
+
+//****************************************************************************
+
+
+
+
+//****************************************************************************
+
+NSYN = 471//310//168//252
+maxcol = 21
+//maxcol = 101//21
+strdef input_file
+objref stimx, stimxout
+
+stimx = new Matrix(NSYN, maxcol)
+sprint(input_file,"./stim_files2/stimxout_s0_preNO_DANO.txt")		// input file with 
+													// synaptic input times
+
+proc play_stimx() {							// turns on synaptic inputs
+	stimxout = new File()
+	stimxout.ropen(input_file)				// read in input times
+	stimx.scanf(stimxout,NSYN,maxcol-1)
+	stimxout.close()
+
+
+	for cntrw = 0, NSYN-1 {					// assign spike times to synapses
+		cntcl = 0
+		while (stimx.x[cntrw][cntcl] > 0) {
+			ConnectFAKE_[cntrw].event(stimx.x[cntrw][cntcl])
+			cntcl = cntcl + 1
+		}
+	}
+}
+
+
+
+
+proc init() {
+	finitialize(v_init)
+
+	// play synaptic input
+	if (playstim == 1) {
+		setnetn(0)
+		play_stimx()
+		recordstim = 0
+//		IClamp[0].amp = 1
+		tstop = 2000
+	} else { setnetn(1e7) }
+	
+	frecord_init()
+
+	if (cvode.active()) {
+		cvode.re_init()
+	} else {
+		fcurrent()
+	}
+}
+
+//****************************************************************************
+
+
+
+// intialize some variables
+cvode.active(1)
+dt = 0.025
+IClamp[0].amp = 0//0.8//0.2481		// 0.271
+tstop = 1000	
+playstim = 0
+
+
+objectvar stim1
+stim1 = new IClamp(0.5)
+stim1.del = 100000
+stim1.dur = 1000
+stim1.amp =0.2
+
+
+objectvar stim2
+stim2 = new IClamp(0.5)
+stim2.del = 10000//200
+stim2.dur = 0.1
+stim2.amp =300
+
+
+objectvar stim2a
+stim2a = new IClamp(0.5)
+stim2a.del = 10000//210
+stim2a.dur = 0.1
+stim2a.amp =300
+
+
+objectvar stim2b
+stim2b = new IClamp(0.5)
+stim2b.del = 10000//220
+stim2b.dur = 0.1
+stim2b.amp =300
+
+
+objectvar stim3
+stim3 = new IClamp(0.5)
+stim3.del = 10000//178
+stim3.dur = 30
+stim3.amp =0.48
+
+
+objectvar stim3u
+stim3u = new IClamp(0.5)
+stim3u.del = 10000//182
+stim3u.dur = 30
+stim3u.amp =0.12
+
+
+objectvar stim4
+stim4 = new IClamp(0.5)
+stim4.del = 10000//199
+stim4.dur = 2
+stim4.amp =2.5
+
+objectvar stim4a
+stim4a = new IClamp(0.5)
+stim4a.del = 10000//209
+stim4a.dur = 2
+stim4a.amp =2.5
+
+objectvar stim4b
+stim4b = new IClamp(0.5)
+stim4b.del = 10000//219
+stim4b.dur = 2
+stim4b.amp =2.5
+
+objectvar stim4u
+stim4u = new IClamp(0.5)
+stim4u.del = 10000//199
+stim4u.dur = 2
+stim4u.amp =1.3
+
+objectvar stim4ua
+stim4ua = new IClamp(0.5)
+stim4ua.del = 10000//209
+stim4ua.dur = 2
+stim4ua.amp =1.3
+
+objectvar stim4ub
+stim4ub = new IClamp(0.5)
+stim4ub.del = 10000//219
+stim4ub.dur = 2
+stim4ub.amp =1.3
+
+
+objectvar stim5
+stim5 = new IClamp(0.5)
+stim5.del = 10000//197
+stim5.dur = 5
+stim5.amp =1.5
+
+objectvar stim5a
+stim5a = new IClamp(0.5)
+stim5a.del = 10000//207
+stim5a.dur = 5
+stim5a.amp =1.5
+
+objectvar stim5b
+stim5b = new IClamp(0.5)
+stim5b.del = 10000//217
+stim5b.dur = 5
+stim5b.amp =1.5
+
+objectvar stim5u
+stim5u = new IClamp(0.5)
+stim5u.del = 10000//197
+stim5u.dur = 5
+stim5u.amp =0.5
+
+
+objectvar stim5ua
+stim5ua = new IClamp(0.5)
+stim5ua.del = 10000//207
+stim5ua.dur = 5
+stim5ua.amp =0.5
+
+
+objectvar stim5ub
+stim5ub = new IClamp(0.5)
+stim5ub.del = 10000//217
+stim5ub.dur = 5
+stim5ub.amp =0.5
+
+
+objectvar stim6
+stim6 = new IClamp(0.5)
+stim6.del = 100000
+stim6.dur = 1000
+stim6.amp =0.2
+
+
+//****************************************************************************
+// Define the user interface
+xpanel("cell settings")
+xvalue("prox naf bar","nG_NAF", 1,"set_naf(nG_NAF)", 1, 1 )
+xvalue("distal naf bar","nG_NAFD", 1,"set_nafd(nG_NAFD)", 1, 1 )
+xvalue("prox nap bar","nG_NAP", 1,"set_nap(nG_NAP)", 1, 1 )
+xvalue("distal nap bar","nG_NAPD", 1,"set_napd(nG_NAPD)", 1, 1 )
+xlabel("--------------------")
+xvalue("gkbar_kir","nG_KIR", 1,"set_kir(nG_KIR)", 1, 1 )
+xvalue("prox kas bar","nG_KAS", 1,"set_kas(nG_KAS)", 1, 1 )
+xvalue("distal kas bar","nG_KASD", 1,"set_kasd(nG_KASD)", 1, 1 )
+xvalue("prox kaf bar","nG_KAF", 1,"set_kaf(nG_KAF)", 1, 1 )
+xvalue("distal kaf bar","nG_KAFD", 1,"set_kafd(nG_KAFD)", 1, 1 )
+xvalue("gkbar_krp","nG_KRP", 1,"set_krp(nG_KRP)", 1, 1 )
+xvalue("gkbar_bkkca","nG_BKKCA", 1,"set_bkkca(nG_BKKCA)", 1, 1 )
+xvalue("gkbar_skkca","nG_SKKCA",1,"set_skkca(nG_SKKCA)",1,1)
+xlabel("--------------------")
+xvalue("g_pas","nG_PAS", 1,"set_pas(nG_PAS)", 1, 1 )
+xvalue("P_CAL","nP_CAL", 1,"set_caL(nP_CAL)", 1, 1 )
+xvalue("P_CAL13","nP_CAL13", 1,"set_caL13(nP_CAL13)", 1, 1 )
+xvalue("P_CAN","nP_CAN", 1,"set_can(nP_CAN)", 1, 1 )
+xvalue("P_CAQ","nP_CAQ", 1,"set_caq(nP_CAQ)", 1, 1 )
+xvalue("P_CAR","nP_CAR", 1,"set_car(nP_CAR)", 1, 1 )
+xvalue("P_CAT","nP_CAT", 1,"set_cat(nP_CAT)", 1, 1 )
+xlabel("--------------------")
+xvalue("ampa weight","nAMPA_WT", 1,"champawt(nAMPA_WT)", 1, 1 )
+xvalue("nmda weight","nNMDA_WT", 1,"chnmdawt(nNMDA_WT)", 1, 1 )
+xvalue("mglu weight","nMGLU_WT", 1,"chmgluwt(nMGLU_WT)", 1, 1 )
+xvalue("gaba weight","nGABA_WT", 1,"chgabawt(nGABA_WT)", 1, 1 )
+xvalue("dr weight","nDR_WT", 1,"chdrwt(nDR_WT)", 1, 1 )
+xlabel("--------------------")
+xstatebutton("play netstims",&playstim, "init()")
+xlabel("--------------------")
+xpanel(1262,22)
+
+
+
+
+///////////////
+objref gplot1
+gplot1=new Graph(0)
+addplot(gplot1,0)
+//gplot1.size(0,1000,0,0.02)
+gplot1.view(0, 0, 1000, 0.01, 300, 450, 300.48, 200.32)
+gplot1.addvar("MSP_Cell[0].dendrite[1].cali(0.5)", 2, 1, 0.383706, 0.947923, 2)
+gplot1.addvar("MGLU[7].ip3i", 5, 1, 0.383706, 0.947923, 2)
+gplot1.addvar("MSP_Cell[0].spine[0].cali(0.5)", 1, 1, 0.383706, 0.947923, 2)
+gplot1.addvar("MSP_Cell[0].spine[0].mu_caL(0.5)", 4, 1, 0.383706, 0.947923, 2)
+gplot1.addvar("MSP_Cell[0].spine[0].ip3im_ER(0.5)", 3, 1, 0.383706, 0.947923, 2)
+//gplot1.exec_menu("Keep Lines")
+
+objref gplot2
+gplot2=new Graph(0)
+addplot(gplot2,0)
+gplot2.view(0, -1e-3, 1000, 1e-3, 600, 450, 300.48, 200.32)
+gplot2.addvar("MSP_Cell[0].dendrite[1].ical_ER", 5, 1, 0.383706, 0.947923, 2)
+gplot2.addvar("MSP_Cell[0].dendrite[1].ical_caL", 4, 1, 0.383706, 0.947923, 2)
+gplot2.addvar("MSP_Cell[0].dendrite[1].ical_cat", 2, 1, 0.383706, 0.947923, 2)
+gplot2.addvar("NMDA[7].ical", 7, 1, 0.383706, 0.947923, 2)
+gplot2.addvar("AMPA[7].ical", 8, 1, 0.383706, 0.947923, 2)
+
+objref gplot3
+gplot3=new Graph(0)
+addplot(gplot3,0)
+gplot3.view(0, 0, 1000, 1, 900, 450, 300.48, 200.32)
+gplot3.addvar("MSP_Cell[0].dendrite[1].h_cat", 1, 1, 0.383706, 0.947923, 2)
+gplot3.addvar("MSP_Cell[0].dendrite[1].h_caL", 2, 1, 0.383706, 0.947923, 2)
+gplot3.addvar("MSP_Cell[0].dendrite[1].m_cat", 4, 1, 0.383706, 0.947923, 2)
+gplot3.addvar("MSP_Cell[0].dendrite[1].m_caL", 5, 1, 0.383706, 0.947923, 2)
+//gplot3.addvar("DAsyn[7].msg", 1, 1, 0.383706, 0.947923, 2)
+
+objref gplot4
+gplot4=new Graph(0)
+addplot(gplot4,0)
+gplot4.view(0, 0, 1000, 0.002, 1200, 450, 300, 200)
+gplot4.addvar("MSP_Cell[0].dendrite[0].cali(0.5)", 1, 1, 0.383706, 0.947923, 2)
+gplot4.addvar("MSP_Cell[0].dendrite[1].cali(0.5)", 2, 1, 0.383706, 0.947923, 2)
+gplot4.addvar("MSP_Cell[0].dendrite[2].cali(0.5)", 3, 1, 0.383706, 0.947923, 2)
+gplot4.addvar("MSP_Cell[0].dendrite[3].cali(0.5)", 4, 1, 0.383706, 0.947923, 2)
+gplot4.addvar("MSP_Cell[0].dendrite[4].cali(0.5)", 5, 1, 0.383706, 0.947923, 2)
+gplot4.addvar("MSP_Cell[0].dendrite[5].cali(0.5)", 6, 1, 0.383706, 0.947923, 2)
+
+
+///////////////
+objref gplot1
+gplot1=new Graph(0)
+addplot(gplot1,0)
+//gplot1.size(0,1000,0,0.02)
+gplot1.view(0, 0, 1000, 0.01, 300, 700, 300.48, 200.32)
+gplot1.addvar("MSP_Cell[0].dendrite[4].cali(0.5)", 2, 1, 0.383706, 0.947923, 2)
+gplot1.addvar("MGLU[107].ip3i", 5, 1, 0.383706, 0.947923, 2)
+gplot1.addvar("MSP_Cell[0].spine[1].cali(0.5)", 1, 1, 0.383706, 0.947923, 2)
+gplot1.addvar("MSP_Cell[0].spine[1].mu_caL(0.5)", 4, 1, 0.383706, 0.947923, 2)
+gplot1.addvar("MSP_Cell[0].spine[1].ip3im_ER(0.5)", 3, 1, 0.383706, 0.947923, 2)
+//gplot1.exec_menu("Keep Lines")
+
+objref gplot2
+gplot2=new Graph(0)
+addplot(gplot2,0)
+gplot2.view(0, -1e-3, 1000, 1e-3, 600, 700, 300.48, 200.32)
+gplot2.addvar("MSP_Cell[0].dendrite[4].ical_ER", 5, 1, 0.383706, 0.947923, 2)
+gplot2.addvar("MSP_Cell[0].dendrite[4].ical_caL", 4, 1, 0.383706, 0.947923, 2)
+gplot2.addvar("MSP_Cell[0].dendrite[4].ical_cat", 2, 1, 0.383706, 0.947923, 2)
+gplot2.addvar("NMDA[107].ical", 7, 1, 0.383706, 0.947923, 2)
+gplot2.addvar("AMPA[107].ical", 8, 1, 0.383706, 0.947923, 2)
+
+objref gplot3
+gplot3=new Graph(0)
+addplot(gplot3,0)
+gplot3.view(0, 0, 1000, 1, 900, 700, 300.48, 200.32)
+gplot3.addvar("MSP_Cell[0].dendrite[4].h_cat", 1, 1, 0.383706, 0.947923, 2)
+gplot3.addvar("MSP_Cell[0].dendrite[4].h_caL", 2, 1, 0.383706, 0.947923, 2)
+gplot3.addvar("MSP_Cell[0].dendrite[4].m_cat", 4, 1, 0.383706, 0.947923, 2)
+gplot3.addvar("MSP_Cell[0].dendrite[4].m_caL", 5, 1, 0.383706, 0.947923, 2)
+//gplot3.addvar("DAsyn[107].msg", 1, 1, 0.383706, 0.947923, 2)
+
+xopen("./_saveplots.hoc")
+playstim = 1
+/////////////////////////////
+
+////change condition
+xopen("./_control.hoc")
+
+////conditioning
+//xopen("./_conditioning.hoc")
+
+////reset default condition
+//xopen("./_reset.hoc")
+
+
+////plot IV curve
+//xopen("./_IV.hoc")
+
+//STDP
+//xopen("./_timed_input_Glu.hoc")
+
+
+////1AP
+////pre timing = 0
+//xopen("./_timed_input_1AP_pre.hoc")
+////post timing = 0
+//xopen("./_timed_input_1AP_post.hoc")
+//xopen("./_timed_input_1AP_post_PostNO.hoc")
+//xopen("./_timed_input_1AP_spine_post.hoc")
+////xopen("./_timed_input_1AP_spine_post_PostNO.hoc")
+
+
+////3APs
+////pre timing = 0
+//xopen("./_timed_input_3APs_pre.hoc")
+////post timing = 0
+//xopen("./_timed_input_3APs_post.hoc")
+//xopen("./_timed_input_3APs_post_PostNO.hoc")
+//xopen("./_timed_input_3APs_spine_post.hoc")
+//xopen("./_timed_input_3APs_spine_post_PostNO.hoc")

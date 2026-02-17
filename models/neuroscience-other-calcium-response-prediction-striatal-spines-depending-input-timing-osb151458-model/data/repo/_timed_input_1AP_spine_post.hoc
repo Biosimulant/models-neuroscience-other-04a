@@ -1,0 +1,116 @@
+strdef output_file
+stim4.amp =2.5
+stim4.del = 199
+
+for (ispine=0; ispine<2; ispine=ispine+1){
+	for (ipre=5; ipre<101; ipre=ipre+5){
+		for (ida=10; ida<151; ida=ida+10){
+
+			if (ida<101){
+			sprint(input_file,"./stim_files2/stimxout_s%d_prep%.3d_DAp%.3d.txt", ispine, ipre, ida)
+			init()
+			sprint(output_file, "./data2/spine%d_prep%.3d_DAp%.3d.txt", ispine, ipre, ida)
+			saveplots(output_file)
+
+			sprint(input_file,"./stim_files2/stimxout_s%d_pren%.3d_DAp%.3d.txt", ispine, ipre, ida)
+			init()
+			sprint(output_file, "./data2/spine%d_pren%.3d_DAp%.3d.txt", ispine, ipre, ida)
+			saveplots(output_file)
+			}
+
+			sprint(input_file,"./stim_files2/stimxout_s%d_prep%.3d_DAn%.3d.txt", ispine, ipre, ida)
+			init()
+			sprint(output_file, "./data2/spine%d_prep%.3d_DAn%.3d.txt", ispine, ipre, ida)
+			saveplots(output_file)
+			
+			sprint(input_file,"./stim_files2/stimxout_s%d_pren%.3d_DAn%.3d.txt", ispine, ipre, ida)
+			init()
+			sprint(output_file, "./data2/spine%d_pren%.3d_DAn%.3d.txt", ispine, ipre, ida)
+			saveplots(output_file)
+
+
+		}			
+
+			sprint(input_file,"./stim_files2/stimxout_s%d_prep%.3d_DAp000.txt", ispine, ipre)
+			init()
+			sprint(output_file, "./data2/spine%d_prep%.3d_DAp000.txt", ispine, ipre)
+			saveplots(output_file)
+
+			sprint(input_file,"./stim_files2/stimxout_s%d_pren%.3d_DAp000.txt", ispine, ipre)
+			init()
+			sprint(output_file, "./data2/spine%d_pren%.3d_DAp000.txt", ispine, ipre)
+			saveplots(output_file)
+
+
+		sprint(input_file,"./stim_files2/stimxout_s%d_prep%.3d_DANO.txt", ispine, ipre)
+		init()
+		sprint(output_file, "./data2/spine%d_prep%.3d_DANO.txt", ispine, ipre)
+		saveplots(output_file)
+
+		sprint(input_file,"./stim_files2/stimxout_s%d_pren%.3d_DANO.txt", ispine, ipre)
+		init()
+		sprint(output_file, "./data2/spine%d_pren%.3d_DANO.txt", ispine, ipre)
+		saveplots(output_file)
+
+
+	}
+
+		sprint(input_file,"./stim_files2/stimxout_s%d_prep000_DANO.txt", ispine)
+		init()
+		sprint(output_file, "./data2/spine%d_prep000_DANO.txt", ispine)
+		saveplots(output_file)
+
+
+	sprint(input_file,"./stim_files2/stimxout_s%d_preNO_DANO.txt", ispine)
+	init()
+	sprint(output_file, "./data2/spine%d_preNO_DANO.txt", ispine)
+	saveplots(output_file)
+
+}
+
+
+
+
+
+
+
+for (ispine=0; ispine<2; ispine=ispine+1){
+	for (ida=10; ida<151; ida=ida+10){
+
+			if (ida<101){
+		sprint(input_file,"./stim_files2/stimxout_s%d_prep000_DAp%.3d.txt", ispine, ida)
+		init()
+		sprint(output_file, "./data2/spine%d_prep000_DAp%.3d.txt", ispine, ida)
+		saveplots(output_file)
+
+		sprint(input_file,"./stim_files2/stimxout_s%d_preNO_DAp%.3d.txt", ispine, ida)
+		init()
+		sprint(output_file, "./data2/spine%d_preNO_DAp%.3d.txt", ispine, ida)
+		saveplots(output_file)
+	}
+	
+		sprint(input_file,"./stim_files2/stimxout_s%d_prep000_DAn%.3d.txt", ispine, ida)
+		init()
+		sprint(output_file, "./data2/spine%d_prep000_DAn%.3d.txt", ispine, ida)
+		saveplots(output_file)
+
+		sprint(input_file,"./stim_files2/stimxout_s%d_preNO_DAn%.3d.txt", ispine, ida)
+		init()
+		sprint(output_file, "./data2/spine%d_preNO_DAn%.3d.txt", ispine, ida)
+		saveplots(output_file)
+
+	}
+
+
+		sprint(input_file,"./stim_files2/stimxout_s%d_prep000_DAp000.txt", ispine, ida)
+		init()
+		sprint(output_file, "./data2/spine%d_prep000_DAp000.txt", ispine, ida)
+		saveplots(output_file)
+
+
+		sprint(input_file,"./stim_files2/stimxout_s%d_preNO_DAp000.txt", ispine)
+		init()
+		sprint(output_file, "./data2/spine%d_preNO_DAp000.txt", ispine)
+		saveplots(output_file)
+
+}

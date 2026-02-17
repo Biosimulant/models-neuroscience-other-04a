@@ -1,0 +1,56 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[9]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+
+//Begin Insert/Remove Mechanisms
+{
+load_file("inserter.hoc", "Inserter")
+}
+{
+soma ocbox_ = new Inserter(0)
+}
+{object_push(ocbox_)}
+{
+mt.select("Cont") i = mt.selected()
+ms[i] = new MechanismStandard("Cont")
+mstate[i]= 1
+maction(i)
+}
+{object_pop() doNotify()}
+{
+ocbox_ = ocbox_.v1
+ocbox_.map("Insert/Remove Mechanisms", 0, 543, 136.8, 275.4)
+}
+objref ocbox_
+//End Insert/Remove Mechanisms
+
+{WindowMenu[0].ses_gid(1, 0, 1, "init")}
+{
+xpanel("RunControl", 0)
+v_init = -65
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 1000
+xvalue("t","t", 2 )
+tstop = 1000
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 0.2662
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 40
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+screen_update_invl = 0.05
+xvalue("Scrn update invl","screen_update_invl", 1,"", 0, 1 )
+realtime = 0.3
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(0,98)
+}
+{WindowMenu[0].ses_gid(0, 0, 1, "init")}
+objectvar scene_vector_[1]
+{doNotify()}

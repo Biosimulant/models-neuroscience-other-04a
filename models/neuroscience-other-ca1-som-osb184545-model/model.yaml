@@ -1,0 +1,33 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model184545184545Model'
+description: CA1 SOM+ (OLM) hippocampal interneuron (Ferguson et al. 2015)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:184545
+  source_db: opensourcebrain
+  source_id: '184545'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/184545
+  download_url: https://github.com/OpenSourceBrain/184545.git
+  license: ''
+bsim:
+  entrypoint: src.model_184545_184545_model:Model184545184545Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

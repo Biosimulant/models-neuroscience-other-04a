@@ -1,0 +1,406 @@
+
+/*---------------------------------------------------------------------
+
+   Written by Alessandro Limongiello
+   University "Federico II" of Naples, 2012
+
+-----------------------------------------------------------------------*/
+
+
+
+load_file("nrngui.hoc")
+
+/*---------------------------------------------
+                   USEFUL DATA
+  ---------------------------------------------*/
+  
+create soma[1]  
+create eqSection[1]  
+                                                       	
+xopen("fixnseg.hoc")            
+
+Vrest = -65
+Ra0 = 150                       //Ohm*cm
+RaAx = 50
+g_pas0 = 1/28000                //Siemens/cm^2   1/30000
+cm0 = 1
+freq=50
+freqEq=3
+factRm = 1
+factCm = 1
+factRa = 1
+celsius = 34
+maxStim = 160
+maxStimOnOff = 1
+
+xopen("useful&InitProc.hoc") 
+xopen("stimulation1.hoc") 
+
+
+//////   Spike counter//////////
+
+objref apcOr,apcEq
+
+proc insert_APCor() {
+    apcOr = new APCount(0.5)
+    apcOr.thresh = -10
+}
+proc insert_APCeq() {
+    apcEq = new APCount(0.5)
+    apcEq.thresh = -10
+}
+
+/*---------------------------------------------
+                      MAIN
+  ---------------------------------------------*/
+
+
+synNum = 160
+synType = 0
+noise0 = 1    
+positionSeed = 7638401// 7638401 for geoc70863; 2762668  for geocd1152
+poissonSeed = 5273491//5273491 for geoc70863; 1907324  for geocd1152
+
+
+optFactGmaxSyn = 0
+iMorph = 2
+optPrint = 0
+optPrint1 = 0
+optPrint2 = 0
+tgraph = 180
+
+
+objref vbox3
+
+vbox3 = new VBox()    
+vbox3.intercept(1)
+xpanel("Input Data:")
+xbutton("Cell Morphologies","readingFile()")
+xvalue("Randomize synapses position","positionSeed",0,"if(firstInit == -1) firstInit = 0")
+xvalue("Randomize synapses activation","intervalSynSeed",0,"if(firstInit == -1) firstInit = 0")
+xvalue("Randomize synapses weight","gmaxSynSeed",0,"if(firstInit == -1) firstInit = 0")
+xvalue("Poisson ON/OFF","noise0",0,"if(firstInit == -1) firstInit = 0")
+xvalue("Poisson Seed","poissonSeed",0,"if(firstInit == -1) firstInit = 0")
+xvalue("Number of Active Synapses","synNum",0,"if(firstInit == -1) firstInit = 0")
+xvalue("MaxStim Value","maxStim",0,"if(firstInit == -1) firstInit = 0")
+xvalue("Scaling Procedure ON/OFF","maxStimOnOff",0,"if(firstInit == -1) firstInit = 0")
+//xvalue("Full & Reduced Models ON/OFF","optPrint1",0,"if(firstInit == -1) firstInit = 0")
+//xvalue("Signal Propagation ON/OFF","optPrint2",0,"if(firstInit == -1) firstInit = 0")
+xpanel()
+vbox3.intercept(0)
+vbox3.map("Input Data", 0, 120, 250, 210)
+
+
+time0=0
+    
+objref vbox4
+
+vbox4 = new VBox()    
+vbox4.intercept(1)
+xpanel("Run Control:")
+xbutton("Run the Full & Reduced Models","{init() integrate()}")
+xbutton("Run the Full Model","goMorph()")
+xbutton("Run the Reduced Model","goEq()")
+xbutton("Stop","{stoprun = 1}")
+xvalue("tstop","tgraph",0)
+xvalue("Simulation Time (sec): ","time0",0)
+xvalue("Accuracy: ","accu",0)
+
+xpanel()
+vbox4.intercept(0)
+vbox4.map("Run Control", 370, 0, 200, 170)    
+    
+    
+firstInit = 1    // 0=file already read but any change in the parameters
+                 // 1=first init
+                 // -1=file already read and no change in the parameters
+                 // 2=file not yet read but any change in the parameters
+
+
+objref graphCum,graphEq,graphMorph
+objref vbox7
+        
+        
+objref pc
+pc = new ParallelContext()        
+        
+proc init(){
+    
+    t=0
+    tstop = tgraph   
+    
+    while (firstInit==1) {readingFile()} 
+    time00 = pc.time()
+    AleFunctionalSetting()
+    if (optPrint==1) print "FunctionalSetting Time: ", pc.time() - time00
+
+
+    if (firstInit==0){
+        time00 = pc.time()
+        cellAnalysis()
+        clusteriseAleFunz1()
+        reduction()   
+    
+        {create eqSection[clusterList.count]}
+        createEqCell(clusterList,RaMERGINGMETHOD)
+        
+        if (optPrint==1) print "cellAnalysis+clusteriseAleFunz1+reduction+createEqCell Time: ", pc.time() - time00
+        
+        printClusterList(clusterList)
+        
+
+        objref injCurr, injCurrEq
+        time00 = pc.time()
+        insertSyn1(synNum,positionSeed,synType,clusterList)
+        if (optPrint==1) print "insertSyn1 Time: ", pc.time() - time00
+        
+        time00 = pc.time()
+        changeSurf(clusterList,synNum)
+        if (optPrint==1) print "changeSurf Time: ", pc.time() - time00
+
+        firstInit = -1   
+    }
+    
+    time00 = pc.time()
+    findSyn(clusterList,optFactGmaxSyn,synNum,synType,iMorph)   
+    if (optPrint==1) print "findSyn Time: ", pc.time() - time00
+    
+    for (i = 0; i < clusterList.count; i = i + 1){print "surfFact",i,": ",surfFact.x(i)}
+
+    time00 = pc.time()
+    ind = 1
+    forsec "eqSection.*" if (!issection("eqSection[0]")) {g_pas=factRm*surfFactRmCm.x(ind)*g_pas0 cm=factCm*cm0*surfFactRmCm.x(ind) ind=ind+1}
+    totEq=0
+    forsec "eqSection.*" {
+           nseg = int((L/(d_lambda*lambda_f(freqEq))+0.9)/2)*2 + 1 
+           totEq=totEq+nseg
+    }   
+    if (optPrint==1) print "Nseg Time: ", pc.time() - time00
+
+    printf("totSegIni: %d\n", totOr)
+    printf("totSegEq: %d\n", totEq)
+    printf("_____________________________\n\n")
+    
+    onfile(clusterList)
+
+    time00 = pc.time()
+    canalAllMigliore05()
+    initMigliore05() 
+    if (optPrint==1) print "canalAllMigliore05+initMigliore05 Time: ", pc.time() - time00 
+
+    vbox7 = new VBox()    
+    vbox7.intercept(1)
+    graphCum = new Graph()
+    graphCum.addvar("soma[0].v(0.5)",2,1)
+    graphCum.addvar("eqSection[0].v(0.5)",4,1) 
+    graphCum.size(0,tgraph,-70,50)   
+    graphEq = new Graph()
+    graphEq.addvar("eqSection[0].v(0.5)",4,1) 
+    graphEq.size(0,tgraph,-70,50)     
+    graphMorph = new Graph()
+    graphMorph.addvar("soma[0].v(0.5)",2,1)
+    graphMorph.size(0,tgraph,-70,50) 
+    vbox7.intercept(0)
+    vbox7.map("graphCum", 680, 0,410, 550)     
+    
+    cumEqMorph = 0
+}
+
+
+objref vecNSpikeOr,vecNSpikeEq,vecISISpikeOr,vecISISpikeEq,vecTTSpikeOr,vecTTSpikeEq
+
+
+proc integrate() {
+    time00 = pc.time()
+    //advance()
+    
+    if (cumEqMorph==0){
+                       
+        vecNSpikeOr= new Vector()
+        vecISISpikeOr= new Vector()
+        vecTTSpikeOr= new Vector()
+        vecNSpikeEq= new Vector()
+        vecISISpikeEq= new Vector()
+        vecTTSpikeEq= new Vector()                       
+                               
+        objref apcOr
+        access soma[0]
+        insert_APCor() 
+        tprecOr=0
+        ttOr=0 
+        firstSpikeOr = 1  
+        
+        objref apcEq
+        access eqSection[0]
+        insert_APCeq() 
+        tprecEq=0   
+        ttEq=0
+        firstSpikeEq = 1        
+        
+    }  
+    
+    continuerun(tstop)
+
+    time0 = pc.time()-time00
+    print "Time: ",time0
+    
+    if (cumEqMorph==0){
+       accu = accuracy(vecTTSpikeOr,vecTTSpikeEq)
+       print "Accuracy: ",accu
+    }
+}
+
+
+
+cumEqMorph = 0  // 0,1,2
+
+proc advance() {
+
+    if(optPrint2) shPlot.flush()
+    //if(t==0 && optPrint1) {coloringClusterList(clusterList)}
+    
+    if (cumEqMorph==0){
+        graphCum.plot(t)
+        graphCum.flush()
+        graphEq.plot(t)
+        graphEq.flush()
+        graphMorph.plot(t)
+        graphMorph.flush()
+        
+        
+        if (apcOr.n==1){tprecOr=apcOr.time if(firstSpikeOr){vecTTSpikeOr.append(tprecOr) firstSpikeOr=0 print "TSpikesOr: ",tprecOr }}                   
+        if (apcOr.time>tprecOr && tprecOr!=0){
+           //if (apcOr.n==2){vecTTSpikeOr.append(tprecOr)}
+           vecTTSpikeOr.append(apcOr.time)
+           ttOr = apcOr.time - tprecOr
+           vecISISpikeOr.append(ttOr)
+           print "TSpikesOr: ",apcOr.time 
+           tprecOr=apcOr.time
+        }
+        
+        if (apcEq.n==1){tprecEq=apcEq.time if(firstSpikeEq){vecTTSpikeEq.append(tprecEq) firstSpikeEq=0 print "TSpikesEq: ",tprecEq }}                        
+        if (apcEq.time>tprecEq && tprecEq!=0){
+           //if (apcEq.n==2){vecTTSpikeEq.append(tprecEq)}
+           vecTTSpikeEq.append(apcEq.time)
+           ttEq = apcEq.time - tprecEq
+           vecISISpikeEq.append(ttEq)
+           print "TSpikesEq: ",apcEq.time 
+           tprecEq=apcEq.time
+        }
+               
+    } else if (cumEqMorph==1){
+        graphEq.plot(t)
+        graphEq.flush()
+    } else if (cumEqMorph==2){
+        graphMorph.plot(t)
+        graphMorph.flush()
+    }
+    
+    
+    	
+    fadvance()  
+}
+
+
+objectvar StimEqListAppp,Exp2SynEqListAppp,NetConEqListAppp
+
+proc go(){
+     
+     init()          
+
+     objectvar Exp2SynList,NetConList,StimList//,StimEqList,Exp2SynEqList,NetConEqList
+     objref synApp,netConApp//stimApp,stimEqApp,synEqApp,netConEqApp
+
+     forall if (!issection("eqSection.*")){
+         uninsert pas uninsert na3 uninsert kdr uninsert nax uninsert kap uninsert hd uninsert kad uninsert ds
+         delete_section()
+     }
+     
+    vbox7 = new VBox()    
+    vbox7.intercept(1)
+    graphEq = new Graph()
+    graphEq.addvar("eqSection[0].v(0.5)",4,1) 
+    graphEq.size(0,tgraph,-70,50)      
+    vbox7.intercept(0)
+    vbox7.map("graphEq",680,340,410,170)  
+  
+    cumEqMorph = 1
+    //finitialize(Vrest)
+    integrate()
+    
+         
+     init()          
+
+     objectvar StimEqList,Exp2SynEqList,NetConEqList
+     objref stimEqApp,synEqApp,netConEqApp
+
+     forall if (issection("eqSection.*")){
+         uninsert pas uninsert na3 uninsert kdr uninsert nax uninsert kap uninsert hd uninsert kad uninsert ds
+         delete_section()
+     }
+    
+    vbox7 = new VBox()    
+    vbox7.intercept(1)
+    graphMorph = new Graph()
+    graphMorph.addvar("soma[0].v(0.5)",2,1)
+    graphMorph.size(0,tgraph,-70,50)    
+    vbox7.intercept(0)
+    vbox7.map("graphMorph",680,510,410,170)      
+    
+    cumEqMorph = 2   
+    integrate()
+
+}
+
+proc goMorph(){
+     
+     init()          
+
+     objectvar StimEqList,Exp2SynEqList,NetConEqList
+     objref stimEqApp,synEqApp,netConEqApp
+
+     forall if (issection("eqSection.*")){
+         uninsert pas uninsert na3 uninsert kdr uninsert nax uninsert kap uninsert hd uninsert kad uninsert ds
+         delete_section()
+     }
+    
+    vbox7 = new VBox()    
+    vbox7.intercept(1)
+    graphMorph = new Graph()
+    graphMorph.addvar("soma[0].v(0.5)",2,1)
+    graphMorph.size(0,tgraph,-70,50)    
+    vbox7.intercept(0)
+    vbox7.map("graphMorph",680,510,410,170)      
+    
+    cumEqMorph = 2   
+    integrate()
+
+}
+
+proc goEq(){
+     
+     init()          
+
+     objectvar Exp2SynList,NetConList,StimList//,StimEqList,Exp2SynEqList,NetConEqList
+     objref synApp,netConApp//stimApp,stimEqApp,synEqApp,netConEqApp
+
+     forall if (!issection("eqSection.*")){
+         uninsert pas uninsert na3 uninsert kdr uninsert nax uninsert kap uninsert hd uninsert kad uninsert ds
+         delete_section()
+     }
+     
+    vbox7 = new VBox()    
+    vbox7.intercept(1)
+    graphEq = new Graph()
+    graphEq.addvar("eqSection[0].v(0.5)",4,1) 
+    graphEq.size(0,tgraph,-70,50)      
+    vbox7.intercept(0)
+    vbox7.map("graphEq",680,340,410,170)  
+  
+    cumEqMorph = 1
+    integrate()
+
+
+
+}
+

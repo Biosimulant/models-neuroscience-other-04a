@@ -1,0 +1,57 @@
+
+load_file("nrngui.hoc")
+
+objref grph0
+objref scene_vector_[2]
+objref Istim
+
+grph0 = new Graph(0)
+scene_vector_[0] = grph0
+
+//(mleft, mbottom, mwidth, mheight, wleft,wtop, wwidth, wheight)
+// in a window with user-specified location (5th and 6th args) and size (last 2 args)
+{grph0.view(0, 0, 2150, 470, 50, 400, 650, 400)}
+graphList[0].append(grph0)
+
+grph0.family(1)
+
+tstop = 2200
+Istim = new IClamp(0.5)
+Istim.loc(0.5)
+Istim.del = 0
+Istim.dur = 2200
+Istim.amp = 0.5
+
+strdef Filename
+
+objref t_vect, vm_vect 
+t_vect = new Vector()
+vm_vect = new Vector()
+
+objref savdata
+savdata = new File()
+
+usetable_gNa = 1
+usetable_gKdr = 1
+usetable_gKa = 1
+usetable_gCa = 1
+usetable_gKc = 1
+usetable_gKahp = 1
+
+for n=0,4 {
+	
+	Istim.amp = 0.5-n*0.1
+	grph0.addexpr("soma.v( 0.5 )+100*n", 1,1)
+	t_vect.record(&t)
+	vm_vect.record(&soma.v(0.5))
+	run()
+	sprint(Filename,"fig8_Somapanel%d.txt",n)
+	savdata.wopen(Filename,i)
+	for i=0,t_vect.size()-1 {
+    		savdata.printf("%g %g\n", t_vect.x(i), vm_vect.x(i))
+	}
+	savdata.close()
+}
+
+graphList[0].remove_all()
+objref grph0

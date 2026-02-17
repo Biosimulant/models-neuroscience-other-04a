@@ -1,0 +1,39 @@
+strdef output_file
+stim4.amp =2.5
+stim4.del = 199
+
+chnmdawt(5)
+
+for (ispine=0; ispine<2; ispine=ispine+1){
+
+	sprint(input_file,"./stim_files2/stimxout_s%d_prep000_DANO.txt", ispine)
+	init()
+	sprint(output_file, "./data2/spine%d_prep000_DANO.txt", ispine)
+	saveplots(output_file)
+
+	for (ipre=5; ipre<101; ipre=ipre+5){
+
+
+		sprint(input_file,"./stim_files2/stimxout_s%d_prep%.3d_DANO.txt", ispine, ipre)
+		init()
+		sprint(output_file, "./data2/spine%d_prep%.3d_DANO.txt", ispine, ipre)
+		saveplots(output_file)
+
+		sprint(input_file,"./stim_files2/stimxout_s%d_pren%.3d_DANO.txt", ispine, ipre)
+		init()
+		sprint(output_file, "./data2/spine%d_pren%.3d_DANO.txt", ispine, ipre)
+		saveplots(output_file)
+
+
+	}
+
+
+
+
+
+}
+
+
+
+
+

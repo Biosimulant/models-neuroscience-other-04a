@@ -1,0 +1,34 @@
+<html>
+ This code is by Jan M Schulz, University of Basel, 2017-2018<br/>
+ (Based on the model by Mark Cembrowski in Bloss et al., 2017)<br/>
+ associated with the paper:
+ <p/>
+ Schulz JM, Knoflach F, Hernandez MC, Bischofberger J (2018) Dendrite-targeting interneurons control synaptic NMDA-receptor activation via nonlinear a5-GABAA receptors. Nat Commun 9:3576
+ <br/>
+ <a href="http://dx.doi.org/10.1038/s41467-018-06004-8">http://dx.doi.org/10.1038/s41467-018-06004-8</a>
+ <p/>
+ Correspondence can be addressed to <a href="mailto:j.schulz@unibas.ch">j.schulz@unibas.ch</a>
+ <p/>
+ The enclosed code distributes excitation and inhibition across the 
+ dendritic arbor of a CA1 pyramidal neuron and tests the effect of altering 
+ the properties of dendritic GABAergic inhibition on dendritic integration and 
+ NMDA receptor-mediated depolarization.
+<br/>
+ To load in the NEURON simulation environment:
+<ol>
+<li/> Download and install NEURON (<a href="http://www.neuron.yale.edu/neuron/">http://www.neuron.yale.edu/neuron/</a>) if needed
+ <li/> Compile the Alpha5_NMDA_CA1_oyr directory via mknrndll. For help, see:
+    MSWindows: <a href="https://www.neuron.yale.edu/neuron/static/docs/nmodl/mswin.html">https://www.neuron.yale.edu/neuron/static/docs/nmodl/mswin.html</a>
+    MacOS: <a href="http://www.neuron.yale.edu/neuron/static/docs/nmodl/macos.html">http://www.neuron.yale.edu/neuron/static/docs/nmodl/macos.html</a>
+ <li/> Launch start_simulation.hoc.<br/>
+ <li/> To change between the different simulations (i.e. Fig.8, Fig.S8 and S9), 
+    uncomment the respective hoc file in start_simultation.hoc 
+</ol>
+</p>
+Running start_simulation.hoc in its default configuration (for example "nrngui start_simulation.hoc" on linux/unix) will lead after 10 minutes or so to images similar to figure 8 in the paper:<p/>
+<img src="./screenshot.png" alt="screenshot" width="550">
+  <p/>
+  If you need more help running the model on your platform please consult:<p/>
+  <a href="https://senselab.med.yale.edu/ModelDB/NEURON_DwnldGuide.cshtml">https://senselab.med.yale.edu/ModelDB/NEURON_DwnldGuide.cshtml</a>
+</html>
+

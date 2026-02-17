@@ -1,0 +1,33 @@
+schema_version: '2.0'
+title: 'Neuroscience: Model232023232023Model'
+description: Model of the cerebellar granular network (Sudhakar et al 2017)
+standard: other
+tags:
+- neuroscience
+- other
+- opensourcebrain
+- faithful
+authors:
+- Biosimulant Team
+- Open Source Brain
+upstream:
+  id: opensourcebrain:232023
+  source_db: opensourcebrain
+  source_id: '232023'
+  standard: other
+  original_url: https://github.com/OpenSourceBrain/232023
+  download_url: https://github.com/OpenSourceBrain/232023.git
+  license: ''
+bsim:
+  entrypoint: src.model_232023_232023_model:Model232023232023Model
+  init_kwargs:
+    model_path: data/repo
+  min_dt: 0.01
+runtime:
+  python_version: '3.12'
+  dependencies:
+    packages:
+    - numpy==1.26.4
+io:
+  outputs:
+  - state

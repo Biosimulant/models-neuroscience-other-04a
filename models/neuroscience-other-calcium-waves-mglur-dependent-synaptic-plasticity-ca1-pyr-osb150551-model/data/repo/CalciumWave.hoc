@@ -1,0 +1,711 @@
+strdef rntfilename
+load_file("stdlib.hoc")
+load_file("ObliquePath.hoc")
+//load_file("nrngui.hoc")
+//load_file("main.hoc")
+
+//**************************************************************//
+// Current clamp Parameters
+//**************************************************************//
+
+objref cvode
+cvode=new CVode()
+cvode.active(0)
+
+tstop =3000// // 45020 //50000
+steps_per_ms = 40
+dt = 0.025
+stamp= 2	// Stimulus Amplitude and Delay
+stdur=2
+stdel=30
+//**************************************************************//
+// Synaotic parameters
+//**************************************************************//
+P=  1.29207135e-7  
+P1= 1.29207135e-7 
+NAR1= 1.5     // Poirazi et al., 2003 use NAR of 0.6 for Trunk and 2.5 for
+NAR= 1.5      // non trunk  but here 1.5 is being used.
+
+w=0.25
+winit= 0.25
+initmGlur1 = 0.3e-3
+/**************************************************************/
+// Resistances and Capacitances
+/**************************************************************/
+rasoma  = 50			
+raend   = 35
+raaxon = 50
+
+rm     = 72000
+rmsoma = rm
+rmdend = rm
+rmend=30000
+rmaxon = rm
+c_m       = 1
+cmsoma    = c_m
+cmdend    = c_m
+cmaxon    = c_m
+
+v_init    = -65 //-65 0riginal value
+celsius   = 34
+Ek = -90
+Ena = 55
+Eca = 140
+gna=0.09 //adjusted to get approx. 10Hz AP spikes at -70 and 150 pA current* (Narayanan and Johnston,2007)
+gkdr = 0.003
+gka=  0.022 //original value
+gcal=0.316e-3
+gcat= 0.1e-3 
+gip3= 1.85 // varies alpha as conductance of IP3R
+factor=21 // matched according to Frick et al., JNS 2003
+ObliqueKAPSlope=0.73 // Gradient slope of A-type potassium current in the proximal oblique under consideration
+ObliqueKAPTau=42
+basegkap1=2.53
+		//print "bgkap1=4.0 "
+basegkap= 2.53
+/**************************************************************/
+
+objref SD, AXON, SA, Basal, Trunk, AIS
+
+objref local_trunk
+objref pl[150],opl[150]
+strdef str1, rntfilename
+create soma[1], apical[1], basal[1]
+
+/**********************************************************************/
+/**********************************************************************/
+// Passive Conductances 
+/**********************************************************************/
+proc setpassive() {
+	forall {
+	  	insert pas
+	  	e_pas = v_init
+		Ra=rasoma
+	}
+	forsec SD {		// For somato-dendritic compartments
+		cm=cmdend
+		g_pas=1/rmdend
+	}
+	forsec "soma" {
+	  	cm = cmsoma 
+		g_pas=1/rmsoma
+	}
+	forsec Trunk {
+		for (x) {
+			rdist=raddist(x)
+			rm = rmsoma + (rmend - rmsoma)/(1.0 + exp((300-rdist)/50))
+			g_pas(x)=1/rm
+			Ra = rasoma + (raend - rasoma)/(1.0 + exp((210-rdist)/50))
+		}
+	}	
+
+	for i=0,plcount {
+    		seccount=0
+    		forsec pl[i] {
+       			if(!seccount){
+           			trunk_pas=g_pas(1)
+				seccount=seccount+1
+       			} else {
+           			g_pas=trunk_pas
+				seccount=seccount+1
+       			}
+       			//print secname() 
+    		}
+	}       
+ 
+}
+
+/**********************************************************************/
+// Active Conductances 
+/**********************************************************************/
+
+proc setactive () {local xdist, ndist
+
+
+
+	forsec SD {
+			insert na3
+			gbar_na3= gna 
+			ar2_na3=1
+			insert kdr 
+			gkdrbar_kdr=gkdr
+	}
+
+	forsec Trunk {			
+
+			insert kad 
+			gkabar_kad=0
+			insert kap 
+			gkabar_kap=0
+			for (x) {
+				rdist=raddist(x)
+				if(rdist<100){
+					gkabar_kap(x)=gka*(1+5*rdist/100.0)
+					gkabar_kad(x)=0
+				} else {
+					gkabar_kad(x)=gka*(1+5*rdist/100.0)
+					gkabar_kap(x)=0
+				}			
+			}
+			
+			insert call
+			gcalbar_call=gcal
+			for (x) {
+				rdist= raddist(x)
+				gcalbar_call(x)=gcal*((700-rdist) /350)  
+			}
+
+
+
+			insert cat
+			for(x){
+				rdist= raddist(x)
+				gcatbar_cat(x)=gcat*(1+3*rdist/350)
+			}
+	}
+
+
+
+
+	for i=0,plcount { // Aplical obliques
+    		seccount=0
+    		forsec pl[i] {
+        		if(!seccount){	// The first section is the trunk
+            			trunk_cal=gcalbar_call(1)	
+				trunk_cat=gcatbar_cat(1)
+				seccount=seccount+1
+				if (gkabar_kad(0.5)==0) {
+					trunk_kap=factor*gkabar_kap(0.5)
+					trunk_kad=0
+				} else {
+
+					trunk_kad=3*gkabar_kad(0.5)
+					trunk_kap=0
+				}
+				//print "Trunk:", secname() 
+        		} else {
+				insert call
+            			gcalbar_call=0.75*trunk_cal // decreased ca channel in oblique
+				insert cat		
+				gcatbar_cat=0.75*trunk_cat  
+				seccount=seccount+1
+				if (trunk_kap==0) {
+					insert kad
+					gkabar_kad=trunk_kad
+				} else {
+					insert kap
+					gkabar_kap=trunk_kap
+				}
+				//print "Oblique:", secname() 
+        		}
+        		
+    		}
+	}
+
+	forsec "basal"{
+			ar2_na3=1
+			insert call
+			gcalbar_call= gcal*2
+			insert cat
+			gcatbar_cat=gcat
+			insert kap
+			gkabar_kap=gka
+	}
+
+	forsec "soma"{
+			
+			 
+			ar2_na3=1
+			insert call
+			gcalbar_call= gcal*2
+			insert cat
+			gcatbar_cat=gcat
+			insert kap
+			gkabar_kap=gka
+	}
+    
+	forsec AIS {			
+			insert nax 
+			gbar_nax=gna*5
+			insert kdr 
+			gkdrbar_kdr=gkdr
+	}
+
+
+	forsec "apical"{
+		ar2_na3=0.8     // Add Na+ inactivation on apical side.
+	}
+	Oblique_gradient_KA_sensitivity ()
+}
+
+/**********************************************************************/
+
+
+proc Oblique_gradient_KA_sensitivity () {
+	apical[112] {
+		for (x) {	
+			gkabar_kap(x)=ObliqueKAPSlope*basegkap1+basegkap1*(1-ObliqueKAPSlope)*exp(-x*L/ObliqueKAPTau)
+		}
+		print "GKAoblq=", gkabar_kap
+	}
+}
+
+		
+/**********************************************************************/
+	
+proc calcium_mechanisms() {
+
+	forsec SD {
+		insert cal4
+	
+		for (x) {
+			rdist=raddist(x)
+			alpha_cal4(x)=gip3*(0.75+.25*exp(-rdist/100))
+			print x, rdist, alpha_cal4(x)
+		}
+	
+	}
+}
+
+/**********************************************************************/
+
+
+proc init_cell() {
+	setpassive()
+	addaxon()
+	setactive()
+	calcium_mechanisms()
+	
+	access soma[0]	// Reinitializing distance origin
+	distance()
+	print "Number of compartments: ", totcomp
+
+
+	finitialize(v_init)
+	fcurrent()
+        forall {
+            for (x) {
+        		if (ismembrane("na3")||ismembrane("nax")){e_pas(x)=v(x)+(ina(x)+ik(x)+ica(x))/g_pas(x)
+		   } else {
+			e_pas(x)=v(x)
+                }
+            }
+        }
+	current_clamp()
+
+
+
+	
+}
+
+/********************************************************************/
+objref ic[10]
+proc current_clamp() {
+	access soma [1]
+	for (i=0; i<=9; i+=1){
+		ic[i] = new IClamp(0.5)
+		ic[i].amp =stamp
+		ic[i].del= 20+i*30
+		ic[i].dur= 2
+	}
+
+}
+
+/********************************************************************/
+
+proc update_clamp(){
+	finitialize()
+	for (i=0; i<=9; i+=1){
+	ic[i].amp=stamp
+		}
+	}
+      
+/**********************************************************************/
+// Resegmentalize trunk to get segments with similar lengths to copute the kymograph in figure 4 H&I
+proc resegment_trunk(){
+	soma[1]{nseg=2
+	}
+	apical[0]{nseg=8
+	}
+	apical[4]{nseg=2
+	}
+	apical[6]{nseg=3
+	}
+	apical[15]{nseg=2
+	}
+	apical[16]{nseg=3
+	}
+	apical[25]{nseg=3
+	}
+	apical[27]{nseg=5
+	}
+	apical[41]{nseg=4
+	}
+	apical[46]{nseg=2
+	}
+	apical[56]{nseg=2
+	}
+	apical[60]{nseg=5
+	}
+	apical[64]{nseg=2
+	}
+	apical[65]{nseg=2
+	}
+	apical[69]{nseg=4
+	}
+	apical[71]{nseg=3
+	}
+	apical[81]{nseg=3
+	}
+	apical[83]{nseg=4
+	}
+	apical[95]{nseg=4
+	}
+	apical[104]{nseg=3
+	}
+	
+update_init()
+}
+/**********************************************************************/
+
+
+proc load_3dcell() {
+
+// $s1 filename
+
+	forall delete_section()
+	xopen($s1)
+
+	SD = new SectionList()
+	SA = new SectionList()
+	Trunk = new SectionList()
+	//Trial = new SectionList()
+	Basal = new SectionList()
+
+
+
+	forsec "soma" {
+		SD.append()
+		SA.append()
+	}
+
+	forsec "basal" { 
+		SD.append()
+		Basal.append()
+	}
+
+	forsec "apical"{
+		SD.append()
+		SA.append()
+	}
+
+	// Trunk. 
+
+	soma[0]	Trunk.append()
+	apical[0]  Trunk.append() 
+	apical[4]  Trunk.append() 
+	apical[6]  Trunk.append() 
+	apical[14] Trunk.append() 
+	apical[15] Trunk.append() 
+	apical[16] Trunk.append() 
+	apical[22] Trunk.append() 
+	apical[23] Trunk.append() 
+	apical[25] Trunk.append() 
+	apical[26] Trunk.append() 
+	apical[27] Trunk.append() 
+	apical[41] Trunk.append() 
+	apical[42] Trunk.append() 
+	apical[46] Trunk.append() 
+	apical[48] Trunk.append() 
+	apical[56] Trunk.append() 
+	apical[58] Trunk.append() 
+	apical[60] Trunk.append() 
+	apical[62] Trunk.append() 
+	apical[64] Trunk.append() 
+	apical[65] Trunk.append() 
+	apical[69] Trunk.append() 
+	apical[71] Trunk.append()
+	apical[81] Trunk.append() 
+	apical[83] Trunk.append() 
+	apical[95] Trunk.append()
+	apical[103] Trunk.append()
+	apical[104] Trunk.append()
+
+
+	local_trunk = new SectionList()
+
+	apical[60] local_trunk.append() 
+	apical[62] local_trunk.append() 
+	apical[64] local_trunk.append() 
+	apical[65] local_trunk.append() 
+	apical[69] local_trunk.append() 
+
+
+	// Define obliques
+
+	load_file("oblique-paths.hoc")
+
+	// Compartmentalize 
+
+	setpassive() // Before compartmentalization, set passive
+
+	// The lambda constraint
+	totcomp=0
+	forall { 
+		soma[1] area(0.5)
+		nseg = int((L/(0.1*lambda_f(100))+.9)/2)*2 + 1  
+		totcomp=totcomp+nseg
+	}
+	// resegmentalize the oblique branch where the  synapse is incorporated such that each segment is approx 1 µm long
+	// Also see METHODS in the paper for detail.
+	apical[112]{
+		nseg= 297
+		update_init()
+		}
+		
+	//resegment_trunk()	// trunk resegmentation into  approximately 100 equal segments to record Cai for kymograph
+	access soma[0]
+	distance()
+
+	init_cell()
+
+//print "Printing distancesÉ."
+
+	forsec Trunk {
+		for(x) {
+			if(x!=0) {
+				//print distance(x), "\t", raddist(x)
+			}
+		}
+	}	
+
+
+
+	
+}
+/**********************************************************************/
+/**********************************************************************/
+// For cell number n123 on the DSArchive, converted with CVAPP to give
+// HOC file, the following definition holds. This is the same as Poirazi et
+// al. have used in Neuron, 2003. The argument is that the subtree seems
+// so long to be a dendrite, and the cell does not have a specific axon.
+// There is a catch, though, if the morphology is closely scanned, then 
+// basal dendrites would branch from these axonal segments - which
+// may be fine given the amount of ambiguity one has while tracing! 
+
+proc addaxon() {
+
+	AXON = new SectionList()
+	AIS = new SectionList() // Axonal initial segment
+
+	for i = 30,34 basal[i] {
+		AXON.append()
+		Basal.remove()
+	}
+
+	for i = 18,22 basal[i] {
+		AXON.append()
+		AIS.append()
+		Basal.remove()
+	}
+
+	forsec AXON {
+		e_pas=v_init 
+		g_pas = 1/rmaxon 
+		Ra=raaxon 
+		cm=cmaxon
+	}
+}
+
+/********************************************************************/
+
+proc initsub() {
+	load_3dcell("n123.hoc")
+	make_calamps()
+	handle_Diffusion()
+	update_init()
+}
+
+proc handle_Diffusion () {
+	
+	forall{
+		insert ip3dif
+		insert cal4
+		ip3i0= 2.25e-3 // 0.16e-3 //2.25e-3  for wave // 0.16e-3 baseline value
+		ip3i0_ip3dif=ip3i0
+
+		DCa_cal4=0.22
+		DIP3_ip3dif=0.283
+		cao0_ca_ion=2
+	
+	}
+}
+
+/********************************************************************/
+
+proc update_init(){
+	finitialize(v_init)
+	fcurrent()
+        forall {
+            for (x) {
+        	if (ismembrane("na3")||ismembrane("nax")) {
+			e_pas(x)=v(x)+(ina(x)+ik(x)+ica(x))/g_pas(x)
+		} else {
+			e_pas(x)=v(x)
+                }
+	    }
+        }
+
+}
+/********************************************************************/
+somax=2.497
+somay=-13.006
+somaz=11.12
+double distances[200]
+
+func raddist() {
+	distn0=distance(0)
+	distances[0]=0
+	sum=0
+
+	for i=1,n3d()-1 {
+		xx=(x3d(i)-x3d(i-1))*(x3d(i)-x3d(i-1))
+		yy=(y3d(i)-y3d(i-1))*(y3d(i)-y3d(i-1))
+		zz=(z3d(i)-z3d(i-1))*(z3d(i)-z3d(i-1))
+		sum=sum+sqrt(xx+yy+zz)
+		distances[i]=sum
+	}
+
+	xval=$1
+
+// Amoung the various pt3d's find which one matches the distance of
+//  x closely
+
+	distn=distance(xval)
+	match=distn-distn0
+	matchptdist=100000
+	for i=0,n3d()-1 {		
+		matptdist=(match-distances[i])*(match-distances[i])
+		if(matchptdist>matptdist){
+			matchptdist=matptdist
+			matchi=i
+		}
+	}
+
+
+			
+// Find the distance of the closely matched point to the somatic
+// centroid and use that as the distance for this BPAP measurement			
+
+	xx=(x3d(matchi)-somax)*(x3d(matchi)-somax)
+	yy=(y3d(matchi)-somay)*(y3d(matchi)-somay)
+	zz=(z3d(matchi)-somaz)*(z3d(matchi)-somaz)
+	return sqrt(xx+yy+zz)
+}
+
+/********************************************************************/
+
+ 
+proc make_calamps() {local xval
+	forall {
+		insert camax
+	}
+}
+
+/********************************************************************/
+
+
+
+//----------------------------------------------------------------------------
+//  create Spike generator for presynaptic spikes
+//----------------------------------------------------------------------------
+objectvar ns[1]
+objectvar mglursyn [1]
+objref ncl[1]
+objectvar nmda [1]
+objref ncl1[1]
+objectvar ampa [1]
+objref ncl2 [1]
+
+
+proc AddSynapse() {
+		
+
+/*******************************Create synapse ************/
+		//----------------------------------------------------------------------------
+		//  create Spike generator for presynaptic spikes
+		//----------------------------------------------------------------------------
+		for (i=0;i<=0;i+=1){
+			apical[112] ns[i]= new NetStim(0.5)
+			ns[i].interval=1000/10 // ms (mean) time between spikes
+			ns[i].number=900  // (average) number of spikes
+			ns[i].start=20   // ms (mean) start time of first spike
+			ns[i].noise=0      // range 0 to 1. Fractional randomness.
+		}
+		//----------------------------------------------------------------------------
+		//  insert postsynaptic mechansisms for mGLUR
+		//----------------------------------------------------------------------------
+
+		for (i=0;i<=0;i+=1){
+			apical[112] mglursyn[i]= new mGLUR(0.5)          // create synapse
+		}
+
+		mglursyn[0].initmGluR= 0.30e-3 //1.20e-3= maximum mGuR density  //0.30e-3= baseline
+
+ 		apical[112] ncl[0]=new List()
+
+		for (i=0;i<=0;i+=1){
+			apical[112] ncl[0].append(new NetCon(ns[i], mglursyn[0], 0, 0, 0.0001))
+		}
+
+		
+		//----------------------------------------------------------------------------
+		//  insert postsynaptic mechansisms for NMDAR2
+		//----------------------------------------------------------------------------
+		for (i=0;i<=0;i+=1){
+			nmda[i]= new ghknmda()            // create synapse
+			apical[112] nmda[i].loc(0.5)         // assign postsynaptic compartment
+		
+			nmda[i].taur		= 5	
+			nmda[i].taud		= 50	
+			nmda[i].Pmax		= P*NAR*winit
+		}
+
+		apical[112] ncl1[0]=new List()
+
+		for (i=0;i<=0;i+=1){
+			apical[112] ncl1[0].append(new NetCon(ns[i], nmda[0], 0, 0, 0.0001))
+		}
+		//----------------------------------------------------------------------------
+		//  insert postsynaptic mechansisms for AMPAR2
+		//----------------------------------------------------------------------------
+		for (i=0;i<=0;i+=1){
+			ampa[i]= new Wghkampa()         // create synapse
+			apical[112] ampa[i].loc(0.5)         // assign postsynaptic compartment
+		
+			ampa[i].taur		= 2	
+			ampa[i].taud		= 10	
+			ampa[i].Pmax		= P	
+			ampa[i].winit	= w
+		}
+
+		apical[112] ncl2[0]=new List()
+
+		for (i=0;i<=0;i+=1){
+			apical[112] ncl2[0].append(new NetCon(ns[i], ampa[0], 0, 0, 0.0001))
+		}
+
+}
+
+
+initsub()
+
+
+
+xpanel("parameters")
+xvalue("Clamp Amplitude","stamp",1,"update_clamp()",1,1)
+
+xpanel()
+
+
+/**********************************************************************/

@@ -1,0 +1,93 @@
+
+// Create graphs for visualisation.
+objref voltAP5[7],voltCont[7]
+strdef volt_label
+
+for sti = 0,6{
+    print sti
+    
+    //run simulation with increasing levels of tonic inhibition
+    storeM = new Matrix(tstop/dtime+1,rec_conditions*simul_iter) 
+
+    voltCont[sti] = new Graph()
+    voltCont[sti].addvar("soma.sec.v(0.5)",2,1)
+    voltCont[sti].addvar("dend2Ref.sec.v(0.5)",4,1) 
+    sprint(volt_label,"TI, %d",TI_strength.x[sti])
+    voltCont[sti].label(volt_label)
+    voltCont[sti].exec_menu("Keep Lines")
+    voltCont[sti].size(stimStart-20,tstop,-75,-15)
+
+    voltAP5[sti] = new Graph()
+    voltAP5[sti].addvar("soma.sec.v(0.5)",2,1)
+    voltAP5[sti].addvar("dend2Ref.sec.v(0.5)",4,1) 
+    sprint(volt_label,"No NMDA, TI, %d",TI_strength.x[sti])
+    voltAP5[sti].label(volt_label)
+    voltAP5[sti].exec_menu("Keep Lines")
+    voltAP5[sti].size(stimStart-20,tstop,-75,-15)
+
+    // Adjust TI strength
+    forsec basalList {gtonic_tonic= TI_strength.x[sti] * gtonic}
+    forsec apicalList {
+        for (x) {
+            xdist = distance(x)
+            if (xdist > dlimit) {
+                xdist = dlimit
+            }
+            gtonic_tonic(x) = TI_strength.x[sti] * gtonic*(1+3*xdist/100)
+        }
+    }
+                
+    for(jj=1; jj<simul_iter+1; jj=jj+1){
+        print jj
+        // Clear excitation and then turn on select synapses.
+        activateExcitation(cellList,-1,1) // clear excitation
+        curExc_SR = activateExcitation(radiatumList,jj*nExcAct_SR,randShift) // activate excitatory synapses
+        curExc_SLM = activateExcitation(tuftList,jj*nExcAct_SLM,randShift) // activate excitatory synapses
+        
+        shape_no=jj-1 //(jj/2)-1
+        ActSyn = set_gluSyn(curExc_SR, randShift, 0.1, norm_Pr_exc, shapeExc[shape_no])
+        print "In SR, the number of activated synapses at each pulse are: ",ActSyn.x[0], ", " , ActSyn.x[1], ", " , ActSyn.x[2], ", " , ActSyn.x[3], ", " , ActSyn.x[4]
+         
+        ActSyn = set_gluSyn(curExc_SLM, randShift/2, 0.1, norm_Pr_exc, shapeExc[shape_no])
+        print "In SLM, the number of activated synapses at each pulse are: ",ActSyn.x[0], ", " , ActSyn.x[1], ", " , ActSyn.x[2], ", " , ActSyn.x[3], ", " , ActSyn.x[4]
+        
+        curGr = graphList[0].append(voltCont[sti]) //}
+        init() //finitialize()
+        run()
+        graphList[0].remove(curGr-1) 
+        storeM.setcol(jj-1,recv_soma)
+        storeM.setcol(jj-1+simul_iter,recv_tuft1) 
+        storeM.setcol(jj-1+2*simul_iter,recv_tuft2) 
+        storeM.setcol(jj-1+3*simul_iter,recv_tuft3)
+        storeM.setcol(jj-1+4*simul_iter,recv_obl1) 
+        storeM.setcol(jj-1+5*simul_iter,recv_obl2) 
+        storeM.setcol(jj-1+6*simul_iter,recv_obl3)
+
+        // Wash-in AP5, block NMDA conductance
+        reset_NMDASyn()
+        
+        curGr = graphList[0].append(voltAP5[sti])   //}
+        init() //finitialize()
+        run()
+        graphList[0].remove(curGr-1) 
+        storeM.setcol(jj-1+7*simul_iter,recv_soma) 
+        storeM.setcol(jj-1+8*simul_iter,recv_tuft1) 
+        storeM.setcol(jj-1+9*simul_iter,recv_tuft2) 
+        storeM.setcol(jj-1+10*simul_iter,recv_tuft3)
+        storeM.setcol(jj-1+11*simul_iter,recv_obl1) 
+        storeM.setcol(jj-1+12*simul_iter,recv_obl2) 
+        storeM.setcol(jj-1+13*simul_iter,recv_obl3)
+                    
+        reset_AMPASyn()    
+    }
+    // save output
+    /*
+    if (sti==0){print2file(storeM,file_name1,ColLabel)}
+    if (sti==1){print2file(storeM,file_name2,ColLabel)}
+    if (sti==2){print2file(storeM,file_name3,ColLabel)}
+    if (sti==3){print2file(storeM,file_name4,ColLabel)}
+    if (sti==4){print2file(storeM,file_name5,ColLabel)}
+    if (sti==5){print2file(storeM,file_name6,ColLabel)}
+    if (sti==6){print2file(storeM,file_name7,ColLabel)}
+    */
+}
