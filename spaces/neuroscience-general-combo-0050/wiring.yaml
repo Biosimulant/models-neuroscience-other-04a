@@ -1,0 +1,36 @@
+modules:
+  cat_auditory_1:
+    class: src.model_87751_87751_model:Model8775187751Model
+    args:
+      model_path: data/repo
+  cat_locomotion_2:
+    class: src.cat_locomotion_and_paw_shaking_central_pattern_g_267219_model:CatLocomotionAndPawShakingCentralPatternG267219Model
+    args:
+      model_path: data/267219.zip
+  celegansneuromec_3:
+    class: src.celegansneuromechanicalgaitmodulation_celegansneuromechanicalgaitmodulation_model:CelegansneuromechanicalgaitmodulationCelegansneuromechanicalgaitmodulationModel
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cat_auditory_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cat_locomotion_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: celegansneuromec_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

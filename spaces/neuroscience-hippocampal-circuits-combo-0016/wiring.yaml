@@ -1,0 +1,28 @@
+modules:
+  ca1_pyramidal_1:
+    class: src.ca1_pyramidal_neuron_synaptic_integration_li_and_71312_model:Ca1PyramidalNeuronSynapticIntegrationLiAnd71312Model
+    args:
+      model_path: data/71312.zip
+  ca1_pyramidal_2:
+    class: src.model_116084_116084_model:Model116084116084Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: ca1_pyramidal_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: ca1_pyramidal_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b

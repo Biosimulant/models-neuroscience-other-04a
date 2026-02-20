@@ -1,0 +1,44 @@
+modules:
+  ca2_oscillations_1:
+    class: src.model_223144_223144_model:Model223144223144Model
+    args:
+      model_path: data/repo
+  ca2_oscillations_2:
+    class: src.model_247655_247655_model:Model247655247655Model
+    args:
+      model_path: data/repo
+  ca2_requirements_3:
+    class: src.model_245412_245412_model:Model245412245412Model
+    args:
+      model_path: data/repo
+  calcium_spikes_4:
+    class: src.calcium_spikes_in_basal_dendrites_kampa_and_stua_108458_model:CalciumSpikesInBasalDendritesKampaAndStua108458Model
+    args:
+      model_path: data/108458.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: ca2_oscillations_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: ca2_oscillations_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: ca2_requirements_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: calcium_spikes_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

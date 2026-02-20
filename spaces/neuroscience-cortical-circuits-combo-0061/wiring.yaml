@@ -1,0 +1,44 @@
+modules:
+  cell_models_1:
+    class: src.tobinetal2017_tobinetal2017_model:Tobinetal2017Tobinetal2017Model
+    args:
+      model_path: data/repo
+  cell_type_2:
+    class: src.model_267509_267509_model:Model267509267509Model
+    args:
+      model_path: data/repo
+  cellular_classes_3:
+    class: src.model_263961_263961_model:Model263961263961Model
+    args:
+      model_path: data/repo
+  cellular_functio_4:
+    class: src.model_262464_262464_model:Model262464262464Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cell_models_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cell_type_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cellular_classes_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cellular_functio_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

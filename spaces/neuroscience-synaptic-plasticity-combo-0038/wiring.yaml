@@ -1,0 +1,36 @@
+modules:
+  cellular_and_1:
+    class: src.cellular_and_synaptic_mechanisms_differentiate_m_267013_model:CellularAndSynapticMechanismsDifferentiateM267013Model
+    args:
+      model_path: data/267013.zip
+  cerebellar_long_2:
+    class: src.cerebellar_long_term_depression_ltd_antunes_and_141270_model:CerebellarLongTermDepressionLtdAntunesAnd141270Model
+    args:
+      model_path: data/141270.zip
+  cerebellar_long_3:
+    class: src.model_141270_141270_model:Model141270141270Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cellular_and_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellar_long_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellar_long_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

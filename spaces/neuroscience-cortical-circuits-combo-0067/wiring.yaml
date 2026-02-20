@@ -1,0 +1,44 @@
+modules:
+  cerebellar_stell_1:
+    class: src.cerebellar_stellate_cell_model_rizza_et_al_2021_2018019_model:CerebellarStellateCellModelRizzaEtAl20212018019Model
+    args:
+      model_path: data/2018019.zip
+  cerebellar_stell_2:
+    class: src.model_2018019_2018019_model:Model20180192018019Model
+    args:
+      model_path: data/repo
+  cerebellar_stell_3:
+    class: src.cerebellar_stellate_cells_changes_in_threshold_l_266718_model:CerebellarStellateCellsChangesInThresholdL266718Model
+    args:
+      model_path: data/266718.zip
+  cerebellar_stell_4:
+    class: src.model_266718_266718_model:Model266718266718Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cerebellar_stell_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellar_stell_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellar_stell_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cerebellar_stell_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

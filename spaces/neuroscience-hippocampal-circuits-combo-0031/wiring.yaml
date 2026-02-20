@@ -1,0 +1,36 @@
+modules:
+  ca3_pyramidal_1:
+    class: src.model_35358_35358_model:Model3535835358Model
+    args:
+      model_path: data/repo
+  ca3_pyramidal_2:
+    class: src.ca3_pyramidal_neuron_firing_properties_hemond_et_101629_model:Ca3PyramidalNeuronFiringPropertiesHemondEt101629Model
+    args:
+      model_path: data/101629.zip
+  ca3_pyramidal_3:
+    class: src.ca3_pyramidal_neuron_membrane_response_near_rest_118098_model:Ca3PyramidalNeuronMembraneResponseNearRest118098Model
+    args:
+      model_path: data/118098.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: ca3_pyramidal_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: ca3_pyramidal_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: ca3_pyramidal_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

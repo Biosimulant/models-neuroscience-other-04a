@@ -1,0 +1,75 @@
+schema_version: '2.0'
+title: 'Neuroscience: General (COMBO_0052)'
+description: Neuroscience general comparative space with 3 models, configured as non-causal
+  co-simulation.
+models:
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: cell_splitting_1
+  manifest_path: models/neuroscience-other-cell-splitting-in-neural-networks-extends-strong-97917-model/model.yaml
+  parameters:
+    model_path: data/97917.zip
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: cell_splitting_2
+  manifest_path: models/neuroscience-other-cell-splitting-neural-networks-extends-strong-scaling-osb97917-model/model.yaml
+  parameters:
+    model_path: data/repo
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: cellexcite_an_3
+  manifest_path: models/neuroscience-other-cellexcite-an-efficient-simulation-environment-f-112468-model/model.yaml
+  parameters:
+    model_path: data/112468.zip
+- repo: Biosimulant/models-observability
+  alias: state_compare_mon
+  manifest_path: models/observability-state-comparison-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+- repo: Biosimulant/models-observability
+  alias: state_metrics_mon
+  manifest_path: models/observability-state-metrics-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+runtime:
+  duration: 0.3
+  tick_dt: 0.01
+  initial_inputs: {}
+wiring:
+- from: cell_splitting_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cell_splitting_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cellexcite_an_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+scientific_context:
+  question: How do general mechanisms compare across these models?
+  mode: comparative
+  assumptions:
+  - Model implementations are used as published in their curated manifests without
+    biological reinterpretation.
+  - Time integration uses a shared global tick compatible with model min_dt constraints.
+  - Comparative (non-causal) mode is used because full deterministic IO coverage for
+    causal coupling was not satisfied.
+  expected_observables:
+  - Model output trajectories under shared runtime settings.
+  - Cross-model agreement/divergence in key state or metric signals.
+  - Relative behavior comparison without causal linkage claims.
+  limitations:
+  - No new biology is introduced beyond what upstream models encode.
+  - Cross-model semantic matching is rule-based and may under-connect uncertain routes.
+  provenance:
+  - 'neuroscience-other-cell-splitting-in-neural-networks-extends-strong-97917-model
+    :: modeldb:97917 :: https://modeldb.science/97917'
+  - 'neuroscience-other-cell-splitting-neural-networks-extends-strong-scaling-osb97917-model
+    :: opensourcebrain:97917 :: https://github.com/OpenSourceBrain/97917'
+  - 'neuroscience-other-cellexcite-an-efficient-simulation-environment-f-112468-model
+    :: modeldb:112468 :: https://modeldb.science/112468'
+  visualization_rationale: A dedicated monitor model receives all participating model
+    state streams (`state_a..state_d`) so trajectories can be compared in one place
+    without claiming causal coupling when IO semantics are incomplete.

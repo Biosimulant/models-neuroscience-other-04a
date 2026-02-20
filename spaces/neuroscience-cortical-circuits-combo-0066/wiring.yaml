@@ -1,0 +1,44 @@
+modules:
+  cerebellar_nucle_1:
+    class: src.cerebellar_nuclear_neuron_sudhakar_et_al_2015_185513_model:CerebellarNuclearNeuronSudhakarEtAl2015185513Model
+    args:
+      model_path: data/185513.zip
+  cerebellar_optok_2:
+    class: src.model_267334_267334_model:Model267334267334Model
+    args:
+      model_path: data/repo
+  cerebellar_paral_3:
+    class: src.model_235376_235376_model:Model235376235376Model
+    args:
+      model_path: data/repo
+  cerebellar_phase_4:
+    class: src.model_266842_266842_model:Model266842266842Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cerebellar_nucle_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellar_optok_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellar_paral_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cerebellar_phase_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

@@ -1,0 +1,75 @@
+schema_version: '2.0'
+title: 'Neuroscience: Synaptic Plasticity (COMBO_0037)'
+description: Neuroscience synaptic plasticity comparative space with 3 models, configured
+  as non-causal co-simulation.
+models:
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: calyx_held_1
+  manifest_path: models/neuroscience-other-calyx-held-short-term-plasticity-osb118554-model/model.yaml
+  parameters:
+    model_path: data/repo
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: calyx_of_2
+  manifest_path: models/neuroscience-other-calyx-of-held-short-term-plasticity-yang-z-et-al-118554-model/model.yaml
+  parameters:
+    model_path: data/118554.zip
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: cell_type_3
+  manifest_path: models/neuroscience-other-cell-type-specific-integration-of-feedforward-an-267509-model/model.yaml
+  parameters:
+    model_path: data/267509.zip
+- repo: Biosimulant/models-observability
+  alias: state_compare_mon
+  manifest_path: models/observability-state-comparison-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+- repo: Biosimulant/models-observability
+  alias: state_metrics_mon
+  manifest_path: models/observability-state-metrics-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+runtime:
+  duration: 0.3
+  tick_dt: 0.01
+  initial_inputs: {}
+wiring:
+- from: calyx_held_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: calyx_of_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cell_type_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+scientific_context:
+  question: How do synaptic changes influence network-level outcomes?
+  mode: comparative
+  assumptions:
+  - Model implementations are used as published in their curated manifests without
+    biological reinterpretation.
+  - Time integration uses a shared global tick compatible with model min_dt constraints.
+  - Comparative (non-causal) mode is used because full deterministic IO coverage for
+    causal coupling was not satisfied.
+  expected_observables:
+  - Model output trajectories under shared runtime settings.
+  - Cross-model agreement/divergence in key state or metric signals.
+  - Relative behavior comparison without causal linkage claims.
+  limitations:
+  - No new biology is introduced beyond what upstream models encode.
+  - Cross-model semantic matching is rule-based and may under-connect uncertain routes.
+  provenance:
+  - 'neuroscience-other-calyx-held-short-term-plasticity-osb118554-model :: opensourcebrain:118554
+    :: https://github.com/OpenSourceBrain/118554'
+  - 'neuroscience-other-calyx-of-held-short-term-plasticity-yang-z-et-al-118554-model
+    :: modeldb:118554 :: https://modeldb.science/118554'
+  - 'neuroscience-other-cell-type-specific-integration-of-feedforward-an-267509-model
+    :: modeldb:267509 :: https://modeldb.science/267509'
+  visualization_rationale: A dedicated monitor model receives all participating model
+    state streams (`state_a..state_d`) so trajectories can be compared in one place
+    without claiming causal coupling when IO semantics are incomplete.

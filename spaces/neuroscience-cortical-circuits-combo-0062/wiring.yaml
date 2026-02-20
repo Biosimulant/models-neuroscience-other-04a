@@ -1,0 +1,44 @@
+modules:
+  cellular_synapti_1:
+    class: src.model_267013_267013_model:Model267013267013Model
+    args:
+      model_path: data/repo
+  central_nervous_2:
+    class: src.model_267146_267146_model:Model267146267146Model
+    args:
+      model_path: data/repo
+  cerebellar_baske_3:
+    class: src.cerebellar_basket_cell_model_masoli_et_al_2025_2018018_model:CerebellarBasketCellModelMasoliEtAl20252018018Model
+    args:
+      model_path: data/2018018.zip
+  cerebellar_baske_4:
+    class: src.model_2018018_2018018_model:Model20180182018018Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cellular_synapti_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: central_nervous_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellar_baske_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cerebellar_baske_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

@@ -1,0 +1,36 @@
+modules:
+  ca2_oscillations_1:
+    class: src.ca2_oscillations_in_sympathetic_neurons_friel_19_247655_model:Ca2OscillationsInSympatheticNeuronsFriel19247655Model
+    args:
+      model_path: data/247655.zip
+  caffeine_induced_2:
+    class: src.model_34558_34558_model:Model3455834558Model
+    args:
+      model_path: data/repo
+  calcium_and_3:
+    class: src.calcium_and_potassium_currents_of_olfactory_bulb_140462_model:CalciumAndPotassiumCurrentsOfOlfactoryBulb140462Model
+    args:
+      model_path: data/140462.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: ca2_oscillations_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: caffeine_induced_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: calcium_and_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

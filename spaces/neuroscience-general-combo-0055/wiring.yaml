@@ -1,0 +1,36 @@
+modules:
+  cerebellar_corte_1:
+    class: src.model_139656_139656_model:Model139656139656Model
+    args:
+      model_path: data/repo
+  cerebellar_gain_2:
+    class: src.cerebellar_gain_and_timing_control_model_yamazak_144416_model:CerebellarGainAndTimingControlModelYamazak144416Model
+    args:
+      model_path: data/144416.zip
+  cerebellar_gain_3:
+    class: src.model_144416_144416_model:Model144416144416Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cerebellar_corte_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellar_gain_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellar_gain_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

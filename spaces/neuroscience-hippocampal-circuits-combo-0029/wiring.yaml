@@ -1,0 +1,28 @@
+modules:
+  ca3_hippocampal_1:
+    class: src.model_266905_266905_model:Model266905266905Model
+    args:
+      model_path: data/repo
+  ca3_hippocampal_2:
+    class: src.ca3_hippocampal_pyramidal_neuron_with_voltage_cl_266905_model:Ca3HippocampalPyramidalNeuronWithVoltageCl266905Model
+    args:
+      model_path: data/266905.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: ca3_hippocampal_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: ca3_hippocampal_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b

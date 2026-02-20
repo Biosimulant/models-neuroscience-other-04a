@@ -1,0 +1,75 @@
+schema_version: '2.0'
+title: 'Neuroscience: General (COMBO_0040)'
+description: Neuroscience general comparative space with 3 models, configured as non-causal
+  co-simulation.
+models:
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: ca2_oscillations_1
+  manifest_path: models/neuroscience-other-ca2-oscillations-in-sympathetic-neurons-friel-19-247655-model/model.yaml
+  parameters:
+    model_path: data/247655.zip
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: caffeine_induced_2
+  manifest_path: models/neuroscience-other-caffeine-induced-electrical-oscillations-aplysia-neurons-osb34558-model/model.yaml
+  parameters:
+    model_path: data/repo
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: calcium_and_3
+  manifest_path: models/neuroscience-other-calcium-and-potassium-currents-of-olfactory-bulb-140462-model/model.yaml
+  parameters:
+    model_path: data/140462.zip
+- repo: Biosimulant/models-observability
+  alias: state_compare_mon
+  manifest_path: models/observability-state-comparison-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+- repo: Biosimulant/models-observability
+  alias: state_metrics_mon
+  manifest_path: models/observability-state-metrics-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+runtime:
+  duration: 0.3
+  tick_dt: 0.01
+  initial_inputs: {}
+wiring:
+- from: ca2_oscillations_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: caffeine_induced_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: calcium_and_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+scientific_context:
+  question: How do general mechanisms compare across these models?
+  mode: comparative
+  assumptions:
+  - Model implementations are used as published in their curated manifests without
+    biological reinterpretation.
+  - Time integration uses a shared global tick compatible with model min_dt constraints.
+  - Comparative (non-causal) mode is used because full deterministic IO coverage for
+    causal coupling was not satisfied.
+  expected_observables:
+  - Model output trajectories under shared runtime settings.
+  - Cross-model agreement/divergence in key state or metric signals.
+  - Relative behavior comparison without causal linkage claims.
+  limitations:
+  - No new biology is introduced beyond what upstream models encode.
+  - Cross-model semantic matching is rule-based and may under-connect uncertain routes.
+  provenance:
+  - 'neuroscience-other-ca2-oscillations-in-sympathetic-neurons-friel-19-247655-model
+    :: modeldb:247655 :: https://modeldb.science/247655'
+  - 'neuroscience-other-caffeine-induced-electrical-oscillations-aplysia-neurons-osb34558-model
+    :: opensourcebrain:34558 :: https://github.com/OpenSourceBrain/34558'
+  - 'neuroscience-other-calcium-and-potassium-currents-of-olfactory-bulb-140462-model
+    :: modeldb:140462 :: https://modeldb.science/140462'
+  visualization_rationale: A dedicated monitor model receives all participating model
+    state streams (`state_a..state_d`) so trajectories can be compared in one place
+    without claiming causal coupling when IO semantics are incomplete.

@@ -1,0 +1,44 @@
+modules:
+  cerebellar_golgi_1:
+    class: src.cerebellar_golgi_cells_dendritic_processing_and_266806_model:CerebellarGolgiCellsDendriticProcessingAnd266806Model
+    args:
+      model_path: data/266806.zip
+  cerebellar_golgi_2:
+    class: src.model_266806_266806_model:Model266806266806Model
+    args:
+      model_path: data/repo
+  cerebellar_granu_3:
+    class: src.cerebellar_granular_layer_maex_and_de_schutter_1_227363_model:CerebellarGranularLayerMaexAndDeSchutter1227363Model
+    args:
+      model_path: data/227363.zip
+  cerebellar_granu_4:
+    class: src.model_227363_227363_model:Model227363227363Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cerebellar_golgi_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellar_golgi_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellar_granu_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cerebellar_granu_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

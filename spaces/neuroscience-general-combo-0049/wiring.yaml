@@ -1,0 +1,36 @@
+modules:
+  cardiac_sarcomer_1:
+    class: src.cardiac_sarcomere_dynamics_negroni_and_lascano_1_126467_model:CardiacSarcomereDynamicsNegroniAndLascano1126467Model
+    args:
+      model_path: data/126467.zip
+  cardiac_sarcomer_2:
+    class: src.model_126467_126467_model:Model126467126467Model
+    args:
+      model_path: data/repo
+  cat_auditory_3:
+    class: src.cat_auditory_nerve_model_zilany_and_bruce_2006_2_87751_model:CatAuditoryNerveModelZilanyAndBruce2006287751Model
+    args:
+      model_path: data/87751.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cardiac_sarcomer_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cardiac_sarcomer_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cat_auditory_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

@@ -1,0 +1,36 @@
+modules:
+  calcium_dynamics_1:
+    class: src.model_155731_155731_model:Model155731155731Model
+    args:
+      model_path: data/repo
+  calcium_dynamics_2:
+    class: src.calcium_dynamics_depend_on_dendritic_diameters_a_155731_model:CalciumDynamicsDependOnDendriticDiametersA155731Model
+    args:
+      model_path: data/155731.zip
+  calcium_oscillat_3:
+    class: src.model_86538_86538_model:Model8653886538Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: calcium_dynamics_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: calcium_dynamics_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: calcium_oscillat_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

@@ -1,0 +1,36 @@
+modules:
+  calcium_waves_1:
+    class: src.model_125745_125745_model:Model125745125745Model
+    args:
+      model_path: data/repo
+  calciumimagingdr_2:
+    class: src.calciumimagingdriftinggrating_calciumimagingdriftinggrating_model:CalciumimagingdriftinggratingCalciumimagingdriftinggratingModel
+    args:
+      model_path: data/repo
+  calculating_the_3:
+    class: src.calculating_the_consequences_of_left_shifted_nav_234111_model:CalculatingTheConsequencesOfLeftShiftedNav234111Model
+    args:
+      model_path: data/234111.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: calcium_waves_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: calciumimagingdr_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: calculating_the_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

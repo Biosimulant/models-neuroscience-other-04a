@@ -1,0 +1,36 @@
+modules:
+  cell_splitting_1:
+    class: src.cell_splitting_in_neural_networks_extends_strong_97917_model:CellSplittingInNeuralNetworksExtendsStrong97917Model
+    args:
+      model_path: data/97917.zip
+  cell_splitting_2:
+    class: src.model_97917_97917_model:Model9791797917Model
+    args:
+      model_path: data/repo
+  cellexcite_an_3:
+    class: src.cellexcite_an_efficient_simulation_environment_f_112468_model:CellexciteAnEfficientSimulationEnvironmentF112468Model
+    args:
+      model_path: data/112468.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cell_splitting_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cell_splitting_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cellexcite_an_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

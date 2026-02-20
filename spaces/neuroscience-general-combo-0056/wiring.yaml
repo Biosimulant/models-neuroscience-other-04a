@@ -1,0 +1,44 @@
+modules:
+  cerebellar_golgi_1:
+    class: src.model_112685_112685_model:Model112685112685Model
+    args:
+      model_path: data/repo
+  cerebellar_memor_2:
+    class: src.model_180823_180823_model:Model180823180823Model
+    args:
+      model_path: data/repo
+  cerebellar_model_3:
+    class: src.cerebellar_model_for_the_optokinetic_response_ki_267334_model:CerebellarModelForTheOptokineticResponseKi267334Model
+    args:
+      model_path: data/267334.zip
+  cerebellar_nucle_4:
+    class: src.model_185513_185513_model:Model185513185513Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cerebellar_golgi_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellar_memor_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellar_model_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cerebellar_nucle_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

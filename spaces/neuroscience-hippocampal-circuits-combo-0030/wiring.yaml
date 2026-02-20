@@ -1,0 +1,28 @@
+modules:
+  ca3_network_1:
+    class: src.model_186768_186768_model:Model186768186768Model
+    args:
+      model_path: data/repo
+  ca3_network_2:
+    class: src.ca3_network_model_of_epileptic_activity_sanjay_e_186768_model:Ca3NetworkModelOfEpilepticActivitySanjayE186768Model
+    args:
+      model_path: data/186768.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: ca3_network_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: ca3_network_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b

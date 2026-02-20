@@ -1,0 +1,36 @@
+modules:
+  central_nervous_1:
+    class: src.central_nervous_system_tadpole_model_in_matlab_a_267146_model:CentralNervousSystemTadpoleModelInMatlabA267146Model
+    args:
+      model_path: data/267146.zip
+  central_reposito_2:
+    class: src.contribute_contribute_model:ContributeContributeModel
+    args:
+      model_path: data/repo
+  cereb_grc_3:
+    class: src.cereb_grc_mc_cerebgrcmc_model:CerebGrcMcCerebgrcmcModel
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: central_nervous_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: central_reposito_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cereb_grc_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

@@ -1,0 +1,44 @@
+modules:
+  cerebellar_granu_1:
+    class: src.model_232023_232023_model:Model232023232023Model
+    args:
+      model_path: data/repo
+  cerebellar_granu_2:
+    class: src.cerebellar_granule_cell_masoli_et_al_2020_265584_model:CerebellarGranuleCellMasoliEtAl2020265584Model
+    args:
+      model_path: data/265584.zip
+  cerebellar_granu_3:
+    class: src.model_265584_265584_model:Model265584265584Model
+    args:
+      model_path: data/repo
+  cerebellar_ltd_4:
+    class: src.model_222732_222732_model:Model222732222732Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cerebellar_granu_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellar_granu_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellar_granu_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cerebellar_ltd_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

@@ -1,0 +1,36 @@
+modules:
+  cancelling_redun_1:
+    class: src.cancelling_redundant_input_in_ell_pyramidal_cell_140465_model:CancellingRedundantInputInEllPyramidalCell140465Model
+    args:
+      model_path: data/140465.zip
+  carbon_nanotubes_2:
+    class: src.model_112086_112086_model:Model112086112086Model
+    args:
+      model_path: data/repo
+  carbon_nanotubes_3:
+    class: src.carbon_nanotubes_as_electrical_interfaces_to_neu_112086_model:CarbonNanotubesAsElectricalInterfacesToNeu112086Model
+    args:
+      model_path: data/112086.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cancelling_redun_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: carbon_nanotubes_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: carbon_nanotubes_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

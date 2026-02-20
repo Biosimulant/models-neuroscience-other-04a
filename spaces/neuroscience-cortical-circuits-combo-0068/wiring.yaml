@@ -1,0 +1,44 @@
+modules:
+  cerebellar_thala_1:
+    class: src.cerebellar_thalamo_cortical_brain_network_for_se_2019877_model:CerebellarThalamoCorticalBrainNetworkForSe2019877Model
+    args:
+      model_path: data/2019877.zip
+  cerebellum_granu_2:
+    class: src.cerebellum_granule_cell_fhf_dover_et_al_2016_206267_model:CerebellumGranuleCellFhfDoverEtAl2016206267Model
+    args:
+      model_path: data/206267.zip
+  cerebellum_granu_3:
+    class: src.model_206267_206267_model:Model206267206267Model
+    args:
+      model_path: data/repo
+  cerebellum_purki_4:
+    class: src.model_244679_244679_model:Model244679244679Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cerebellar_thala_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellum_granu_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellum_granu_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cerebellum_purki_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

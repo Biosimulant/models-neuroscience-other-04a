@@ -1,0 +1,86 @@
+schema_version: '2.0'
+title: 'Neuroscience: Synaptic Plasticity (COMBO_0071)'
+description: Neuroscience synaptic plasticity comparative space with 4 models, configured
+  as non-causal co-simulation.
+models:
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: cerebellar_long_1
+  manifest_path: models/neuroscience-other-cerebellar-long-term-depression-ltd-antunes-and-141270-model/model.yaml
+  parameters:
+    model_path: data/141270.zip
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: cerebellar_long_2
+  manifest_path: models/neuroscience-other-cerebellar-long-term-depression-osb141270-model/model.yaml
+  parameters:
+    model_path: data/repo
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: cerebellar_memor_3
+  manifest_path: models/neuroscience-other-cerebellar-memory-consolidation-model-yamazaki-e-180823-model/model.yaml
+  parameters:
+    model_path: data/180823.zip
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: cerebellar_purki_4
+  manifest_path: models/neuroscience-other-cerebellar-purkinje-cell-interacting-kv3-and-na-80769-model/model.yaml
+  parameters:
+    model_path: data/80769.zip
+- repo: Biosimulant/models-observability
+  alias: state_compare_mon
+  manifest_path: models/observability-state-comparison-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+- repo: Biosimulant/models-observability
+  alias: state_metrics_mon
+  manifest_path: models/observability-state-metrics-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+runtime:
+  duration: 0.3
+  tick_dt: 0.01
+  initial_inputs: {}
+wiring:
+- from: cerebellar_long_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellar_long_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellar_memor_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cerebellar_purki_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d
+scientific_context:
+  question: How do synaptic changes influence network-level outcomes?
+  mode: comparative
+  assumptions:
+  - Model implementations are used as published in their curated manifests without
+    biological reinterpretation.
+  - Time integration uses a shared global tick compatible with model min_dt constraints.
+  - Comparative (non-causal) mode is used because full deterministic IO coverage for
+    causal coupling was not satisfied.
+  expected_observables:
+  - Model output trajectories under shared runtime settings.
+  - Cross-model agreement/divergence in key state or metric signals.
+  - Relative behavior comparison without causal linkage claims.
+  limitations:
+  - No new biology is introduced beyond what upstream models encode.
+  - Cross-model semantic matching is rule-based and may under-connect uncertain routes.
+  provenance:
+  - 'neuroscience-other-cerebellar-long-term-depression-ltd-antunes-and-141270-model
+    :: modeldb:141270 :: https://modeldb.science/141270'
+  - 'neuroscience-other-cerebellar-long-term-depression-osb141270-model :: opensourcebrain:141270
+    :: https://github.com/OpenSourceBrain/141270'
+  - 'neuroscience-other-cerebellar-memory-consolidation-model-yamazaki-e-180823-model
+    :: modeldb:180823 :: https://modeldb.science/180823'
+  - 'neuroscience-other-cerebellar-purkinje-cell-interacting-kv3-and-na-80769-model
+    :: modeldb:80769 :: https://modeldb.science/80769'
+  visualization_rationale: A dedicated monitor model receives all participating model
+    state streams (`state_a..state_d`) so trajectories can be compared in one place
+    without claiming causal coupling when IO semantics are incomplete.

@@ -1,0 +1,36 @@
+modules:
+  cardiac_action_1:
+    class: src.model_64171_64171_model:Model6417164171Model
+    args:
+      model_path: data/repo
+  cardiac_action_2:
+    class: src.cardiac_action_potential_based_on_luo_rudy_phase_64171_model:CardiacActionPotentialBasedOnLuoRudyPhase64171Model
+    args:
+      model_path: data/64171.zip
+  cardiac_action_3:
+    class: src.cardiac_action_potentials_and_pacemaker_activity_144520_model:CardiacActionPotentialsAndPacemakerActivity144520Model
+    args:
+      model_path: data/144520.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cardiac_action_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cardiac_action_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cardiac_action_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

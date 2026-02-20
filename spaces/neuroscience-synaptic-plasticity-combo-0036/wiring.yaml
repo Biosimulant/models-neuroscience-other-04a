@@ -1,0 +1,36 @@
+modules:
+  ca2_activated_1:
+    class: src.ca2_activated_i_can_and_synaptic_depression_prom_125649_model:Ca2ActivatedICanAndSynapticDepressionProm125649Model
+    args:
+      model_path: data/125649.zip
+  ca2_activated_2:
+    class: src.model_125649_125649_model:Model125649125649Model
+    args:
+      model_path: data/repo
+  ca2_requirements_3:
+    class: src.ca2_requirements_for_long_term_depression_in_pur_245412_model:Ca2RequirementsForLongTermDepressionInPur245412Model
+    args:
+      model_path: data/245412.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: ca2_activated_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: ca2_activated_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: ca2_requirements_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

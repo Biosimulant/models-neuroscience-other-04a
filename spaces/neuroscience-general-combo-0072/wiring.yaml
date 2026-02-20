@@ -1,0 +1,44 @@
+modules:
+  cerebellar_purki_1:
+    class: src.model_80769_80769_model:Model8076980769Model
+    args:
+      model_path: data/repo
+  cerebellarnucleu_2:
+    class: src.cerebellarnucleusneuron_cerebellarnucleusneuron_model:CerebellarnucleusneuronCerebellarnucleusneuronModel
+    args:
+      model_path: data/repo
+  cerebellum_purki_3:
+    class: src.cerebellum_purkinje_cell_dendritic_ion_channels_244679_model:CerebellumPurkinjeCellDendriticIonChannels244679Model
+    args:
+      model_path: data/244679.zip
+  cerebellum3ddemo_4:
+    class: src.cerebellum3ddemo_cerebellum3ddemo_model:Cerebellum3ddemoCerebellum3ddemoModel
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cerebellar_purki_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cerebellarnucleu_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cerebellum_purki_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cerebellum3ddemo_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

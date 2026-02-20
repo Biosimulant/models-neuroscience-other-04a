@@ -1,0 +1,36 @@
+modules:
+  cellexcite_1:
+    class: src.model_112468_112468_model:Model112468112468Model
+    args:
+      model_path: data/repo
+  cellular_classes_2:
+    class: src.cellular_classes_revealed_by_heartbeat_related_m_263961_model:CellularClassesRevealedByHeartbeatRelatedM263961Model
+    args:
+      model_path: data/263961.zip
+  cellular_functio_3:
+    class: src.cellular_function_given_parametric_variation_in_262464_model:CellularFunctionGivenParametricVariationIn262464Model
+    args:
+      model_path: data/262464.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cellexcite_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cellular_classes_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cellular_functio_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

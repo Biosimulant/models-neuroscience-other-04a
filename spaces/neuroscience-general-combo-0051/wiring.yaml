@@ -1,0 +1,36 @@
+modules:
+  cell_network_1:
+    class: src.model_150288_150288_model:Model150288150288Model
+    args:
+      model_path: data/repo
+  cell_signaling_2:
+    class: src.model_185300_185300_model:Model185300185300Model
+    args:
+      model_path: data/repo
+  cell_signaling_3:
+    class: src.cell_signaling_ion_channel_variability_effects_o_185300_model:CellSignalingIonChannelVariabilityEffectsO185300Model
+    args:
+      model_path: data/185300.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: cell_network_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cell_signaling_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cell_signaling_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

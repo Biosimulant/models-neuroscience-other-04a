@@ -1,0 +1,44 @@
+modules:
+  calcium_influx_1:
+    class: src.calcium_influx_during_striatal_upstates_evans_et_150912_model:CalciumInfluxDuringStriatalUpstatesEvansEt150912Model
+    args:
+      model_path: data/150912.zip
+  calcium_influx_2:
+    class: src.model_150912_150912_model:Model150912150912Model
+    args:
+      model_path: data/repo
+  calcium_response_3:
+    class: src.calcium_response_prediction_in_the_striatal_spin_151458_model:CalciumResponsePredictionInTheStriatalSpin151458Model
+    args:
+      model_path: data/151458.zip
+  calcium_response_4:
+    class: src.model_151458_151458_model:Model151458151458Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: calcium_influx_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: calcium_influx_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: calcium_response_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: calcium_response_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

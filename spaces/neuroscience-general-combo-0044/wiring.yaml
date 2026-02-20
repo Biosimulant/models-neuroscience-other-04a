@@ -1,0 +1,36 @@
+modules:
+  camkii_system_1:
+    class: src.model_114452_114452_model:Model114452114452Model
+    args:
+      model_path: data/repo
+  camkii_system_2:
+    class: src.camkii_system_exhibiting_bistability_with_respec_114452_model:CamkiiSystemExhibitingBistabilityWithRespec114452Model
+    args:
+      model_path: data/114452.zip
+  cancelling_redun_3:
+    class: src.model_140465_140465_model:Model140465140465Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: camkii_system_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: camkii_system_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cancelling_redun_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

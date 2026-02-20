@@ -1,0 +1,36 @@
+modules:
+  calcium_potassiu_1:
+    class: src.model_140462_140462_model:Model140462140462Model
+    args:
+      model_path: data/repo
+  calcium_spikes_2:
+    class: src.model_108458_108458_model:Model108458108458Model
+    args:
+      model_path: data/repo
+  calcium_waves_3:
+    class: src.calcium_waves_in_neuroblastoma_cells_fink_et_al_125745_model:CalciumWavesInNeuroblastomaCellsFinkEtAl125745Model
+    args:
+      model_path: data/125745.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: calcium_potassiu_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: calcium_spikes_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: calcium_waves_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

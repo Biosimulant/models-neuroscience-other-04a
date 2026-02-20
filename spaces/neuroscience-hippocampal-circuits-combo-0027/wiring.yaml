@@ -1,0 +1,28 @@
+modules:
+  ca1_som_1:
+    class: src.model_184545_184545_model:Model184545184545Model
+    args:
+      model_path: data/repo
+  ca1_stratum_2:
+    class: src.ca1_stratum_radiatum_interneuron_multicompartmen_136176_model:Ca1StratumRadiatumInterneuronMulticompartmen136176Model
+    args:
+      model_path: data/136176.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: ca1_som_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: ca1_stratum_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b

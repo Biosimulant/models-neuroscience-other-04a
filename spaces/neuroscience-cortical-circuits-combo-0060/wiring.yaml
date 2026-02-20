@@ -1,0 +1,44 @@
+modules:
+  calculating_cons_1:
+    class: src.model_234111_234111_model:Model234111234111Model
+    args:
+      model_path: data/repo
+  cannula_artifact_2:
+    class: src.model_230888_230888_model:Model230888230888Model
+    args:
+      model_path: data/repo
+  cardiac_models_3:
+    class: src.model_266974_266974_model:Model266974266974Model
+    args:
+      model_path: data/repo
+  cat_locomotion_4:
+    class: src.model_267219_267219_model:Model267219267219Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: calculating_cons_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: cannula_artifact_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cardiac_models_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: cat_locomotion_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d

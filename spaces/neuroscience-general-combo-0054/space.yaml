@@ -1,0 +1,75 @@
+schema_version: '2.0'
+title: 'Neuroscience: General (COMBO_0054)'
+description: Neuroscience general comparative space with 3 models, configured as non-causal
+  co-simulation.
+models:
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: central_nervous_1
+  manifest_path: models/neuroscience-other-central-nervous-system-tadpole-model-in-matlab-a-267146-model/model.yaml
+  parameters:
+    model_path: data/267146.zip
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: central_reposito_2
+  manifest_path: models/neuroscience-other-central-repository-issues-listing-osb-projects-looking-contributors-osbContribute-model/model.yaml
+  parameters:
+    model_path: data/repo
+- repo: Biosimulant/models-neuroscience-other-04a
+  alias: cereb_grc_3
+  manifest_path: models/neuroscience-other-cereb-grc-mc-cerebgrcmc-model/model.yaml
+  parameters:
+    model_path: data/repo
+- repo: Biosimulant/models-observability
+  alias: state_compare_mon
+  manifest_path: models/observability-state-comparison-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+- repo: Biosimulant/models-observability
+  alias: state_metrics_mon
+  manifest_path: models/observability-state-metrics-monitor/model.yaml
+  parameters:
+    max_points: 2000
+    min_dt: 1.0
+runtime:
+  duration: 0.3
+  tick_dt: 0.01
+  initial_inputs: {}
+wiring:
+- from: central_nervous_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: central_reposito_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: cereb_grc_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+scientific_context:
+  question: How do general mechanisms compare across these models?
+  mode: comparative
+  assumptions:
+  - Model implementations are used as published in their curated manifests without
+    biological reinterpretation.
+  - Time integration uses a shared global tick compatible with model min_dt constraints.
+  - Comparative (non-causal) mode is used because full deterministic IO coverage for
+    causal coupling was not satisfied.
+  expected_observables:
+  - Model output trajectories under shared runtime settings.
+  - Cross-model agreement/divergence in key state or metric signals.
+  - Relative behavior comparison without causal linkage claims.
+  limitations:
+  - No new biology is introduced beyond what upstream models encode.
+  - Cross-model semantic matching is rule-based and may under-connect uncertain routes.
+  provenance:
+  - 'neuroscience-other-central-nervous-system-tadpole-model-in-matlab-a-267146-model
+    :: modeldb:267146 :: https://modeldb.science/267146'
+  - 'neuroscience-other-central-repository-issues-listing-osb-projects-looking-contributors-osbContribute-model
+    :: opensourcebrain:Contribute :: https://github.com/OpenSourceBrain/Contribute'
+  - 'neuroscience-other-cereb-grc-mc-cerebgrcmc-model :: opensourcebrain:cereb_grc_mc
+    :: https://github.com/OpenSourceBrain/cereb_grc_mc'
+  visualization_rationale: A dedicated monitor model receives all participating model
+    state streams (`state_a..state_d`) so trajectories can be compared in one place
+    without claiming causal coupling when IO semantics are incomplete.

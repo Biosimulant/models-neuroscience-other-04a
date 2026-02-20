@@ -1,0 +1,36 @@
+modules:
+  ca3_radiatum_1:
+    class: src.model_140732_140732_model:Model140732140732Model
+    args:
+      model_path: data/repo
+  calcium_waves_2:
+    class: src.calcium_waves_and_mglur_dependent_synaptic_plast_150551_model:CalciumWavesAndMglurDependentSynapticPlast150551Model
+    args:
+      model_path: data/150551.zip
+  calcium_waves_3:
+    class: src.model_150551_150551_model:Model150551150551Model
+    args:
+      model_path: data/repo
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: ca3_radiatum_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: calcium_waves_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: calcium_waves_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c

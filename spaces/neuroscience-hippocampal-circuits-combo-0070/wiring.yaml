@@ -1,0 +1,44 @@
+modules:
+  calcium_waves_1:
+    class: src.calcium_waves_and_mglur_dependent_synaptic_plast_150551_model:CalciumWavesAndMglurDependentSynapticPlast150551Model
+    args:
+      model_path: data/150551.zip
+  calcium_waves_2:
+    class: src.model_150551_150551_model:Model150551150551Model
+    args:
+      model_path: data/repo
+  changes_of_3:
+    class: src.changes_of_ionic_concentrations_during_seizure_t_222321_model:ChangesOfIonicConcentrationsDuringSeizureT222321Model
+    args:
+      model_path: data/222321.zip
+  channel_density_4:
+    class: src.channel_density_variability_among_ca1_neurons_mi_244688_model:ChannelDensityVariabilityAmongCa1NeuronsMi244688Model
+    args:
+      model_path: data/244688.zip
+  state_compare_mon:
+    class: src.state_comparison_monitor:StateComparisonMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+  state_metrics_mon:
+    class: src.state_metrics_monitor:StateMetricsMonitor
+    args:
+      max_points: 2000
+      min_dt: 1.0
+wiring:
+- from: calcium_waves_1.state
+  to:
+  - state_compare_mon.state_a
+  - state_metrics_mon.state_a
+- from: calcium_waves_2.state
+  to:
+  - state_compare_mon.state_b
+  - state_metrics_mon.state_b
+- from: changes_of_3.state
+  to:
+  - state_compare_mon.state_c
+  - state_metrics_mon.state_c
+- from: channel_density_4.state
+  to:
+  - state_compare_mon.state_d
+  - state_metrics_mon.state_d
