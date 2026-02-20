@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/267334
   download_url: https://modeldb.science/download/267334
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_model_for_the_optokinetic_response_ki_267334_model:CerebellarModelForTheOptokineticResponseKi267334Model
   init_kwargs:
     model_path: data/267334.zip

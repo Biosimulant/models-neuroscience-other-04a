@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/125152
   download_url: https://modeldb.science/download/125152
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neuron_to_study_inap_properties_an_125152_model:Ca1PyramidalNeuronToStudyInapPropertiesAn125152Model
   init_kwargs:
     model_path: data/125152.zip

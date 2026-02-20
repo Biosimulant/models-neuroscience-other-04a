@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/139656
   download_url: https://modeldb.science/download/139656
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_cortex_oscil_robustness_from_golgi_ce_139656_model:CerebellarCortexOscilRobustnessFromGolgiCe139656Model
   init_kwargs:
     model_path: data/139656.zip

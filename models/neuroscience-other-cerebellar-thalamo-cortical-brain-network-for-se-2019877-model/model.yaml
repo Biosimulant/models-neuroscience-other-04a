@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/2019877
   download_url: https://modeldb.science/download/2019877
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_thalamo_cortical_brain_network_for_se_2019877_model:CerebellarThalamoCorticalBrainNetworkForSe2019877Model
   init_kwargs:
     model_path: data/2019877.zip

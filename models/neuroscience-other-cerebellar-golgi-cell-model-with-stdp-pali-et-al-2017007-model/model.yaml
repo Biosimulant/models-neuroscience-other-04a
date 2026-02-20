@@ -19,7 +19,7 @@ upstream:
   original_url: https://modeldb.science/2017007
   download_url: https://modeldb.science/download/2017007
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_golgi_cell_model_with_stdp_pali_et_al_2017007_model:CerebellarGolgiCellModelWithStdpPaliEtAl2017007Model
   init_kwargs:
     model_path: data/2017007.zip

@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/144416
   download_url: https://modeldb.science/download/144416
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_gain_and_timing_control_model_yamazak_144416_model:CerebellarGainAndTimingControlModelYamazak144416Model
   init_kwargs:
     model_path: data/144416.zip

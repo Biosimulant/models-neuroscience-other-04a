@@ -19,7 +19,7 @@ upstream:
   original_url: https://modeldb.science/151731
   download_url: https://modeldb.science/download/151731
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neurons_effect_of_external_electri_151731_model:Ca1PyramidalNeuronsEffectOfExternalElectri151731Model
   init_kwargs:
     model_path: data/151731.zip

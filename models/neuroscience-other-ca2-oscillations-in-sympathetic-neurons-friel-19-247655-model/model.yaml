@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/247655
   download_url: https://modeldb.science/download/247655
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca2_oscillations_in_sympathetic_neurons_friel_19_247655_model:Ca2OscillationsInSympatheticNeuronsFriel19247655Model
   init_kwargs:
     model_path: data/247655.zip

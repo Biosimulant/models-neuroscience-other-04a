@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/267146
   download_url: https://modeldb.science/download/267146
   license: ''
-bsim:
+biosim:
   entrypoint: src.central_nervous_system_tadpole_model_in_matlab_a_267146_model:CentralNervousSystemTadpoleModelInMatlabA267146Model
   init_kwargs:
     model_path: data/267146.zip

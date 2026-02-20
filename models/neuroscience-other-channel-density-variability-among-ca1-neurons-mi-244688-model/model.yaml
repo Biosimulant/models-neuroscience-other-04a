@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/244688
   download_url: https://modeldb.science/download/244688
   license: ''
-bsim:
+biosim:
   entrypoint: src.channel_density_variability_among_ca1_neurons_mi_244688_model:ChannelDensityVariabilityAmongCa1NeuronsMi244688Model
   init_kwargs:
     model_path: data/244688.zip

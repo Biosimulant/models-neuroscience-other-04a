@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/262464
   download_url: https://modeldb.science/download/262464
   license: ''
-bsim:
+biosim:
   entrypoint: src.cellular_function_given_parametric_variation_in_262464_model:CellularFunctionGivenParametricVariationIn262464Model
   init_kwargs:
     model_path: data/262464.zip

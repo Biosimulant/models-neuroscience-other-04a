@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/64171
   download_url: https://modeldb.science/download/64171
   license: ''
-bsim:
+biosim:
   entrypoint: src.cardiac_action_potential_based_on_luo_rudy_phase_64171_model:CardiacActionPotentialBasedOnLuoRudyPhase64171Model
   init_kwargs:
     model_path: data/64171.zip

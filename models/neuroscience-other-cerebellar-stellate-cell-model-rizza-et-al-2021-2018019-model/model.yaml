@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/2018019
   download_url: https://modeldb.science/download/2018019
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_stellate_cell_model_rizza_et_al_2021_2018019_model:CerebellarStellateCellModelRizzaEtAl20212018019Model
   init_kwargs:
     model_path: data/2018019.zip

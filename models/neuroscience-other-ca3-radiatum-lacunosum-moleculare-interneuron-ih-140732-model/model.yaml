@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/140732
   download_url: https://modeldb.science/download/140732
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca3_radiatum_lacunosum_moleculare_interneuron_ih_140732_model:Ca3RadiatumLacunosumMoleculareInterneuronIh140732Model
   init_kwargs:
     model_path: data/140732.zip

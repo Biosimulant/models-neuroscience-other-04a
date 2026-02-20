@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/267013
   download_url: https://modeldb.science/download/267013
   license: ''
-bsim:
+biosim:
   entrypoint: src.cellular_and_synaptic_mechanisms_differentiate_m_267013_model:CellularAndSynapticMechanismsDifferentiateM267013Model
   init_kwargs:
     model_path: data/267013.zip

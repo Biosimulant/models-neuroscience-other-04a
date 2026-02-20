@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/112086
   download_url: https://modeldb.science/download/112086
   license: ''
-bsim:
+biosim:
   entrypoint: src.carbon_nanotubes_as_electrical_interfaces_to_neu_112086_model:CarbonNanotubesAsElectricalInterfacesToNeu112086Model
   init_kwargs:
     model_path: data/112086.zip

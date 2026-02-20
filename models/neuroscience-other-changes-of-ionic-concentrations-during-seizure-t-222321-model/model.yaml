@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/222321
   download_url: https://modeldb.science/download/222321
   license: ''
-bsim:
+biosim:
   entrypoint: src.changes_of_ionic_concentrations_during_seizure_t_222321_model:ChangesOfIonicConcentrationsDuringSeizureT222321Model
   init_kwargs:
     model_path: data/222321.zip

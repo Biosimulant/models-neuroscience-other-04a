@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/55035
   download_url: https://modeldb.science/download/55035
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neuron_signal_propagation_in_obliq_55035_model:Ca1PyramidalNeuronSignalPropagationInObliq55035Model
   init_kwargs:
     model_path: data/55035.zip

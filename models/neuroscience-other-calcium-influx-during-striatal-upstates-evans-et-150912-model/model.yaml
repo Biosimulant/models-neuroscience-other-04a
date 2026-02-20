@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/150912
   download_url: https://modeldb.science/download/150912
   license: ''
-bsim:
+biosim:
   entrypoint: src.calcium_influx_during_striatal_upstates_evans_et_150912_model:CalciumInfluxDuringStriatalUpstatesEvansEt150912Model
   init_kwargs:
     model_path: data/150912.zip

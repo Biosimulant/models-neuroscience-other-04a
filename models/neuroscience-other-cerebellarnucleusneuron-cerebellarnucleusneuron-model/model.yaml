@@ -19,7 +19,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/CerebellarNucleusNeuron
   download_url: https://github.com/OpenSourceBrain/CerebellarNucleusNeuron.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellarnucleusneuron_cerebellarnucleusneuron_model:CerebellarnucleusneuronCerebellarnucleusneuronModel
   init_kwargs:
     model_path: data/repo

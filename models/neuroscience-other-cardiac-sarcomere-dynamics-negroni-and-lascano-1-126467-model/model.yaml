@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/126467
   download_url: https://modeldb.science/download/126467
   license: ''
-bsim:
+biosim:
   entrypoint: src.cardiac_sarcomere_dynamics_negroni_and_lascano_1_126467_model:CardiacSarcomereDynamicsNegroniAndLascano1126467Model
   init_kwargs:
     model_path: data/126467.zip

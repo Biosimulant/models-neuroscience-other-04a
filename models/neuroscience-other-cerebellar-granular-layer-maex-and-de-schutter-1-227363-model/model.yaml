@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/227363
   download_url: https://modeldb.science/download/227363
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_granular_layer_maex_and_de_schutter_1_227363_model:CerebellarGranularLayerMaexAndDeSchutter1227363Model
   init_kwargs:
     model_path: data/227363.zip

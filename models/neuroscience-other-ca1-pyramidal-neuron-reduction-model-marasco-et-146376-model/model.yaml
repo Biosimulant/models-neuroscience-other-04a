@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/146376
   download_url: https://modeldb.science/download/146376
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neuron_reduction_model_marasco_et_146376_model:Ca1PyramidalNeuronReductionModelMarascoEt146376Model
   init_kwargs:
     model_path: data/146376.zip

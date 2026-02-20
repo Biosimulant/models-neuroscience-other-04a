@@ -18,7 +18,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/Cerebellum3DDemo
   download_url: https://github.com/OpenSourceBrain/Cerebellum3DDemo.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellum3ddemo_cerebellum3ddemo_model:Cerebellum3ddemoCerebellum3ddemoModel
   init_kwargs:
     model_path: data/repo

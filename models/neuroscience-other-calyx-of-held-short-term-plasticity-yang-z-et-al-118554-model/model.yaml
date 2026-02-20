@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/118554
   download_url: https://modeldb.science/download/118554
   license: ''
-bsim:
+biosim:
   entrypoint: src.calyx_of_held_short_term_plasticity_yang_z_et_al_118554_model:CalyxOfHeldShortTermPlasticityYangZEtAl118554Model
   init_kwargs:
     model_path: data/118554.zip

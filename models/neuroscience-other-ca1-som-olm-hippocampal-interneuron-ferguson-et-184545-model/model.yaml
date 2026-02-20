@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/184545
   download_url: https://modeldb.science/download/184545
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_som_olm_hippocampal_interneuron_ferguson_et_184545_model:Ca1SomOlmHippocampalInterneuronFergusonEt184545Model
   init_kwargs:
     model_path: data/184545.zip

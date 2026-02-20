@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/112685
   download_url: https://modeldb.science/download/112685
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_golgi_cell_solinas_et_al_2007a_2007b_112685_model:CerebellarGolgiCellSolinasEtAl2007a2007b112685Model
   init_kwargs:
     model_path: data/112685.zip

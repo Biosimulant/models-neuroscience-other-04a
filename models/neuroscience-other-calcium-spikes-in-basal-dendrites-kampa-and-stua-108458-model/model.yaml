@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/108458
   download_url: https://modeldb.science/download/108458
   license: ''
-bsim:
+biosim:
   entrypoint: src.calcium_spikes_in_basal_dendrites_kampa_and_stua_108458_model:CalciumSpikesInBasalDendritesKampaAndStua108458Model
   init_kwargs:
     model_path: data/108458.zip

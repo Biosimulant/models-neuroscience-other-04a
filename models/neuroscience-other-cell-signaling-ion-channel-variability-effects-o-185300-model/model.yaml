@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/185300
   download_url: https://modeldb.science/download/185300
   license: ''
-bsim:
+biosim:
   entrypoint: src.cell_signaling_ion_channel_variability_effects_o_185300_model:CellSignalingIonChannelVariabilityEffectsO185300Model
   init_kwargs:
     model_path: data/185300.zip

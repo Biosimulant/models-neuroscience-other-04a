@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/151458
   download_url: https://modeldb.science/download/151458
   license: ''
-bsim:
+biosim:
   entrypoint: src.calcium_response_prediction_in_the_striatal_spin_151458_model:CalciumResponsePredictionInTheStriatalSpin151458Model
   init_kwargs:
     model_path: data/151458.zip

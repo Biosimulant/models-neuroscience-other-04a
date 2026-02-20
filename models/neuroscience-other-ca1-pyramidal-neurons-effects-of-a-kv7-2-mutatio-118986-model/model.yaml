@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/118986
   download_url: https://modeldb.science/download/118986
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neurons_effects_of_a_kv7_2_mutatio_118986_model:Ca1PyramidalNeuronsEffectsOfAKv72Mutatio118986Model
   init_kwargs:
     model_path: data/118986.zip

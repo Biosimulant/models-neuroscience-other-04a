@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/144520
   download_url: https://modeldb.science/download/144520
   license: ''
-bsim:
+biosim:
   entrypoint: src.cardiac_action_potentials_and_pacemaker_activity_144520_model:CardiacActionPotentialsAndPacemakerActivity144520Model
   init_kwargs:
     model_path: data/144520.zip

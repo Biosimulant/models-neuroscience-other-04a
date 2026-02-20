@@ -18,7 +18,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/CalciumImagingDriftingGrating
   download_url: https://github.com/OpenSourceBrain/CalciumImagingDriftingGrating.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.calciumimagingdriftinggrating_calciumimagingdriftinggrating_model:CalciumimagingdriftinggratingCalciumimagingdriftinggratingModel
   init_kwargs:
     model_path: data/repo

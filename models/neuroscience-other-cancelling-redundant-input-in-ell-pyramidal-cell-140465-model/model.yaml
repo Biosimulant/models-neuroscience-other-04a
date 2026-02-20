@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/140465
   download_url: https://modeldb.science/download/140465
   license: ''
-bsim:
+biosim:
   entrypoint: src.cancelling_redundant_input_in_ell_pyramidal_cell_140465_model:CancellingRedundantInputInEllPyramidalCell140465Model
   init_kwargs:
     model_path: data/140465.zip

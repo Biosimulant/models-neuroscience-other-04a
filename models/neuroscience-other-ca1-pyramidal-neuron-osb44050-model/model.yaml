@@ -18,7 +18,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/44050
   download_url: https://github.com/OpenSourceBrain/44050.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.model_44050_44050_model:Model4405044050Model
   init_kwargs:
     model_path: data/repo

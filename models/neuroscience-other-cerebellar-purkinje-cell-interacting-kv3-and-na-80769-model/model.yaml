@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/80769
   download_url: https://modeldb.science/download/80769
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_purkinje_cell_interacting_kv3_and_na_80769_model:CerebellarPurkinjeCellInteractingKv3AndNa80769Model
   init_kwargs:
     model_path: data/80769.zip

@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/234111
   download_url: https://modeldb.science/download/234111
   license: ''
-bsim:
+biosim:
   entrypoint: src.calculating_the_consequences_of_left_shifted_nav_234111_model:CalculatingTheConsequencesOfLeftShiftedNav234111Model
   init_kwargs:
     model_path: data/234111.zip

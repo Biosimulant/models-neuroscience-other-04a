@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/185513
   download_url: https://modeldb.science/download/185513
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_nuclear_neuron_sudhakar_et_al_2015_185513_model:CerebellarNuclearNeuronSudhakarEtAl2015185513Model
   init_kwargs:
     model_path: data/185513.zip

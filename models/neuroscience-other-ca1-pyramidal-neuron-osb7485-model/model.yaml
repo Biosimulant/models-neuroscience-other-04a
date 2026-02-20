@@ -18,7 +18,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/7485
   download_url: https://github.com/OpenSourceBrain/7485.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.model_7485_7485_model:Model74857485Model
   init_kwargs:
     model_path: data/repo

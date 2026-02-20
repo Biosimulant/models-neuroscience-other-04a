@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/144976
   download_url: https://modeldb.science/download/144976
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neurons_effects_of_alzheimer_culmo_144976_model:Ca1PyramidalNeuronsEffectsOfAlzheimerCulmo144976Model
   init_kwargs:
     model_path: data/144976.zip

@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/240960
   download_url: https://modeldb.science/download/240960
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neuron_persistent_na_current_media_240960_model:Ca1PyramidalNeuronPersistentNaCurrentMedia240960Model
   init_kwargs:
     model_path: data/240960.zip

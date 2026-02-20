@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/245412
   download_url: https://modeldb.science/download/245412
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca2_requirements_for_long_term_depression_in_pur_245412_model:Ca2RequirementsForLongTermDepressionInPur245412Model
   init_kwargs:
     model_path: data/245412.zip

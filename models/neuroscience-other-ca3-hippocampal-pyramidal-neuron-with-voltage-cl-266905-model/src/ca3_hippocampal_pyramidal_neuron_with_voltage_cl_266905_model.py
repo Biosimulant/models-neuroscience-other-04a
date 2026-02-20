@@ -16,13 +16,13 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Set, TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover - typing only
-    from bsim import BioWorld
+    from biosim import BioWorld
 
-import bsim
-from bsim.signals import BioSignal, SignalMetadata
+import biosim
+from biosim.signals import BioSignal, SignalMetadata
 
 
-class OtherCa3HippocampalPyramidalNeuronWithVoltageClamp(bsim.BioModule):
+class OtherCa3HippocampalPyramidalNeuronWithVoltageClamp(biosim.BioModule):
     """Placeholder BioModule wrapper for: CA3 hippocampal pyramidal neuron with voltage-clamp intrinsic conductance data (Traub et al 1991).
 
     This model's original format is not directly supported by the auto-generator.

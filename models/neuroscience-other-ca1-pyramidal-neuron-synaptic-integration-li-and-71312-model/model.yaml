@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/71312
   download_url: https://modeldb.science/download/71312
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neuron_synaptic_integration_li_and_71312_model:Ca1PyramidalNeuronSynapticIntegrationLiAnd71312Model
   init_kwargs:
     model_path: data/71312.zip

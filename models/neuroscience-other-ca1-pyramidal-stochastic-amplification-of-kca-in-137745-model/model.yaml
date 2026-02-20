@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/137745
   download_url: https://modeldb.science/download/137745
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_stochastic_amplification_of_kca_in_137745_model:Ca1PyramidalStochasticAmplificationOfKcaIn137745Model
   init_kwargs:
     model_path: data/137745.zip

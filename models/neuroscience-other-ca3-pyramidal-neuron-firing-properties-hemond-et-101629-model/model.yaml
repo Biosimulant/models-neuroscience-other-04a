@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/101629
   download_url: https://modeldb.science/download/101629
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca3_pyramidal_neuron_firing_properties_hemond_et_101629_model:Ca3PyramidalNeuronFiringPropertiesHemondEt101629Model
   init_kwargs:
     model_path: data/101629.zip

@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/136175
   download_url: https://modeldb.science/download/136175
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_nucleus_neuron_steuber_schultheiss_si_136175_model:CerebellarNucleusNeuronSteuberSchultheissSi136175Model
   init_kwargs:
     model_path: data/136175.zip

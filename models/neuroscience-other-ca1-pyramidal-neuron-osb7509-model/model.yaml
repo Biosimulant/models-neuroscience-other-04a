@@ -18,7 +18,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/7509
   download_url: https://github.com/OpenSourceBrain/7509.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.model_7509_7509_model:Model75097509Model
   init_kwargs:
     model_path: data/repo

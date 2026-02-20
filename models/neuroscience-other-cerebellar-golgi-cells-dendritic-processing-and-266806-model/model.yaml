@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/266806
   download_url: https://modeldb.science/download/266806
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_golgi_cells_dendritic_processing_and_266806_model:CerebellarGolgiCellsDendriticProcessingAnd266806Model
   init_kwargs:
     model_path: data/266806.zip

@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/266718
   download_url: https://modeldb.science/download/266718
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_stellate_cells_changes_in_threshold_l_266718_model:CerebellarStellateCellsChangesInThresholdL266718Model
   init_kwargs:
     model_path: data/266718.zip

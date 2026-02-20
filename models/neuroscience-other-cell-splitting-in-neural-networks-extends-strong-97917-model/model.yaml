@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/97917
   download_url: https://modeldb.science/download/97917
   license: ''
-bsim:
+biosim:
   entrypoint: src.cell_splitting_in_neural_networks_extends_strong_97917_model:CellSplittingInNeuralNetworksExtendsStrong97917Model
   init_kwargs:
     model_path: data/97917.zip

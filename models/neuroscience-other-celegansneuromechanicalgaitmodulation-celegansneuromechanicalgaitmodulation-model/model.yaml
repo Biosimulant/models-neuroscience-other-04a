@@ -19,7 +19,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/CelegansNeuromechanicalGaitModulation
   download_url: https://github.com/OpenSourceBrain/CelegansNeuromechanicalGaitModulation.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.celegansneuromechanicalgaitmodulation_celegansneuromechanicalgaitmodulation_model:CelegansneuromechanicalgaitmodulationCelegansneuromechanicalgaitmodulationModel
   init_kwargs:
     model_path: data/repo

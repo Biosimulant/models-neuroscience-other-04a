@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/2018018
   download_url: https://modeldb.science/download/2018018
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_basket_cell_model_masoli_et_al_2025_2018018_model:CerebellarBasketCellModelMasoliEtAl20252018018Model
   init_kwargs:
     model_path: data/2018018.zip

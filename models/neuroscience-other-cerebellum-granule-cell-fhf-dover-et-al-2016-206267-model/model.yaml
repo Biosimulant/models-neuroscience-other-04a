@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/206267
   download_url: https://modeldb.science/download/206267
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellum_granule_cell_fhf_dover_et_al_2016_206267_model:CerebellumGranuleCellFhfDoverEtAl2016206267Model
   init_kwargs:
     model_path: data/206267.zip

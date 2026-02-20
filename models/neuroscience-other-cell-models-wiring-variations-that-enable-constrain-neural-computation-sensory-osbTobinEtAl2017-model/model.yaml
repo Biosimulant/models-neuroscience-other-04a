@@ -19,7 +19,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/TobinEtAl2017
   download_url: https://github.com/OpenSourceBrain/TobinEtAl2017.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.tobinetal2017_tobinetal2017_model:Tobinetal2017Tobinetal2017Model
   init_kwargs:
     model_path: data/repo

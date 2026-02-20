@@ -16,13 +16,13 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Set, TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover - typing only
-    from bsim import BioWorld
+    from biosim import BioWorld
 
-import bsim
-from bsim.signals import BioSignal, SignalMetadata
+import biosim
+from biosim.signals import BioSignal, SignalMetadata
 
 
-class OtherCa1PyramidalNeuronsEffectsOfKv7MChannelsOnSynaptic(bsim.BioModule):
+class OtherCa1PyramidalNeuronsEffectsOfKv7MChannelsOnSynaptic(biosim.BioModule):
     """Placeholder BioModule wrapper for: CA1 pyramidal neurons: effects of Kv7 (M-) channels on synaptic integration (Shah et al. 2011).
 
     This model's original format is not directly supported by the auto-generator.

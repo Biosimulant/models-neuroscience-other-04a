@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/186768
   download_url: https://modeldb.science/download/186768
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca3_network_model_of_epileptic_activity_sanjay_e_186768_model:Ca3NetworkModelOfEpilepticActivitySanjayE186768Model
   init_kwargs:
     model_path: data/186768.zip

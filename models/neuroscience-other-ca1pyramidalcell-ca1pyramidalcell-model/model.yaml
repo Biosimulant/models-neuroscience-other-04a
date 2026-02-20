@@ -18,7 +18,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/CA1PyramidalCell
   download_url: https://github.com/OpenSourceBrain/CA1PyramidalCell.git
   license: NOASSERTION
-bsim:
+biosim:
   entrypoint: src.ca1pyramidalcell_ca1pyramidalcell_model:Ca1pyramidalcellCa1pyramidalcellModel
   init_kwargs:
     model_path: data/repo

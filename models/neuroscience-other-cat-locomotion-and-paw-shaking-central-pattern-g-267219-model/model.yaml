@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/267219
   download_url: https://modeldb.science/download/267219
   license: ''
-bsim:
+biosim:
   entrypoint: src.cat_locomotion_and_paw_shaking_central_pattern_g_267219_model:CatLocomotionAndPawShakingCentralPatternG267219Model
   init_kwargs:
     model_path: data/267219.zip

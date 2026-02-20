@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/244679
   download_url: https://modeldb.science/download/244679
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellum_purkinje_cell_dendritic_ion_channels_244679_model:CerebellumPurkinjeCellDendriticIonChannels244679Model
   init_kwargs:
     model_path: data/244679.zip

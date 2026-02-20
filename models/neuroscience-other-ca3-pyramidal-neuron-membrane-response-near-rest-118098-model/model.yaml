@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/118098
   download_url: https://modeldb.science/download/118098
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca3_pyramidal_neuron_membrane_response_near_rest_118098_model:Ca3PyramidalNeuronMembraneResponseNearRest118098Model
   init_kwargs:
     model_path: data/118098.zip

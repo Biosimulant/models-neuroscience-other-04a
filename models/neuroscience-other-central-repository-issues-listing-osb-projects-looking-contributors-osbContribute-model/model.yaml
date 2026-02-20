@@ -18,7 +18,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/Contribute
   download_url: https://github.com/OpenSourceBrain/Contribute.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.contribute_contribute_model:ContributeContributeModel
   init_kwargs:
     model_path: data/repo

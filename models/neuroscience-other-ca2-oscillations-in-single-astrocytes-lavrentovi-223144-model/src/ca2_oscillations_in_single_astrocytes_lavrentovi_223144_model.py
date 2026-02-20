@@ -16,13 +16,13 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Set, TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover - typing only
-    from bsim import BioWorld
+    from biosim import BioWorld
 
-import bsim
-from bsim.signals import BioSignal, SignalMetadata
+import biosim
+from biosim.signals import BioSignal, SignalMetadata
 
 
-class OtherCa2OscillationsInSingleAstrocytesLavrentovichAnd(bsim.BioModule):
+class OtherCa2OscillationsInSingleAstrocytesLavrentovichAnd(biosim.BioModule):
     """Placeholder BioModule wrapper for: Ca2+ oscillations in single astrocytes (Lavrentovich and Hemkin 2008) (python) (Manninen et al 2017).
 
     This model's original format is not directly supported by the auto-generator.

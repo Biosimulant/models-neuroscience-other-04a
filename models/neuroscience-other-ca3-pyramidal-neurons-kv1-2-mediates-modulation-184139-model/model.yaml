@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/184139
   download_url: https://modeldb.science/download/184139
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca3_pyramidal_neurons_kv1_2_mediates_modulation_184139_model:Ca3PyramidalNeuronsKv12MediatesModulation184139Model
   init_kwargs:
     model_path: data/184139.zip

@@ -19,7 +19,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/20212
   download_url: https://github.com/OpenSourceBrain/20212.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.model_20212_20212_model:Model2021220212Model
   init_kwargs:
     model_path: data/repo

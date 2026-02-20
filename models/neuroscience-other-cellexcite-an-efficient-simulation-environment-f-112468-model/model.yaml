@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/112468
   download_url: https://modeldb.science/download/112468
   license: ''
-bsim:
+biosim:
   entrypoint: src.cellexcite_an_efficient_simulation_environment_f_112468_model:CellexciteAnEfficientSimulationEnvironmentF112468Model
   init_kwargs:
     model_path: data/112468.zip

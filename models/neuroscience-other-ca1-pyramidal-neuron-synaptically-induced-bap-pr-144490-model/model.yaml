@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/144490
   download_url: https://modeldb.science/download/144490
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neuron_synaptically_induced_bap_pr_144490_model:Ca1PyramidalNeuronSynapticallyInducedBapPr144490Model
   init_kwargs:
     model_path: data/144490.zip

@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/266905
   download_url: https://modeldb.science/download/266905
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca3_hippocampal_pyramidal_neuron_with_voltage_cl_266905_model:Ca3HippocampalPyramidalNeuronWithVoltageCl266905Model
   init_kwargs:
     model_path: data/266905.zip

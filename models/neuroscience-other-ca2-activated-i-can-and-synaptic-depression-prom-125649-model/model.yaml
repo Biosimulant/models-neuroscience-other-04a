@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/125649
   download_url: https://modeldb.science/download/125649
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca2_activated_i_can_and_synaptic_depression_prom_125649_model:Ca2ActivatedICanAndSynapticDepressionProm125649Model
   init_kwargs:
     model_path: data/125649.zip

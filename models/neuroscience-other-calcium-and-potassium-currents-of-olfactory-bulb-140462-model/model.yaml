@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/140462
   download_url: https://modeldb.science/download/140462
   license: ''
-bsim:
+biosim:
   entrypoint: src.calcium_and_potassium_currents_of_olfactory_bulb_140462_model:CalciumAndPotassiumCurrentsOfOlfactoryBulb140462Model
   init_kwargs:
     model_path: data/140462.zip

@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/126814
   download_url: https://modeldb.science/download/126814
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca3_pyramidal_neuron_safiulina_et_al_2010_126814_model:Ca3PyramidalNeuronSafiulinaEtAl2010126814Model
   init_kwargs:
     model_path: data/126814.zip

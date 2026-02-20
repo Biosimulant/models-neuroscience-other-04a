@@ -18,7 +18,7 @@ upstream:
   original_url: https://github.com/OpenSourceBrain/cereb_grc_mc
   download_url: https://github.com/OpenSourceBrain/cereb_grc_mc.git
   license: ''
-bsim:
+biosim:
   entrypoint: src.cereb_grc_mc_cerebgrcmc_model:CerebGrcMcCerebgrcmcModel
   init_kwargs:
     model_path: data/repo

@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/267742
   download_url: https://modeldb.science/download/267742
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_populations_after_high_frequency_h_267742_model:Ca1PyramidalPopulationsAfterHighFrequencyH267742Model
   init_kwargs:
     model_path: data/267742.zip

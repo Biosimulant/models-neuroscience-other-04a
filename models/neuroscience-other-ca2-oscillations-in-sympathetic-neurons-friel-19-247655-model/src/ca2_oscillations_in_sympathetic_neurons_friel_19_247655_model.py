@@ -16,13 +16,13 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Set, TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover - typing only
-    from bsim import BioWorld
+    from biosim import BioWorld
 
-import bsim
-from bsim.signals import BioSignal, SignalMetadata
+import biosim
+from biosim.signals import BioSignal, SignalMetadata
 
 
-class OtherCa2OscillationsInSympatheticNeuronsFriel1995(bsim.BioModule):
+class OtherCa2OscillationsInSympatheticNeuronsFriel1995(biosim.BioModule):
     """Placeholder BioModule wrapper for: Ca2+ Oscillations in Sympathetic neurons (Friel 1995).
 
     This model's original format is not directly supported by the auto-generator.

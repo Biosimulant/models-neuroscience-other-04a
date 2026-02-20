@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/265584
   download_url: https://modeldb.science/download/265584
   license: ''
-bsim:
+biosim:
   entrypoint: src.cerebellar_granule_cell_masoli_et_al_2020_265584_model:CerebellarGranuleCellMasoliEtAl2020265584Model
   init_kwargs:
     model_path: data/265584.zip

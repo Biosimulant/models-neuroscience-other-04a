@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/267509
   download_url: https://modeldb.science/download/267509
   license: ''
-bsim:
+biosim:
   entrypoint: src.cell_type_specific_integration_of_feedforward_an_267509_model:CellTypeSpecificIntegrationOfFeedforwardAn267509Model
   init_kwargs:
     model_path: data/267509.zip

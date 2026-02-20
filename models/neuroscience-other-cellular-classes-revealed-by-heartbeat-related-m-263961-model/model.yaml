@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/263961
   download_url: https://modeldb.science/download/263961
   license: ''
-bsim:
+biosim:
   entrypoint: src.cellular_classes_revealed_by_heartbeat_related_m_263961_model:CellularClassesRevealedByHeartbeatRelatedM263961Model
   init_kwargs:
     model_path: data/263961.zip

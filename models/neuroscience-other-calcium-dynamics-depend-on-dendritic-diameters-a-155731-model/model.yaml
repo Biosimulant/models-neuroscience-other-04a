@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/155731
   download_url: https://modeldb.science/download/155731
   license: ''
-bsim:
+biosim:
   entrypoint: src.calcium_dynamics_depend_on_dendritic_diameters_a_155731_model:CalciumDynamicsDependOnDendriticDiametersA155731Model
   init_kwargs:
     model_path: data/155731.zip

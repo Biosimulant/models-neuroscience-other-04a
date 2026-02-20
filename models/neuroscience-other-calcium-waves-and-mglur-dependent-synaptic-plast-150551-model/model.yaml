@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/150551
   download_url: https://modeldb.science/download/150551
   license: ''
-bsim:
+biosim:
   entrypoint: src.calcium_waves_and_mglur_dependent_synaptic_plast_150551_model:CalciumWavesAndMglurDependentSynapticPlast150551Model
   init_kwargs:
     model_path: data/150551.zip

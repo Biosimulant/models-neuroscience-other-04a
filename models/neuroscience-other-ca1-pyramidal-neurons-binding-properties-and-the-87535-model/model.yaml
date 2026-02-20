@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/87535
   download_url: https://modeldb.science/download/87535
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca1_pyramidal_neurons_binding_properties_and_the_87535_model:Ca1PyramidalNeuronsBindingPropertiesAndThe87535Model
   init_kwargs:
     model_path: data/87535.zip

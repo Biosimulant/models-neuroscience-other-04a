@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/125745
   download_url: https://modeldb.science/download/125745
   license: ''
-bsim:
+biosim:
   entrypoint: src.calcium_waves_in_neuroblastoma_cells_fink_et_al_125745_model:CalciumWavesInNeuroblastomaCellsFinkEtAl125745Model
   init_kwargs:
     model_path: data/125745.zip

@@ -20,7 +20,7 @@ upstream:
   original_url: https://modeldb.science/125676
   download_url: https://modeldb.science/download/125676
   license: ''
-bsim:
+biosim:
   entrypoint: src.ca2_current_versus_ca2_channel_cooperativity_of_125676_model:Ca2CurrentVersusCa2ChannelCooperativityOf125676Model
   init_kwargs:
     model_path: data/125676.zip
