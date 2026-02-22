@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model137745137745Model'
-description: 'CA1 pyramidal: Stochastic amplification of KCa in Ca2+ microdomains
-  (Stanley et al. 2011)'
+description: "CA1 pyramidal: Stochastic amplification of KCa in Ca2+ microdomains (Stanley et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

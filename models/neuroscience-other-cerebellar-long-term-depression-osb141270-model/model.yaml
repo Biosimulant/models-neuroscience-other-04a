@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model141270141270Model'
-description: Cerebellar long-term depression (LTD) (Antunes and De Schutter 2012)
+description: "Cerebellar long-term depression (LTD) (Antunes and De Schutter 2012). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

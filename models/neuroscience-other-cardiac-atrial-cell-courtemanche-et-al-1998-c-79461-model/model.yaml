@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CardiacAtrialCellCourtemancheEtAl1998C79461Model'
-description: "{'value': 'The mechanisms underlying many important properties of the\
-  \ human atrial action potential (AP) \r\nare poorly understood. Using specific formulations\
-  \ of the K+, Na+, and Ca2+ currents based "
+description: "{'value': 'The mechanisms underlying many important properties of the human atrial action potential (AP) are poorly understood. Using specific formulations of the K+, Na+, and Ca2+ currents based."
 standard: other
 tags:
 - neuroscience

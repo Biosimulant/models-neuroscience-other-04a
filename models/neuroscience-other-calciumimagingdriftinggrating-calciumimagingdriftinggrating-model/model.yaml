@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CalciumimagingdriftinggratingCalciumimagingdriftinggratingModel'
-description: Testing conversion of data to NWB format
+description: "Neuroscience Calciumimagingdriftinggrating Calciumimagingdriftinggrating Model captures core biological behavior in the context of neuroscience, opensourcebrain, calciumimagingdriftinggrating using a opensource. When you run it, you can observe state and evaluate how the modeled system changes across runs."
 standard: other
 tags:
 - neuroscience

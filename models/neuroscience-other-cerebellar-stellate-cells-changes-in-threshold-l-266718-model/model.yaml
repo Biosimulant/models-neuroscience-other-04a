@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarStellateCellsChangesInThresholdL266718Model'
-description: '{"value": "\"Cerebellar stellate cells are inhibitory molecular interneurons
-  that regulate the firing properties of Purkinje cells, the sole output of cerebellar
-  cortex. Recent evidence suggests that\'
+description: "{\"value\": \"\\\"Cerebellar stellate cells are inhibitory molecular interneurons that regulate the firing properties of Purkinje cells, the sole output of cerebellar cortex. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

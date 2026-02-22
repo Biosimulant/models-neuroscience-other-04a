@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model8775187751Model'
-description: Cat auditory nerve model (Zilany and Bruce 2006, 2007)
+description: "Cat auditory nerve model (Zilany and Bruce 2006, 2007). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CalciumAndPotassiumCurrentsOfOlfactoryBulb140462Model'
-description: '{"value": "Inward and outward currents of the olfactory bulb juxtaglomerular
-  cells are characterized in the experiments and modeling in these two Masurkar and
-  Chen 2011 papers.", "attr_id": 24}'
+description: "Inward and outward currents of the olfactory bulb juxtaglomerular cells are characterized in the experiments and modeling in these two Masurkar and Chen 2011 papers. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

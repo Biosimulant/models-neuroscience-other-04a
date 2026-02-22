@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CardiacSarcomereDynamicsNegroniAndLascano1126467Model'
-description: '{"value": "\"A muscle model establishing the link between cross-bridge
-  dynamics and intracellular Ca2+ kinetics was assessed by simulation of experiments
-  performed in isolated cardiac muscle.\r\n\r\nT'
+description: "{\"value\": \"\\\"A muscle model establishing the link between cross-bridge dynamics and intracellular Ca2+ kinetics was assessed by simulation of experiments performed in isolated cardiac muscle.\\r\\n\\r\\nT. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

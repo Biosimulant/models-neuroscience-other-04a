@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model20180182018018Model'
-description: Cerebellar basket cell model (Masoli et al., 2025)
+description: "Cerebellar basket cell model (Masoli et al., 2025). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

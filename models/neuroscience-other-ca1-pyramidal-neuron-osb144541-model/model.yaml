@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model144541144541Model'
-description: 'CA1 pyramidal neuron: Ih current (Migliore et al. 2012)'
+description: "CA1 pyramidal neuron: Ih current (Migliore et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

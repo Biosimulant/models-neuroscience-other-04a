@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model144392144392Model'
-description: 'CA1 pyramidal neurons: effects of Kv7 (M-) channels on synaptic integration
-  (Shah et al. 2011)'
+description: "CA1 pyramidal neurons: effects of Kv7 (M-) channels on synaptic integration (Shah et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

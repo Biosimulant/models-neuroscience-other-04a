@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarNuclearNeuronSudhakarEtAl2015185513Model'
-description: '{"value": "\"... In this modeling study, we investigate different forms
-  of Purkinje neuron simple spike pause synchrony and its influence on candidate coding
-  strategies in the cerebellar nuclei. That '
+description: "{\"value\": \"\\\"... In this modeling study, we investigate different forms of Purkinje neuron simple spike pause synchrony and its influence on candidate coding strategies in the cerebellar nuclei."
 standard: other
 tags:
 - neuroscience

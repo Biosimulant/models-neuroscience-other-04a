@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CalciumInfluxDuringStriatalUpstatesEvansEt150912Model'
-description: '{"value": "\"...\r\nTo\r\ninvestigate the mechanisms that underlie the
-  relationship between\r\ncalcium and AP timing, we have developed a realistic biophysical\r\nmodel
-  of a medium spiny neuron (MSN).'
+description: "{\"value\": \"\\\"...\\r\\nTo\\r\\ninvestigate the mechanisms that underlie the relationship between\\r\\ncalcium and AP timing, we have developed a realistic biophysical\\r\\nmodel of a medium spiny neuron (MSN). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarBasketCellModelMasoliEtAl20252018018Model'
-description: '{"value": "\"The analysis of BC inhibition of PCs was extended over
-  a broad parameter space using accurate multi-compartmental computational models.
-  During pf bursts, the BC reduced the PC response at'
+description: "{\"value\": \"\\\"The analysis of BC inhibition of PCs was extended over a broad parameter space using accurate multi-compartmental computational models. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

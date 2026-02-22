@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model3455834558Model'
-description: Caffeine-induced electrical oscillations in Aplysia neurons (Komendantov,
-  Kononenko 2000)
+description: "Caffeine-induced electrical oscillations in Aplysia neurons (Komendantov, Kononenko 2000). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

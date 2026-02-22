@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarMemoryConsolidationModelYamazakiE180823Model'
-description: '{"value": "\"Long-term depression (LTD) at parallel fiber-Purkinje cell
-  (PF-PC)\r\nsynapses is thought to underlie memory formation in cerebellar motor\r\nlearning.
-  \r\n\r\nRecent experimental results'
+description: "{\"value\": \"\\\"Long-term depression (LTD) at parallel fiber-Purkinje cell (PF-PC)\\r\\nsynapses is thought to underlie memory formation in cerebellar motor\\r\\nlearning. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

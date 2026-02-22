@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model266806266806Model'
-description: Cerebellar Golgi cells, dendritic processing, and synaptic plasticity
-  (Masoli et al 2020)
+description: "Cerebellar Golgi cells, dendritic processing, and synaptic plasticity (Masoli et al 2020). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

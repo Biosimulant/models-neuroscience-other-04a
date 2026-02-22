@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronSynapticallyInducedBapPr144490Model'
-description: '{"value": "This is an adaptation of Poirazi et al.''s (2003) CA1 model
-  that is used to measure BAP-induced voltage and calcium signals in spines after
-  simulated Schaffer\r\ncollateral synapse stimulati'
+description: "{\"value\": \"This is an adaptation of Poirazi et al.'s (2003) CA1 model that is used to measure BAP-induced voltage and calcium signals in spines after simulated Schaffer\\r\\ncollateral synapse stimulati. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

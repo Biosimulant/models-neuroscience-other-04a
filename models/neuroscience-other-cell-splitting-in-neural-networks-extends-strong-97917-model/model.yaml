@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CellSplittingInNeuralNetworksExtendsStrong97917Model'
-description: "{'value': 'Neuron tree topology equations can be split into two subtrees\
-  \ and solved\r\non different processors with no change in accuracy, stability, or\r\
-  \ncomputational effort; communication costs in"
+description: "{'value': 'Neuron tree topology equations can be split into two subtrees and solved on different processors with no change in accuracy, stability, or computational effort; communication costs in. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

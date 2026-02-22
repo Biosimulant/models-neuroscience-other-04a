@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Hippocampal Circuits (COMBO_0015)'
-description: Neuroscience hippocampal circuits comparative space with 2 models, configured
-  as non-causal co-simulation.
+description: "Neuroscience Hippocampal Circuits (COMBO_0015) assembles ca1_pyramidal_1, ca1_pyramidal_2, state_compare_mon as a comparative composed simulation to examine how recurrent hippocampal motifs shape network dynamics over ti. When you run it, you can compare synchronized outputs through the declared wiring paths and monitor views."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: ca1_pyramidal_1

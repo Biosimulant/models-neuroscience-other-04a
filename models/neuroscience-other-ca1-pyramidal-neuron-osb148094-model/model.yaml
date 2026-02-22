@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model148094148094Model'
-description: 'CA1 pyramidal neuron: effects of R213Q and R312W Kv7.2 mutations (Miceli
-  et al. 2013)'
+description: "CA1 pyramidal neuron: effects of R213Q and R312W Kv7.2 mutations (Miceli et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronSynapticPlasticityDuring157157Model'
-description: '{"value": "This NEURON code implements a microcircuit of CA1 pyramidal
-  neuron and consists of a detailed model of CA1 pyramidal cell and four types of
-  inhibitory interneurons (basket, bistratified, ax'
+description: "{\"value\": \"This NEURON code implements a microcircuit of CA1 pyramidal neuron and consists of a detailed model of CA1 pyramidal cell and four types of inhibitory interneurons (basket, bistratified, ax. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

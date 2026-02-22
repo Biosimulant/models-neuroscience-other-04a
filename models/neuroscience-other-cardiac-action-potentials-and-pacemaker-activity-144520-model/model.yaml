@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CardiacActionPotentialsAndPacemakerActivity144520Model'
-description: '{"value": "\"Equations have been developed to describe cardiac action
-  potentials and pacemaker activity. The model takes account of extensive developments
-  in experimental work ...\"", "attr_id": 24}'
+description: "\"Equations have been developed to describe cardiac action potentials and pacemaker activity. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model74857485Model'
-description: 'CA1 Pyramidal Neuron: Synaptic Scaling (London, Segev 2001)'
+description: "CA1 Pyramidal Neuron: Synaptic Scaling (London, Segev 2001). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

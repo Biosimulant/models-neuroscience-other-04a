@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model244416244416Model'
-description: CA1 pyramidal neuron (Combe et al 2018)
+description: "Neuroscience Model244416244416Model represents neuroscience ca1 pyramidal neuron osb244416 mechanisms from opensourcebrain reference opensourcebrain:244416. When you run it, you can inspect state and compare temporal behavior between baseline and adjusted inputs."
 standard: other
 tags:
 - neuroscience

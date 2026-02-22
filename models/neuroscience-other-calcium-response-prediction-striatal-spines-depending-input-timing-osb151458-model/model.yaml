@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model151458151458Model'
-description: Calcium response prediction in the striatal spines depending on input
-  timing (Nakano et al. 2013)
+description: "Calcium response prediction in the striatal spines depending on input timing (Nakano et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

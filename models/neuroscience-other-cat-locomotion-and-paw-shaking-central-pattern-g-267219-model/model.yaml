@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CatLocomotionAndPawShakingCentralPatternG267219Model'
-description: '{"value": "We suggest that the cat paw-shaking response is generated
-  as a transient response of the locomotor CPG. Our general prediction is that this
-  CPG is multifunctional, and in addition to the lo'
+description: "{\"value\": \"We suggest that the cat paw-shaking response is generated as a transient response of the locomotor CPG. Our general prediction is that this CPG is multifunctional, and in addition to the lo."
 standard: other
 tags:
 - neuroscience

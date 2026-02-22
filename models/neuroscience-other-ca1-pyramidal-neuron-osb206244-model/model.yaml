@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model206244206244Model'
-description: 'CA1 pyramidal neuron: dendritic Ca2+ inhibition (Muellner et al. 2015)'
+description: "CA1 pyramidal neuron: dendritic Ca2+ inhibition (Muellner et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CellTypeSpecificIntegrationOfFeedforwardAn267509Model'
-description: '{"value": "Simple compartmental model is used to explore and predict
-  channel mechanisms that underlie differences in non-integration of synaptic inputs
-  to posterior parietal cortex pyramidal subtypes,'
+description: "{\"value\": \"Simple compartmental model is used to explore and predict channel mechanisms that underlie differences in non-integration of synaptic inputs to posterior parietal cortex pyramidal subtypes,. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

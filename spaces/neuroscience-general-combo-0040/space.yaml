@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: General (COMBO_0040)'
-description: Neuroscience general comparative space with 3 models, configured as non-causal
-  co-simulation.
+description: "Neuroscience General (COMBO_0040) organizes ca2_oscillations_1, caffeine_induced_2, calcium_and_3 into a comparative simulation setup to examine how general mechanisms compare across these models. When you run it, you can compare participant trajectories through shared runtime settings and routed output streams."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: ca2_oscillations_1

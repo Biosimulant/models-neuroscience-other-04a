@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model108458108458Model'
-description: Calcium spikes in basal dendrites (Kampa and Stuart 2006)
+description: "Calcium spikes in basal dendrites (Kampa and Stuart 2006). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

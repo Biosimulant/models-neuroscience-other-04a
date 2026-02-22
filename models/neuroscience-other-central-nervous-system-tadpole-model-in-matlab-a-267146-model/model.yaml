@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CentralNervousSystemTadpoleModelInMatlabA267146Model'
-description: '{"value": "This is the source code for three compuational models used
-  for generating connectivity and swimming dynamics of spinal cord and hindbrain neurons
-  in the Xenopus tadpoles using biological da'
+description: "{\"value\": \"This is the source code for three compuational models used for generating connectivity and swimming dynamics of spinal cord and hindbrain neurons in the Xenopus tadpoles using biological da. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

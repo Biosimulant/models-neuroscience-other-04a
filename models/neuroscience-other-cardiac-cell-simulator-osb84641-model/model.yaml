@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model8464184641Model'
-description: A cardiac cell simulator (Puglisi and Bers 2001), applied to the QT interval
-  (Busjahn et al 2004)
+description: "A cardiac cell simulator (Puglisi and Bers 2001), applied to the QT interval (Busjahn et al 2004). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

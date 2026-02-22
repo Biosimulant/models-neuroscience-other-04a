@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model230888230888Model'
-description: The cannula artifact (Chandler & Hodgkin 1965)
+description: "Neuroscience Model230888230888Model captures neuroscience cannula artifact osb230888 behavior in the context of neuroscience, opensourcebrain, cannula using a opensourcebrain-sourced OTHER model. When you run it, you can observe state and evaluate how the modeled system changes across runs."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarGranularLayerMaexAndDeSchutter1227363Model'
-description: '{"value": "Circuit model of the granular layer representing a one-dimensional
-  array of single-compartmental granule cells (grcs) and Golgi cells (Gocs). This
-  paper examines the effects of feedback inh'
+description: "{\"value\": \"Circuit model of the granular layer representing a one-dimensional array of single-compartmental granule cells (grcs) and Golgi cells (Gocs). This paper examines the effects of feedback inh."
 standard: other
 tags:
 - neuroscience

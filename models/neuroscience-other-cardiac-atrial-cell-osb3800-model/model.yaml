@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model38003800Model'
-description: Cardiac Atrial Cell (Courtemanche et al 1998)
+description: "Neuroscience Model38003800Model models neuroscience cardiac atrial cell osb3800 dynamics as a OTHER simulation curated from opensourcebrain (opensourcebrain:3800), focused on neuroscience, opensourcebrain, card. When you run it, you can track state over time and compare response patterns across parameter settings."
 standard: other
 tags:
 - neuroscience

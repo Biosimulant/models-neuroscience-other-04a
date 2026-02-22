@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model125745125745Model'
-description: Calcium waves in neuroblastoma cells (Fink et al. 2000)
+description: "Calcium waves in neuroblastoma cells (Fink et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

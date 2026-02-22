@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model206267206267Model'
-description: Cerebellum granule cell FHF (Dover et al. 2016)
+description: "Neuroscience Model206267206267Model captures neuroscience cerebellum granule cell fhf osb206267 behavior in the context of neuroscience, opensourcebrain, cerebellum using a opensourcebrain-sourced OTHER model. When you run it, you can observe state and evaluate how the modeled system changes across runs."
 standard: other
 tags:
 - neuroscience

@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model118986118986Model'
-description: 'CA1 pyramidal neurons: effects of a Kv7.2 mutation (Miceli et al. 2009)'
+description: "CA1 pyramidal neurons: effects of a Kv7.2 mutation (Miceli et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

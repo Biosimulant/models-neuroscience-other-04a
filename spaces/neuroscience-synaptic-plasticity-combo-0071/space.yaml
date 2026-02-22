@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Synaptic Plasticity (COMBO_0071)'
-description: Neuroscience synaptic plasticity comparative space with 4 models, configured
-  as non-causal co-simulation.
+description: "Neuroscience Synaptic Plasticity (COMBO_0071) brings together cerebellar_long_1, cerebellar_long_2, cerebellar_memor_3 in a comparative space to examine how synaptic changes influence network-level outcomes. When you run it, you can compare participant trajectories through shared runtime settings and routed output streams."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: cerebellar_long_1

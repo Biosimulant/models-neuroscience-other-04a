@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model7946179461Model'
-description: Cardiac Atrial Cell (Courtemanche et al 1998) (C++)
+description: "Cardiac Atrial Cell (Courtemanche et al 1998) (C++). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

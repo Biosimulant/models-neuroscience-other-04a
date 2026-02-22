@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model144520144520Model'
-description: Cardiac action potentials and pacemaker activity of sinoatrial node (DiFrancesco
-  & Noble 1985)
+description: "Cardiac action potentials and pacemaker activity of sinoatrial node (DiFrancesco & Noble 1985). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

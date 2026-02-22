@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model125649125649Model'
-description: Ca2+-activated I_CAN and synaptic depression promotes network-dependent
-  oscil. (Rubin et al. 2009)
+description: "Ca2+-activated I_CAN and synaptic depression promotes network-dependent oscil. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

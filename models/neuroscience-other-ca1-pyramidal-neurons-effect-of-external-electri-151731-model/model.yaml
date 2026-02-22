@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronsEffectOfExternalElectri151731Model'
-description: '{"value": "The paper discusses the effects induced by an electric field
-  at power lines frequency.", "attr_id": 24}'
+description: "The paper discusses the effects induced by an electric field at power lines frequency. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model184054184054Model'
-description: 'CA1 pyramidal neuron: Dendritic Na+ spikes are required for LTP at distal
-  synapses (Kim et al 2015)'
+description: "CA1 pyramidal neuron: Dendritic Na+ spikes are required for LTP at distal synapses (Kim et al 2015). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model112468112468Model'
-description: 'CellExcite: an efficient simulation environment for excitable cells
-  (Bartocci et al. 2008)'
+description: "CellExcite: an efficient simulation environment for excitable cells (Bartocci et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

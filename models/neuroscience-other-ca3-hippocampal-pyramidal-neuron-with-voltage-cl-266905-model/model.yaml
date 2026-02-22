@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca3HippocampalPyramidalNeuronWithVoltageCl266905Model'
-description: '{"value": "This is a third-party implementation of the model from Traub
-  et al 1991; as of 2021, Google Scholar reports about 780 citation articles. This
-  model was one of the first biophysical models o'
+description: "{\"value\": \"This is a third-party implementation of the model from Traub et al 1991; as of 2021, Google Scholar reports about 780 citation articles. This model was one of the first biophysical models o."
 standard: other
 tags:
 - neuroscience

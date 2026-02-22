@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: ChangesOfIonicConcentrationsDuringSeizureT222321Model'
-description: '{"value": "\"... In order to\r\ninvestigate the respective roles of
-  synaptic interactions and\r\nnonsynaptic mechanisms in seizure transitions, we developed
-  a\r\ncomputational model of hippocampal cel'
+description: "{\"value\": \"\\\"... In order to\\r\\ninvestigate the respective roles of synaptic interactions and\\r\\nnonsynaptic mechanisms in seizure transitions, we developed a\\r\\ncomputational model of hippocampal cel."
 standard: other
 tags:
 - neuroscience

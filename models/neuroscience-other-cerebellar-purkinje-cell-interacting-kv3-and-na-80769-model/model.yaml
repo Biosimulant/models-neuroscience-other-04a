@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarPurkinjeCellInteractingKv3AndNa80769Model'
-description: '{''value'': ''Purkinje neurons spontaneously generate action potentials
-  in the absence of synaptic drive and thereby exert a tonic, yet plastic, input to
-  their target cells in the deep cerebellar nuclei.'
+description: "{'value': 'Purkinje neurons spontaneously generate action potentials in the absence of synaptic drive and thereby exert a tonic, yet plastic, input to their target cells in the deep cerebellar nuclei. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

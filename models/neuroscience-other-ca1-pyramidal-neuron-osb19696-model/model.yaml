@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model1969619696Model'
-description: 'CA1 pyramidal neuron: integration of subthreshold inputs from PP and
-  SC (Migliore 2003)'
+description: "CA1 pyramidal neuron: integration of subthreshold inputs from PP and SC (Migliore 2003). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

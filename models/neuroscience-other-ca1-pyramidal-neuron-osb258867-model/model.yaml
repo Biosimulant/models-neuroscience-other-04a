@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model258867258867Model'
-description: 'CA1 pyramidal neuron: nonlinear a5-GABAAR controls synaptic NMDAR activation
-  (Schulz et al 2018)'
+description: "CA1 pyramidal neuron: nonlinear a5-GABAAR controls synaptic NMDAR activation (Schulz et al 2018). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca3PyramidalNeuronsKv12MediatesModulation184139Model'
-description: '{"value": "This model simulates the contribution of dendritic Na+ and
-  D-type K+ channels to EPSPs at three different locations of apical dendrites, which
-  mimicking innervation sites of mossy fibers (M'
+description: "{\"value\": \"This model simulates the contribution of dendritic Na+ and D-type K+ channels to EPSPs at three different locations of apical dendrites, which mimicking innervation sites of mossy fibers (M. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

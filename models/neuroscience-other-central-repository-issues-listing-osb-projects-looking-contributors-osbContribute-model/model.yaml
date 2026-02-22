@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: ContributeContributeModel'
-description: A central repository for issues listing OSB projects looking for contributors
+description: "A central repository for issues listing OSB projects looking for contributors. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

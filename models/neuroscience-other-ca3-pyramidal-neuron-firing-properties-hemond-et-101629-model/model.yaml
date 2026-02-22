@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca3PyramidalNeuronFiringPropertiesHemondEt101629Model'
-description: "{'value': 'In the paper, this model was used to identify how relative\
-  \ differences in K+ conductances,\r\nspecifically KC, KM, & KD, between cells contribute\
-  \ to the different characteristics of the\r\n"
+description: "{'value': 'In the paper, this model was used to identify how relative differences in K+ conductances, specifically KC, KM, & KD, between cells contribute to the different characteristics of the. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

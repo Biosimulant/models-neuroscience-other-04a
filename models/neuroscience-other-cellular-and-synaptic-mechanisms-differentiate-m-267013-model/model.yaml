@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CellularAndSynapticMechanismsDifferentiateM267013Model'
-description: '{"value": "\"To evaluate how... different electrophysiological aspects
-  contributed to spiking of the output MCs and sTCs, we used computational modeling.
-  By exchanging the different cell properties in'
+description: "{\"value\": \"\\\"To evaluate how... different electrophysiological aspects contributed to spiking of the output MCs and sTCs, we used computational modeling."
 standard: other
 tags:
 - neuroscience

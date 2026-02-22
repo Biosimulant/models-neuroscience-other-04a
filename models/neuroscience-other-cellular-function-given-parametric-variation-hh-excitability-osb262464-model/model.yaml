@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model262464262464Model'
-description: Cellular function given parametric variation in the HH model of excitability
-  (Ori et al 2018)
+description: "Cellular function given parametric variation in the HH model of excitability (Ori et al 2018). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

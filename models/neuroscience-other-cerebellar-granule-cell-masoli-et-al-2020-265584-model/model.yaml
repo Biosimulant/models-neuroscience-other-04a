@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarGranuleCellMasoliEtAl2020265584Model'
-description: '{"value": "\"The cerebellar granule cells (GrCs) are classically described
-  as a homogeneous neuronal population discharging \r\nregularly without adaptation.
-  We show that GrCs in fact generate diverse'
+description: "{\"value\": \"\\\"The cerebellar granule cells (GrCs) are classically described as a homogeneous neuronal population discharging \\r\\nregularly without adaptation. We show that GrCs in fact generate diverse."
 standard: other
 tags:
 - neuroscience

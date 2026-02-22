@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model247655247655Model'
-description: Ca2+ Oscillations in Sympathetic neurons (Friel 1995)
+description: "Ca2+ Oscillations in Sympathetic neurons (Friel 1995). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

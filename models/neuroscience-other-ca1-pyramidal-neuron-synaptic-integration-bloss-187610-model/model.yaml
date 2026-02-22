@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronSynapticIntegrationBloss187610Model'
-description: '{"value": "\"... We examined synaptic connectivity\r\nbetween molecularly
-  defined inhibitory interneurons\r\nand CA1 pyramidal cell dendrites using\r\ncorrelative
-  light-electron microscopy and large-v'
+description: "{\"value\": \"\\\"... We examined synaptic connectivity\\r\\nbetween molecularly defined inhibitory interneurons\\r\\nand CA1 pyramidal cell dendrites using\\r\\ncorrelative light-electron microscopy and large-v."
 standard: other
 tags:
 - neuroscience

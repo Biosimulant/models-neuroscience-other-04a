@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model182515182515Model'
-description: CA1 pyramidal neuron (Ferguson et al. 2014)
+description: "Neuroscience Model182515182515Model models neuroscience ca1 pyramidal neuron osb182515 dynamics as a OTHER simulation curated from opensourcebrain (opensourcebrain:182515), focused on neuroscience, opensourcebr. When you run it, you can track state over time and compare response patterns across parameter settings."
 standard: other
 tags:
 - neuroscience

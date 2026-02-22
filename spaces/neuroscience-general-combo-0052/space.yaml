@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: General (COMBO_0052)'
-description: Neuroscience general comparative space with 3 models, configured as non-causal
-  co-simulation.
+description: "Neuroscience General (COMBO_0052) brings together cell_splitting_1, cell_splitting_2, cellexcite_an_3 in a comparative space to examine how general mechanisms compare across these models. When you run it, you can compare participant trajectories through shared runtime settings and routed output streams."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: cell_splitting_1

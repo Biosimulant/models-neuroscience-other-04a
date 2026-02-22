@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model187610187610Model'
-description: CA1 pyramidal neuron synaptic integration (Bloss et al. 2016)
+description: "CA1 pyramidal neuron synaptic integration (Bloss et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

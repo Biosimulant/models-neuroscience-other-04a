@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model185513185513Model'
-description: Cerebellar nuclear neuron (Sudhakar et al., 2015)
+description: "Neuroscience Model185513185513Model captures neuroscience cerebellar nuclear neuron osb185513 behavior in the context of neuroscience, opensourcebrain, cerebellar using a opensourcebrain-sourced OTHER model. When you run it, you can observe state and evaluate how the modeled system changes across runs."
 standard: other
 tags:
 - neuroscience

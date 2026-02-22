@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca2OscillationsInSympatheticNeuronsFriel19247655Model'
-description: '{"value": "\" ... This\r\nstudy focuses on caffeine-induced [Ca2+]i
-  oscillations in sympathetic\r\nneurons. ... The aim of the study\r\nwas to understand
-  the mechanism responsible for the oscillations'
+description: "{\"value\": \"\\\" ... This\\r\\nstudy focuses on caffeine-induced [Ca2+]i oscillations in sympathetic\\r\\nneurons."
 standard: other
 tags:
 - neuroscience

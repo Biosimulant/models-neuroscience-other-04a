@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model125676125676Model'
-description: Ca2+ current versus Ca2+ channel cooperativity of exocytosis (Matveev
-  et al. 2009)
+description: "Ca2+ current versus Ca2+ channel cooperativity of exocytosis (Matveev et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

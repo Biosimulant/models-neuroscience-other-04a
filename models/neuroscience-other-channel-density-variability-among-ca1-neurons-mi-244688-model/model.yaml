@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: ChannelDensityVariabilityAmongCa1NeuronsMi244688Model'
-description: '{"value": "The peak conductance of many ion channel types measured in
-  any given animal is highly variable across neurons, both within and between neuronal
-  populations. The current view is that this oc'
+description: "{\"value\": \"The peak conductance of many ion channel types measured in any given animal is highly variable across neurons, both within and between neuronal populations. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

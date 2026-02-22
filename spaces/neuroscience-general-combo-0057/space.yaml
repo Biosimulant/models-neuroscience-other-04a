@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: General (COMBO_0057)'
-description: Neuroscience general comparative space with 4 models, configured as non-causal
-  co-simulation.
+description: "Neuroscience General (COMBO_0057) assembles cerebellar_nucle_1, cerebellar_nucle_2, cerebellar_purki_3 as a comparative composed simulation to examine how general mechanisms compare across these models. When you run it, you can compare synchronized outputs through the declared wiring paths and monitor views."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: cerebellar_nucle_1

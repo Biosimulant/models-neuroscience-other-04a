@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model32633263Model'
-description: CA3 Pyramidal Neuron (Migliore et al 1995)
+description: "Neuroscience Model32633263Model models neuroscience ca3 pyramidal neuron osb3263 dynamics as a OTHER simulation curated from opensourcebrain (opensourcebrain:3263), focused on neuroscience, opensourcebrain, ca3. When you run it, you can track state over time and compare response patterns across parameter settings."
 standard: other
 tags:
 - neuroscience

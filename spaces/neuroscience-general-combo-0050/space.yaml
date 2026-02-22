@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: General (COMBO_0050)'
-description: Neuroscience general comparative space with 3 models, configured as non-causal
-  co-simulation.
+description: "Neuroscience General (COMBO_0050) organizes cat_auditory_1, cat_locomotion_2, celegansneuromec_3 into a comparative simulation setup to examine how general mechanisms compare across these models. When you run it, you can compare participant trajectories through shared runtime settings and routed output streams."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: cat_auditory_1

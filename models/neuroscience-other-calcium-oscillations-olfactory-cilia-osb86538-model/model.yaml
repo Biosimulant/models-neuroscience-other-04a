@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model8653886538Model'
-description: Model of calcium oscillations in olfactory cilia (Reidl et al. 2006)
+description: "Model of calcium oscillations in olfactory cilia (Reidl et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

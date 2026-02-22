@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CalciumDynamicsDependOnDendriticDiametersA155731Model'
-description: '{"value": "\"... in dendrites there is a strong contribution of morphology
-  because the peak calcium levels are strongly determined by the surface to volume
-  ratio (SVR) of each branch, which is inverse'
+description: "{\"value\": \"\\\"... in dendrites there is a strong contribution of morphology because the peak calcium levels are strongly determined by the surface to volume ratio (SVR) of each branch, which is inverse."
 standard: other
 tags:
 - neuroscience

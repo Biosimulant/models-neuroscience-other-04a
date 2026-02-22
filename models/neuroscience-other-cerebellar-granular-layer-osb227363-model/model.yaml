@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model227363227363Model'
-description: Cerebellar granular layer (Maex and De Schutter 1998)
+description: "Cerebellar granular layer (Maex and De Schutter 1998). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

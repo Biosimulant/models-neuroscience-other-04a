@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model140462140462Model'
-description: Calcium and potassium currents of olfactory bulb juxtaglomerular cells
-  (Masurkar and Chen 2011)
+description: "Calcium and potassium currents of olfactory bulb juxtaglomerular cells (Masurkar and Chen 2011). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

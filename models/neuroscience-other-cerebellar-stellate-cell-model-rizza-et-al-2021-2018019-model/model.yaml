@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarStellateCellModelRizzaEtAl20212018019Model'
-description: '{"value": "\"Simulations showed that, following parallel fiber stimulation,
-  Purkinje cells almost linearly increased their response with input frequency, but
-  such an increase was inhibited by stellate'
+description: "{\"value\": \"\\\"Simulations showed that, following parallel fiber stimulation, Purkinje cells almost linearly increased their response with input frequency, but such an increase was inhibited by stellate. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarLongTermDepressionLtdAntunesAnd141270Model'
-description: '{"value": "Many cellular processes involve small number of molecules
-  and undergo stochastic fluctuations in their levels of activity. Among these processes
-  is cerebellar long-term depression (LTD), a '
+description: "{\"value\": \"Many cellular processes involve small number of molecules and undergo stochastic fluctuations in their levels of activity. Among these processes is cerebellar long-term depression (LTD), a."
 standard: other
 tags:
 - neuroscience

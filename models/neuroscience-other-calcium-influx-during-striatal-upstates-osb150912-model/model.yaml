@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model150912150912Model'
-description: Calcium influx during striatal upstates (Evans et al. 2013)
+description: "Calcium influx during striatal upstates (Evans et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

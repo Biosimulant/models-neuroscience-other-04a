@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Cerebellum3ddemoCerebellum3ddemoModel'
-description: Only testing...
+description: "Neuroscience Cerebellum3ddemo Cerebellum3ddemo Model models neuroscience cerebellum3ddemo cerebellum3ddemo dynamics as a OTHER simulation curated from opensourcebrain (opensourcebrain:Cerebellum3DDemo), focused. When you run it, you can track state over time and compare response patterns across parameter settings."
 standard: other
 tags:
 - neuroscience

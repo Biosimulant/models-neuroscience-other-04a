@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CalciumResponsePredictionInTheStriatalSpin151458Model'
-description: '{"value": "We construct an electric compartment model of the striatal
-  medium spiny neuron with a realistic morphology and predict the calcium responses
-  in the synaptic spines with variable timings of '
+description: "{\"value\": \"We construct an electric compartment model of the striatal medium spiny neuron with a realistic morphology and predict the calcium responses in the synaptic spines with variable timings of. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

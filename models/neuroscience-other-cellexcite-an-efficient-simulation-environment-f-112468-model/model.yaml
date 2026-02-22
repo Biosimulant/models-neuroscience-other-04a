@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CellexciteAnEfficientSimulationEnvironmentF112468Model'
-description: '{"value": "\"We have developed CellExcite, a sophisticated simulation
-  environment for excitable-cell networks. CellExcite allows the user to sketch a
-  tissue of excitable cells, plan the stimuli to be '
+description: "{\"value\": \"\\\"We have developed CellExcite, a sophisticated simulation environment for excitable-cell networks. CellExcite allows the user to sketch a tissue of excitable cells, plan the stimuli to be."
 standard: other
 tags:
 - neuroscience

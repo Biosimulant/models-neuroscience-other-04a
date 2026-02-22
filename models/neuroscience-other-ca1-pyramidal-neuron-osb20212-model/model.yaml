@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model2021220212Model'
-description: 'CA1 pyramidal neuron: as a 2-layer NN and subthreshold synaptic summation
-  (Poirazi et al 2003)'
+description: "CA1 pyramidal neuron: as a 2-layer NN and subthreshold synaptic summation (Poirazi et al 2003). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

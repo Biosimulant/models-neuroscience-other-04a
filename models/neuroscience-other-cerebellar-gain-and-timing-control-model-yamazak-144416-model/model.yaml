@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarGainAndTimingControlModelYamazak144416Model'
-description: '{"value": "This paper proposes a hypothetical computational mechanism
-  for unified gain and timing control in the cerebellum. The hypothesis is justified
-  by computer simulations of a large-scale spikin'
+description: "{\"value\": \"This paper proposes a hypothetical computational mechanism for unified gain and timing control in the cerebellum. The hypothesis is justified by computer simulations of a large-scale spikin."
 standard: other
 tags:
 - neuroscience

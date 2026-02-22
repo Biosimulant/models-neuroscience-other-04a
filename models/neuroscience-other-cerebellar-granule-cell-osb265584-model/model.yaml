@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model265584265584Model'
-description: Cerebellar granule cell (Masoli et al 2020)
+description: "Neuroscience Model265584265584Model captures neuroscience cerebellar granule cell osb265584 behavior in the context of neuroscience, opensourcebrain, cerebellar using a opensourcebrain-sourced OTHER model. When you run it, you can observe state and evaluate how the modeled system changes across runs."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronSchizophrenicBehaviorMigl138205Model'
-description: '{"value": "NEURON files from the paper: A modeling study suggesting
-  how a reduction in the context-dependent input on CA1 pyramidal neurons could generate
-  schizophrenic behavior. by M. Migliore, I. De'
+description: "{\"value\": \"NEURON files from the paper: A modeling study suggesting how a reduction in the context-dependent input on CA1 pyramidal neurons could generate schizophrenic behavior. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

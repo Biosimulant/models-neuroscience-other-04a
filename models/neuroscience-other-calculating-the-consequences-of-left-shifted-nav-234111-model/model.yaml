@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CalculatingTheConsequencesOfLeftShiftedNav234111Model'
-description: '{"value": "\"Two features common to diverse sick excitable cells are
-  \u201cleaky\u201d Nav channels and bleb damage-damaged membranes. The bleb damage,
-  we have argued, causes a channel kinetics based '
+description: "{\"value\": \"\\\"Two features common to diverse sick excitable cells are \\u201cleaky\\u201d Nav channels and bleb damage-damaged membranes. The bleb damage, we have argued, causes a channel kinetics based."
 standard: other
 tags:
 - neuroscience

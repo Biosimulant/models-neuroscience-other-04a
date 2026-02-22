@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model186768186768Model'
-description: CA3 Network Model of Epileptic Activity (Sanjay et. al, 2015)
+description: "CA3 Network Model of Epileptic Activity (Sanjay et. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

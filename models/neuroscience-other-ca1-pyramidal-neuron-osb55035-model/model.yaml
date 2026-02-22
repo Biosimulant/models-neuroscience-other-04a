@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model5503555035Model'
-description: 'CA1 pyramidal neuron: signal propagation in oblique dendrites (Migliore
-  et al 2005)'
+description: "CA1 pyramidal neuron: signal propagation in oblique dendrites (Migliore et al 2005). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

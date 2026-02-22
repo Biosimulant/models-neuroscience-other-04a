@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarGolgiCellSolinasEtAl2007a2007b112685Model'
-description: '{"value": "\"... Our results suggest that a complex complement of ionic
-  mechanisms is needed to fine-tune separate aspects of the neuronal response dynamics.
-  Simulations also suggest that the Golgi ce'
+description: "{\"value\": \"\\\"... Our results suggest that a complex complement of ionic mechanisms is needed to fine-tune separate aspects of the neuronal response dynamics."
 standard: other
 tags:
 - neuroscience

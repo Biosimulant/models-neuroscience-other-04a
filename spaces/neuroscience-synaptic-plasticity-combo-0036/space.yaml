@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Synaptic Plasticity (COMBO_0036)'
-description: Neuroscience synaptic plasticity comparative space with 3 models, configured
-  as non-causal co-simulation.
+description: "Neuroscience Synaptic Plasticity (COMBO_0036) brings together ca2_activated_1, ca2_activated_2, ca2_requirements_3 in a comparative space to examine how synaptic changes influence network-level outcomes. When you run it, you can compare participant trajectories through shared runtime settings and routed output streams."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: ca2_activated_1

@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model4833248332Model'
-description: 'Cerebellar Purkinje Cell: resurgent Na current and high frequency firing
-  (Khaliq et al 2003)'
+description: "Cerebellar Purkinje Cell: resurgent Na current and high frequency firing (Khaliq et al 2003). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

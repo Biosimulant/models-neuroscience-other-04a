@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CardiacModelsOfCircadianRhythmsInEarlyAft266974Model'
-description: '{"value": "We fit a simplified Luo-Rudy model to voltage-clamp data
-  showing a circadian rhythm in L-type calcium conductance. Simulations of the model
-  (single-cell and 2-D spatial versions) suggest th'
+description: "{\"value\": \"We fit a simplified Luo-Rudy model to voltage-clamp data showing a circadian rhythm in L-type calcium conductance. Simulations of the model (single-cell and 2-D spatial versions) suggest th."
 standard: other
 tags:
 - neuroscience

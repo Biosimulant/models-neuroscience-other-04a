@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model263961263961Model'
-description: Cellular classes revealed by heartbeat-related modulation of extracellular
-  APs (Mosher et al 2020)
+description: "Cellular classes revealed by heartbeat-related modulation of extracellular APs (Mosher et al 2020). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

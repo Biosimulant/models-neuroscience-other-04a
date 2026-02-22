@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model9791797917Model'
-description: Cell splitting in neural networks extends strong scaling (Hines et al.
-  2008)
+description: "Cell splitting in neural networks extends strong scaling (Hines et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

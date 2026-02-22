@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Basal Ganglia Dopamine (COMBO_0069)'
-description: Neuroscience basal ganglia dopamine comparative space with 4 models,
-  configured as non-causal co-simulation.
+description: "Neuroscience Basal Ganglia Dopamine (COMBO_0069) brings together calcium_influx_1, calcium_influx_2, calcium_response_3 in a comparative space to examine how basal ganglia dopamine mechanisms compare across these models. When you run it, you can compare participant trajectories through shared runtime settings and routed output streams."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: calcium_influx_1

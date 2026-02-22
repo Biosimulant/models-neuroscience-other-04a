@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model267146267146Model'
-description: Central Nervous System tadpole model in Matlab and NEURON-Python (Ferrario
-  et al, 2021)
+description: "Central Nervous System tadpole model in Matlab and NEURON-Python (Ferrario et al, 2021). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

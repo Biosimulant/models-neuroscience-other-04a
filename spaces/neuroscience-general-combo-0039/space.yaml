@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: General (COMBO_0039)'
-description: Neuroscience general comparative space with 3 models, configured as non-causal
-  co-simulation.
+description: "Neuroscience General (COMBO_0039) brings together ca2_current_1, ca2_current_2, ca2_oscillations_3 in a comparative space to examine how general mechanisms compare across these models. When you run it, you can compare participant trajectories through shared runtime settings and routed output streams."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: ca2_current_1

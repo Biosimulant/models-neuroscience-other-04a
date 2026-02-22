@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model73867386Model'
-description: 'CA1 pyramidal neuron: conditional boosting of dendritic APs (Watanabe
-  et al 2002)'
+description: "CA1 pyramidal neuron: conditional boosting of dendritic APs (Watanabe et al 2002). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

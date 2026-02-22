@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CalyxOfHeldShortTermPlasticityYangZEtAl118554Model'
-description: '{"value": "This model investigates mechanisms contributing to short
-  term plasticity at the calyx of Held, a giant glutamatergic synapse in the mammalian
-  brainstem auditory system. It is a stochastic v'
+description: "{\"value\": \"This model investigates mechanisms contributing to short term plasticity at the calyx of Held, a giant glutamatergic synapse in the mammalian brainstem auditory system. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model222321222321Model'
-description: Changes of ionic concentrations during seizure transitions (Gentiletti
-  et al. 2016)
+description: "Changes of ionic concentrations during seizure transitions (Gentiletti et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

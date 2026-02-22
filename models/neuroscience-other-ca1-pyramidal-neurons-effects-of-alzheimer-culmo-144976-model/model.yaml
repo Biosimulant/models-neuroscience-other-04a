@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronsEffectsOfAlzheimerCulmo144976Model'
-description: '{"value": "The model predicts possible therapeutic treatments of Alzheimers''s
-  Disease in terms of pharmacological manipulations of channels'' kinetic and activation
-  properties. The results suggest how '
+description: "{\"value\": \"The model predicts possible therapeutic treatments of Alzheimers's Disease in terms of pharmacological manipulations of channels' kinetic and activation properties. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

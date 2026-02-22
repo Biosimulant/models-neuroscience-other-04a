@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CellularClassesRevealedByHeartbeatRelatedM263961Model'
-description: '{"value": "\"Determining cell types is critical for understanding neural
-  circuits but remains elusive in the living human brain. Current approaches discriminate
-  units into putative cell classes using '
+description: "{\"value\": \"\\\"Determining cell types is critical for understanding neural circuits but remains elusive in the living human brain. Current approaches discriminate units into putative cell classes using."
 standard: other
 tags:
 - neuroscience

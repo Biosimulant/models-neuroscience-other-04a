@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model223144223144Model'
-description: Ca2+ oscillations in single astrocytes (Lavrentovich and Hemkin 2008)
-  (python) (Manninen et al 2017)
+description: "Ca2+ oscillations in single astrocytes (Lavrentovich and Hemkin 2008) (python) (Manninen et al 2017). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

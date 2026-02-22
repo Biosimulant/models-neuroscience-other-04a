@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model114452114452Model'
-description: CaMKII system exhibiting bistability with respect to calcium (Graupner
-  and Brunel 2007)
+description: "CaMKII system exhibiting bistability with respect to calcium (Graupner and Brunel 2007). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

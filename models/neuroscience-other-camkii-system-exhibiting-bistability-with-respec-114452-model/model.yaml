@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CamkiiSystemExhibitingBistabilityWithRespec114452Model'
-description: '{"value": "\"... We present a detailed biochemical model of the CaMKII
-  autophosphorylation and the protein signaling cascade governing the CaMKII dephosphorylation.\r\n...
-  it is shown that the CaMKII '
+description: "{\"value\": \"\\\"... We present a detailed biochemical model of the CaMKII autophosphorylation and the protein signaling cascade governing the CaMKII dephosphorylation.\\r\\n..."
 standard: other
 tags:
 - neuroscience

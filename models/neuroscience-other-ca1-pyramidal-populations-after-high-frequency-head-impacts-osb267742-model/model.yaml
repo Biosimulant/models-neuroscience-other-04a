@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model267742267742Model'
-description: CA1 pyramidal populations after high frequency head impacts (Chapman,
-  et al., 2023)
+description: "CA1 pyramidal populations after high frequency head impacts (Chapman, et al., 2023). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

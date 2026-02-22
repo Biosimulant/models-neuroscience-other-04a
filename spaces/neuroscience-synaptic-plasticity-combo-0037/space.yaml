@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Synaptic Plasticity (COMBO_0037)'
-description: Neuroscience synaptic plasticity comparative space with 3 models, configured
-  as non-causal co-simulation.
+description: "Neuroscience Synaptic Plasticity (COMBO_0037) assembles calyx_held_1, calyx_of_2, cell_type_3 as a comparative composed simulation to examine how synaptic changes influence network-level outcomes. When you run it, you can compare synchronized outputs through the declared wiring paths and monitor views."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: calyx_held_1

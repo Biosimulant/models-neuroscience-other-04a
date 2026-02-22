@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarModelForTheOptokineticResponseKi267334Model'
-description: '{"value": "We consider a cerebellar spiking neural network for the optokinetic
-  response (OKR). Individual granule (GR) cells exhibit diverse spiking patterns which
-  are in-phase, anti-phase, or complex'
+description: "{\"value\": \"We consider a cerebellar spiking neural network for the optokinetic response (OKR). Individual granule (GR) cells exhibit diverse spiking patterns which are in-phase, anti-phase, or complex."
 standard: other
 tags:
 - neuroscience

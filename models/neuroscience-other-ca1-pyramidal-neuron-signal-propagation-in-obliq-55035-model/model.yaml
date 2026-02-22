@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronSignalPropagationInObliq55035Model'
-description: "{'value': 'NEURON mod files from the paper:\r\nM. Migliore, M. Ferrante,\
-  \ GA Ascoli (2005).\r\nThe model shows how the back- and forward propagation of\
-  \ action potentials in the oblique dendrites of CA1"
+description: "{'value': 'NEURON mod files from the paper: M. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

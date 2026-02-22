@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model144416144416Model'
-description: Cerebellar gain and timing control model (Yamazaki & Tanaka 2007)(Yamazaki
-  & Nagao 2012)
+description: "Cerebellar gain and timing control model (Yamazaki & Tanaka 2007)(Yamazaki & Nagao 2012). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

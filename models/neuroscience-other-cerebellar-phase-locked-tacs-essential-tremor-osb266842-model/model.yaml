@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model266842266842Model'
-description: A cerebellar model of phase-locked tACS for essential tremor (Schreglmann
-  et al., 2021)
+description: "A cerebellar model of phase-locked tACS for essential tremor (Schreglmann et al., 2021). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

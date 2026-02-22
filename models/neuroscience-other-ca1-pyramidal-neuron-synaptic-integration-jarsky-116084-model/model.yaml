@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronSynapticIntegrationJarsky116084Model'
-description: '{"value": "\"The perforant-path projection to the hippocampus forms
-  synapses in the apical tuft of CA1 pyramidal neurons. \r\n\r\nWe used computer modeling
-  to examine the function of these distal syna'
+description: "{\"value\": \"\\\"The perforant-path projection to the hippocampus forms synapses in the apical tuft of CA1 pyramidal neurons. \\r\\n\\r\\nWe used computer modeling to examine the function of these distal syna."
 standard: other
 tags:
 - neuroscience

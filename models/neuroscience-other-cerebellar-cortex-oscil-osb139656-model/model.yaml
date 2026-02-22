@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model139656139656Model'
-description: Cerebellar cortex oscil. robustness from Golgi cell gap jncs (Simoes
-  de Souza and De Schutter 2011)
+description: "Cerebellar cortex oscil. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

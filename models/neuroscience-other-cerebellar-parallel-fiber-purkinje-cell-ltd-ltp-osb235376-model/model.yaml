@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model235376235376Model'
-description: Model of cerebellar parallel fiber-Purkinje cell LTD and LTP (Gallimore
-  et al 2018)
+description: "Model of cerebellar parallel fiber-Purkinje cell LTD and LTP (Gallimore et al 2018). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

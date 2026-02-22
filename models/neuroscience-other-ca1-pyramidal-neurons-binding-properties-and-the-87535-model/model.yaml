@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronsBindingPropertiesAndThe87535Model'
-description: "{'value': 'NEURON files from the paper:\r\n\r\nSingle neuron binding\
-  \ properties and the magical number 7,\r\nby M. Migliore, G. Novara, D. Tegolo,\
-  \ Hippocampus, in press (2008).\r\n\r\nIn an extensive "
+description: "{'value': 'NEURON files from the paper: Single neuron binding properties and the magical number 7, by M. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

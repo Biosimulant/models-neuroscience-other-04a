@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model151731151731Model'
-description: 'CA1 pyramidal neurons: effect of external electric field from power
-  lines (Cavarretta et al. 2014)'
+description: "CA1 pyramidal neurons: effect of external electric field from power lines (Cavarretta et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model267219267219Model'
-description: Cat Locomotion and Paw-Shaking Central Pattern Generator Model (Parker
-  et al 2021)
+description: "Cat Locomotion and Paw-Shaking Central Pattern Generator Model (Parker et al 2021). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

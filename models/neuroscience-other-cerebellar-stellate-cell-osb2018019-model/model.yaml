@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model20180192018019Model'
-description: Cerebellar stellate cell model (Rizza et al., 2021)
+description: "Cerebellar stellate cell model (Rizza et al., 2021). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

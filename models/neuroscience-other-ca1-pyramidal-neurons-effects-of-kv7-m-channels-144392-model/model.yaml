@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronsEffectsOfKv7MChannels144392Model'
-description: '{"value": "NEURON mod files from the paper:\r\nShah et al., 2011.\r\n\r\nIn
-  this study, using a combination of electrophysiology\r\nand computational modelling,
-  we show that these channels selectively'
+description: "{\"value\": \"NEURON mod files from the paper:\\r\\nShah et al., 2011.\\r\\n\\r\\nIn this study, using a combination of electrophysiology\\r\\nand computational modelling, we show that these channels selectively. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

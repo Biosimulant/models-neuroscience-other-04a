@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model8753587535Model'
-description: 'CA1 pyramidal neurons: binding properties and the magical number 7 (Migliore
-  et al. 2008)'
+description: "CA1 pyramidal neurons: binding properties and the magical number 7 (Migliore et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

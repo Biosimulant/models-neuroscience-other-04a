@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalPopulationsAfterHighFrequencyH267742Model'
-description: '{"value": "\"... we generated in silico models of CA1 pyramidal neurons
-  from current clamp data of control mice and mice that sustained HFHI. We use a directed
-  evolution algorithm with a crowding pena'
+description: "{\"value\": \"\\\"... we generated in silico models of CA1 pyramidal neurons from current clamp data of control mice and mice that sustained HFHI."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CancellingRedundantInputInEllPyramidalCell140465Model'
-description: '{"value": "The paper investigates the property of the electrosensory
-  lateral line lobe (ELL) of the brain of weakly electric fish to cancel predictable
-  stimuli. Electroreceptors on the skin encode all'
+description: "{\"value\": \"The paper investigates the property of the electrosensory lateral line lobe (ELL) of the brain of weakly electric fish to cancel predictable stimuli. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca2RequirementsForLongTermDepressionInPur245412Model'
-description: '{"value": "An updated stochastic model of cerebellar Long-Term Depression
-  (LTD) to study the requirements of calcium to induce LTD. Calcium signal is generated
-  as a train of calcium pulses and this ca'
+description: "{\"value\": \"An updated stochastic model of cerebellar Long-Term Depression (LTD) to study the requirements of calcium to induce LTD. Calcium signal is generated as a train of calcium pulses and this ca."
 standard: other
 tags:
 - neuroscience

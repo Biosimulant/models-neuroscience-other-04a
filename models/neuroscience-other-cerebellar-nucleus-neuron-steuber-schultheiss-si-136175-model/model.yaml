@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarNucleusNeuronSteuberSchultheissSi136175Model'
-description: '{"value": "This is the GENESIS 2.3 implementation of a multi-compartmental
-  deep cerebellar nucleus (DCN) neuron model with a full dendritic morphology and
-  appropriate active conductances. We generated'
+description: "{\"value\": \"This is the GENESIS 2.3 implementation of a multi-compartmental deep cerebellar nucleus (DCN) neuron model with a full dendritic morphology and appropriate active conductances. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

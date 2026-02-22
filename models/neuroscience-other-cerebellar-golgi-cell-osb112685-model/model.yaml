@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model112685112685Model'
-description: Cerebellar Golgi cell (Solinas et al. 2007a, 2007b)
+description: "Cerebellar Golgi cell (Solinas et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

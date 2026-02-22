@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1SomOlmHippocampalInterneuronFergusonEt184545Model'
-description: '{"value": "This two-variable simple model is derived based on patch-clamp
-  recordings from the CA1 region of a whole hippocampus preparation of SOM+ inhibitory
-  cells. \r\n\r\nThe model code will also b'
+description: "{\"value\": \"This two-variable simple model is derived based on patch-clamp recordings from the CA1 region of a whole hippocampus preparation of SOM+ inhibitory cells. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

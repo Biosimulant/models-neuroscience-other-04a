@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CalciumWavesInNeuroblastomaCellsFinkEtAl125745Model'
-description: '{"value": "Uses a model of IP3-mediated release of Ca from endoplasmic
-  reticulum (ER) to study how initiation and propagation of Ca waves are affected
-  by cell geometry, spatial distributions of ER and'
+description: "{\"value\": \"Uses a model of IP3-mediated release of Ca from endoplasmic reticulum (ER) to study how initiation and propagation of Ca waves are affected by cell geometry, spatial distributions of ER and. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

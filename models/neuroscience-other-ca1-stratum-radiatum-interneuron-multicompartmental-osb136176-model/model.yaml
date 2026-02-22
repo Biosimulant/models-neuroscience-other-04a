@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model136176136176Model'
-description: CA1 stratum radiatum interneuron multicompartmental model (Katona et
-  al. 2011)
+description: "CA1 stratum radiatum interneuron multicompartmental model (Katona et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

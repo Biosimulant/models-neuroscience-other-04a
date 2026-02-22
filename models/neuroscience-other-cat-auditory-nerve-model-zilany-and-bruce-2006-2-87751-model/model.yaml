@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CatAuditoryNerveModelZilanyAndBruce2006287751Model'
-description: '{"value": "\"This paper presents a computational model to simulate normal
-  and impaired auditory-nerve (AN)\r\nfiber responses in cats. The model responses
-  match physiological data over a wider dynamic'
+description: "{\"value\": \"\\\"This paper presents a computational model to simulate normal and impaired auditory-nerve (AN)\\r\\nfiber responses in cats. The model responses match physiological data over a wider dynamic."
 standard: other
 tags:
 - neuroscience

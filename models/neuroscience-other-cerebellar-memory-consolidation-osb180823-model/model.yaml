@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model180823180823Model'
-description: Cerebellar memory consolidation model (Yamazaki et al. 2015)
+description: "Cerebellar memory consolidation model (Yamazaki et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

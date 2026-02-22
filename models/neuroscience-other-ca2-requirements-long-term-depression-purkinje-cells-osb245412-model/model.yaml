@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model245412245412Model'
-description: Ca2+ requirements for Long-Term Depression in Purkinje Cells (Criseida
-  Zamora et al 2018)
+description: "Ca2+ requirements for Long-Term Depression in Purkinje Cells (Criseida Zamora et al 2018). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronToStudyInapPropertiesAn125152Model'
-description: '{"value": "A model of a CA1 pyramidal neuron containing a biophysically
-  realistic morphology and 15 distributed voltage and Ca2+-dependent conductances.
-  Repetitive firing is modulated by maximal condu'
+description: "{\"value\": \"A model of a CA1 pyramidal neuron containing a biophysically realistic morphology and 15 distributed voltage and Ca2+-dependent conductances. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

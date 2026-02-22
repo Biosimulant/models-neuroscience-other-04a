@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model267509267509Model'
-description: Cell-type specific integration of feedforward and feedback synaptic inputs
-  (Ridner et al, accepted)
+description: "Cell-type specific integration of feedforward and feedback synaptic inputs (Ridner et al, accepted). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

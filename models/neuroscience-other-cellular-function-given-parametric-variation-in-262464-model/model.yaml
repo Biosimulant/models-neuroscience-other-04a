@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CellularFunctionGivenParametricVariationIn262464Model'
-description: '{"value": "\"How is reliable physiological function maintained in cells
-  despite considerable variability in the values of key parameters of multiple interacting
-  processes that govern that function? He'
+description: "{\"value\": \"\\\"How is reliable physiological function maintained in cells despite considerable variability in the values of key parameters of multiple interacting processes that govern that function? It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

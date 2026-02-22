@@ -1,6 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model267334267334Model'
-description: Cerebellar Model for the Optokinetic Response (Kim and Lim 2021)
+description: "Cerebellar Model for the Optokinetic Response (Kim and Lim 2021). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

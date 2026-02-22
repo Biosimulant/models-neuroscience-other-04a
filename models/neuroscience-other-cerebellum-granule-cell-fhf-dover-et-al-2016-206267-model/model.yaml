@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellumGranuleCellFhfDoverEtAl2016206267Model'
-description: '{"value": "\"Neurons in vertebrate central nervous systems initiate
-  and conduct sodium action potentials in distinct subcellular compartments that differ
-  architecturally and electrically. Here, we rep'
+description: "{\"value\": \"\\\"Neurons in vertebrate central nervous systems initiate and conduct sodium action potentials in distinct subcellular compartments that differ architecturally and electrically. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

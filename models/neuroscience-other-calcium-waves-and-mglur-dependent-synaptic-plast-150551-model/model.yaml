@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CalciumWavesAndMglurDependentSynapticPlast150551Model'
-description: '{"value": "A morphologically realistic, conductance-based model equipped
-  with kinetic schemes that govern several calcium signalling modules and pathways
-  in CA1 pyramidal neurons", "attr_id": 24}'
+description: "A morphologically realistic, conductance-based model equipped with kinetic schemes that govern several calcium signalling modules and pathways in CA1 pyramidal neurons. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

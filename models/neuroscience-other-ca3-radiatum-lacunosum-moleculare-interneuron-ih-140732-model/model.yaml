@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca3RadiatumLacunosumMoleculareInterneuronIh140732Model'
-description: '{"value": "\"The present study examines the biophysical\r\nproperties
-  and functional implications of Ih in hippocampal\r\narea CA3 interneurons with somata
-  in strata radiatum and\r\nlacunosum-molecula'
+description: "{\"value\": \"\\\"The present study examines the biophysical\\r\\nproperties and functional implications of Ih in hippocampal\\r\\narea CA3 interneurons with somata in strata radiatum and\\r\\nlacunosum-molecula. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

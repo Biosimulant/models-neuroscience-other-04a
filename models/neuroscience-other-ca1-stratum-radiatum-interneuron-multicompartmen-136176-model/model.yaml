@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1StratumRadiatumInterneuronMulticompartmen136176Model'
-description: '{"value": "The model examines dendritic NMDA-spike generation and propagation\r\nin
-  the dendrites of CA1 stratum radiatum interneurons. It contains\r\nNMDA-channels
-  in a clustered pattern on a dendrit'
+description: "{\"value\": \"The model examines dendritic NMDA-spike generation and propagation\\r\\nin the dendrites of CA1 stratum radiatum interneurons. It contains\\r\\nNMDA-channels in a clustered pattern on a dendrit."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca3PyramidalNeuronSafiulinaEtAl2010126814Model'
-description: '{"value": "In this review some of the recent work carried out in our
-  laboratory concerning the functional\r\nrole of GABAergic signalling at immature
-  mossy fibres (MF)-CA3 principal cell synapses has\'
+description: "{\"value\": \"In this review some of the recent work carried out in our laboratory concerning the functional\\r\\nrole of GABAergic signalling at immature mossy fibres (MF)-CA3 principal cell synapses has\\. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

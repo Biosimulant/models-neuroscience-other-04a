@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellarCortexOscilRobustnessFromGolgiCe139656Model'
-description: '{"value": "\" ... Previous one-dimensional network modeling of the cerebellar
-  granular layer has been successfully\r\nlinked with a range of cerebellar cortex
-  oscillations observed in vivo. However, t'
+description: "{\"value\": \"\\\" ... Previous one-dimensional network modeling of the cerebellar granular layer has been successfully\\r\\nlinked with a range of cerebellar cortex oscillations observed in vivo."
 standard: other
 tags:
 - neuroscience

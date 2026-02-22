@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Cortical Circuits (COMBO_0063)'
-description: Neuroscience cortical circuits comparative space with 4 models, configured
-  as non-causal co-simulation.
+description: "Neuroscience Cortical Circuits (COMBO_0063) organizes cerebellar_corte_1, cerebellar_golgi_2, cerebellar_golgi_3 into a comparative simulation setup to examine how cortical circuit motifs transform and propagate activity. When you run it, you can compare participant trajectories through shared runtime settings and routed output streams."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: cerebellar_corte_1

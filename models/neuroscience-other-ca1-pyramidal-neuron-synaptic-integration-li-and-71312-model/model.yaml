@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronSynapticIntegrationLiAnd71312Model'
-description: "{'value': 'The model shows how different input patterns (irregular &\
-  \ asynchronous,\r\nirregular & synchronous, regular & asynchronous, regular & synchronous)\r\
-  \naffect the neuron's output rate when 10"
+description: "{'value': 'The model shows how different input patterns (irregular & asynchronous, irregular & synchronous, regular & asynchronous, regular & synchronous) affect the neuron's output rate when 10. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalStochasticAmplificationOfKcaIn137745Model'
-description: '{"value": "This minimal model investigates stochastic amplification
-  of calcium-activated potassium (KCa) currents. Amplification results from calcium
-  being released in short high amplitude pulses asso'
+description: "{\"value\": \"This minimal model investigates stochastic amplification of calcium-activated potassium (KCa) currents. Amplification results from calcium being released in short high amplitude pulses asso."
 standard: other
 tags:
 - neuroscience

@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model150551150551Model'
-description: Calcium waves and mGluR-dependent synaptic plasticity in CA1 pyr. neurons
-  (Ashhad & Narayanan 2013)
+description: "Calcium waves and mGluR-dependent synaptic plasticity in CA1 pyr. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

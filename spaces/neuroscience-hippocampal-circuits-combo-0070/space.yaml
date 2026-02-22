@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Hippocampal Circuits (COMBO_0070)'
-description: Neuroscience hippocampal circuits comparative space with 4 models, configured
-  as non-causal co-simulation.
+description: "Neuroscience Hippocampal Circuits (COMBO_0070) assembles calcium_waves_1, calcium_waves_2, changes_of_3 as a comparative composed simulation to examine how recurrent hippocampal motifs shape network dynamics over time. When you run it, you can compare synchronized outputs through the declared wiring paths and monitor views."
 models:
 - repo: Biosimulant/models-neuroscience-other-04a
   alias: calcium_waves_1

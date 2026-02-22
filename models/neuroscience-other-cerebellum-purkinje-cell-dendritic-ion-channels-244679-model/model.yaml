@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CerebellumPurkinjeCellDendriticIonChannels244679Model'
-description: '{"value": "\"In cerebellar Purkinje neuron (PN) dendrites, the transient\r\ndepolarisation
-  associated with a climbing fibre (CF) EPSP\r\nactivates voltage-gated Ca2+ channels
-  (VGCCs), voltage-gated K+'
+description: "{\"value\": \"\\\"In cerebellar Purkinje neuron (PN) dendrites, the transient\\r\\ndepolarisation associated with a climbing fibre (CF) EPSP\\r\\nactivates voltage-gated Ca2+ channels (VGCCs), voltage-gated K+. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

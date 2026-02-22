@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: CarbonNanotubesAsElectricalInterfacesToNeu112086Model'
-description: '{''value'': ''In the present NEURON model, we explore simple phenomenological
-  models of the extracellular coupling, occurring at the neuron-metal microelectrode
-  junction and (possibly) at the neuron-carb'
+description: "{'value': 'In the present NEURON model, we explore simple phenomenological models of the extracellular coupling, occurring at the neuron-metal microelectrode junction and (possibly) at the neuron-carb. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

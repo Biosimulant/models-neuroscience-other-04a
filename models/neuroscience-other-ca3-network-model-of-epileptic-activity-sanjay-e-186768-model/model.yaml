@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca3NetworkModelOfEpilepticActivitySanjayE186768Model'
-description: '{"value": "This computational study investigates how a CA3 neuronal
-  network consisting of pyramidal cells, basket cells and OLM interneurons becomes
-  epileptic when dendritic inhibition to pyramidal ce'
+description: "{\"value\": \"This computational study investigates how a CA3 neuronal network consisting of pyramidal cells, basket cells and OLM interneurons becomes epileptic when dendritic inhibition to pyramidal ce. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

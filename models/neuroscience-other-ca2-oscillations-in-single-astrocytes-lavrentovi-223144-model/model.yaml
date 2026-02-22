@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca2OscillationsInSingleAstrocytesLavrentovi223144Model'
-description: '{"value": "We tested the reproducibility and comparability of four astrocyte
-  models (Manninen, Havela, Linne, 2017). Model by Lavrentovich and Hemkin (2008)
-  was one of them. We implemented and ran the'
+description: "{\"value\": \"We tested the reproducibility and comparability of four astrocyte models (Manninen, Havela, Linne, 2017). Model by Lavrentovich and Hemkin (2008) was one of them."
 standard: other
 tags:
 - neuroscience

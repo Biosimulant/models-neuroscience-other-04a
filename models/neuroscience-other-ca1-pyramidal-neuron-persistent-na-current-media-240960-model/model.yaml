@@ -1,8 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Ca1PyramidalNeuronPersistentNaCurrentMedia240960Model'
-description: '{"value": "This paper shows that persistent sodium current critically
-  contributes to the subthreshold nonlinear dynamics of CA1 pyramidal neurons and
-  promotes rapidly reversible conversion between pla'
+description: "{\"value\": \"This paper shows that persistent sodium current critically contributes to the subthreshold nonlinear dynamics of CA1 pyramidal neurons and promotes rapidly reversible conversion between pla. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience

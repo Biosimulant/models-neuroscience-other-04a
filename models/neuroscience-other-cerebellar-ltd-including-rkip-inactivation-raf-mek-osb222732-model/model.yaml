@@ -1,7 +1,6 @@
 schema_version: '2.0'
 title: 'Neuroscience: Model222732222732Model'
-description: A model of cerebellar LTD including RKIP inactivation of Raf and MEK
-  (Hepburn et al 2017)
+description: "A model of cerebellar LTD including RKIP inactivation of Raf and MEK (Hepburn et al 2017). It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
 - neuroscience
