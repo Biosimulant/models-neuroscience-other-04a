@@ -20,7 +20,7 @@ import biosim
 from biosim.signals import BioSignal, SignalMetadata
 
 class OtherCa3RadiatumLacunosumMoleculareInterneuronIhAnderson(biosim.BioModule):
-    """BioModule wrapper for: CA3 Radiatum/Lacunosum-Moleculare interneuron, Ih (Anderson et al. 2011).""""""
+    """BioModule wrapper for: CA3 Radiatum/Lacunosum-Moleculare interneuron, Ih (Anderson et al. 2011)."""
 
     def __init__(self, model_path: str = "data/140732.zip", min_dt: float = 0.01) -> None:
         self.min_dt = min_dt
@@ -87,7 +87,7 @@ class OtherCa3RadiatumLacunosumMoleculareInterneuronIhAnderson(biosim.BioModule)
         return {"state"}
 
     def advance_to(self, t: float) -> None:
-        """Advance simulation — dispatches to detected simulator."""
+        """Advance simulation - dispatches to detected simulator."""
         if self._extracted_dir is None:
             self.setup()
 

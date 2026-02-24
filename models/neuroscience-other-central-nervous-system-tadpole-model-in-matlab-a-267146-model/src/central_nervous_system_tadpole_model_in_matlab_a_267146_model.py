@@ -20,7 +20,7 @@ import biosim
 from biosim.signals import BioSignal, SignalMetadata
 
 class OtherCentralNervousSystemTadpoleModelInMatlabAndNeuron(biosim.BioModule):
-    """BioModule wrapper for: Central Nervous System tadpole model in Matlab and NEURON-Python (Ferrario et al, 2021).""""""
+    """BioModule wrapper for: Central Nervous System tadpole model in Matlab and NEURON-Python (Ferrario et al, 2021)."""
 
     def __init__(self, model_path: str = "data/267146.zip", min_dt: float = 0.01) -> None:
         self.min_dt = min_dt
@@ -87,7 +87,7 @@ class OtherCentralNervousSystemTadpoleModelInMatlabAndNeuron(biosim.BioModule):
         return {"state"}
 
     def advance_to(self, t: float) -> None:
-        """Advance simulation — dispatches to detected simulator."""
+        """Advance simulation - dispatches to detected simulator."""
         if self._extracted_dir is None:
             self.setup()
 

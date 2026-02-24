@@ -20,7 +20,7 @@ import biosim
 from biosim.signals import BioSignal, SignalMetadata
 
 class OtherCalciumWavesInNeuroblastomaCellsFinkEtAl2000(biosim.BioModule):
-    """BioModule wrapper for: Calcium waves in neuroblastoma cells (Fink et al. 2000).""""""
+    """BioModule wrapper for: Calcium waves in neuroblastoma cells (Fink et al. 2000)."""
 
     def __init__(self, model_path: str = "data/125745.zip", min_dt: float = 0.01) -> None:
         self.min_dt = min_dt
@@ -87,7 +87,7 @@ class OtherCalciumWavesInNeuroblastomaCellsFinkEtAl2000(biosim.BioModule):
         return {"state"}
 
     def advance_to(self, t: float) -> None:
-        """Advance simulation — dispatches to detected simulator."""
+        """Advance simulation - dispatches to detected simulator."""
         if self._extracted_dir is None:
             self.setup()
 

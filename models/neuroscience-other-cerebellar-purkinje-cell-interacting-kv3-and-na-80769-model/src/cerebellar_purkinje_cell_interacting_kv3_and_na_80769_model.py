@@ -20,7 +20,7 @@ import biosim
 from biosim.signals import BioSignal, SignalMetadata
 
 class OtherCerebellarPurkinjeCellInteractingKv3AndNaCurrents(biosim.BioModule):
-    """BioModule wrapper for: Cerebellar purkinje cell: interacting Kv3 and Na currents influence firing (Akemann, Knopfel 2006).""""""
+    """BioModule wrapper for: Cerebellar purkinje cell: interacting Kv3 and Na currents influence firing (Akemann, Knopfel 2006)."""
 
     def __init__(self, model_path: str = "data/80769.zip", min_dt: float = 0.01) -> None:
         self.min_dt = min_dt
@@ -87,7 +87,7 @@ class OtherCerebellarPurkinjeCellInteractingKv3AndNaCurrents(biosim.BioModule):
         return {"state"}
 
     def advance_to(self, t: float) -> None:
-        """Advance simulation — dispatches to detected simulator."""
+        """Advance simulation - dispatches to detected simulator."""
         if self._extracted_dir is None:
             self.setup()
 

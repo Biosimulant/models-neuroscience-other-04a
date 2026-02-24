@@ -20,7 +20,7 @@ import biosim
 from biosim.signals import BioSignal, SignalMetadata
 
 class OtherCa1PyramidalNeuronsEffectsOfKv7MChannelsOnSynaptic(biosim.BioModule):
-    """BioModule wrapper for: CA1 pyramidal neurons: effects of Kv7 (M-) channels on synaptic integration (Shah et al. 2011).""""""
+    """BioModule wrapper for: CA1 pyramidal neurons: effects of Kv7 (M-) channels on synaptic integration (Shah et al. 2011)."""
 
     def __init__(self, model_path: str = "data/144392.zip", min_dt: float = 0.01) -> None:
         self.min_dt = min_dt
@@ -87,7 +87,7 @@ class OtherCa1PyramidalNeuronsEffectsOfKv7MChannelsOnSynaptic(biosim.BioModule):
         return {"state"}
 
     def advance_to(self, t: float) -> None:
-        """Advance simulation — dispatches to detected simulator."""
+        """Advance simulation - dispatches to detected simulator."""
         if self._extracted_dir is None:
             self.setup()
 

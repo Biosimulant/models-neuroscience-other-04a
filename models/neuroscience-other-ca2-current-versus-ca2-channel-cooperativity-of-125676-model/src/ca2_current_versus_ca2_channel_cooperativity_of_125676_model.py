@@ -20,7 +20,7 @@ import biosim
 from biosim.signals import BioSignal, SignalMetadata
 
 class OtherCa2CurrentVersusCa2ChannelCooperativityOfExocytosis(biosim.BioModule):
-    """BioModule wrapper for: Ca2+ current versus Ca2+ channel cooperativity of exocytosis (Matveev et al. 2009).""""""
+    """BioModule wrapper for: Ca2+ current versus Ca2+ channel cooperativity of exocytosis (Matveev et al. 2009)."""
 
     def __init__(self, model_path: str = "data/125676.zip", min_dt: float = 0.01) -> None:
         self.min_dt = min_dt
@@ -87,7 +87,7 @@ class OtherCa2CurrentVersusCa2ChannelCooperativityOfExocytosis(biosim.BioModule)
         return {"state"}
 
     def advance_to(self, t: float) -> None:
-        """Advance simulation — dispatches to detected simulator."""
+        """Advance simulation - dispatches to detected simulator."""
         if self._extracted_dir is None:
             self.setup()
 

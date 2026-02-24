@@ -20,7 +20,7 @@ import biosim
 from biosim.signals import BioSignal, SignalMetadata
 
 class OtherCerebellumPurkinjeCellDendriticIonChannelsActivated(biosim.BioModule):
-    """BioModule wrapper for: Cerebellum Purkinje cell: dendritic ion channels activated by climbing fibre (Ait Ouares et al 2019).""""""
+    """BioModule wrapper for: Cerebellum Purkinje cell: dendritic ion channels activated by climbing fibre (Ait Ouares et al 2019)."""
 
     def __init__(self, model_path: str = "data/244679.zip", min_dt: float = 0.01) -> None:
         self.min_dt = min_dt
@@ -87,7 +87,7 @@ class OtherCerebellumPurkinjeCellDendriticIonChannelsActivated(biosim.BioModule)
         return {"state"}
 
     def advance_to(self, t: float) -> None:
-        """Advance simulation — dispatches to detected simulator."""
+        """Advance simulation - dispatches to detected simulator."""
         if self._extracted_dir is None:
             self.setup()
 

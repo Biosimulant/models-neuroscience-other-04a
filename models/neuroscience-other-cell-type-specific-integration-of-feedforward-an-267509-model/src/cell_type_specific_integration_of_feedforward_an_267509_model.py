@@ -20,7 +20,7 @@ import biosim
 from biosim.signals import BioSignal, SignalMetadata
 
 class OtherCellTypeSpecificIntegrationOfFeedforwardAndFeedback(biosim.BioModule):
-    """BioModule wrapper for: Cell-type specific integration of feedforward and feedback synaptic inputs (Ridner et al, 2022).""""""
+    """BioModule wrapper for: Cell-type specific integration of feedforward and feedback synaptic inputs (Ridner et al, 2022)."""
 
     def __init__(self, model_path: str = "data/267509.zip", min_dt: float = 0.01) -> None:
         self.min_dt = min_dt
@@ -87,7 +87,7 @@ class OtherCellTypeSpecificIntegrationOfFeedforwardAndFeedback(biosim.BioModule)
         return {"state"}
 
     def advance_to(self, t: float) -> None:
-        """Advance simulation — dispatches to detected simulator."""
+        """Advance simulation - dispatches to detected simulator."""
         if self._extracted_dir is None:
             self.setup()
 

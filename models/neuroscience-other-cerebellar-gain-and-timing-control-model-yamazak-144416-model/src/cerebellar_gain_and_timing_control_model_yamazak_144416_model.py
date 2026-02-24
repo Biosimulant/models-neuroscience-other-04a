@@ -20,7 +20,7 @@ import biosim
 from biosim.signals import BioSignal, SignalMetadata
 
 class OtherCerebellarGainAndTimingControlModelYamazakiTanaka(biosim.BioModule):
-    """BioModule wrapper for: Cerebellar gain and timing control model (Yamazaki & Tanaka 2007)(Yamazaki & Nagao 2012).""""""
+    """BioModule wrapper for: Cerebellar gain and timing control model (Yamazaki & Tanaka 2007)(Yamazaki & Nagao 2012)."""
 
     def __init__(self, model_path: str = "data/144416.zip", min_dt: float = 0.01) -> None:
         self.min_dt = min_dt
@@ -87,7 +87,7 @@ class OtherCerebellarGainAndTimingControlModelYamazakiTanaka(biosim.BioModule):
         return {"state"}
 
     def advance_to(self, t: float) -> None:
-        """Advance simulation — dispatches to detected simulator."""
+        """Advance simulation - dispatches to detected simulator."""
         if self._extracted_dir is None:
             self.setup()
 
