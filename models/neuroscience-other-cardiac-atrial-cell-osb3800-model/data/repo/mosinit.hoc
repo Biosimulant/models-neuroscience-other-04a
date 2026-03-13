@@ -1,5 +1,0 @@
-load_file("startatrial2.hoc")
-atol_ = 1e-3
-cvode.atol(atol_)
-cvode_active(1)
-run()

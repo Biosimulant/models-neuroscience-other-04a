@@ -1,5 +1,0 @@
-load_file("chandler1.ses")
-load_file("var_time_step.ses")
-init()
-run()
-

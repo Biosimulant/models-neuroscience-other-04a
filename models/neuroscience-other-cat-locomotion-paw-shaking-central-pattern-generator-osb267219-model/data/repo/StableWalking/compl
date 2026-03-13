@@ -1,3 +1,0 @@
-#!/bin/bash
-
-gcc -O3 *.c $( gsl-config --cflags --libs ) -lm -o runCatCPG.exe

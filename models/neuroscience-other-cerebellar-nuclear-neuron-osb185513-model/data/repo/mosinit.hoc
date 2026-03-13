@@ -1,3 +1,0 @@
-load_file("nrngui.hoc")
-x=1
-load_file("DCN_init_model2_lowgain.hoc")
