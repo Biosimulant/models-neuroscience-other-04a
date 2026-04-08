@@ -1,5 +1,5 @@
 schema_version: '2.0'
-title: 'Neuroscience: Tobinetal2017Tobinetal2017Model'
+title: "TobinEtAl2017"
 description: "Cell models from \"Wiring variations that enable and constrain neural computation in a sensory microcircuit\" Tobin et al. It can be used to explore neural activity dynamics and compare response patterns across conditions."
 standard: other
 tags:
